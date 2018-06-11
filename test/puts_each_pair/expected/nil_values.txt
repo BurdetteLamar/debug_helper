@@ -1,0 +1,9 @@
+Label:  nil_values
+Count:  2
+  Pair 0:
+    Key (Symbol): :a
+    Value (NilClass): nil
+  Pair 1:
+    Key (Symbol): :b
+    Value (NilClass): nil
+
