@@ -1,0 +1,9 @@
+Label:  int_keys
+Count:  2
+  Pair 0:
+    Key (Fixnum): 0
+    Value (String): "a"
+  Pair 1:
+    Key (Fixnum): 1
+    Value (String): "b"
+

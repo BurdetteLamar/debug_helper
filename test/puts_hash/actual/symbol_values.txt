@@ -1,0 +1,9 @@
+Label:  symbol_values
+Count:  2
+  Pair 0:
+    Key (Symbol): :a
+    Value (Symbol): :a
+  Pair 1:
+    Key (Symbol): :b
+    Value (Symbol): :b
+
