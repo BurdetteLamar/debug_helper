@@ -2,19 +2,21 @@ require 'debug_helper/version'
 
 class DebugHelper
 
-  # def self.puts(obj, label = obj.class)
-  #   case
-  #     when obj.kind_of?(Array)
-  #     when obj.kind_of?(Hash)
-  #     when obj.kind_of?(Range)
-  #     when obj.kind_of?(Set)
-  #     when obj.kind_of?(Struct)
-  #     else
-  #
-  #   end
-  # end
+  def self.show(obj, label = obj.class)
+    case
+      # when obj.kind_of?(Array)
+      when obj.kind_of?(Hash)
+        self.show_hash(obj, label)
+      # when obj.kind_of?(Range)
+      # when obj.kind_of?(Set)
+      # when obj.kind_of?(Struct)
+      else
+        STDOUT.puts ['ELSE', obj.class, obj]
+        # self.show_object(obj, label)
+    end
+  end
 
-  def self.puts_hash(hash, label = hash.class.name)
+  def self.show_hash(hash, label = hash.class.name)
     self.kind_of!(hash, Hash)
     lines = [
         "Label:  #{label}",

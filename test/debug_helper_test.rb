@@ -10,18 +10,38 @@ class DebugHelperTest < Minitest::Test
     refute_nil ::DebugHelper::VERSION
   end
 
-  def self.write_stdout(file_path)
-    old_stdout = $stdout
-    $stdout = StringIO.new
-    yield
-    File.write(file_path, $stdout.string)
-  ensure
-    $stdout = old_stdout
+  def zzz_test_show
+
+    method = :show
+
+    {
+        :hash => {:a => 0, :b => 1}
+    }.each_pair do |name, obj|
+    actual_file_path = File.join(
+        TEST_DIR_PATH,
+        method.to_s,
+        'actual',
+        "#{name.to_s}.txt",
+    )
+    DebugHelperTest.write_stdout(actual_file_path) do
+      STDOUT.puts ['CLASS', method, obj.class]
+      DebugHelper.send(method, obj, name.to_s)
+    end
+    expected_file_path = File.join(
+        TEST_DIR_PATH,
+        method.to_s,
+        'expected',
+        "#{name.to_s}.txt",
+    )
+    diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
+    assert_empty(diffs)
+
+    end
   end
 
-  def test_puts_hash
+  def test_show_hash
 
-    method = :puts_hash
+    method = :show_hash
     {
         :empty => {},
         :string_values => {:a => 'a', :b => 'b'},
@@ -57,11 +77,20 @@ class DebugHelperTest < Minitest::Test
         Object.new,
     ].each do |obj|
       e = assert_raises(ArgumentError) do
-        DebugHelper.puts_hash(obj)
+        DebugHelper.show_hash(obj)
       end
       assert_equal("Instance of #{obj.class.name} is not a kind of Hash", e.message)
     end
 
+  end
+
+  def self.write_stdout(file_path)
+    old_stdout = $stdout
+    $stdout = StringIO.new
+    yield
+    File.write(file_path, $stdout.string)
+  ensure
+    $stdout = old_stdout
   end
 
   def self.diff_files(expected_file_path, actual_file_path)
