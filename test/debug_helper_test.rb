@@ -19,9 +19,9 @@ class DebugHelperTest < Minitest::Test
     $stdout = old_stdout
   end
 
-  def test_puts_each_pair
+  def test_puts_hash
 
-    method = :puts_each_pair
+    method = :puts_hash
     {
         :empty => {},
         :string_values => {:a => 'a', :b => 'b'},
@@ -57,9 +57,9 @@ class DebugHelperTest < Minitest::Test
         Object.new,
     ].each do |obj|
       e = assert_raises(ArgumentError) do
-        DebugHelper.puts_each_pair(obj)
+        DebugHelper.puts_hash(obj)
       end
-      assert_equal("Instance of #{obj.class.name} does not respond to :each_pair", e.message)
+      assert_equal("Instance of #{obj.class.name} is not a kind of Hash", e.message)
     end
 
   end
