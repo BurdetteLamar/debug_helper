@@ -29,7 +29,6 @@ class DebugHelper
     lines.push('')
     lines.join("\n")
     puts lines
-    lines
   end
 
   def self.respond_to!(obj, method)
