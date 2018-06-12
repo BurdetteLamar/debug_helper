@@ -10,7 +10,7 @@ class DebugHelperTest < Minitest::Test
     refute_nil ::DebugHelper::VERSION
   end
 
-  def zzz_test_show
+  def test_show
 
     method = :show
 
@@ -24,7 +24,6 @@ class DebugHelperTest < Minitest::Test
         "#{name.to_s}.txt",
     )
     DebugHelperTest.write_stdout(actual_file_path) do
-      STDOUT.puts ['CLASS', method, obj.class]
       DebugHelper.send(method, obj, name.to_s)
     end
     expected_file_path = File.join(
