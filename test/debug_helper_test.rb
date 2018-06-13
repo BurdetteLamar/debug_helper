@@ -55,7 +55,7 @@ class DebugHelperTest < Minitest::Test
           "#{name.to_s}.txt",
       )
       DebugHelperTest.write_stdout(actual_file_path) do
-        DebugHelper.send(method, hash, name.to_s)
+        DebugHelper.send(method, hash, label = name.to_s, level = 0)
       end
       expected_file_path = File.join(
           TEST_DIR_PATH,
@@ -76,7 +76,7 @@ class DebugHelperTest < Minitest::Test
         Object.new,
     ].each do |obj|
       e = assert_raises(ArgumentError) do
-        DebugHelper.show_hash(obj)
+        DebugHelper.show_hash(obj, label = obj.class.name, level = 0)
       end
       assert_equal("Instance of #{obj.class.name} is not a kind of Hash", e.message)
     end
