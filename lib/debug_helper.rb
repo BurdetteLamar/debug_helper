@@ -3,28 +3,34 @@ require 'debug_helper/version'
 class DebugHelper
 
   def self.show(obj, label = obj.class)
-    method_for_object = "#{__method__}_#{obj.class}".downcase.to_sym
-    if self.respond_to?(method_for_object)
-      self.send(method_for_object, obj, label)
-    else
-      STDOUT.puts ['ELSE', obj.class, obj]
-      # self.show_object(obj, label)
+    case
+      # when obj.kind_of?(Array)
+      when obj.kind_of?(Hash)
+        self.show_hash(obj, label)
+      # when obj.kind_of?(Range)
+      # when obj.kind_of?(Set)
+      # when obj.kind_of?(Struct)
+      else
+        STDOUT.puts ['ELSE', obj.class, obj]
+        # self.show_object(obj, label)
     end
   end
 
   private
 
-  def self.show_hash(hash, label = hash.class.name)
+  def self.show_hash(hash, label = hash.class.name, level = 0)
     self.kind_of!(hash, Hash)
+    level += 1
+    indentation = '  ' * level
     lines = [
-        "Label:  #{label}",
-        "Count:  #{hash.size}",
+        "Label:#{indentation}#{label}",
+        "Count:#{indentation}#{hash.size}",
     ]
     hash.to_a.each_with_index do |pair, i|
       key, value = *pair
-      lines.push("  Pair #{i}:")
-      lines.push("    Key (#{key.class.name}): #{key.inspect}")
-      lines.push("    Value (#{value.class.name}): #{value.inspect}")
+      lines.push("#{indentation}Pair #{i}:")
+      lines.push("#{indentation}  Key (#{key.class.name}): #{key.inspect}")
+      lines.push("#{indentation}  Value (#{value.class.name}): #{value.inspect}")
     end
     lines.push('')
     lines.join("\n")
