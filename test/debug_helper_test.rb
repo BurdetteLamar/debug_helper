@@ -40,7 +40,8 @@ class DebugHelperTest < Minitest::Test
 
   def test_show_hash
 
-    method = :show_hash
+    method = :show
+    test_dir_name = 'show_hash'
     {
         :empty => {},
         :string_values => {:a => 'a', :b => 'b'},
@@ -50,7 +51,7 @@ class DebugHelperTest < Minitest::Test
     }.each_pair do |name, hash|
       actual_file_path = File.join(
           TEST_DIR_PATH,
-          method.to_s,
+          test_dir_name,
           'actual',
           "#{name.to_s}.txt",
       )
@@ -59,7 +60,7 @@ class DebugHelperTest < Minitest::Test
       end
       expected_file_path = File.join(
           TEST_DIR_PATH,
-          method.to_s,
+          test_dir_name,
           'expected',
           "#{name.to_s}.txt",
       )
