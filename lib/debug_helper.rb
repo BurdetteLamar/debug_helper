@@ -13,8 +13,7 @@ class DebugHelper
   private
 
   def self._show(obj, name, info)
-    info.store('Class', obj.class.name)
-    info.store('Name', name)
+    info.store('Item', "#{name} (#{obj.class.name})")
     info.store('Size', obj.size) if obj.respond_to?(:size)
     x = case
           when obj.kind_of?(Array)
@@ -25,7 +24,7 @@ class DebugHelper
           # when obj.kind_of?(Set)
           # when obj.kind_of?(Struct)
           else
-            obj
+            "#{obj} (#{obj.class.name})"
         end
 
   end

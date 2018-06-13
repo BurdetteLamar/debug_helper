@@ -1,26 +1,22 @@
 ---
-Class: Hash
-Name: hash
+Item: hash (Hash)
 Size: 2
 Content:
   :a:
-    Class: Hash
-    Name: :a
+    Item: a (Hash)
     Size: 3
     Content:
-      :k: 4
-      :j: 5
+      :k: 4 (Fixnum)
+      :j: 5 (Fixnum)
       :v:
-        Class: Hash
-        Name: :v
+        Item: v (Hash)
         Size: 2
         Content:
-          :q: 2
-          :r: 1
+          :q: 2 (Fixnum)
+          :r: 1 (Fixnum)
   :b:
-    Class: Hash
-    Name: :b
+    Item: b (Hash)
     Size: 2
     Content:
-      :c: 2
-      :d: 3
+      :c: 2 (Fixnum)
+      :d: 3 (Fixnum)
