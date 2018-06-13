@@ -3,18 +3,16 @@ require 'debug_helper/version'
 class DebugHelper
 
   def self.show(obj, label = obj.class)
-    case
-      # when obj.kind_of?(Array)
-      when obj.kind_of?(Hash)
-        self.show_hash(obj, label)
-      # when obj.kind_of?(Range)
-      # when obj.kind_of?(Set)
-      # when obj.kind_of?(Struct)
-      else
-        STDOUT.puts ['ELSE', obj.class, obj]
-        # self.show_object(obj, label)
+    method_for_object = "#{__method__}_#{obj.class}".downcase.to_sym
+    if self.respond_to?(method_for_object)
+      self.send(method_for_object, obj, label)
+    else
+      STDOUT.puts ['ELSE', obj.class, obj]
+      # self.show_object(obj, label)
     end
   end
+
+  private
 
   def self.show_hash(hash, label = hash.class.name)
     self.kind_of!(hash, Hash)
