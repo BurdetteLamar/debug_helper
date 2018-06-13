@@ -1,0 +1,8 @@
+---
+Class: Array
+Name: array
+Size: 3
+Content:
+  0: a
+  1: b
+  2: c

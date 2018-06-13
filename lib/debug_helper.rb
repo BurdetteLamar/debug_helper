@@ -1,40 +1,51 @@
+require 'yaml'
+
 require 'debug_helper/version'
 
 class DebugHelper
 
-  def self.show(obj, label = obj.class)
-    case
-      # when obj.kind_of?(Array)
-      when obj.kind_of?(Hash)
-        self.show_hash(obj, label)
-      # when obj.kind_of?(Range)
-      # when obj.kind_of?(Set)
-      # when obj.kind_of?(Struct)
-      else
-        STDOUT.puts ['ELSE', obj.class, obj]
-        # self.show_object(obj, label)
-    end
+  def self.show(obj, name = obj.class)
+    x = self._show(obj, name, {})
+    STDOUT.puts x.to_yaml
+    puts x.to_yaml
   end
 
   private
 
-  def self.show_hash(hash, label, lines = [], object_ids = [])
-    self.kind_of!(hash, Hash)
-    level = object_ids.size
-    indentation = '  ' * level
-    lines.concat [
-        "#{indentation}Label: #{label}",
-        "#{indentation}Count: #{hash.size}",
-    ]
-    hash.to_a.each_with_index do |pair, i|
-      key, value = *pair
-      lines.push("#{indentation}Pair #{i}:")
-      lines.push("#{indentation}  Key (#{key.class.name}) #{key.inspect}")
-      lines.push("#{indentation}  Value (#{value.class.name}) #{value.inspect}")
+  def self._show(obj, name, info)
+    info.store('Class', obj.class.name)
+    info.store('Name', name)
+    info.store('Size', obj.size) if obj.respond_to?(:size)
+    x = case
+          when obj.kind_of?(Array)
+            self.show_array(obj, name, info)
+          when obj.kind_of?(Hash)
+            self.show_hash(obj, name, info)
+          # when obj.kind_of?(Range)
+          # when obj.kind_of?(Set)
+          # when obj.kind_of?(Struct)
+          else
+            obj
+        end
+
+  end
+
+  def self.show_array(obj, name, info)
+    content = {}
+    obj.each_with_index do |item, i|
+      content.store(i, self._show(item, i, {}))
     end
-    lines.push('')
-    lines.join("\n")
-    puts lines
+    info.store('Content', content)
+    info
+  end
+
+  def self.show_hash(obj, name, info)
+    content = {}
+    obj.each_pair do |key, value|
+      content.store(key, self._show(value, key, {}))
+    end
+    info.store('Content', content)
+    info
   end
 
   def self.respond_to!(obj, method)
