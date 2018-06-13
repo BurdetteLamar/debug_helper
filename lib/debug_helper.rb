@@ -6,7 +6,7 @@ class DebugHelper
     case
       # when obj.kind_of?(Array)
       when obj.kind_of?(Hash)
-        self.show_hash(obj, label, level = 0)
+        self.show_hash(obj, label)
       # when obj.kind_of?(Range)
       # when obj.kind_of?(Set)
       # when obj.kind_of?(Struct)
@@ -18,11 +18,11 @@ class DebugHelper
 
   private
 
-  def self.show_hash(hash, label, level)
+  def self.show_hash(hash, label, lines = [], object_ids = [])
     self.kind_of!(hash, Hash)
-    level += 1
+    level = 1 + object_ids.size
     indentation = '  ' * level
-    lines = [
+    lines.concat [
         "Label:#{indentation}#{label}",
         "Count:#{indentation}#{hash.size}",
     ]
