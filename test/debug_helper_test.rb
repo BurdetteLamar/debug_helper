@@ -33,7 +33,8 @@ class DebugHelperTest < Minitest::Test
         "#{name.to_s}.txt",
     )
     diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
-    assert_empty(diffs)
+    message = "Test for :show with item '#{name}' failed"
+    assert_empty(diffs, message)
 
     end
   end

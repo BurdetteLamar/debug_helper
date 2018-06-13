@@ -20,17 +20,17 @@ class DebugHelper
 
   def self.show_hash(hash, label, lines = [], object_ids = [])
     self.kind_of!(hash, Hash)
-    level = 1 + object_ids.size
+    level = object_ids.size
     indentation = '  ' * level
     lines.concat [
-        "Label:#{indentation}#{label}",
-        "Count:#{indentation}#{hash.size}",
+        "#{indentation}Label: #{label}",
+        "#{indentation}Count: #{hash.size}",
     ]
     hash.to_a.each_with_index do |pair, i|
       key, value = *pair
       lines.push("#{indentation}Pair #{i}:")
-      lines.push("#{indentation}  Key (#{key.class.name}): #{key.inspect}")
-      lines.push("#{indentation}  Value (#{value.class.name}): #{value.inspect}")
+      lines.push("#{indentation}  Key (#{key.class.name}) #{key.inspect}")
+      lines.push("#{indentation}  Value (#{value.class.name}) #{value.inspect}")
     end
     lines.push('')
     lines.join("\n")
