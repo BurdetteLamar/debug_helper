@@ -24,6 +24,22 @@ class DebugHelperTest < Minitest::Test
     array_circular_0.push(array_circular_1)
     array_circular_1.push(array_circular_0)
 
+    hash_self_referencing_key = {}
+    hash_self_referencing_key.store(hash_self_referencing_key, 0)
+
+    hash_self_referencing_value = {}
+    hash_self_referencing_value.store(:a, hash_self_referencing_value)
+
+    hash_circular_key_0 = {}
+    hash_circular_key_1 = {}
+    hash_circular_key_0.store(hash_circular_key_1, 0)
+    hash_circular_key_0.store(hash_circular_key_0, 0)
+
+    hash_circular_value_0 = {}
+    hash_circular_value_1 = {}
+    hash_circular_value_0.store(:a, hash_circular_key_1)
+    hash_circular_value_0.store(:b, hash_circular_key_0)
+
     string_multiline = <<EOT
 foobar
 snafu
@@ -51,6 +67,10 @@ EOT
         :test_hash_empty => {},
         :test_hash_mixed_keys => {14 => 0, :a => 1, 'foobar' => 2},
         :test_hash_mixed_values => {:a => 0, :b => '0', :c => nil},
+        :test_hash_self_referencing_key => hash_self_referencing_key,
+        :test_hash_self_referencing_value => hash_self_referencing_value,
+        :test_hash_circular_key => hash_circular_key_0,
+        :test_hash_circular_value => hash_circular_value_0,
 
         :test_string => 'Lorem ipsum',
         :test_string_empty => '',

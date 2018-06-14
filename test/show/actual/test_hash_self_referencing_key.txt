@@ -1,0 +1,5 @@
+---
+Hash (size=1 default=nil name=test_hash_self_referencing_key):
+  Pair 0:
+    Key: "{{...}=>0} (Hash)"
+    Value: 0 (Fixnum)

@@ -1,0 +1,6 @@
+---
+Hash (size=1 default=nil name=test_hash_self_referencing_value):
+  Pair 0:
+    Key:
+      Symbol (size=1): :a
+    Value: "{:a=>{...}} (Hash)"

@@ -1,0 +1,19 @@
+---
+Hash (size=2 default=nil name=test_hash_circular_value):
+  Pair 0:
+    Key:
+      Symbol (size=1): :a
+    Value:
+      Hash (size=0 default=nil name=0): {}
+  Pair 1:
+    Key:
+      Symbol (size=1): :b
+    Value:
+      Hash (size=2 default=nil name=1):
+        Pair 0:
+          Key:
+            Hash (size=0 default=nil name=0): {}
+          Value: 0 (Fixnum)
+        Pair 1:
+          Key: "{{}=>0, {...}=>0} (Hash)"
+          Value: 0 (Fixnum)
