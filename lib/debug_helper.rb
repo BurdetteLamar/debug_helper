@@ -56,21 +56,14 @@ class DebugHelper
   end
 
   def self.show_string(obj, name, info)
-    info.store('Name', name)
-    info.store('Class', obj.class.name)
-    info.store('Size', obj.size) if obj.respond_to?(:size)
-    content = {}
-    info.store('Encoding', obj.encoding)
-    info.store('Value', obj)
+    label = "#{obj.class.name} (size=#{obj.size} encoding=#{obj.encoding} name=#{name})"
+    info.store(label, obj)
     info
   end
 
   def self.show_symbol(obj, name, info)
-    info.store('Name', name)
-    info.store('Class', obj.class.name)
-    info.store('Size', obj.size) if obj.respond_to?(:size)
-    content = {}
-    info.store('Value', obj)
+    label = "#{obj.class.name} (size=#{obj.size} name=#{name})"
+    info.store(label, obj)
     info
   end
 
