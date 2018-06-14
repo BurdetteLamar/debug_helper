@@ -1,22 +1,71 @@
 ---
-Item: hash (Hash)
+Class: Hash
 Size: 2
-Content:
-  :a:
-    Item: a (Hash)
-    Size: 3
-    Content:
-      :k: 4 (Fixnum)
-      :j: 5 (Fixnum)
-      :v:
-        Item: v (Hash)
-        Size: 2
-        Content:
-          :q: 2 (Fixnum)
-          :r: 1 (Fixnum)
-  :b:
-    Item: b (Hash)
-    Size: 2
-    Content:
-      :c: 2 (Fixnum)
-      :d: 3 (Fixnum)
+Default: nil
+Pairs:
+  0:
+    Key:
+      Class: Symbol
+      Size: 1
+      Value: :a
+    Value:
+      Class: Hash
+      Size: 3
+      Default: nil
+      Pairs:
+        0:
+          Key:
+            Class: Symbol
+            Size: 1
+            Value: :k
+          Value: 4 (Fixnum)
+        1:
+          Key:
+            Class: Symbol
+            Size: 1
+            Value: :j
+          Value: 5 (Fixnum)
+        2:
+          Key:
+            Class: Symbol
+            Size: 1
+            Value: :v
+          Value:
+            Class: Hash
+            Size: 2
+            Default: nil
+            Pairs:
+              0:
+                Key:
+                  Class: Symbol
+                  Size: 1
+                  Value: :q
+                Value: 2 (Fixnum)
+              1:
+                Key:
+                  Class: Symbol
+                  Size: 1
+                  Value: :r
+                Value: 1 (Fixnum)
+  1:
+    Key:
+      Class: Symbol
+      Size: 1
+      Value: :b
+    Value:
+      Class: Hash
+      Size: 2
+      Default: nil
+      Pairs:
+        0:
+          Key:
+            Class: Symbol
+            Size: 1
+            Value: :c
+          Value: 2 (Fixnum)
+        1:
+          Key:
+            Class: Symbol
+            Size: 1
+            Value: :d
+          Value: 3 (Fixnum)

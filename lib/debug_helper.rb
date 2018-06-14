@@ -13,37 +13,58 @@ class DebugHelper
   private
 
   def self._show(obj, name, info)
-    info.store('Item', "#{name} (#{obj.class.name})")
+    # info.store('Item', "#{name} (#{obj.class.name})")
+    info.store('Class', obj.class.name)
     info.store('Size', obj.size) if obj.respond_to?(:size)
     x = case
           when obj.kind_of?(Array)
             self.show_array(obj, name, info)
           when obj.kind_of?(Hash)
             self.show_hash(obj, name, info)
+          when obj.kind_of?(String)
+            self.show_string(obj, name, info)
+          when obj.kind_of?(Symbol)
+            self.show_symbol(obj, name, info)
           # when obj.kind_of?(Range)
           # when obj.kind_of?(Set)
           # when obj.kind_of?(Struct)
           else
             "#{obj} (#{obj.class.name})"
         end
-
   end
 
-  def self.show_array(obj, name, info)
+  def self.show_string(string, name, info)
     content = {}
-    obj.each_with_index do |item, i|
-      content.store(i, self._show(item, i, {}))
-    end
-    info.store('Content', content)
+    info.store('Encoding', string.encoding)
+    info.store('Value', string)
     info
   end
 
-  def self.show_hash(obj, name, info)
+  def self.show_symbol(symbol, name, info)
     content = {}
-    obj.each_pair do |key, value|
-      content.store(key, self._show(value, key, {}))
+    info.store('Value', symbol)
+    info
+  end
+
+  def self.show_array(array, name, info)
+    content = {}
+    array.each_with_index do |item, i|
+      content.store(i, self._show(item, i, {}))
     end
-    info.store('Content', content)
+    info.store('Values', content)
+    info
+  end
+
+  def self.show_hash(hash, name, info)
+    info.store('Default', hash.default.nil? ? 'nil' : hash.default)
+    content = {}
+    hash.each_with_index do |pair, i|
+      key, value = *pair
+      # content.store(key, self._show(value, key, {}))
+      pair = {'Key' => self._show(key, i, {}), 'Value' => self._show(value, i, {})}
+      content.store(i, pair)
+    end
+    info.store('Pairs', content)
     info
   end
 

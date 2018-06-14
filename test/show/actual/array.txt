@@ -1,7 +1,19 @@
 ---
-Item: array (Array)
+Class: Array
 Size: 3
-Content:
-  0: a (String)
-  1: b (String)
-  2: c (String)
+Values:
+  0:
+    Class: String
+    Size: 1
+    Encoding: !ruby/encoding UTF-8
+    Value: a
+  1:
+    Class: String
+    Size: 1
+    Encoding: !ruby/encoding UTF-8
+    Value: b
+  2:
+    Class: String
+    Size: 1
+    Encoding: !ruby/encoding UTF-8
+    Value: c
