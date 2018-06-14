@@ -16,6 +16,12 @@ class DebugHelperTest < Minitest::Test
 
     method = :show
 
+    string_multiline = <<EOT
+foobar
+snafu
+janfu
+EOT
+
     struct = MyStruct.new(0, 1, 2)
 
     struct_self_referencing = MyStruct.new(0, 1, 2)
@@ -33,8 +39,12 @@ class DebugHelperTest < Minitest::Test
 
         :test_hash => {:a => 14, :b => 22},
         :test_hash_empty => {},
+        :test_hash_mixed_keys => {14 => 0, :a => 1, 'foobar' => 2},
+        :test_hash_mixed_values => {:a => 0, :b => '0', :c => nil},
 
         :test_string => 'Lorem ipsum',
+        :test_string_multiline => string_multiline,
+        :test_string_iso_8859 => 'Lorem ipsum'.encode(Encoding::ISO_8859_1),
 
         :test_struct => struct,
         :test_struct_self_referencing => struct_self_referencing,

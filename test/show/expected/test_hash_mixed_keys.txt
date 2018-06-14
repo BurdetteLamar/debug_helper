@@ -1,0 +1,14 @@
+---
+Hash (size=3 default=nil name=test_hash_mixed_keys):
+  Pair 0:
+    Key: 14 (Fixnum)
+    Value: 0 (Fixnum)
+  Pair 1:
+    Key:
+      Symbol (size=1): :a
+    Value: 1 (Fixnum)
+  Pair 2:
+    Key:
+      String (size=6 encoding=UTF-8 name=2):
+      - foobar
+    Value: 2 (Fixnum)
