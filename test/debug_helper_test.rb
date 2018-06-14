@@ -16,19 +16,12 @@ class DebugHelperTest < Minitest::Test
 
     method = :show
 
-    struct = MyStruct.new(0, 1, 2)
-    # struct_0 = MyStruct.new(nil)
-    # struct_1 = MyStruct.new(nil)
-    # struct_2 = MyStruct.new(struct_0)
-    # struct_0.other_struct = struct_1
-    # struct_1.other_struct = struct_0
-
     {
         :test_hash => {:a => 14, :b => 22},
         :test_array => [14, 22],
         :test_string => 'Lorem ipsum',
         :test_symbol => :lorem_ipsum,
-        :test_struct => struct,
+        :test_struct => MyStruct.new(0, 1, 2),
     }.each_pair do |name, obj|
     actual_file_path = File.join(
         TEST_DIR_PATH,
