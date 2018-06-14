@@ -34,7 +34,7 @@ class DebugHelper
   def self.show_array(obj, name, info)
     content = {}
     obj.each_with_index do |item, i|
-      content.store(i, self._show(item, i, {}))
+      content.store("Element #{i}", self._show(item, i, {}))
     end
     label = "#{obj.class.name} (size=#{obj.size} name=#{name})"
     info.store(label, content)
@@ -47,7 +47,7 @@ class DebugHelper
       key, value = *pair
       # content.store(key, self._show(value, key, {}))
       pair = {'Key' => self._show(key, i, {}), 'Value' => self._show(value, i, {})}
-      content.store(i, pair)
+      content.store("Pair #{i}", pair)
     end
     default = obj.default.nil? ? 'nil' : obj.default
     label = "#{obj.class.name} (size=#{obj.size} default=#{default} name=#{name})"
@@ -57,12 +57,12 @@ class DebugHelper
 
   def self.show_string(obj, name, info)
     label = "#{obj.class.name} (size=#{obj.size} encoding=#{obj.encoding} name=#{name})"
-    info.store(label, obj)
+    info.store(label, [obj])
     info
   end
 
   def self.show_symbol(obj, name, info)
-    label = "#{obj.class.name} (size=#{obj.size} name=#{name})"
+    label = "#{obj.class.name} (size=#{obj.size})"
     info.store(label, obj)
     info
   end
