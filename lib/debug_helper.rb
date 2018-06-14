@@ -5,7 +5,8 @@ require 'debug_helper/version'
 class DebugHelper
 
   def self.show(obj, name = obj.class)
-    x = self._show(obj, name, {})
+    info = {'Name' => name}
+    x = self._show(obj, name, info)
     STDOUT.puts x.to_yaml
     puts x.to_yaml
   end

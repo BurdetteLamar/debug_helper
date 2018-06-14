@@ -1,4 +1,5 @@
 ---
+Name: hash
 Class: Hash
 Size: 2
 Default: nil
@@ -7,65 +8,11 @@ Pairs:
     Key:
       Class: Symbol
       Size: 1
-      Value: :a
-    Value:
-      Class: Hash
-      Size: 3
-      Default: nil
-      Pairs:
-        0:
-          Key:
-            Class: Symbol
-            Size: 1
-            Value: :k
-          Value: 4 (Fixnum)
-        1:
-          Key:
-            Class: Symbol
-            Size: 1
-            Value: :j
-          Value: 5 (Fixnum)
-        2:
-          Key:
-            Class: Symbol
-            Size: 1
-            Value: :v
-          Value:
-            Class: Hash
-            Size: 2
-            Default: nil
-            Pairs:
-              0:
-                Key:
-                  Class: Symbol
-                  Size: 1
-                  Value: :q
-                Value: 2 (Fixnum)
-              1:
-                Key:
-                  Class: Symbol
-                  Size: 1
-                  Value: :r
-                Value: 1 (Fixnum)
+      Value: :c
+    Value: 2 (Fixnum)
   1:
     Key:
       Class: Symbol
       Size: 1
-      Value: :b
-    Value:
-      Class: Hash
-      Size: 2
-      Default: nil
-      Pairs:
-        0:
-          Key:
-            Class: Symbol
-            Size: 1
-            Value: :c
-          Value: 2 (Fixnum)
-        1:
-          Key:
-            Class: Symbol
-            Size: 1
-            Value: :d
-          Value: 3 (Fixnum)
+      Value: :d
+    Value: 3 (Fixnum)

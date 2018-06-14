@@ -1,4 +1,5 @@
 ---
+Name: string
 Class: String
 Size: 1
 Encoding: !ruby/encoding UTF-8

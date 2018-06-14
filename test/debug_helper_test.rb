@@ -15,9 +15,7 @@ class DebugHelperTest < Minitest::Test
     method = :show
 
     {
-        :hash => {
-            :a => {:k => 4, :j => 5, :v => {:q => 2, :r => 1}},
-            :b => {:c => 2, :d => 3}},
+        :hash => {:c => 2, :d => 3},
         :array => ['a', 'b', 'c'],
         :string => 'a',
     }.each_pair do |name, obj|
