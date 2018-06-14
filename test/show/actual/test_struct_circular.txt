@@ -1,5 +1,5 @@
 ---
-DebugHelperTest::MyStruct (size=3 name=test_struct_circuler):
+DebugHelperTest::MyStruct (size=3 name=test_struct_circular):
   Member 0:
     Name: :foo
     Value:

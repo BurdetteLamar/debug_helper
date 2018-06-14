@@ -16,6 +16,14 @@ class DebugHelperTest < Minitest::Test
 
     method = :show
 
+    array_self_referencing = []
+    array_self_referencing.push(array_self_referencing)
+
+    array_circular_0 = []
+    array_circular_1 = []
+    array_circular_0.push(array_circular_1)
+    array_circular_1.push(array_circular_0)
+
     string_multiline = <<EOT
 foobar
 snafu
@@ -36,6 +44,8 @@ EOT
         :test_array => [14, 22],
         :test_array_empty => [],
         :test_array_mixed_values => [14, 'foo', [0, 1], {:a => 1, :b => 1}, true, nil],
+        :test_array_self_referencing => array_self_referencing,
+        :test_array_circular => array_circular_0,
 
         :test_hash => {:a => 14, :b => 22},
         :test_hash_empty => {},
@@ -43,12 +53,13 @@ EOT
         :test_hash_mixed_values => {:a => 0, :b => '0', :c => nil},
 
         :test_string => 'Lorem ipsum',
+        :test_string_empty => '',
         :test_string_multiline => string_multiline,
         :test_string_iso_8859 => 'Lorem ipsum'.encode(Encoding::ISO_8859_1),
 
         :test_struct => struct,
         :test_struct_self_referencing => struct_self_referencing,
-        :test_struct_circuler => struct_circular_0,
+        :test_struct_circular => struct_circular_0,
 
         :test_symbol => :lorem_ipsum,
 

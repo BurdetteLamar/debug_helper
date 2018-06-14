@@ -6,7 +6,7 @@ class DebugHelper
 
   def self.show(obj, name = obj.class)
     x = self._show(obj, name, info = {}, object_ids = [])
-    STDOUT.puts x.to_yaml
+    # STDOUT.puts x.to_yaml
     puts x.to_yaml
   end
 
@@ -14,6 +14,7 @@ class DebugHelper
 
   def self._show(obj, name, info, object_ids)
     if object_ids.include?(obj.object_id)
+      # STDOUT.puts "Circular #{obj.class.name}"
       return self.show_object(obj, name, info)
     end
     object_ids.push(obj.object_id)
