@@ -27,7 +27,7 @@ class DebugHelper
           # when obj.kind_of?(Set)
           # when obj.kind_of?(Struct)
           else
-            "#{obj} (#{obj.class.name})"
+            self.show_object(obj, name, info)
         end
   end
 
@@ -53,6 +53,10 @@ class DebugHelper
     label = "#{obj.class.name} (size=#{obj.size} default=#{default} name=#{name})"
     info.store(label, content)
     info
+  end
+
+  def self.show_object(obj, name, info)
+    "#{obj} (#{obj.class.name})"
   end
 
   def self.show_string(obj, name, info)

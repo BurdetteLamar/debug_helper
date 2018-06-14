@@ -1,0 +1,2 @@
+--- "#<struct DebugHelperTest::MyStruct other_struct=#<struct DebugHelperTest::MyStruct
+  other_struct=nil>> (DebugHelperTest::MyStruct)"
