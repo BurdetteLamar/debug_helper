@@ -5,24 +5,27 @@ require 'debug_helper/version'
 class DebugHelper
 
   def self.show(obj, name = obj.class)
-    x = self._show(obj, name, info = {})
+    x = self._show(obj, name, info = {}, object_ids = [])
     STDOUT.puts x.to_yaml
     puts x.to_yaml
   end
 
   private
 
-  def self._show(obj, name, info)
-    # info.store('Item', "#{name} (#{obj.class.name})")
-    x = case
+  def self._show(obj, name, info, object_ids)
+    if object_ids.include?(obj.object_id)
+      return self.show_object(obj, name, info)
+    end
+    object_ids.push(obj.object_id)
+    s = case
           when obj.kind_of?(Array)
-            self.show_array(obj, name, info)
+            self.show_array(obj, name, info, object_ids)
           when obj.kind_of?(Hash)
-            self.show_hash(obj, name, info)
+            self.show_hash(obj, name, info, object_ids)
           when obj.kind_of?(String)
             self.show_string(obj, name, info)
           when obj.kind_of?(Struct)
-            self.show_struct(obj, name, info)
+            self.show_struct(obj, name, info, object_ids)
           when obj.kind_of?(Symbol)
             self.show_symbol(obj, name, info)
           # when obj.kind_of?(Range)
@@ -31,23 +34,25 @@ class DebugHelper
           else
             self.show_object(obj, name, info)
         end
+    object_ids.pop
+    s
   end
 
-  def self.show_array(obj, name, info)
+  def self.show_array(obj, name, info, object_ids)
     content = {}
     obj.each_with_index do |item, i|
-      content.store("Element #{i}", self._show(item, i, {}))
+      content.store("Element #{i}", self._show(item, i, {}, object_ids))
     end
     label = "#{obj.class.name} (size=#{obj.size} name=#{name})"
     info.store(label, content)
     info
   end
 
-  def self.show_hash(obj, name, info)
+  def self.show_hash(obj, name, info, object_ids)
     content = {}
     obj.each_with_index do |pair, i|
       key, value = *pair
-      pair = {'Key' => self._show(key, i, {}), 'Value' => self._show(value, i, {})}
+      pair = {'Key' => self._show(key, i, {}, object_ids), 'Value' => self._show(value, i, {}, object_ids)}
       content.store("Pair #{i}", pair)
     end
     default = obj.default.nil? ? 'nil' : obj.default
@@ -66,12 +71,12 @@ class DebugHelper
     info
   end
 
-  def self.show_struct(obj, name, info)
+  def self.show_struct(obj, name, info, object_ids)
     content = {}
     i = 0
     obj.each_pair do |member|
       member_name, value = *member
-      pair = {'Name' => member_name, 'Value' => self._show(value, i, {})}
+      pair = {'Name' => member_name, 'Value' => self._show(value, i, {}, object_ids)}
       content.store("Member #{i}", pair)
       i += 1
     end

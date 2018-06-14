@@ -1,0 +1,2 @@
+---
+Hash (size=0 default=nil name=test_hash_empty): {}

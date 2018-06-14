@@ -16,12 +16,34 @@ class DebugHelperTest < Minitest::Test
 
     method = :show
 
+    struct = MyStruct.new(0, 1, 2)
+
+    struct_self_referencing = MyStruct.new(0, 1, 2)
+    struct_self_referencing.foo = struct_self_referencing
+
+    struct_circular_0 = MyStruct.new(0, 1, 2)
+    struct_circular_1 = MyStruct.new(0, 1, 2)
+    struct_circular_0.foo = struct_circular_1
+    struct_circular_1.bar = struct_circular_0
+
     {
-        :test_hash => {:a => 14, :b => 22},
         :test_array => [14, 22],
+        :test_array_empty => [],
+        :test_array_mixed_values => [14, 'foo', [0, 1], {:a => 1, :b => 1}, true, nil],
+
+        :test_hash => {:a => 14, :b => 22},
+        :test_hash_empty => {},
+
         :test_string => 'Lorem ipsum',
+
+        :test_struct => struct,
+        :test_struct_self_referencing => struct_self_referencing,
+        :test_struct_circuler => struct_circular_0,
+
         :test_symbol => :lorem_ipsum,
-        :test_struct => MyStruct.new(0, 1, 2),
+
+        # :test_potpourri => popourri,
+
     }.each_pair do |name, obj|
     actual_file_path = File.join(
         TEST_DIR_PATH,
