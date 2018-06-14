@@ -21,6 +21,8 @@ class DebugHelper
             self.show_hash(obj, name, info)
           when obj.kind_of?(String)
             self.show_string(obj, name, info)
+          when obj.kind_of?(Struct)
+            self.show_struct(obj, name, info)
           when obj.kind_of?(Symbol)
             self.show_symbol(obj, name, info)
           # when obj.kind_of?(Range)
@@ -45,7 +47,6 @@ class DebugHelper
     content = {}
     obj.each_with_index do |pair, i|
       key, value = *pair
-      # content.store(key, self._show(value, key, {}))
       pair = {'Key' => self._show(key, i, {}), 'Value' => self._show(value, i, {})}
       content.store("Pair #{i}", pair)
     end
@@ -62,6 +63,20 @@ class DebugHelper
   def self.show_string(obj, name, info)
     label = "#{obj.class.name} (size=#{obj.size} encoding=#{obj.encoding} name=#{name})"
     info.store(label, [obj])
+    info
+  end
+
+  def self.show_struct(obj, name, info)
+    content = {}
+    i = 0
+    obj.each_pair do |member|
+      member_name, value = *member
+      pair = {'Name' => member_name, 'Value' => self._show(value, i, {})}
+      content.store("Member #{i}", pair)
+      i += 1
+    end
+    label = "#{obj.class.name} (size=#{obj.size} name=#{name})"
+    info.store(label, content)
     info
   end
 

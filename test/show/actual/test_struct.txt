@@ -1,2 +1,11 @@
---- "#<struct DebugHelperTest::MyStruct other_struct=#<struct DebugHelperTest::MyStruct
-  other_struct=nil>> (DebugHelperTest::MyStruct)"
+---
+DebugHelperTest::MyStruct (size=3 name=test_struct):
+  Member 0:
+    Name: :foo
+    Value: 0 (Fixnum)
+  Member 1:
+    Name: :bar
+    Value: 1 (Fixnum)
+  Member 2:
+    Name: :baz
+    Value: 2 (Fixnum)

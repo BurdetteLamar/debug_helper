@@ -10,15 +10,16 @@ class DebugHelperTest < Minitest::Test
     refute_nil ::DebugHelper::VERSION
   end
 
-  MyStruct = Struct.new(:other_struct)
+  MyStruct = Struct.new(:foo, :bar, :baz)
 
   def test_show
 
     method = :show
 
-    struct_0 = MyStruct.new(nil)
-    struct_1 = MyStruct.new(nil)
-    struct_2 = MyStruct.new(struct_0)
+    struct = MyStruct.new(0, 1, 2)
+    # struct_0 = MyStruct.new(nil)
+    # struct_1 = MyStruct.new(nil)
+    # struct_2 = MyStruct.new(struct_0)
     # struct_0.other_struct = struct_1
     # struct_1.other_struct = struct_0
 
@@ -27,7 +28,7 @@ class DebugHelperTest < Minitest::Test
         :test_array => [14, 22],
         :test_string => 'Lorem ipsum',
         :test_symbol => :lorem_ipsum,
-        :test_struct => struct_2,
+        :test_struct => struct,
     }.each_pair do |name, obj|
     actual_file_path = File.join(
         TEST_DIR_PATH,
