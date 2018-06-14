@@ -1,18 +1,10 @@
 ---
-Name: hash
-Class: Hash
-Size: 2
-Default: nil
-Pairs:
-  0:
+Hash (size=2 default=nil name=test_hash):
+  Pair 0:
     Key:
-      Class: Symbol
-      Size: 1
-      Value: :c
-    Value: 2 (Fixnum)
-  1:
+      Symbol (size=1): :a
+    Value: "-14 (Fixnum)"
+  Pair 1:
     Key:
-      Class: Symbol
-      Size: 1
-      Value: :d
-    Value: 3 (Fixnum)
+      Symbol (size=1): :b
+    Value: 22 (Fixnum)

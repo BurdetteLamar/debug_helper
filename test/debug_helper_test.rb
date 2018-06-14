@@ -15,9 +15,10 @@ class DebugHelperTest < Minitest::Test
     method = :show
 
     {
-        :hash => {:c => 2, :d => 3},
-        :array => ['a', 'b', 'c'],
-        :string => 'a',
+        :test_hash => {:a => -14, :b => 22},
+        :test_array => [-14, 22],
+        :test_string => 'Lorem ipsum',
+        :test_symbol => :lorem_ipsum,
     }.each_pair do |name, obj|
     actual_file_path = File.join(
         TEST_DIR_PATH,
@@ -106,7 +107,6 @@ class DebugHelperTest < Minitest::Test
       end
     end
     diffs
-    []
   end
 
 end

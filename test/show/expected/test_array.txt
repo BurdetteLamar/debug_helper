@@ -1,0 +1,4 @@
+---
+Array (size=2 name=test_array):
+  Element 0: "-14 (Fixnum)"
+  Element 1: 22 (Fixnum)

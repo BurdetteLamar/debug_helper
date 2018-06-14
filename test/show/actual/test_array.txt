@@ -1,20 +1,4 @@
 ---
-Name: array
-Class: Array
-Size: 3
-Values:
-  0:
-    Class: String
-    Size: 1
-    Encoding: !ruby/encoding UTF-8
-    Value: a
-  1:
-    Class: String
-    Size: 1
-    Encoding: !ruby/encoding UTF-8
-    Value: b
-  2:
-    Class: String
-    Size: 1
-    Encoding: !ruby/encoding UTF-8
-    Value: c
+Array (size=2 name=test_array):
+  Element 0: "-14 (Fixnum)"
+  Element 1: 22 (Fixnum)
