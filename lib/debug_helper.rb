@@ -32,10 +32,6 @@ class DebugHelper
   end
 
   def self.show_array(obj, name, info)
-    # info.store(obj.class.name, "size=#{obj.size} name=#{name}")
-    # info.store('Name', name)
-    # info.store('Class', obj.class.name)
-    # info.store('Size', obj.size) if obj.respond_to?(:size)
     content = {}
     obj.each_with_index do |item, i|
       content.store(i, self._show(item, i, {}))
@@ -46,10 +42,6 @@ class DebugHelper
   end
 
   def self.show_hash(obj, name, info)
-    info.store('Name', name)
-    info.store('Class', obj.class.name)
-    info.store('Size', obj.size) if obj.respond_to?(:size)
-    info.store('Default', obj.default.nil? ? 'nil' : obj.default)
     content = {}
     obj.each_with_index do |pair, i|
       key, value = *pair
@@ -57,7 +49,9 @@ class DebugHelper
       pair = {'Key' => self._show(key, i, {}), 'Value' => self._show(value, i, {})}
       content.store(i, pair)
     end
-    info.store('Pairs', content)
+    default = obj.default.nil? ? 'nil' : obj.default
+    label = "#{obj.class.name} (size=#{obj.size} default=#{default} name=#{name})"
+    info.store(label, content)
     info
   end
 
