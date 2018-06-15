@@ -2,6 +2,8 @@
 
 This example shows a simple array of integers.
 
+This Ruby code passes a simple array and a name to the helper.
+
 ```show.rb```:
 ```ruby
 require 'debug_helper'
@@ -10,7 +12,7 @@ ary = [5, 10, 15]
 DebugHelper.show(ary, 'My simple array')
 ```
 
-The Ruby code passes an array and a name to the helper.
+The output shows details of the array.
 
 ```show.yaml```:
 ```yaml
