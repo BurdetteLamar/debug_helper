@@ -4,8 +4,32 @@ namespace :readme do
 
   desc 'Build README.md'
   task :build do
-    # Get supported classes.
-    supported_classes = Dir.new('classes').each.select{ |name| name =~ /^[A-Z]/ }
+    cats_for_supported_classes = {
+        :array => %w/simple/,
+        :hash => {},
+        :struct => {},
+        :string => {},
+        :symbol => {},
+    }
+    supported_classes = cats_for_supported_classes.keys
+
+    # Make output files.
+    Dir.chdir('classes') do
+      cats_for_supported_classes.each_pair do |class_symbol, cat_names|
+        dir_name = class_symbol.to_s
+        class_name = class_symbol.to_s.capitalize
+        Dir.chdir(dir_name) do
+          cat_names.each do |cat_name|
+            Dir.chdir(cat_name) do
+              command = "ruby show.rb | sed '1d' > show.yaml"
+              system(command)
+              command = "markdown_helper include --pristine template.md show.md"
+              system(command)
+            end
+          end
+        end
+      end
+    end
     # Make linked list of classes.
     File.open('classes_closely_supported.md', 'w') do |file|
       supported_classes.each do |class_name|
@@ -15,5 +39,6 @@ namespace :readme do
     end
     markdown_helper = MarkdownHelper.new(:pristine => true)
     markdown_helper.include('readme.template.md', 'README.md')
+
   end
 end
