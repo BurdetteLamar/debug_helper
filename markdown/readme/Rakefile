@@ -4,23 +4,23 @@ namespace :readme do
 
   desc 'Build README.md'
   task :build do
-    cats_for_supported_classes = {
-        :array => %w/simple/,
-        :hash => {},
-        :struct => {},
-        :string => {},
-        :symbol => {},
-    }
-    supported_classes = cats_for_supported_classes.keys
-
+    # cats_for_class_dir_names = {
+    #     :array => %w/simple/,
+    #     :hash => {},
+    #     :struct => {},
+    #     :string => {},
+    #     :symbol => {},
+    # }
+    # 
     # Make output files.
+    class_dir_names = nil
     Dir.chdir('classes') do
-      cats_for_supported_classes.each_pair do |class_symbol, cat_names|
-        dir_name = class_symbol.to_s
-        class_name = class_symbol.to_s.capitalize
-        Dir.chdir(dir_name) do
-          cat_names.each do |cat_name|
-            Dir.chdir(cat_name) do
+      class_dir_names = Dir.glob('*').select {|f| File.directory? f}
+      class_dir_names.each do |class_dir_name|
+        Dir.chdir(class_dir_name) do
+          case_dir_names = Dir.glob('*').select {|f| File.directory? f}
+          case_dir_names.each do |case_dir_name|
+            Dir.chdir(case_dir_name) do
               command = "ruby show.rb > show.yaml"
               system(command)
               command = "markdown_helper include --pristine template.md show.md"
@@ -30,15 +30,15 @@ namespace :readme do
         end
       end
     end
-    # Make linked list of classes.
+    # Make list of links to class sections.
     File.open('classes_closely_supported.md', 'w') do |file|
-      supported_classes.each do |class_name|
+      class_dir_names.each do |class_name|
         link_line = "- [#{class_name}](##{class_name})"
         file.puts(link_line)
       end
     end
     markdown_helper = MarkdownHelper.new(:pristine => true)
-    markdown_helper.include('readme.template.md', 'README.md')
+    markdown_helper.include('template.md', 'README.md')
 
   end
 end
