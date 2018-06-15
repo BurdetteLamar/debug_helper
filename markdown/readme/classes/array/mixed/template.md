@@ -1,4 +1,4 @@
-#### Simple Array
+#### Mixed Array
 
 This example shows an array of mixed values.
 

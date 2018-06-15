@@ -31,10 +31,17 @@ namespace :readme do
       end
     end
     # Make list of links to class sections.
-    File.open('classes_closely_supported.md', 'w') do |file|
+    File.open('class_links.md', 'w') do |file|
       class_dir_names.each do |class_name|
         link_line = "- [#{class_name}](##{class_name})"
         file.puts(link_line)
+      end
+    end
+    # Make inclusions for class sections.
+    File.open('class_inclusions.md', 'w') do |file|
+      class_dir_names.each do |class_name|
+        inclusion_line = "@[:markdown](classes/#{class_name}/template.md)"
+        file.puts(inclusion_line)
       end
     end
     markdown_helper = MarkdownHelper.new(:pristine => true)

@@ -4,4 +4,6 @@ This helper assists in [printf debugging](https://en.wikipedia.org/wiki/Debuggin
 
 Classes closely supported:
 
-@[:markdown](classes_closely_supported.md)
+@[:markdown](class_links.md)
+
+@[:markdown](class_inclusions.md)

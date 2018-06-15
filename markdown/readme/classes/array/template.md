@@ -1,4 +1,4 @@
-### Arrays
+### Array
 
 @[:markdown](simple/show.md)
 

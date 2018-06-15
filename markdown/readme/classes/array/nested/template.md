@@ -1,4 +1,4 @@
-#### Simple Array
+#### Nested Arrays
 
 This example shows nested arrays.
 

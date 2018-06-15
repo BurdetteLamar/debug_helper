@@ -1,4 +1,4 @@
-#### Simple Array
+#### Circular Arrays
 
 This example shows arrays that make circular references.
 
