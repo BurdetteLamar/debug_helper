@@ -1,0 +1,19 @@
+require 'markdown_helper'
+
+namespace :readme do
+
+  desc 'Build README.md'
+  task :build do
+    # Get supported classes.
+    supported_classes = Dir.new('classes').each.select{ |name| name =~ /^[A-Z]/ }
+    # Make linked list of classes.
+    File.open('classes_closely_supported.md', 'w') do |file|
+      supported_classes.each do |class_name|
+        link_line = "- [#{class_name}](##{class_name})"
+        file.puts(link_line)
+      end
+    end
+    markdown_helper = MarkdownHelper.new(:pristine => true)
+    markdown_helper.include('readme.template.md', 'README.md')
+  end
+end

@@ -1,0 +1,5 @@
+- [Array](#Array)
+- [Hash](#Hash)
+- [String](#String)
+- [Struct](#Struct)
+- [Symbol](#Symbol)
