@@ -21,7 +21,7 @@ namespace :readme do
         Dir.chdir(dir_name) do
           cat_names.each do |cat_name|
             Dir.chdir(cat_name) do
-              command = "ruby show.rb | sed '1d' > show.yaml"
+              command = "ruby show.rb > show.yaml"
               system(command)
               command = "markdown_helper include --pristine template.md show.md"
               system(command)

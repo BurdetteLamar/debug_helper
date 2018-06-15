@@ -14,6 +14,7 @@ The Ruby code passes an array and a name to the helper.
 
 ```show.yaml```:
 ```yaml
+---
 Array (size=3 name=My simple array):
   Element 0: 5 (Fixnum)
   Element 1: 10 (Fixnum)
