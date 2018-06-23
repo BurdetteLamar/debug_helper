@@ -4,7 +4,11 @@ require 'debug_helper/version'
 
 class DebugHelper
 
-  attr_accessor :obj, :name, :object_ids
+  attr_accessor \
+      :obj,
+      :name,
+      :object_ids,
+      :section_indexes
 
   def self.show(obj, name = obj.class)
     debug_helper = DebugHelper.new(obj, name)
@@ -19,11 +23,15 @@ class DebugHelper
     self.obj = obj
     self.name = name
     self.object_ids = []
+    self.section_indexes = []
   end
 
   def _show(obj, name, info)
+    section_indexes.push(0)
     if object_ids.include?(obj.object_id)
-      return show_object(obj, name, info)
+      s = show_object(obj, name, info)
+      section_indexes.pop
+      return s
     end
     object_ids.push(obj.object_id)
     s = case
@@ -39,15 +47,17 @@ class DebugHelper
             show_symbol(obj, name, info)
           # when obj.kind_of?(Range)
           # when obj.kind_of?(Set)
-          # when obj.kind_of?(Struct)
           else
             show_object(obj, name, info)
         end
     object_ids.pop
+    section_indexes.pop
     s
   end
 
   def label(class_name, attrs)
+    index = section_indexes.collect {|x| x.to_s }.join('.')
+    STDOUT.puts index
     a = []
     attrs.each_pair do |key, value|
       a.push("#{key}=#{value}") unless value.nil?
@@ -59,6 +69,7 @@ class DebugHelper
   def show_array(obj, name, info)
     content = {}
     obj.each_with_index do |item, i|
+      section_indexes[-1] = i
       content.store("Element #{i}", _show(item, nil, {}))
     end
     attrs = {
@@ -73,6 +84,7 @@ class DebugHelper
   def show_hash(obj, name, info)
     content = {}
     obj.each_with_index do |pair, i|
+      section_indexes[-1] = i
       key, value = *pair
       pair = {'Key' => _show(key, nil, {}), 'Value' => _show(value, nil, {})}
       content.store("Pair #{i}", pair)
@@ -107,6 +119,7 @@ class DebugHelper
     content = {}
     i = 0
     obj.each_pair do |member|
+      section_indexes[-1] = i
       member_name, value = *member
       pair = {'Name' => member_name, 'Value' => _show(value, nil, {})}
       content.store("Member #{i}", pair)
@@ -122,7 +135,11 @@ class DebugHelper
   end
 
   def show_symbol(obj, name, info)
-    label = "#{obj.class.name} (size=#{obj.size})"
+    attrs = {
+        :size => obj.size,
+        :name => name,
+    }
+    label = label(obj.class.name, attrs)
     info.store(label, obj)
     info
   end
