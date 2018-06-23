@@ -20,7 +20,7 @@ The output shows details of the array.
 Array (size=3 name=My mixed array):
   Element 0: 0 (Fixnum)
   Element 1:
-    String (size=3 encoding=UTF-8 name=1):
+    String (size=3 encoding=UTF-8):
     - one
   Element 2:
     Symbol (size=3): :two

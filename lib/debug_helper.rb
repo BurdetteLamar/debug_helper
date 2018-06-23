@@ -6,7 +6,6 @@ class DebugHelper
 
   def self.show(obj, name = obj.class)
     x = self._show(obj, name, info = {}, object_ids = [])
-    # STDOUT.puts x.to_yaml
     puts x.to_yaml
   end
 
@@ -14,7 +13,6 @@ class DebugHelper
 
   def self._show(obj, name, info, object_ids)
     if object_ids.include?(obj.object_id)
-      # STDOUT.puts "Circular #{obj.class.name}"
       return self.show_object(obj, name, info)
     end
     object_ids.push(obj.object_id)
@@ -39,12 +37,25 @@ class DebugHelper
     s
   end
 
+  def self.label(class_name, attrs)
+    a = []
+    attrs.each_pair do |key, value|
+      a.push("#{key}=#{value}") unless value.nil?
+    end
+    attrs_s = a.join(' ')
+    "#{class_name} (#{attrs_s})"
+  end
+
   def self.show_array(obj, name, info, object_ids)
     content = {}
     obj.each_with_index do |item, i|
-      content.store("Element #{i}", self._show(item, i, {}, object_ids))
+      content.store("Element #{i}", self._show(item, nil, {}, object_ids))
     end
-    label = "#{obj.class.name} (size=#{obj.size} name=#{name})"
+    attrs = {
+        :size => obj.size,
+        :name => name,
+    }
+    label = self.label(obj.class.name, attrs)
     info.store(label, content)
     info
   end
@@ -53,11 +64,16 @@ class DebugHelper
     content = {}
     obj.each_with_index do |pair, i|
       key, value = *pair
-      pair = {'Key' => self._show(key, i, {}, object_ids), 'Value' => self._show(value, i, {}, object_ids)}
+      pair = {'Key' => self._show(key, nil, {}, object_ids), 'Value' => self._show(value, nil, {}, object_ids)}
       content.store("Pair #{i}", pair)
     end
     default = obj.default.nil? ? 'nil' : obj.default
-    label = "#{obj.class.name} (size=#{obj.size} default=#{default} name=#{name})"
+    attrs = {
+        :size => obj.size,
+        :default => obj.default,
+        :name => name,
+    }
+    label = self.label(obj.class.name, attrs)
     info.store(label, content)
     info
   end
@@ -67,7 +83,12 @@ class DebugHelper
   end
 
   def self.show_string(obj, name, info)
-    label = "#{obj.class.name} (size=#{obj.size} encoding=#{obj.encoding} name=#{name})"
+    attrs = {
+        :size => obj.size,
+        :encoding => obj.encoding,
+        :name => name,
+    }
+    label = self.label(obj.class.name, attrs)
     info.store(label, [obj])
     info
   end
@@ -77,11 +98,15 @@ class DebugHelper
     i = 0
     obj.each_pair do |member|
       member_name, value = *member
-      pair = {'Name' => member_name, 'Value' => self._show(value, i, {}, object_ids)}
+      pair = {'Name' => member_name, 'Value' => self._show(value, nil, {}, object_ids)}
       content.store("Member #{i}", pair)
       i += 1
     end
-    label = "#{obj.class.name} (size=#{obj.size} name=#{name})"
+    attrs = {
+        :size => obj.size,
+        :name => name,
+    }
+    label = self.label(obj.class.name, attrs)
     info.store(label, content)
     info
   end

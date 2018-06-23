@@ -22,6 +22,6 @@ The circular reference is not followed.
 ---
 Array (size=1 name=My circular arrays):
   Element 0:
-    Array (size=1 name=0):
+    Array (size=1):
       Element 0: "[[[...]]] (Array)"
 ```

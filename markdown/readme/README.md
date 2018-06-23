@@ -59,7 +59,7 @@ The output shows details of the array.
 Array (size=3 name=My mixed array):
   Element 0: 0 (Fixnum)
   Element 1:
-    String (size=3 encoding=UTF-8 name=1):
+    String (size=3 encoding=UTF-8):
     - one
   Element 2:
     Symbol (size=3): :two
@@ -85,11 +85,11 @@ The output shows details of the arrays.
 Array (size=3 name=My nested arrays):
   Element 0: 0 (Fixnum)
   Element 1:
-    Array (size=2 name=1):
+    Array (size=2):
       Element 0: 1 (Fixnum)
       Element 1: 2 (Fixnum)
   Element 2:
-    Array (size=2 name=2):
+    Array (size=2):
       Element 0: 3 (Fixnum)
       Element 1: 4 (Fixnum)
 ```
@@ -118,7 +118,7 @@ The circular reference is not followed.
 ---
 Array (size=1 name=My circular arrays):
   Element 0:
-    Array (size=1 name=0):
+    Array (size=1):
       Element 0: "[[[...]]] (Array)"
 ```
 ### Hash
