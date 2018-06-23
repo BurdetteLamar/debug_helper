@@ -1,5 +1,5 @@
 ---
 Array (size=1 name=test_array_circular):
   Element 0:
-    Array (size=1 name=0):
+    Array (size=1):
       Element 0: "[[[...]]] (Array)"

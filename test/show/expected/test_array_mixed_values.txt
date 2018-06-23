@@ -2,14 +2,14 @@
 Array (size=6 name=test_array_mixed_values):
   Element 0: 14 (Fixnum)
   Element 1:
-    String (size=3 encoding=UTF-8 name=1):
+    String (size=3 encoding=UTF-8):
     - foo
   Element 2:
-    Array (size=2 name=2):
+    Array (size=2):
       Element 0: 0 (Fixnum)
       Element 1: 1 (Fixnum)
   Element 3:
-    Hash (size=2 default=nil name=3):
+    Hash (size=2):
       Pair 0:
         Key:
           Symbol (size=1): :a

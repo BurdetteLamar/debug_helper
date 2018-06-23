@@ -1,5 +1,5 @@
 ---
-Hash (size=2 default=nil name=test_hash):
+Hash (size=2 name=test_hash):
   Pair 0:
     Key:
       Symbol (size=1): :a

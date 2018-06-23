@@ -1,5 +1,5 @@
 ---
-Hash (size=3 default=nil name=test_hash_mixed_values):
+Hash (size=3 name=test_hash_mixed_values):
   Pair 0:
     Key:
       Symbol (size=1): :a
@@ -8,7 +8,7 @@ Hash (size=3 default=nil name=test_hash_mixed_values):
     Key:
       Symbol (size=1): :b
     Value:
-      String (size=1 encoding=UTF-8 name=1):
+      String (size=1 encoding=UTF-8):
       - '0'
   Pair 2:
     Key:

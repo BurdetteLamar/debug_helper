@@ -1,5 +1,5 @@
 ---
-Hash (size=3 default=nil name=test_hash_mixed_keys):
+Hash (size=3 name=test_hash_mixed_keys):
   Pair 0:
     Key: 14 (Fixnum)
     Value: 0 (Fixnum)
@@ -9,6 +9,6 @@ Hash (size=3 default=nil name=test_hash_mixed_keys):
     Value: 1 (Fixnum)
   Pair 2:
     Key:
-      String (size=6 encoding=UTF-8 name=2):
+      String (size=6 encoding=UTF-8):
       - foobar
     Value: 2 (Fixnum)

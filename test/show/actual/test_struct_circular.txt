@@ -3,7 +3,7 @@ DebugHelperTest::MyStruct (size=3 name=test_struct_circular):
   Member 0:
     Name: :foo
     Value:
-      DebugHelperTest::MyStruct (size=3 name=0):
+      DebugHelperTest::MyStruct (size=3):
         Member 0:
           Name: :foo
           Value: 0 (Fixnum)
