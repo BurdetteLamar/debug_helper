@@ -1,9 +1,9 @@
 require 'markdown_helper'
 
-namespace :readme do
+namespace :build do
 
   desc 'Build README.md'
-  task :build do
+  task :readme do
     # cats_for_class_dir_names = {
     #     :array => %w/simple/,
     #     :hash => {},
