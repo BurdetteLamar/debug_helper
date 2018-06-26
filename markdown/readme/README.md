@@ -6,8 +6,8 @@ Classes closely supported:
 
 - [Array](#array)
 - [Hash](#hash)
-- [String](#string)
 - [Struct](#struct)
+- [String](#string)
 - [Symbol](#symbol)
 
 ### Array
@@ -118,6 +118,6 @@ Array (size=1 name=My circular arrays):
       Element 0: "[[[...]]] (Array)"
 ```
 ### Hash
-### String
 ### Struct
+### String
 ### Symbol

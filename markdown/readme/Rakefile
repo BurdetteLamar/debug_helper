@@ -15,7 +15,14 @@ namespace :build do
     # Make output files.
     class_dir_names = nil
     Dir.chdir('classes') do
-      class_dir_names = Dir.glob('*').select {|f| File.directory? f}
+      class_names = %w/
+        Array
+        Hash
+        Struct
+        String
+        Symbol
+      /
+      class_dir_names = class_names.collect {|x| x.downcase}
       class_dir_names.each do |class_dir_name|
         Dir.chdir(class_dir_name) do
           case_dir_names = Dir.glob('*').select {|f| File.directory? f}
