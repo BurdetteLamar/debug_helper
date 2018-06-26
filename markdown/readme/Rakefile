@@ -33,7 +33,8 @@ namespace :build do
     # Make list of links to class sections.
     File.open('class_links.md', 'w') do |file|
       class_dir_names.each do |class_name|
-        link_line = "- [#{class_name}](##{class_name})"
+        proper_class_name = class_name.capitalize
+        link_line = "- [#{proper_class_name}](##{class_name})"
         file.puts(link_line)
       end
     end

@@ -4,11 +4,11 @@ This helper assists in [printf debugging](https://en.wikipedia.org/wiki/Debuggin
 
 Classes closely supported:
 
-- [array](#array)
-- [hash](#hash)
-- [string](#string)
-- [struct](#struct)
-- [symbol](#symbol)
+- [Array](#array)
+- [Hash](#hash)
+- [String](#string)
+- [Struct](#struct)
+- [Symbol](#symbol)
 
 ### Array
 
