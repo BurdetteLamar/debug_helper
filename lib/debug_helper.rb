@@ -25,7 +25,7 @@ class DebugHelper
 
   def _show(obj, name, info)
     if object_ids.include?(obj.object_id)
-      s = show_object(obj, name, info)
+      s = show_object(obj, name)
     else
       object_ids.push(obj.object_id)
       s = case
@@ -42,7 +42,7 @@ class DebugHelper
             # when obj.kind_of?(Range)
             # when obj.kind_of?(Set)
             else
-              show_object(obj, name, info)
+              show_object(obj, name)
           end
     end
     object_ids.pop
@@ -68,7 +68,6 @@ class DebugHelper
       pair = {'Key' => _show(key, nil, {}), 'Value' => _show(value, nil, {})}
       content.store("Pair #{i}", pair)
     end
-    default = obj.default.nil? ? 'nil' : obj.default
     attrs = {
         :size => obj.size,
         :default => obj.default,
@@ -77,8 +76,9 @@ class DebugHelper
     _show_item(obj.class.name, content, attrs, info)
   end
 
-  def show_object(obj, name, info)
+  def show_object(obj, name)
     "#{obj} (#{obj.class.name})"
+
   end
 
   def show_string(obj, name, info)
