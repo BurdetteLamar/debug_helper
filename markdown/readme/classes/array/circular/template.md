@@ -1,6 +1,6 @@
 #### Circular Arrays
 
-This example shows arrays that make circular references.
+This example shows arrays that make a circular reference.
 
 @[ruby](show.rb)
 

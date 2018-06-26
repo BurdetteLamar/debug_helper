@@ -16,8 +16,6 @@ Classes closely supported:
 
 This example shows a simple array of integers.
 
-This Ruby code passes a simple array and a name to the helper.
-
 ```show.rb```:
 ```ruby
 require 'debug_helper'
@@ -40,8 +38,6 @@ Array (size=3 name=My simple array):
 #### Mixed Array
 
 This example shows an array of mixed values.
-
-This Ruby code passes a simple array and a name to the helper.
 
 ```show.rb```:
 ```ruby
@@ -96,7 +92,7 @@ Array (size=3 name=My nested arrays):
 
 #### Circular Arrays
 
-This example shows arrays that make circular references.
+This example shows arrays that make a circular reference.
 
 ```show.rb```:
 ```ruby
