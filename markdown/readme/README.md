@@ -262,5 +262,156 @@ Hash (size=1 name=My circular hashes):
           Value: "{:foo=>{:bar=>{...}}} (Hash)"
 ```
 ### Struct
+
+#### Simple Struct
+
+This example shows a simple struct.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+MyStruct = Struct.new(:a, :b, :c)
+struct = MyStruct.new(0, 1, 2)
+DebugHelper.show(struct, 'My simple struct')
+```
+
+The output shows details of the struct.
+
+```show.yaml```:
+```yaml
+---
+MyStruct (size=3 name=My simple struct):
+  Member 0:
+    Name: :a
+    Value: 0 (Fixnum)
+  Member 1:
+    Name: :b
+    Value: 1 (Fixnum)
+  Member 2:
+    Name: :c
+    Value: 2 (Fixnum)
+```
+
+#### Mixed Struct
+
+This example shows a struct of mixed values.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+MyStruct = Struct.new(:a, :b, :c)
+struct = MyStruct.new(0, 'one', :two)
+DebugHelper.show(struct, 'My mixed struct')
+```
+
+The output shows details of the struct.
+
+```show.yaml```:
+```yaml
+---
+MyStruct (size=3 name=My mixed struct):
+  Member 0:
+    Name: :a
+    Value: 0 (Fixnum)
+  Member 1:
+    Name: :b
+    Value:
+      String (size=3 encoding=UTF-8):
+      - one
+  Member 2:
+    Name: :c
+    Value:
+      Symbol (size=3): :two
+```
+
+#### Nested Structs
+
+This example shows nested structs.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+MyStruct = Struct.new(:a, :b, :c)
+struct_0 = MyStruct.new(0, 1, 2)
+struct_1 = MyStruct.new(3, 4, 5)
+struct_0.a = struct_1
+DebugHelper.show(struct_0, 'My nested struct')
+```
+
+The output shows details of the structs.
+
+```show.yaml```:
+```yaml
+---
+MyStruct (size=3 name=My nested struct):
+  Member 0:
+    Name: :a
+    Value:
+      MyStruct (size=3):
+        Member 0:
+          Name: :a
+          Value: 3 (Fixnum)
+        Member 1:
+          Name: :b
+          Value: 4 (Fixnum)
+        Member 2:
+          Name: :c
+          Value: 5 (Fixnum)
+  Member 1:
+    Name: :b
+    Value: 1 (Fixnum)
+  Member 2:
+    Name: :c
+    Value: 2 (Fixnum)
+```
+
+#### Circular Structs
+
+This example shows structs that make a circular reference.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+MyStruct = Struct.new(:a, :b, :c)
+struct_0 = MyStruct.new(0, 1, 2)
+struct_1 = MyStruct.new(3, 4, 5)
+struct_0.a = struct_1
+struct_1.a = struct_0
+DebugHelper.show(struct_0, 'My circular struct')
+```
+
+The output shows details of the structs.
+
+The circular reference is not followed.
+
+```show.yaml```:
+```yaml
+---
+MyStruct (size=3 name=My circular struct):
+  Member 0:
+    Name: :a
+    Value:
+      MyStruct (size=3):
+        Member 0:
+          Name: :a
+          Value: "#<struct MyStruct a=#<struct MyStruct a=#<struct MyStruct:...>,
+            b=4, c=5>, b=1, c=2> (MyStruct)"
+        Member 1:
+          Name: :b
+          Value: 4 (Fixnum)
+        Member 2:
+          Name: :c
+          Value: 5 (Fixnum)
+  Member 1:
+    Name: :b
+    Value: 1 (Fixnum)
+  Member 2:
+    Name: :c
+    Value: 2 (Fixnum)
+```
 ### String
 ### Symbol
