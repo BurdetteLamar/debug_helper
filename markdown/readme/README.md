@@ -118,6 +118,135 @@ Array (size=1 name=My circular arrays):
       Element 0: "[[[...]]] (Array)"
 ```
 ### Hash
+
+#### Simple Hash
+
+This example shows a simple hash.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+hash = {:a => 0, :b => 1, :c => 2}
+DebugHelper.show(hash, 'My simple hash')
+```
+
+The output shows details of the hash.
+
+```show.yaml```:
+```yaml
+---
+Hash (size=3 name=My simple hash):
+  Pair 0:
+    Key:
+      Symbol (size=1): :a
+    Value: 0 (Fixnum)
+  Pair 1:
+    Key:
+      Symbol (size=1): :b
+    Value: 1 (Fixnum)
+  Pair 2:
+    Key:
+      Symbol (size=1): :c
+    Value: 2 (Fixnum)
+```
+
+#### Mixed Hash
+
+This example shows a hash of mixed values.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+hash = {
+    :a => 0,
+    :b => 'one',
+    :c => :two,
+}
+DebugHelper.show(hash, 'My mixed hash')
+```
+
+The output shows details of the hash.
+
+```show.yaml```:
+```yaml
+---
+Hash (size=3 name=My mixed hash):
+  Pair 0:
+    Key:
+      Symbol (size=1): :a
+    Value: 0 (Fixnum)
+  Pair 1:
+    Key:
+      Symbol (size=1): :b
+    Value:
+      String (size=3 encoding=UTF-8):
+      - one
+  Pair 2:
+    Key:
+      Symbol (size=1): :c
+    Value:
+      Symbol (size=3): :two
+```
+
+#### Nested Hashes
+
+This example shows nested hashes.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+hasn = {
+    :a => {
+        :b => 0,
+        :c => 1,
+    }
+}
+DebugHelper.show(hash, 'My nested hash')
+```
+
+The output shows details of the hashes.
+
+```show.yaml```:
+```yaml
+--- "-181461328 (Fixnum)"
+```
+
+#### Circular Hashes
+
+This example shows hashes that make a circular reference.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+hash_0 = {}
+hash_1 = {}
+hash_0.store(:foo, hash_1)
+hash_1.store(:bar, hash_0)
+DebugHelper.show(hash_0, 'My circular hashes')
+```
+
+The output shows details of the hashes.
+
+The circular reference is not followed.
+
+```show.yaml```:
+```yaml
+---
+Hash (size=1 name=My circular hashes):
+  Pair 0:
+    Key:
+      Symbol (size=3): :foo
+    Value:
+      Hash (size=1):
+        Pair 0:
+          Key:
+            Symbol (size=3): :bar
+          Value: "{:foo=>{:bar=>{...}}} (Hash)"
+```
 ### Struct
 ### String
 ### Symbol
