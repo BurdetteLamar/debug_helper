@@ -1,6 +1,6 @@
 require 'debug_helper'
 
-hasn = {
+hash = {
     :a => {
         :b => 0,
         :c => 1,

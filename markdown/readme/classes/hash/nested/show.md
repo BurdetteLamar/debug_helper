@@ -6,7 +6,7 @@ This example shows nested hashes.
 ```ruby
 require 'debug_helper'
 
-hasn = {
+hash = {
     :a => {
         :b => 0,
         :c => 1,
@@ -19,5 +19,19 @@ The output shows details of the hashes.
 
 ```show.yaml```:
 ```yaml
---- "-181461328 (Fixnum)"
+---
+Hash (size=1 name=My nested hash):
+  Pair 0:
+    Key:
+      Symbol (size=1): :a
+    Value:
+      Hash (size=2):
+        Pair 0:
+          Key:
+            Symbol (size=1): :b
+          Value: 0 (Fixnum)
+        Pair 1:
+          Key:
+            Symbol (size=1): :c
+          Value: 1 (Fixnum)
 ```
