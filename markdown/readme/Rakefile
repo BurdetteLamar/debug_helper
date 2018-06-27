@@ -53,7 +53,7 @@ namespace :build do
       end
     end
     markdown_helper = MarkdownHelper.new(:pristine => true)
-    markdown_helper.include('template.md', 'README.md')
+    markdown_helper.include('template.md', '../../README.md')
 
   end
 end
