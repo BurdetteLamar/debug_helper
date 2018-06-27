@@ -6,4 +6,8 @@ Classes closely supported:
 
 @[:markdown](class_links.md)
 
+And not so much:
+
+- [Object](#object)
+
 @[:markdown](class_inclusions.md)
