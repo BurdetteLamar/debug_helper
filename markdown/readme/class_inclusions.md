@@ -1,3 +1,4 @@
+@[:markdown](classes/array/template.md)
 @[:markdown](classes/hash/template.md)
 @[:markdown](classes/struct/template.md)
 @[:markdown](classes/string/template.md)

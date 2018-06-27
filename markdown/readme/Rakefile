@@ -8,6 +8,7 @@ namespace :build do
     class_dir_names = nil
     Dir.chdir('classes') do
       class_names = %w/
+        Array
         Hash
         Struct
         String
