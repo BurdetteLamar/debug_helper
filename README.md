@@ -10,7 +10,7 @@ Classes closely supported:
 - [String](#string)
 - [Symbol](#symbol)
 
-And not so much:
+Others:
 
 - [Object](#object)
 
@@ -418,4 +418,130 @@ MyStruct (size=3 name=My circular struct):
     Value: 2 (Fixnum)
 ```
 ### String
+
+#### Simple String
+
+This example shows a simple string.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+s = 'Lorem ipsum'
+DebugHelper.show(s, 'My simple string')
+```
+
+The output shows details of the string.
+
+```show.yaml```:
+```yaml
+---
+String (size=11 encoding=UTF-8 name=My simple string):
+- Lorem ipsum
+```
+
+#### Multiline String
+
+This example shows a multiline string.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+s = <<EOT
+Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
+sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
+EOT
+DebugHelper.show(s, 'My multiline string')
+```
+
+The output shows details of the string.
+
+```show.yaml```:
+```yaml
+---
+String (size=122 encoding=UTF-8 name=My multiline string):
+- |
+  Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
+  sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
+```
 ### Symbol
+
+#### Simple Symbol
+
+This example shows a simple symbol.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+DebugHelper.show(:lorem_ipsum)
+```
+
+The output shows details of the symbol.
+
+```show.yaml```:
+```yaml
+---
+Symbol (size=11 name=Symbol): :lorem_ipsum
+```
+### Object
+
+#### DateTime
+
+This example shows a datetime.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+datetime = DateTime.now
+DebugHelper.show(datetime)
+```
+
+The output shows details of the datetime.
+
+```show.yaml```:
+```yaml
+--- 2018-06-27T16:23:24-05:00 (DateTime)
+...
+```
+
+#### Range
+
+This example shows a range.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+range = Range.new(0, 9)
+DebugHelper.show(range)
+```
+
+The output shows details of the range.
+
+```show.yaml```:
+```yaml
+--- 0..9 (Range)
+...
+```
+
+#### Regexp
+
+This example shows a regexp.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+regexp = Regexp.new('foo')
+DebugHelper.show(regexp)
+```
+
+The output shows details of the regexp.
+
+```show.yaml```:
+```yaml
+--- "(?-mix:foo) (Regexp)"
+```

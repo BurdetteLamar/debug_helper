@@ -13,6 +13,7 @@ namespace :build do
         Struct
         String
         Symbol
+        Object
       /
       class_dir_names = class_names.collect {|x| x.downcase}
       class_dir_names.each do |class_dir_name|
@@ -31,9 +32,10 @@ namespace :build do
     end
     # Make list of links to class sections.
     File.open('class_links.md', 'w') do |file|
-      class_dir_names.each do |class_name|
-        proper_class_name = class_name.capitalize
-        link_line = "- [#{proper_class_name}](##{class_name})"
+      class_dir_names.each do |class_dir_name|
+        next if class_dir_name == 'object'
+        proper_class_name = class_dir_name.capitalize
+        link_line = "- [#{proper_class_name}](##{class_dir_name})"
         file.puts(link_line)
       end
     end
