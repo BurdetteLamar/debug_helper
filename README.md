@@ -357,8 +357,8 @@ require 'debug_helper'
 
 MyStruct_0 = Struct.new(:a, :b)
 MyStruct_1 = Struct.new(:c, :d)
-struct_1a = MyStruct_0.new(2, 3)
-struct_1b = MyStruct_0.new(4, 5)
+struct_1a = MyStruct_1.new(2, 3)
+struct_1b = MyStruct_1.new(4, 5)
 struct_0 = MyStruct_0.new(struct_1a, struct_1b)
 DebugHelper.show(struct_0, 'My nested struct')
 ```
@@ -372,22 +372,22 @@ MyStruct_0 (name='My nested struct' size=2):
   Member 0:
     Name: :a
     Value:
-      MyStruct_0 (size=2):
+      MyStruct_1 (size=2):
         Member 0:
-          Name: :a
+          Name: :c
           Value: Fixnum 2
         Member 1:
-          Name: :b
+          Name: :d
           Value: Fixnum 3
   Member 1:
     Name: :b
     Value:
-      MyStruct_0 (size=2):
+      MyStruct_1 (size=2):
         Member 0:
-          Name: :a
+          Name: :c
           Value: Fixnum 4
         Member 1:
-          Name: :b
+          Name: :d
           Value: Fixnum 5
 ```
 
@@ -522,7 +522,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (name='My datetime') 2018-06-28T16:49:16-05:00
+--- DateTime (name='My datetime') 2018-06-28T16:53:30-05:00
 ...
 ```
 
