@@ -1,12 +1,12 @@
 ---
-DebugHelperTest::MyStruct (size=3 name=test_struct_self_referencing):
+DebugHelperTest::MyStruct (name='test_struct_self_referencing' size=3):
   Member 0:
     Name: :foo
-    Value: "#<struct DebugHelperTest::MyStruct foo=#<struct DebugHelperTest::MyStruct:...>,
-      bar=1, baz=2> (DebugHelperTest::MyStruct)"
+    Value: 'DebugHelperTest::MyStruct #<struct DebugHelperTest::MyStruct foo=#<struct
+      DebugHelperTest::MyStruct:...>, bar=1, baz=2>'
   Member 1:
     Name: :bar
-    Value: 1 (Fixnum)
+    Value: Fixnum 1
   Member 2:
     Name: :baz
-    Value: 2 (Fixnum)
+    Value: Fixnum 2

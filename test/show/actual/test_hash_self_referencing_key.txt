@@ -1,5 +1,5 @@
 ---
-Hash (size=1 name=test_hash_self_referencing_key):
+Hash (size=1 name='test_hash_self_referencing_key'):
   Pair 0:
-    Key: "{{...}=>0} (Hash)"
-    Value: 0 (Fixnum)
+    Key: Hash {{...}=>0}
+    Value: Fixnum 0
