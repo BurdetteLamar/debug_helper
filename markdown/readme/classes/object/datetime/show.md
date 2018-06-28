@@ -14,6 +14,6 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (name='My datetime') 2018-06-28T16:49:16-05:00
+--- DateTime (name='My datetime') 2018-06-28T16:53:30-05:00
 ...
 ```
