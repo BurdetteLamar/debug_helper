@@ -1,5 +1,5 @@
 ---
 Array (size=3 name=My simple array):
-  Element 0: 5 (Fixnum)
-  Element 1: 10 (Fixnum)
-  Element 2: 15 (Fixnum)
+  Element 0: Fixnum 5
+  Element 1: Fixnum 10
+  Element 2: Fixnum 15

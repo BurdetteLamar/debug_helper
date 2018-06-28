@@ -7,13 +7,13 @@ This example shows a datetime.
 require 'debug_helper'
 
 datetime = DateTime.now
-DebugHelper.show(datetime)
+DebugHelper.show(datetime, 'My datetime')
 ```
 
 The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 2018-06-27T16:23:24-05:00 (DateTime)
+--- DateTime (name=My datetime) 2018-06-28T09:22:08-05:00
 ...
 ```

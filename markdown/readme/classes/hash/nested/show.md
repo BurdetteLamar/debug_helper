@@ -29,9 +29,9 @@ Hash (size=1 name=My nested hash):
         Pair 0:
           Key:
             Symbol (size=1): :b
-          Value: 0 (Fixnum)
+          Value: Fixnum 0
         Pair 1:
           Key:
             Symbol (size=1): :c
-          Value: 1 (Fixnum)
+          Value: Fixnum 1
 ```

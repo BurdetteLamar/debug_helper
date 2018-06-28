@@ -1,1 +1,2 @@
---- "(?-mix:foo) (Regexp)"
+--- Regexp (name=My regexp) (?-mix:foo)
+...

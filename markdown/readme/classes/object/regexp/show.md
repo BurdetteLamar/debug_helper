@@ -7,12 +7,13 @@ This example shows a regexp.
 require 'debug_helper'
 
 regexp = Regexp.new('foo')
-DebugHelper.show(regexp)
+DebugHelper.show(regexp, 'My regexp')
 ```
 
 The output shows details of the regexp.
 
 ```show.yaml```:
 ```yaml
---- "(?-mix:foo) (Regexp)"
+--- Regexp (name=My regexp) (?-mix:foo)
+...
 ```

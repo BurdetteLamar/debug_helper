@@ -3,12 +3,12 @@ Hash (size=3 name=My simple hash):
   Pair 0:
     Key:
       Symbol (size=1): :a
-    Value: 0 (Fixnum)
+    Value: Fixnum 0
   Pair 1:
     Key:
       Symbol (size=1): :b
-    Value: 1 (Fixnum)
+    Value: Fixnum 1
   Pair 2:
     Key:
       Symbol (size=1): :c
-    Value: 2 (Fixnum)
+    Value: Fixnum 2

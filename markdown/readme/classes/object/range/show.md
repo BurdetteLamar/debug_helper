@@ -7,13 +7,13 @@ This example shows a range.
 require 'debug_helper'
 
 range = Range.new(0, 9)
-DebugHelper.show(range)
+DebugHelper.show(range, 'My range')
 ```
 
 The output shows details of the range.
 
 ```show.yaml```:
 ```yaml
---- 0..9 (Range)
+--- Range (name=My range) 0..9
 ...
 ```

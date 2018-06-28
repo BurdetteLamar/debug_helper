@@ -6,17 +6,17 @@ MyStruct (size=3 name=My circular struct):
       MyStruct (size=3):
         Member 0:
           Name: :a
-          Value: "#<struct MyStruct a=#<struct MyStruct a=#<struct MyStruct:...>,
-            b=4, c=5>, b=1, c=2> (MyStruct)"
+          Value: 'MyStruct #<struct MyStruct a=#<struct MyStruct a=#<struct MyStruct:...>,
+            b=4, c=5>, b=1, c=2>'
         Member 1:
           Name: :b
-          Value: 4 (Fixnum)
+          Value: Fixnum 4
         Member 2:
           Name: :c
-          Value: 5 (Fixnum)
+          Value: Fixnum 5
   Member 1:
     Name: :b
-    Value: 1 (Fixnum)
+    Value: Fixnum 1
   Member 2:
     Name: :c
-    Value: 2 (Fixnum)
+    Value: Fixnum 2

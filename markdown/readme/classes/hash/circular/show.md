@@ -29,5 +29,5 @@ Hash (size=1 name=My circular hashes):
         Pair 0:
           Key:
             Symbol (size=3): :bar
-          Value: "{:foo=>{:bar=>{...}}} (Hash)"
+          Value: Hash {:foo=>{:bar=>{...}}}
 ```

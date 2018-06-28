@@ -23,7 +23,7 @@ Hash (size=3 name=My mixed hash):
   Pair 0:
     Key:
       Symbol (size=1): :a
-    Value: 0 (Fixnum)
+    Value: Fixnum 0
   Pair 1:
     Key:
       Symbol (size=1): :b

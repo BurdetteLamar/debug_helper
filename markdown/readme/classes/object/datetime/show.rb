@@ -1,4 +1,4 @@
 require 'debug_helper'
 
 datetime = DateTime.now
-DebugHelper.show(datetime)
+DebugHelper.show(datetime, 'My datetime')

@@ -16,7 +16,7 @@ The output shows details of the array.
 ```yaml
 ---
 Array (size=3 name=My mixed array):
-  Element 0: 0 (Fixnum)
+  Element 0: Fixnum 0
   Element 1:
     String (size=3 encoding=UTF-8):
     - one

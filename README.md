@@ -34,9 +34,9 @@ The output shows details of the array.
 ```yaml
 ---
 Array (size=3 name=My simple array):
-  Element 0: 5 (Fixnum)
-  Element 1: 10 (Fixnum)
-  Element 2: 15 (Fixnum)
+  Element 0: Fixnum 5
+  Element 1: Fixnum 10
+  Element 2: Fixnum 15
 ```
 
 #### Mixed Array
@@ -57,7 +57,7 @@ The output shows details of the array.
 ```yaml
 ---
 Array (size=3 name=My mixed array):
-  Element 0: 0 (Fixnum)
+  Element 0: Fixnum 0
   Element 1:
     String (size=3 encoding=UTF-8):
     - one
@@ -83,15 +83,15 @@ The output shows details of the arrays.
 ```yaml
 ---
 Array (size=3 name=My nested arrays):
-  Element 0: 0 (Fixnum)
+  Element 0: Fixnum 0
   Element 1:
     Array (size=2):
-      Element 0: 1 (Fixnum)
-      Element 1: 2 (Fixnum)
+      Element 0: Fixnum 1
+      Element 1: Fixnum 2
   Element 2:
     Array (size=2):
-      Element 0: 3 (Fixnum)
-      Element 1: 4 (Fixnum)
+      Element 0: Fixnum 3
+      Element 1: Fixnum 4
 ```
 
 #### Circular Arrays
@@ -119,7 +119,7 @@ The circular reference is not followed.
 Array (size=1 name=My circular arrays):
   Element 0:
     Array (size=1):
-      Element 0: "[[[...]]] (Array)"
+      Element 0: Array [[[...]]]
 ```
 ### Hash
 
@@ -144,15 +144,15 @@ Hash (size=3 name=My simple hash):
   Pair 0:
     Key:
       Symbol (size=1): :a
-    Value: 0 (Fixnum)
+    Value: Fixnum 0
   Pair 1:
     Key:
       Symbol (size=1): :b
-    Value: 1 (Fixnum)
+    Value: Fixnum 1
   Pair 2:
     Key:
       Symbol (size=1): :c
-    Value: 2 (Fixnum)
+    Value: Fixnum 2
 ```
 
 #### Mixed Hash
@@ -180,7 +180,7 @@ Hash (size=3 name=My mixed hash):
   Pair 0:
     Key:
       Symbol (size=1): :a
-    Value: 0 (Fixnum)
+    Value: Fixnum 0
   Pair 1:
     Key:
       Symbol (size=1): :b
@@ -225,11 +225,11 @@ Hash (size=1 name=My nested hash):
         Pair 0:
           Key:
             Symbol (size=1): :b
-          Value: 0 (Fixnum)
+          Value: Fixnum 0
         Pair 1:
           Key:
             Symbol (size=1): :c
-          Value: 1 (Fixnum)
+          Value: Fixnum 1
 ```
 
 #### Circular Hashes
@@ -263,7 +263,7 @@ Hash (size=1 name=My circular hashes):
         Pair 0:
           Key:
             Symbol (size=3): :bar
-          Value: "{:foo=>{:bar=>{...}}} (Hash)"
+          Value: Hash {:foo=>{:bar=>{...}}}
 ```
 ### Struct
 
@@ -288,13 +288,13 @@ The output shows details of the struct.
 MyStruct (size=3 name=My simple struct):
   Member 0:
     Name: :a
-    Value: 0 (Fixnum)
+    Value: Fixnum 0
   Member 1:
     Name: :b
-    Value: 1 (Fixnum)
+    Value: Fixnum 1
   Member 2:
     Name: :c
-    Value: 2 (Fixnum)
+    Value: Fixnum 2
 ```
 
 #### Mixed Struct
@@ -318,7 +318,7 @@ The output shows details of the struct.
 MyStruct (size=3 name=My mixed struct):
   Member 0:
     Name: :a
-    Value: 0 (Fixnum)
+    Value: Fixnum 0
   Member 1:
     Name: :b
     Value:
@@ -357,19 +357,19 @@ MyStruct (size=3 name=My nested struct):
       MyStruct (size=3):
         Member 0:
           Name: :a
-          Value: 3 (Fixnum)
+          Value: Fixnum 3
         Member 1:
           Name: :b
-          Value: 4 (Fixnum)
+          Value: Fixnum 4
         Member 2:
           Name: :c
-          Value: 5 (Fixnum)
+          Value: Fixnum 5
   Member 1:
     Name: :b
-    Value: 1 (Fixnum)
+    Value: Fixnum 1
   Member 2:
     Name: :c
-    Value: 2 (Fixnum)
+    Value: Fixnum 2
 ```
 
 #### Circular Structs
@@ -402,20 +402,20 @@ MyStruct (size=3 name=My circular struct):
       MyStruct (size=3):
         Member 0:
           Name: :a
-          Value: "#<struct MyStruct a=#<struct MyStruct a=#<struct MyStruct:...>,
-            b=4, c=5>, b=1, c=2> (MyStruct)"
+          Value: 'MyStruct #<struct MyStruct a=#<struct MyStruct a=#<struct MyStruct:...>,
+            b=4, c=5>, b=1, c=2>'
         Member 1:
           Name: :b
-          Value: 4 (Fixnum)
+          Value: Fixnum 4
         Member 2:
           Name: :c
-          Value: 5 (Fixnum)
+          Value: Fixnum 5
   Member 1:
     Name: :b
-    Value: 1 (Fixnum)
+    Value: Fixnum 1
   Member 2:
     Name: :c
-    Value: 2 (Fixnum)
+    Value: Fixnum 2
 ```
 ### String
 
@@ -475,7 +475,7 @@ This example shows a simple symbol.
 ```ruby
 require 'debug_helper'
 
-DebugHelper.show(:lorem_ipsum)
+DebugHelper.show(:lorem_ipsum, 'My symbol')
 ```
 
 The output shows details of the symbol.
@@ -483,7 +483,7 @@ The output shows details of the symbol.
 ```show.yaml```:
 ```yaml
 ---
-Symbol (size=11 name=Symbol): :lorem_ipsum
+Symbol (size=11 name=My symbol): :lorem_ipsum
 ```
 ### Object
 
@@ -496,14 +496,14 @@ This example shows a datetime.
 require 'debug_helper'
 
 datetime = DateTime.now
-DebugHelper.show(datetime)
+DebugHelper.show(datetime, 'My datetime')
 ```
 
 The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 2018-06-27T16:23:24-05:00 (DateTime)
+--- DateTime (name=My datetime) 2018-06-28T09:22:08-05:00
 ...
 ```
 
@@ -516,14 +516,14 @@ This example shows a range.
 require 'debug_helper'
 
 range = Range.new(0, 9)
-DebugHelper.show(range)
+DebugHelper.show(range, 'My range')
 ```
 
 The output shows details of the range.
 
 ```show.yaml```:
 ```yaml
---- 0..9 (Range)
+--- Range (name=My range) 0..9
 ...
 ```
 
@@ -536,12 +536,13 @@ This example shows a regexp.
 require 'debug_helper'
 
 regexp = Regexp.new('foo')
-DebugHelper.show(regexp)
+DebugHelper.show(regexp, 'My regexp')
 ```
 
 The output shows details of the regexp.
 
 ```show.yaml```:
 ```yaml
---- "(?-mix:foo) (Regexp)"
+--- Regexp (name=My regexp) (?-mix:foo)
+...
 ```

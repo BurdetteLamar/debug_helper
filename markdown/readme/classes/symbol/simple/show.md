@@ -6,7 +6,7 @@ This example shows a simple symbol.
 ```ruby
 require 'debug_helper'
 
-DebugHelper.show(:lorem_ipsum)
+DebugHelper.show(:lorem_ipsum, 'My symbol')
 ```
 
 The output shows details of the symbol.
@@ -14,5 +14,5 @@ The output shows details of the symbol.
 ```show.yaml```:
 ```yaml
 ---
-Symbol (size=11 name=Symbol): :lorem_ipsum
+Symbol (size=11 name=My symbol): :lorem_ipsum
 ```

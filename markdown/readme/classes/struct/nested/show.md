@@ -25,17 +25,17 @@ MyStruct (size=3 name=My nested struct):
       MyStruct (size=3):
         Member 0:
           Name: :a
-          Value: 3 (Fixnum)
+          Value: Fixnum 3
         Member 1:
           Name: :b
-          Value: 4 (Fixnum)
+          Value: Fixnum 4
         Member 2:
           Name: :c
-          Value: 5 (Fixnum)
+          Value: Fixnum 5
   Member 1:
     Name: :b
-    Value: 1 (Fixnum)
+    Value: Fixnum 1
   Member 2:
     Name: :c
-    Value: 2 (Fixnum)
+    Value: Fixnum 2
 ```

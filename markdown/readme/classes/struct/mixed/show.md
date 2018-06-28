@@ -19,7 +19,7 @@ The output shows details of the struct.
 MyStruct (size=3 name=My mixed struct):
   Member 0:
     Name: :a
-    Value: 0 (Fixnum)
+    Value: Fixnum 0
   Member 1:
     Name: :b
     Value:

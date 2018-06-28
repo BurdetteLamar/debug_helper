@@ -25,7 +25,7 @@ class DebugHelper
 
   def _show(obj, name, info)
     if object_ids.include?(obj.object_id)
-      s = show_object(obj, name)
+      s = show_object(obj, name, info)
     else
       object_ids.push(obj.object_id)
       s = case
@@ -42,7 +42,7 @@ class DebugHelper
             # when obj.kind_of?(Range)
             # when obj.kind_of?(Set)
             else
-              show_object(obj, name)
+              show_object(obj, name, info)
           end
     end
     object_ids.pop
@@ -76,9 +76,15 @@ class DebugHelper
     _show_item(obj.class.name, content, attrs, info)
   end
 
-  def show_object(obj, name)
-    "#{obj} (#{obj.class.name})"
-
+  def show_object(obj, name, info)
+    name_info = name.nil? ? '' : " (name=#{name})"
+    "#{obj.class.name}#{name_info} #{obj}"
+    # "#{obj} (#{obj.class.name})"
+    # content = obj
+    # attrs = {
+    #     :name => name,
+    # }
+    # _show_item(obj.class.name, content, attrs, info)
   end
 
   def show_string(obj, name, info)
