@@ -1,22 +1,22 @@
 ---
-Array (size=6 name=test_array_mixed_values):
-  Element 0: 14 (Fixnum)
+Array (name='test_array_mixed_values' size=6):
+  Element 0: Fixnum 14
   Element 1:
-    String (size=3 encoding=UTF-8):
+    String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
     - foo
   Element 2:
     Array (size=2):
-      Element 0: 0 (Fixnum)
-      Element 1: 1 (Fixnum)
+      Element 0: Fixnum 0
+      Element 1: Fixnum 1
   Element 3:
     Hash (size=2):
       Pair 0:
         Key:
-          Symbol (size=1): :a
-        Value: 1 (Fixnum)
+          Symbol (size=1 encoding=US-ASCII): :a
+        Value: Fixnum 1
       Pair 1:
         Key:
-          Symbol (size=1): :b
-        Value: 1 (Fixnum)
-  Element 4: true (TrueClass)
-  Element 5: " (NilClass)"
+          Symbol (size=1 encoding=US-ASCII): :b
+        Value: Fixnum 1
+  Element 4: TrueClass true
+  Element 5: 'NilClass '

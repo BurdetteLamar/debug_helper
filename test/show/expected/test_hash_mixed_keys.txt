@@ -1,14 +1,14 @@
 ---
-Hash (size=3 name=test_hash_mixed_keys):
+Hash (size=3 name='test_hash_mixed_keys'):
   Pair 0:
-    Key: 14 (Fixnum)
-    Value: 0 (Fixnum)
+    Key: Fixnum 14
+    Value: Fixnum 0
   Pair 1:
     Key:
-      Symbol (size=1): :a
-    Value: 1 (Fixnum)
+      Symbol (size=1 encoding=US-ASCII): :a
+    Value: Fixnum 1
   Pair 2:
     Key:
-      String (size=6 encoding=UTF-8):
+      String (size=6 encoding=UTF-8 ascii_only=true bytesize=6):
       - foobar
-    Value: 2 (Fixnum)
+    Value: Fixnum 2

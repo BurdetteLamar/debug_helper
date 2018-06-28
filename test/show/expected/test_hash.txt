@@ -1,10 +1,10 @@
 ---
-Hash (size=2 name=test_hash):
+Hash (size=2 name='test_hash'):
   Pair 0:
     Key:
-      Symbol (size=1): :a
-    Value: 14 (Fixnum)
+      Symbol (size=1 encoding=US-ASCII): :a
+    Value: Fixnum 14
   Pair 1:
     Key:
-      Symbol (size=1): :b
-    Value: 22 (Fixnum)
+      Symbol (size=1 encoding=US-ASCII): :b
+    Value: Fixnum 22

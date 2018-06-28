@@ -1,11 +1,11 @@
 ---
-DebugHelperTest::MyStruct (name='test_struct' size=3):
+DebugHelperTest::MyClass (name='test_my_object'):
   Member 0:
-    Name: :foo
+    Method: foo
     Value: Fixnum 0
   Member 1:
-    Name: :bar
+    Method: bar
     Value: Fixnum 1
   Member 2:
-    Name: :baz
+    Method: baz
     Value: Fixnum 2

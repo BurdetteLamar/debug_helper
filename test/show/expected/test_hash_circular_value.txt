@@ -1,19 +1,19 @@
 ---
-Hash (size=2 name=test_hash_circular_value):
+Hash (size=2 name='test_hash_circular_value'):
   Pair 0:
     Key:
-      Symbol (size=1): :a
+      Symbol (size=1 encoding=US-ASCII): :a
     Value:
       Hash (size=0): {}
   Pair 1:
     Key:
-      Symbol (size=1): :b
+      Symbol (size=1 encoding=US-ASCII): :b
     Value:
       Hash (size=2):
         Pair 0:
           Key:
             Hash (size=0): {}
-          Value: 0 (Fixnum)
+          Value: Fixnum 0
         Pair 1:
-          Key: "{{}=>0, {...}=>0} (Hash)"
-          Value: 0 (Fixnum)
+          Key: Hash {{}=>0, {...}=>0}
+          Value: Fixnum 0

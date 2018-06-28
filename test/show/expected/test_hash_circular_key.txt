@@ -1,9 +1,9 @@
 ---
-Hash (size=2 name=test_hash_circular_key):
+Hash (size=2 name='test_hash_circular_key'):
   Pair 0:
     Key:
       Hash (size=0): {}
-    Value: 0 (Fixnum)
+    Value: Fixnum 0
   Pair 1:
-    Key: "{{}=>0, {...}=>0} (Hash)"
-    Value: 0 (Fixnum)
+    Key: Hash {{}=>0, {...}=>0}
+    Value: Fixnum 0
