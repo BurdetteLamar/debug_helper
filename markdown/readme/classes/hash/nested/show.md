@@ -10,6 +10,10 @@ hash = {
     :a => {
         :b => 0,
         :c => 1,
+    },
+    :d => {
+        :e => 2,
+        :f => 3,
     }
 }
 DebugHelper.show(hash, 'My nested hash')
@@ -20,7 +24,7 @@ The output shows details of the hashes.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=1 name='My nested hash'):
+Hash (size=2 name='My nested hash'):
   Pair 0:
     Key:
       Symbol (size=1 encoding=US-ASCII): :a
@@ -34,4 +38,17 @@ Hash (size=1 name='My nested hash'):
           Key:
             Symbol (size=1 encoding=US-ASCII): :c
           Value: Fixnum 1
+  Pair 1:
+    Key:
+      Symbol (size=1 encoding=US-ASCII): :d
+    Value:
+      Hash (size=2):
+        Pair 0:
+          Key:
+            Symbol (size=1 encoding=US-ASCII): :e
+          Value: Fixnum 2
+        Pair 1:
+          Key:
+            Symbol (size=1 encoding=US-ASCII): :f
+          Value: Fixnum 3
 ```

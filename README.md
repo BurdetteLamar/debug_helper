@@ -206,6 +206,10 @@ hash = {
     :a => {
         :b => 0,
         :c => 1,
+    },
+    :d => {
+        :e => 2,
+        :f => 3,
     }
 }
 DebugHelper.show(hash, 'My nested hash')
@@ -216,7 +220,7 @@ The output shows details of the hashes.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=1 name='My nested hash'):
+Hash (size=2 name='My nested hash'):
   Pair 0:
     Key:
       Symbol (size=1 encoding=US-ASCII): :a
@@ -230,6 +234,19 @@ Hash (size=1 name='My nested hash'):
           Key:
             Symbol (size=1 encoding=US-ASCII): :c
           Value: Fixnum 1
+  Pair 1:
+    Key:
+      Symbol (size=1 encoding=US-ASCII): :d
+    Value:
+      Hash (size=2):
+        Pair 0:
+          Key:
+            Symbol (size=1 encoding=US-ASCII): :e
+          Value: Fixnum 2
+        Pair 1:
+          Key:
+            Symbol (size=1 encoding=US-ASCII): :f
+          Value: Fixnum 3
 ```
 
 #### Circular Hashes
@@ -338,10 +355,11 @@ This example shows nested structs.
 ```ruby
 require 'debug_helper'
 
-MyStruct = Struct.new(:a, :b, :c)
-struct_0 = MyStruct.new(0, 1, 2)
-struct_1 = MyStruct.new(3, 4, 5)
-struct_0.a = struct_1
+MyStruct_0 = Struct.new(:a, :b)
+MyStruct_1 = Struct.new(:c, :d)
+struct_1a = MyStruct_0.new(2, 3)
+struct_1b = MyStruct_0.new(4, 5)
+struct_0 = MyStruct_0.new(struct_1a, struct_1b)
 DebugHelper.show(struct_0, 'My nested struct')
 ```
 
@@ -350,26 +368,27 @@ The output shows details of the structs.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (name='My nested struct' size=3):
+MyStruct_0 (name='My nested struct' size=2):
   Member 0:
     Name: :a
     Value:
-      MyStruct (size=3):
+      MyStruct_0 (size=2):
         Member 0:
           Name: :a
-          Value: Fixnum 3
+          Value: Fixnum 2
         Member 1:
           Name: :b
-          Value: Fixnum 4
-        Member 2:
-          Name: :c
-          Value: Fixnum 5
+          Value: Fixnum 3
   Member 1:
     Name: :b
-    Value: Fixnum 1
-  Member 2:
-    Name: :c
-    Value: Fixnum 2
+    Value:
+      MyStruct_0 (size=2):
+        Member 0:
+          Name: :a
+          Value: Fixnum 4
+        Member 1:
+          Name: :b
+          Value: Fixnum 5
 ```
 
 #### Circular Structs
@@ -503,7 +522,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (name='My datetime') 2018-06-28T09:46:21-05:00
+--- DateTime (name='My datetime') 2018-06-28T16:49:16-05:00
 ...
 ```
 

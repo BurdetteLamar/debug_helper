@@ -1,7 +1,8 @@
 require 'debug_helper'
 
-MyStruct = Struct.new(:a, :b, :c)
-struct_0 = MyStruct.new(0, 1, 2)
-struct_1 = MyStruct.new(3, 4, 5)
-struct_0.a = struct_1
+MyStruct_0 = Struct.new(:a, :b)
+MyStruct_1 = Struct.new(:c, :d)
+struct_1a = MyStruct_0.new(2, 3)
+struct_1b = MyStruct_0.new(4, 5)
+struct_0 = MyStruct_0.new(struct_1a, struct_1b)
 DebugHelper.show(struct_0, 'My nested struct')
