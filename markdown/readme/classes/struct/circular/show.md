@@ -21,7 +21,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 name=My circular struct):
+MyStruct (size=3 name='My circular struct'):
   Member 0:
     Name: :a
     Value:

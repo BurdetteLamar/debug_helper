@@ -14,6 +14,6 @@ The output shows details of the range.
 
 ```show.yaml```:
 ```yaml
---- Range (name=My range) 0..9
+--- Range (name='My range') 0..9
 ...
 ```

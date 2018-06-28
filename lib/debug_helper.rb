@@ -77,21 +77,17 @@ class DebugHelper
   end
 
   def show_object(obj, name, info)
-    name_info = name.nil? ? '' : " (name=#{name})"
+    name_info = name.nil? ? '' : " (name='#{name}')"
     "#{obj.class.name}#{name_info} #{obj}"
-    # "#{obj} (#{obj.class.name})"
-    # content = obj
-    # attrs = {
-    #     :name => name,
-    # }
-    # _show_item(obj.class.name, content, attrs, info)
   end
 
   def show_string(obj, name, info)
     attrs = {
+        :name => name,
         :size => obj.size,
         :encoding => obj.encoding,
-        :name => name,
+        :ascii_only => obj.ascii_only?,
+        :bytesize => obj.bytesize,
     }
     _show_item(obj.class.name, [obj], attrs, info)
   end
@@ -121,6 +117,10 @@ class DebugHelper
   end
 
   def _show_item(class_name, content, attrs, info)
+    name = attrs[:name]
+    unless name.nil?
+      attrs[:name] = "'#{name}'"
+    end
     label = label(class_name, attrs)
     info.store(label, content)
     info

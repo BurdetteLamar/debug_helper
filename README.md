@@ -33,7 +33,7 @@ The output shows details of the array.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=3 name=My simple array):
+Array (size=3 name='My simple array'):
   Element 0: Fixnum 5
   Element 1: Fixnum 10
   Element 2: Fixnum 15
@@ -56,10 +56,10 @@ The output shows details of the array.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=3 name=My mixed array):
+Array (size=3 name='My mixed array'):
   Element 0: Fixnum 0
   Element 1:
-    String (size=3 encoding=UTF-8):
+    String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
     - one
   Element 2:
     Symbol (size=3): :two
@@ -82,7 +82,7 @@ The output shows details of the arrays.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=3 name=My nested arrays):
+Array (size=3 name='My nested arrays'):
   Element 0: Fixnum 0
   Element 1:
     Array (size=2):
@@ -116,7 +116,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=1 name=My circular arrays):
+Array (size=1 name='My circular arrays'):
   Element 0:
     Array (size=1):
       Element 0: Array [[[...]]]
@@ -140,7 +140,7 @@ The output shows details of the hash.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=3 name=My simple hash):
+Hash (size=3 name='My simple hash'):
   Pair 0:
     Key:
       Symbol (size=1): :a
@@ -176,7 +176,7 @@ The output shows details of the hash.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=3 name=My mixed hash):
+Hash (size=3 name='My mixed hash'):
   Pair 0:
     Key:
       Symbol (size=1): :a
@@ -185,7 +185,7 @@ Hash (size=3 name=My mixed hash):
     Key:
       Symbol (size=1): :b
     Value:
-      String (size=3 encoding=UTF-8):
+      String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
       - one
   Pair 2:
     Key:
@@ -216,7 +216,7 @@ The output shows details of the hashes.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=1 name=My nested hash):
+Hash (size=1 name='My nested hash'):
   Pair 0:
     Key:
       Symbol (size=1): :a
@@ -254,7 +254,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=1 name=My circular hashes):
+Hash (size=1 name='My circular hashes'):
   Pair 0:
     Key:
       Symbol (size=3): :foo
@@ -285,7 +285,7 @@ The output shows details of the struct.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 name=My simple struct):
+MyStruct (size=3 name='My simple struct'):
   Member 0:
     Name: :a
     Value: Fixnum 0
@@ -315,14 +315,14 @@ The output shows details of the struct.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 name=My mixed struct):
+MyStruct (size=3 name='My mixed struct'):
   Member 0:
     Name: :a
     Value: Fixnum 0
   Member 1:
     Name: :b
     Value:
-      String (size=3 encoding=UTF-8):
+      String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
       - one
   Member 2:
     Name: :c
@@ -350,7 +350,7 @@ The output shows details of the structs.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 name=My nested struct):
+MyStruct (size=3 name='My nested struct'):
   Member 0:
     Name: :a
     Value:
@@ -395,7 +395,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 name=My circular struct):
+MyStruct (size=3 name='My circular struct'):
   Member 0:
     Name: :a
     Value:
@@ -436,7 +436,7 @@ The output shows details of the string.
 ```show.yaml```:
 ```yaml
 ---
-String (size=11 encoding=UTF-8 name=My simple string):
+String (name='My simple string' size=11 encoding=UTF-8 ascii_only=true bytesize=11):
 - Lorem ipsum
 ```
 
@@ -460,7 +460,7 @@ The output shows details of the string.
 ```show.yaml```:
 ```yaml
 ---
-String (size=122 encoding=UTF-8 name=My multiline string):
+String (name='My multiline string' size=122 encoding=UTF-8 ascii_only=true bytesize=122):
 - |
   Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
   sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
@@ -483,7 +483,7 @@ The output shows details of the symbol.
 ```show.yaml```:
 ```yaml
 ---
-Symbol (size=11 name=My symbol): :lorem_ipsum
+Symbol (size=11 name='My symbol'): :lorem_ipsum
 ```
 ### Object
 
@@ -503,7 +503,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (name=My datetime) 2018-06-28T09:22:08-05:00
+--- DateTime (name='My datetime') 2018-06-28T09:38:12-05:00
 ...
 ```
 
@@ -523,7 +523,7 @@ The output shows details of the range.
 
 ```show.yaml```:
 ```yaml
---- Range (name=My range) 0..9
+--- Range (name='My range') 0..9
 ...
 ```
 
@@ -543,6 +543,6 @@ The output shows details of the regexp.
 
 ```show.yaml```:
 ```yaml
---- Regexp (name=My regexp) (?-mix:foo)
+--- Regexp (name='My regexp') (?-mix:foo)
 ...
 ```

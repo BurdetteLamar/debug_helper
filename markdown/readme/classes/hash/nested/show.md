@@ -20,7 +20,7 @@ The output shows details of the hashes.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=1 name=My nested hash):
+Hash (size=1 name='My nested hash'):
   Pair 0:
     Key:
       Symbol (size=1): :a

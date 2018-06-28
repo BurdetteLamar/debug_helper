@@ -19,7 +19,7 @@ The output shows details of the hash.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=3 name=My mixed hash):
+Hash (size=3 name='My mixed hash'):
   Pair 0:
     Key:
       Symbol (size=1): :a
@@ -28,7 +28,7 @@ Hash (size=3 name=My mixed hash):
     Key:
       Symbol (size=1): :b
     Value:
-      String (size=3 encoding=UTF-8):
+      String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
       - one
   Pair 2:
     Key:

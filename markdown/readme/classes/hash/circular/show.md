@@ -20,7 +20,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=1 name=My circular hashes):
+Hash (size=1 name='My circular hashes'):
   Pair 0:
     Key:
       Symbol (size=3): :foo

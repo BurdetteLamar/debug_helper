@@ -15,7 +15,7 @@ The output shows details of the arrays.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=3 name=My nested arrays):
+Array (size=3 name='My nested arrays'):
   Element 0: Fixnum 0
   Element 1:
     Array (size=2):
