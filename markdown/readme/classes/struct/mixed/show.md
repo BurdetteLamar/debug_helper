@@ -16,7 +16,7 @@ The output shows details of the struct.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 name='My mixed struct'):
+MyStruct (name='My mixed struct' size=3):
   Member 0:
     Name: :a
     Value: Fixnum 0
@@ -28,5 +28,5 @@ MyStruct (size=3 name='My mixed struct'):
   Member 2:
     Name: :c
     Value:
-      Symbol (size=3): :two
+      Symbol (size=3 encoding=US-ASCII): :two
 ```

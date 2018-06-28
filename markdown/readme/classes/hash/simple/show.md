@@ -18,14 +18,14 @@ The output shows details of the hash.
 Hash (size=3 name='My simple hash'):
   Pair 0:
     Key:
-      Symbol (size=1): :a
+      Symbol (size=1 encoding=US-ASCII): :a
     Value: Fixnum 0
   Pair 1:
     Key:
-      Symbol (size=1): :b
+      Symbol (size=1 encoding=US-ASCII): :b
     Value: Fixnum 1
   Pair 2:
     Key:
-      Symbol (size=1): :c
+      Symbol (size=1 encoding=US-ASCII): :c
     Value: Fixnum 2
 ```

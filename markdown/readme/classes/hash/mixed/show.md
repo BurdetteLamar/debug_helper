@@ -22,17 +22,17 @@ The output shows details of the hash.
 Hash (size=3 name='My mixed hash'):
   Pair 0:
     Key:
-      Symbol (size=1): :a
+      Symbol (size=1 encoding=US-ASCII): :a
     Value: Fixnum 0
   Pair 1:
     Key:
-      Symbol (size=1): :b
+      Symbol (size=1 encoding=US-ASCII): :b
     Value:
       String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
       - one
   Pair 2:
     Key:
-      Symbol (size=1): :c
+      Symbol (size=1 encoding=US-ASCII): :c
     Value:
-      Symbol (size=3): :two
+      Symbol (size=3 encoding=US-ASCII): :two
 ```

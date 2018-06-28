@@ -14,5 +14,5 @@ The output shows details of the symbol.
 ```show.yaml```:
 ```yaml
 ---
-Symbol (size=11 name='My symbol'): :lorem_ipsum
+Symbol (name='My symbol' size=11 encoding=US-ASCII): :lorem_ipsum
 ```

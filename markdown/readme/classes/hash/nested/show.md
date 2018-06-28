@@ -23,15 +23,15 @@ The output shows details of the hashes.
 Hash (size=1 name='My nested hash'):
   Pair 0:
     Key:
-      Symbol (size=1): :a
+      Symbol (size=1 encoding=US-ASCII): :a
     Value:
       Hash (size=2):
         Pair 0:
           Key:
-            Symbol (size=1): :b
+            Symbol (size=1 encoding=US-ASCII): :b
           Value: Fixnum 0
         Pair 1:
           Key:
-            Symbol (size=1): :c
+            Symbol (size=1 encoding=US-ASCII): :c
           Value: Fixnum 1
 ```

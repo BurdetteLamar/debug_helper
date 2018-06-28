@@ -18,7 +18,7 @@ The output shows details of the structs.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 name='My nested struct'):
+MyStruct (name='My nested struct' size=3):
   Member 0:
     Name: :a
     Value:

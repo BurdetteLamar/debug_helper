@@ -23,11 +23,11 @@ The circular reference is not followed.
 Hash (size=1 name='My circular hashes'):
   Pair 0:
     Key:
-      Symbol (size=3): :foo
+      Symbol (size=3 encoding=US-ASCII): :foo
     Value:
       Hash (size=1):
         Pair 0:
           Key:
-            Symbol (size=3): :bar
+            Symbol (size=3 encoding=US-ASCII): :bar
           Value: Hash {:foo=>{:bar=>{...}}}
 ```

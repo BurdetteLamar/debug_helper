@@ -55,8 +55,8 @@ class DebugHelper
       content.store("Element #{i}", _show(item, nil, {}))
     end
     attrs = {
-        :size => obj.size,
         :name => name,
+        :size => obj.size,
     }
     _show_item(obj.class.name, content, attrs, info)
   end
@@ -71,6 +71,7 @@ class DebugHelper
     attrs = {
         :size => obj.size,
         :default => obj.default,
+        :default_proc => obj.default_proc,
         :name => name,
     }
     _show_item(obj.class.name, content, attrs, info)
@@ -102,16 +103,17 @@ class DebugHelper
       i += 1
     end
     attrs = {
-        :size => obj.size,
         :name => name,
+        :size => obj.size,
     }
     _show_item(obj.class.name, content, attrs, info)
   end
 
   def show_symbol(obj, name, info)
     attrs = {
-        :size => obj.size,
         :name => name,
+        :size => obj.size,
+        :encoding => obj.encoding,
     }
     _show_item(obj.class.name, obj, attrs, info)
   end

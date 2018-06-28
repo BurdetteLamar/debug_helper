@@ -33,7 +33,7 @@ The output shows details of the array.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=3 name='My simple array'):
+Array (name='My simple array' size=3):
   Element 0: Fixnum 5
   Element 1: Fixnum 10
   Element 2: Fixnum 15
@@ -56,13 +56,13 @@ The output shows details of the array.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=3 name='My mixed array'):
+Array (name='My mixed array' size=3):
   Element 0: Fixnum 0
   Element 1:
     String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
     - one
   Element 2:
-    Symbol (size=3): :two
+    Symbol (size=3 encoding=US-ASCII): :two
 ```
 
 #### Nested Arrays
@@ -82,7 +82,7 @@ The output shows details of the arrays.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=3 name='My nested arrays'):
+Array (name='My nested arrays' size=3):
   Element 0: Fixnum 0
   Element 1:
     Array (size=2):
@@ -116,7 +116,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=1 name='My circular arrays'):
+Array (name='My circular arrays' size=1):
   Element 0:
     Array (size=1):
       Element 0: Array [[[...]]]
@@ -143,15 +143,15 @@ The output shows details of the hash.
 Hash (size=3 name='My simple hash'):
   Pair 0:
     Key:
-      Symbol (size=1): :a
+      Symbol (size=1 encoding=US-ASCII): :a
     Value: Fixnum 0
   Pair 1:
     Key:
-      Symbol (size=1): :b
+      Symbol (size=1 encoding=US-ASCII): :b
     Value: Fixnum 1
   Pair 2:
     Key:
-      Symbol (size=1): :c
+      Symbol (size=1 encoding=US-ASCII): :c
     Value: Fixnum 2
 ```
 
@@ -179,19 +179,19 @@ The output shows details of the hash.
 Hash (size=3 name='My mixed hash'):
   Pair 0:
     Key:
-      Symbol (size=1): :a
+      Symbol (size=1 encoding=US-ASCII): :a
     Value: Fixnum 0
   Pair 1:
     Key:
-      Symbol (size=1): :b
+      Symbol (size=1 encoding=US-ASCII): :b
     Value:
       String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
       - one
   Pair 2:
     Key:
-      Symbol (size=1): :c
+      Symbol (size=1 encoding=US-ASCII): :c
     Value:
-      Symbol (size=3): :two
+      Symbol (size=3 encoding=US-ASCII): :two
 ```
 
 #### Nested Hashes
@@ -219,16 +219,16 @@ The output shows details of the hashes.
 Hash (size=1 name='My nested hash'):
   Pair 0:
     Key:
-      Symbol (size=1): :a
+      Symbol (size=1 encoding=US-ASCII): :a
     Value:
       Hash (size=2):
         Pair 0:
           Key:
-            Symbol (size=1): :b
+            Symbol (size=1 encoding=US-ASCII): :b
           Value: Fixnum 0
         Pair 1:
           Key:
-            Symbol (size=1): :c
+            Symbol (size=1 encoding=US-ASCII): :c
           Value: Fixnum 1
 ```
 
@@ -257,12 +257,12 @@ The circular reference is not followed.
 Hash (size=1 name='My circular hashes'):
   Pair 0:
     Key:
-      Symbol (size=3): :foo
+      Symbol (size=3 encoding=US-ASCII): :foo
     Value:
       Hash (size=1):
         Pair 0:
           Key:
-            Symbol (size=3): :bar
+            Symbol (size=3 encoding=US-ASCII): :bar
           Value: Hash {:foo=>{:bar=>{...}}}
 ```
 ### Struct
@@ -285,7 +285,7 @@ The output shows details of the struct.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 name='My simple struct'):
+MyStruct (name='My simple struct' size=3):
   Member 0:
     Name: :a
     Value: Fixnum 0
@@ -315,7 +315,7 @@ The output shows details of the struct.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 name='My mixed struct'):
+MyStruct (name='My mixed struct' size=3):
   Member 0:
     Name: :a
     Value: Fixnum 0
@@ -327,7 +327,7 @@ MyStruct (size=3 name='My mixed struct'):
   Member 2:
     Name: :c
     Value:
-      Symbol (size=3): :two
+      Symbol (size=3 encoding=US-ASCII): :two
 ```
 
 #### Nested Structs
@@ -350,7 +350,7 @@ The output shows details of the structs.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 name='My nested struct'):
+MyStruct (name='My nested struct' size=3):
   Member 0:
     Name: :a
     Value:
@@ -395,7 +395,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 name='My circular struct'):
+MyStruct (name='My circular struct' size=3):
   Member 0:
     Name: :a
     Value:
@@ -483,7 +483,7 @@ The output shows details of the symbol.
 ```show.yaml```:
 ```yaml
 ---
-Symbol (size=11 name='My symbol'): :lorem_ipsum
+Symbol (name='My symbol' size=11 encoding=US-ASCII): :lorem_ipsum
 ```
 ### Object
 
@@ -503,7 +503,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (name='My datetime') 2018-06-28T09:38:12-05:00
+--- DateTime (name='My datetime') 2018-06-28T09:46:21-05:00
 ...
 ```
 
