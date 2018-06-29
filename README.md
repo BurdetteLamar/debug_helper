@@ -508,6 +508,10 @@ Symbol (name='My symbol' size=11 encoding=US-ASCII): :lorem_ipsum
 ```
 ### Object
 
+Classes not mentioned above are not analyzed, but are treated more simply.
+
+A few examples are shown below.
+
 #### DateTime
 
 This example shows a datetime.
@@ -524,7 +528,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (name='My datetime') 2018-06-29T09:19:35-05:00
+--- DateTime (name='My datetime') 2018-06-29T09:27:24-05:00
 ...
 ```
 
