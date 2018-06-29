@@ -1,6 +1,6 @@
 # Debug Helper
 
-If (like me), your debugging style is [printf debugging](https://en.wikipedia.org/wiki/Debugging#Techniques) (like me), you will have shoved this into your code many times:
+If (like me), your debugging style is [printf debugging](https://en.wikipedia.org/wiki/Debugging#Techniques), you will have shoved this into your code many times:
 
 @[ruby](show_hash.rb)
 

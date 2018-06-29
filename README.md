@@ -1,6 +1,6 @@
 # Debug Helper
 
-If (like me), your debugging style is [printf debugging](https://en.wikipedia.org/wiki/Debugging#Techniques) (like me), you will have shoved this into your code many times:
+If (like me), your debugging style is [printf debugging](https://en.wikipedia.org/wiki/Debugging#Techniques), you will have shoved this into your code many times:
 
 ```show_hash.rb```:
 ```ruby
@@ -548,7 +548,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (name='My datetime') 2018-06-29T17:20:16-05:00
+--- DateTime (name='My datetime') 2018-06-29T18:32:57-05:00
 ...
 ```
 
