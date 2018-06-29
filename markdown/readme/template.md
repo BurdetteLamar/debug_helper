@@ -1,6 +1,14 @@
 # Debug Helper
 
-This helper assists in [printf debugging](https://en.wikipedia.org/wiki/Debugging#Techniques), by printing (to ```stdout```) an analysis (as ```yaml```) of a given object.
+If (like me), your debugging style is [printf debugging](https://en.wikipedia.org/wiki/Debugging#Techniques) (like me), you will have shoved this into your code many times:
+
+@[ruby](show_hash.rb)
+
+And this:
+
+@[ruby](show_array.rb)
+
+This helper assists in debugging by printing (to ```stdout```) an analysis (as ```yaml```) of a given object.
 
 For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is recursive;  that is, the collection's values are themselves analyzed.
 
