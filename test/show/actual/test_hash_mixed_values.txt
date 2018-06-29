@@ -1,0 +1,16 @@
+---
+Hash (size=3 name='test_hash_mixed_values'):
+  Pair 0:
+    Key:
+      Symbol (size=1 encoding=US-ASCII): :a
+    Value: Fixnum 0
+  Pair 1:
+    Key:
+      Symbol (size=1 encoding=US-ASCII): :b
+    Value:
+      String (size=1 encoding=UTF-8 ascii_only=true bytesize=1):
+      - '0'
+  Pair 2:
+    Key:
+      Symbol (size=1 encoding=US-ASCII): :c
+    Value: 'NilClass '

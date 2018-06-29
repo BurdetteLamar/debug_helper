@@ -1,9 +1,9 @@
-Label:  string_values
-Count:  2
-  Pair 0:
-    Key (Symbol): :a
-    Value (String): "a"
-  Pair 1:
-    Key (Symbol): :b
-    Value (String): "b"
+Label: string_values
+Count: 2
+Pair 0:
+  Key (Symbol) :a
+  Value (String) "a"
+Pair 1:
+  Key (Symbol) :b
+  Value (String) "b"
 

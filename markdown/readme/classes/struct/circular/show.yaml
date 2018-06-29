@@ -1,0 +1,22 @@
+---
+MyStruct (name='My circular struct' size=3):
+  Member 0:
+    Name: :a
+    Value:
+      MyStruct (size=3):
+        Member 0:
+          Name: :a
+          Value: 'MyStruct #<struct MyStruct a=#<struct MyStruct a=#<struct MyStruct:...>,
+            b=4, c=5>, b=1, c=2>'
+        Member 1:
+          Name: :b
+          Value: Fixnum 4
+        Member 2:
+          Name: :c
+          Value: Fixnum 5
+  Member 1:
+    Name: :b
+    Value: Fixnum 1
+  Member 2:
+    Name: :c
+    Value: Fixnum 2

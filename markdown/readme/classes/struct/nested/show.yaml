@@ -1,0 +1,22 @@
+---
+MyStruct_0 (name='My nested struct' size=2):
+  Member 0:
+    Name: :a
+    Value:
+      MyStruct_1 (size=2):
+        Member 0:
+          Name: :c
+          Value: Fixnum 2
+        Member 1:
+          Name: :d
+          Value: Fixnum 3
+  Member 1:
+    Name: :b
+    Value:
+      MyStruct_1 (size=2):
+        Member 0:
+          Name: :c
+          Value: Fixnum 4
+        Member 1:
+          Name: :d
+          Value: Fixnum 5

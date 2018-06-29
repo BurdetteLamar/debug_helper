@@ -1,0 +1,4 @@
+---
+Array (name='test_array' size=2):
+  Element 0: Fixnum 14
+  Element 1: Fixnum 22

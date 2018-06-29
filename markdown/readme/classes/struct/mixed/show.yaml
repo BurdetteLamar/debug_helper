@@ -1,0 +1,14 @@
+---
+MyStruct (name='My mixed struct' size=3):
+  Member 0:
+    Name: :a
+    Value: Fixnum 0
+  Member 1:
+    Name: :b
+    Value:
+      String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
+      - one
+  Member 2:
+    Name: :c
+    Value:
+      Symbol (size=3 encoding=US-ASCII): :two

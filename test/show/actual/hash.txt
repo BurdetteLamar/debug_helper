@@ -1,9 +1,0 @@
-Label:  hash
-Count:  2
-  Pair 0:
-    Key (Symbol): :a
-    Value (Fixnum): 0
-  Pair 1:
-    Key (Symbol): :b
-    Value (Fixnum): 1
-

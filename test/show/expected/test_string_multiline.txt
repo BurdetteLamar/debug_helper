@@ -1,0 +1,6 @@
+---
+String (name='test_string_multiline' size=19 encoding=UTF-8 ascii_only=true bytesize=19):
+- |
+  foobar
+  snafu
+  janfu

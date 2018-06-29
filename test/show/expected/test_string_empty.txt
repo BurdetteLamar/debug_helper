@@ -1,0 +1,3 @@
+---
+String (name='test_string_empty' size=0 encoding=UTF-8 ascii_only=true bytesize=0):
+- ''
