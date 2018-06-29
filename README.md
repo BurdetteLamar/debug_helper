@@ -1,8 +1,10 @@
 # Debug Helper
 
-This helper assists in [printf debugging](https://en.wikipedia.org/wiki/Debugging#Techniques), by printing (to ```stdout```) an analysis of a given object.
+This helper assists in [printf debugging](https://en.wikipedia.org/wiki/Debugging#Techniques), by printing (to ```stdout```) an analysis (as ```yaml```) of a given object.
 
-Classes closely supported:
+For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is recursive;  that is, the collection's values are themselves analyzed.
+
+Classes fully treated:
 
 - [Array](#array)
 - [Hash](#hash)
@@ -10,7 +12,7 @@ Classes closely supported:
 - [String](#string)
 - [Symbol](#symbol)
 
-Others:
+Others are treated as:
 
 - [Object](#object)
 
@@ -522,7 +524,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (name='My datetime') 2018-06-28T16:53:30-05:00
+--- DateTime (name='My datetime') 2018-06-29T09:19:35-05:00
 ...
 ```
 
