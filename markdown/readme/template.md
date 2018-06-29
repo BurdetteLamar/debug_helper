@@ -8,11 +8,13 @@ And this:
 
 @[ruby](show_array.rb)
 
-This helper assists in debugging by printing (to ```stdout```) an analysis (as ```yaml```) of a given object.
+This helper assists in debugging by printing an analysis of a given object.  The analysis is a ```yaml``` structure, and is written to ```stdout```.
 
-For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is recursive;  that is, the collection's values are themselves analyzed.
+For certain classes (see below), the analysis is very detailed.
 
-Classes fully treated:
+For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is also recursive;  that is, the collection's values are themselves analyzed.
+
+Classes treated in detail:
 
 @[:markdown](class_links.md)
 

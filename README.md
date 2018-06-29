@@ -18,11 +18,13 @@ array.each_with_index do |item, i|
 end
 ```
 
-This helper assists in debugging by printing (to ```stdout```) an analysis (as ```yaml```) of a given object.
+This helper assists in debugging by printing an analysis of a given object.  The analysis is a ```yaml``` structure, and is written to ```stdout```.
 
-For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is recursive;  that is, the collection's values are themselves analyzed.
+For certain classes (see below), the analysis is very detailed.
 
-Classes fully treated:
+For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is also recursive;  that is, the collection's values are themselves analyzed.
+
+Classes treated in detail:
 
 - [Array](#array)
 - [Hash](#hash)
@@ -546,7 +548,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (name='My datetime') 2018-06-29T17:15:21-05:00
+--- DateTime (name='My datetime') 2018-06-29T17:20:16-05:00
 ...
 ```
 
