@@ -1,10 +1,30 @@
 # Debug Helper
 
-This helper assists in [printf debugging](https://en.wikipedia.org/wiki/Debugging#Techniques), by printing (to ```stdout```) an analysis (as ```yaml```) of a given object.
+If (like me), your debugging style is [printf debugging](https://en.wikipedia.org/wiki/Debugging#Techniques) (like me), you will have shoved this into your code many times:
 
-For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is recursive;  that is, the collection's values are themselves analyzed.
+```show_hash.rb```:
+```ruby
+hash.each_pair do |key, value|
+  p [key, value]
+end
+```
 
-Classes fully treated:
+And this:
+
+```show_array.rb```:
+```ruby
+array.each_with_index do |item, i|
+  p [i, item]
+end
+```
+
+This helper assists in debugging by printing an analysis of a given object.  The analysis is a ```yaml``` structure, and is written to ```stdout```.
+
+For certain classes (see below), the analysis is very detailed.
+
+For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is also recursive;  that is, the collection's values are themselves analyzed.
+
+Classes treated in detail:
 
 - [Array](#array)
 - [Hash](#hash)
@@ -528,7 +548,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (name='My datetime') 2018-06-29T09:27:24-05:00
+--- DateTime (name='My datetime') 2018-06-29T17:20:16-05:00
 ...
 ```
 
