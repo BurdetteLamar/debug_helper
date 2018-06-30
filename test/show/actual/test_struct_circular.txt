@@ -1,0 +1,23 @@
+---
+DebugHelperTest::MyStruct (name='test_struct_circular' size=3):
+  Member 0:
+    Name: :foo
+    Value:
+      DebugHelperTest::MyStruct (size=3):
+        Member 0:
+          Name: :foo
+          Value: Fixnum 0
+        Member 1:
+          Name: :bar
+          Value: 'DebugHelperTest::MyStruct #<struct DebugHelperTest::MyStruct foo=#<struct
+            DebugHelperTest::MyStruct foo=0, bar=#<struct DebugHelperTest::MyStruct:...>,
+            baz=2>, bar=1, baz=2>'
+        Member 2:
+          Name: :baz
+          Value: Fixnum 2
+  Member 1:
+    Name: :bar
+    Value: Fixnum 1
+  Member 2:
+    Name: :baz
+    Value: Fixnum 2

@@ -1,0 +1,2 @@
+---
+Symbol (name='test_symbol' size=11 encoding=US-ASCII): :lorem_ipsum

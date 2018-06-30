@@ -1,0 +1,11 @@
+#### Circular Structs
+
+This example shows structs that make a circular reference.
+
+@[ruby](show.rb)
+
+The output shows details of the structs.
+
+The circular reference is not followed.
+
+@[yaml](show.yaml)

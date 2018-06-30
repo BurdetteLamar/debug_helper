@@ -1,0 +1,53 @@
+require 'markdown_helper'
+
+namespace :build do
+
+  desc 'Build README.md'
+  task :readme do
+    # Make output files.
+    class_dir_names = nil
+    Dir.chdir('classes') do
+      class_names = %w/
+        Array
+        Hash
+        Struct
+        String
+        Symbol
+        Object
+      /
+      class_dir_names = class_names.collect {|x| x.downcase}
+      class_dir_names.each do |class_dir_name|
+        Dir.chdir(class_dir_name) do
+          case_dir_names = Dir.glob('*').select {|f| File.directory? f}
+          case_dir_names.each do |case_dir_name|
+            Dir.chdir(case_dir_name) do
+              command = "ruby show.rb > show.yaml"
+              system(command)
+              command = "markdown_helper include --pristine template.md show.md"
+              system(command)
+            end
+          end
+        end
+      end
+    end
+    # Make list of links to class sections.
+    File.open('class_links.md', 'w') do |file|
+      class_dir_names.each do |class_dir_name|
+        next if class_dir_name == 'object'
+        proper_class_name = class_dir_name.capitalize
+        link_line = "- [#{proper_class_name}](##{class_dir_name})"
+        file.puts(link_line)
+      end
+    end
+    # Make inclusions for class sections.
+    File.open('class_inclusions.md', 'w') do |file|
+      class_dir_names.each do |class_name|
+        inclusion_line = "@[:markdown](classes/#{class_name}/template.md)"
+        file.puts(inclusion_line)
+      end
+    end
+    # Make the README markdown.
+    command = "markdown_helper include --pristine template.md ../../README.md"
+    system(command)
+  end
+end

@@ -1,0 +1,11 @@
+---
+DebugHelperTest::MyStruct (name='test_struct' size=3):
+  Member 0:
+    Name: :foo
+    Value: Fixnum 0
+  Member 1:
+    Name: :bar
+    Value: Fixnum 1
+  Member 2:
+    Name: :baz
+    Value: Fixnum 2

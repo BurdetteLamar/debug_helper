@@ -1,0 +1,11 @@
+---
+MyStruct (name='My simple struct' size=3):
+  Member 0:
+    Name: :a
+    Value: Fixnum 0
+  Member 1:
+    Name: :b
+    Value: Fixnum 1
+  Member 2:
+    Name: :c
+    Value: Fixnum 2

@@ -1,0 +1,3 @@
+---
+Array (name='test_array_self_referencing' size=1):
+  Element 0: Array [[...]]
