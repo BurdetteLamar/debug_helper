@@ -1,5 +1,5 @@
 ---
-Hash (size=3 name='test_hash_mixed_keys'):
+Hash (size=3 message='test_hash_mixed_keys'):
   Pair 0:
     Key: Fixnum 14
     Value: Fixnum 0

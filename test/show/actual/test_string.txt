@@ -1,3 +1,3 @@
 ---
-String (name='test_string' size=11 encoding=UTF-8 ascii_only=true bytesize=11):
+String (message='test_string' size=11 encoding=UTF-8 ascii_only=true bytesize=11):
 - Lorem ipsum
