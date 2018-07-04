@@ -1,2 +1,2 @@
 ---
-Array (name='test_array_empty' size=0): {}
+Array (message='test_array_empty' size=0): {}

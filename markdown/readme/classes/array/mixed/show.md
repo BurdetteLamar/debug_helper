@@ -15,7 +15,7 @@ The output shows details of the array.
 ```show.yaml```:
 ```yaml
 ---
-Array (name='My mixed array' size=3):
+Array (message='My mixed array' size=3):
   Element 0: Fixnum 0
   Element 1:
     String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):

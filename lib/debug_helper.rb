@@ -4,64 +4,72 @@ require 'debug_helper/version'
 
 class DebugHelper
 
+  module Putd
+
+    def putd(obj, message)
+      DebugHelper.show(obj, message)
+    end
+
+  end
+
   attr_accessor \
       :obj,
-      :name,
+      :message,
       :object_ids
 
-  def self.show(obj, name = obj.class)
-    debug_helper = DebugHelper.new(obj, name)
-    x = debug_helper.send(:_show, obj, name, info = {})
+  def self.show(obj, message = obj.class)
+    debug_helper = DebugHelper.new(obj, message)
+    x = debug_helper.send(:_show, obj, message, info = {})
     puts x.to_yaml
   end
 
   private
 
-  def initialize(obj, name)
+  def initialize(obj, message)
     self.obj = obj
-    self.name = name
+    self.message = message
     self.object_ids = []
   end
 
-  def _show(obj, name, info)
+  def _show(obj, message, info)
     if object_ids.include?(obj.object_id)
-      s = show_object(obj, name, info)
+      s = show_object(obj, message, info)
     else
       object_ids.push(obj.object_id)
       s = case
             when obj.kind_of?(Array)
-              show_array(obj, name, info)
+              show_array(obj, message, info)
             when obj.kind_of?(Hash)
-              show_hash(obj, name, info)
+              show_hash(obj, message, info)
             when obj.kind_of?(String)
-              show_string(obj, name, info)
+              show_string(obj, message, info)
             when obj.kind_of?(Struct)
-              show_struct(obj, name, info)
+              show_struct(obj, message, info)
             when obj.kind_of?(Symbol)
-              show_symbol(obj, name, info)
+              show_symbol(obj, message, info)
             # when obj.kind_of?(Range)
             # when obj.kind_of?(Set)
             else
-              show_object(obj, name, info)
+              show_object(obj, message, info)
           end
     end
     object_ids.pop
     s
   end
 
-  def show_array(obj, name, info)
+  def show_array(obj, message, info)
     content = {}
     obj.each_with_index do |item, i|
       content.store("Element #{i}", _show(item, nil, {}))
     end
     attrs = {
-        :name => name,
+        :message => message,
         :size => obj.size,
     }
     _show_item(obj.class.name, content, attrs, info)
   end
 
-  def show_hash(obj, name, info)
+  def show_hash(obj, message, info)
     content = {}
     obj.each_with_index do |pair, i|
       key, value = *pair
@@ -72,19 +80,19 @@ class DebugHelper
         :size => obj.size,
         :default => obj.default,
         :default_proc => obj.default_proc,
-        :name => name,
+        :message => message,
     }
     _show_item(obj.class.name, content, attrs, info)
   end
 
-  def show_object(obj, name, info)
-    name_info = name.nil? ? '' : " (name='#{name}')"
-    "#{obj.class.name}#{name_info} #{obj}"
+  def show_object(obj, message, info)
+    message_info = message.nil? ? '' : " (message='#{message}')"
+    "#{obj.class.name}#{message_info} #{obj}"
   end
 
-  def show_string(obj, name, info)
+  def show_string(obj, message, info)
     attrs = {
-        :name => name,
+        :message => message,
         :size => obj.size,
         :encoding => obj.encoding,
         :ascii_only => obj.ascii_only?,
@@ -93,7 +101,7 @@ class DebugHelper
     _show_item(obj.class.name, [obj], attrs, info)
   end
 
-  def show_struct(obj, name, info)
+  def show_struct(obj, message, info)
     content = {}
     i = 0
     obj.each_pair do |member|
@@ -103,15 +111,15 @@ class DebugHelper
       i += 1
     end
     attrs = {
-        :name => name,
+        :message => message,
         :size => obj.size,
     }
     _show_item(obj.class.name, content, attrs, info)
   end
 
-  def show_symbol(obj, name, info)
+  def show_symbol(obj, message, info)
     attrs = {
-        :name => name,
+        :message => message,
         :size => obj.size,
         :encoding => obj.encoding,
     }
@@ -119,9 +127,9 @@ class DebugHelper
   end
 
   def _show_item(class_name, content, attrs, info)
-    name = attrs[:name]
-    unless name.nil?
-      attrs[:name] = "'#{name}'"
+    message = attrs[:message]
+    unless message.nil?
+      attrs[:message] = "'#{message}'"
     end
     label = label(class_name, attrs)
     info.store(label, content)
@@ -136,19 +144,5 @@ class DebugHelper
     attrs_s = a.join(' ')
     "#{class_name} (#{attrs_s})"
   end
-
-  # def respond_to!(obj, method)
-  #   unless obj.respond_to?(method)
-  #     message = "Instance of #{obj.class.name} does not respond to :#{method}"
-  #     raise ArgumentError.new(message)
-  #   end
-  # end
-  #
-  # def kind_of!(obj, klass)
-  #   unless obj.kind_of?(klass)
-  #     message = "Instance of #{obj.class.name} is not a kind of #{klass}"
-  #     raise ArgumentError.new(message)
-  #   end
-  # end
 
 end

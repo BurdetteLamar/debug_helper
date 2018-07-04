@@ -22,4 +22,23 @@ Others are treated as:
 
 - [Object](#object)
 
+## Class Method or Module Method?
+
+Most examples in this documentation show use of the class method:
+
+```ruby
+require 'debug_helper'
+DebugHelper.show(obj, message)
+```
+
+You can also choose to use the module method, ```putd``` (Thanks, [palkan](https://www.reddit.com/user/palkan)!), which looks a lot like ```puts```.
+
+```ruby
+require 'debug_helper'
+include DebugHelper::Putd
+putd obj, message
+```
+
+Just be sure to ```include DebugHelper::Putd```.
+
 @[:markdown](class_inclusions.md)
