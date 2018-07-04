@@ -15,7 +15,7 @@ The output shows details of the hash.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=3 name='My simple hash'):
+Hash (size=3 message='My simple hash'):
   Pair 0:
     Key:
       Symbol (size=1 encoding=US-ASCII): :a

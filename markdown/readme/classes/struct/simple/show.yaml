@@ -1,5 +1,5 @@
 ---
-MyStruct (name='My simple struct' size=3):
+MyStruct (message='My simple struct' size=3):
   Member 0:
     Name: :a
     Value: Fixnum 0
