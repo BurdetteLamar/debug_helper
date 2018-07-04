@@ -36,6 +36,25 @@ Others are treated as:
 
 - [Object](#object)
 
+## Class Method or Module Method?
+
+Most examples in this documentation show use of the class method:
+
+```ruby
+require 'debug_helper'
+DebugHelper.show(obj, message)
+```
+
+You can also choose to use the module method, ```putd``` (Thanks, [palkan](https://www.reddit.com/user/palkan)!), which looks a lot like ```puts```.
+
+```ruby
+require 'debug_helper'
+include DebugHelper::Putd
+putd obj, message
+```
+
+Just be sure to ```include DebugHelper::Putd```.
+
 ### Array
 
 #### Simple Array
@@ -55,7 +74,7 @@ The output shows details of the array.
 ```show.yaml```:
 ```yaml
 ---
-Array (name='My simple array' size=3):
+Array (message='My simple array' size=3):
   Element 0: Fixnum 5
   Element 1: Fixnum 10
   Element 2: Fixnum 15
@@ -78,7 +97,7 @@ The output shows details of the array.
 ```show.yaml```:
 ```yaml
 ---
-Array (name='My mixed array' size=3):
+Array (message='My mixed array' size=3):
   Element 0: Fixnum 0
   Element 1:
     String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
@@ -104,7 +123,7 @@ The output shows details of the arrays.
 ```show.yaml```:
 ```yaml
 ---
-Array (name='My nested arrays' size=3):
+Array (message='My nested arrays' size=3):
   Element 0: Fixnum 0
   Element 1:
     Array (size=2):
@@ -138,7 +157,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-Array (name='My circular arrays' size=1):
+Array (message='My circular arrays' size=1):
   Element 0:
     Array (size=1):
       Element 0: Array [[[...]]]
@@ -162,7 +181,7 @@ The output shows details of the hash.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=3 name='My simple hash'):
+Hash (size=3 message='My simple hash'):
   Pair 0:
     Key:
       Symbol (size=1 encoding=US-ASCII): :a
@@ -198,7 +217,7 @@ The output shows details of the hash.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=3 name='My mixed hash'):
+Hash (size=3 message='My mixed hash'):
   Pair 0:
     Key:
       Symbol (size=1 encoding=US-ASCII): :a
@@ -242,7 +261,7 @@ The output shows details of the hashes.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=2 name='My nested hash'):
+Hash (size=2 message='My nested hash'):
   Pair 0:
     Key:
       Symbol (size=1 encoding=US-ASCII): :a
@@ -293,7 +312,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=1 name='My circular hashes'):
+Hash (size=1 message='My circular hashes'):
   Pair 0:
     Key:
       Symbol (size=3 encoding=US-ASCII): :foo
@@ -324,7 +343,7 @@ The output shows details of the struct.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (name='My simple struct' size=3):
+MyStruct (message='My simple struct' size=3):
   Member 0:
     Name: :a
     Value: Fixnum 0
@@ -354,7 +373,7 @@ The output shows details of the struct.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (name='My mixed struct' size=3):
+MyStruct (message='My mixed struct' size=3):
   Member 0:
     Name: :a
     Value: Fixnum 0
@@ -390,7 +409,7 @@ The output shows details of the structs.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct_0 (name='My nested struct' size=2):
+MyStruct_0 (message='My nested struct' size=2):
   Member 0:
     Name: :a
     Value:
@@ -436,7 +455,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (name='My circular struct' size=3):
+MyStruct (message='My circular struct' size=3):
   Member 0:
     Name: :a
     Value:
@@ -477,7 +496,7 @@ The output shows details of the string.
 ```show.yaml```:
 ```yaml
 ---
-String (name='My simple string' size=11 encoding=UTF-8 ascii_only=true bytesize=11):
+String (message='My simple string' size=11 encoding=UTF-8 ascii_only=true bytesize=11):
 - Lorem ipsum
 ```
 
@@ -501,7 +520,7 @@ The output shows details of the string.
 ```show.yaml```:
 ```yaml
 ---
-String (name='My multiline string' size=122 encoding=UTF-8 ascii_only=true bytesize=122):
+String (message='My multiline string' size=122 encoding=UTF-8 ascii_only=true bytesize=122):
 - |
   Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
   sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
@@ -524,7 +543,7 @@ The output shows details of the symbol.
 ```show.yaml```:
 ```yaml
 ---
-Symbol (name='My symbol' size=11 encoding=US-ASCII): :lorem_ipsum
+Symbol (message='My symbol' size=11 encoding=US-ASCII): :lorem_ipsum
 ```
 ### Object
 
@@ -548,7 +567,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (name='My datetime') 2018-06-29T18:32:57-05:00
+--- DateTime (message='My datetime') 2018-07-04T14:49:11-05:00
 ...
 ```
 
@@ -568,7 +587,7 @@ The output shows details of the range.
 
 ```show.yaml```:
 ```yaml
---- Range (name='My range') 0..9
+--- Range (message='My range') 0..9
 ...
 ```
 
@@ -588,6 +607,6 @@ The output shows details of the regexp.
 
 ```show.yaml```:
 ```yaml
---- Regexp (name='My regexp') (?-mix:foo)
+--- Regexp (message='My regexp') (?-mix:foo)
 ...
 ```
