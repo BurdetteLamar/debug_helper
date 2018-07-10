@@ -85,35 +85,38 @@ EOT
 
         :test_symbol => :lorem_ipsum,
 
-        # :test_potpourri => popourri,
-
     }.each_pair do |name, obj|
-      expected_file_path = File.join(
-          TEST_DIR_PATH,
-          method.to_s,
-          'expected',
-          "#{name.to_s}.txt",
-      )
-      actual_file_path = File.join(
-          TEST_DIR_PATH,
-          method.to_s,
-          'actual',
-          "#{name.to_s}.txt",
-      )
-      DebugHelperTest.write_stdout(actual_file_path) do
-        DebugHelper.send(method, obj, name.to_s)
-      end
-      diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
-      message = "Test for :show with item '#{name}' failed"
-      assert_empty(diffs, message)
-      DebugHelperTest.write_stdout(actual_file_path) do
-        putd(obj, name.to_s)
-      end
-      diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
-      message = "Test for :show with item '#{name}' failed"
-      assert_empty(diffs, message)
-
+      foo(self, method, obj, name)
     end
+
+  end
+
+  def foo(test, method, obj, name)
+    expected_file_path = File.join(
+        TEST_DIR_PATH,
+        method.to_s,
+        'expected',
+        "#{name.to_s}.txt",
+    )
+    actual_file_path = File.join(
+        TEST_DIR_PATH,
+        method.to_s,
+        'actual',
+        "#{name.to_s}.txt",
+    )
+    DebugHelperTest.write_stdout(actual_file_path) do
+      DebugHelper.send(method, obj, name.to_s)
+    end
+    diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
+    message = "Test for :show with item '#{name}' failed"
+    test.assert_empty(diffs, message)
+    DebugHelperTest.write_stdout(actual_file_path) do
+      putd(obj, name.to_s)
+    end
+    diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
+    message = "Test for :show with item '#{name}' failed"
+    test.assert_empty(diffs, message)
+
   end
 
   def self.write_stdout(file_path)
