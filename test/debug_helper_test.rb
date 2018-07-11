@@ -86,7 +86,7 @@ EOT
         :test_symbol => :lorem_ipsum,
 
     }.each_pair do |name, obj|
-      do_test(self, method, obj, name)
+      show_object(self, obj, name)
     end
 
   end
@@ -128,25 +128,29 @@ EOT
     }.each_pair do |name, h|
       options = h[:options]
       obj = h[:obj]
-      do_test(self, :show, obj, name, options)
+      show_object(self, obj, name, options)
     end
   end
 
-  def do_test(test, method, obj, name, options = {})
+  # def do_foo(method, obj, name, options) do
+  #
+  # end
+
+  def show_object(test, obj, name, options = {})
     expected_file_path = File.join(
         TEST_DIR_PATH,
-        method.to_s,
+        'show',
         'expected',
         "#{name.to_s}.txt",
     )
     actual_file_path = File.join(
         TEST_DIR_PATH,
-        method.to_s,
+        'show',
         'actual',
         "#{name.to_s}.txt",
     )
     DebugHelperTest.write_stdout(actual_file_path) do
-      DebugHelper.send(method, obj, name.to_s, options)
+      DebugHelper.send(:show, obj, name.to_s, options)
     end
     diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
     message = "Test for :show with item '#{name}' failed"
