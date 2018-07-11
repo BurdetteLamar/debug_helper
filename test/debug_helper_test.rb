@@ -132,11 +132,7 @@ EOT
     end
   end
 
-  # def do_foo(method, obj, name, options) do
-  #
-  # end
-
-  def show_object(test, obj, name, options = {})
+  def foo(test, method, obj, name, options)
     expected_file_path = File.join(
         TEST_DIR_PATH,
         'show',
@@ -149,19 +145,23 @@ EOT
         'actual',
         "#{name.to_s}.txt",
     )
-    DebugHelperTest.write_stdout(actual_file_path) do
-      DebugHelper.send(:show, obj, name.to_s, options)
-    end
+    yield expected_file_path, actual_file_path
     diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
-    message = "Test for :show with item '#{name}' failed"
+    message = "Test for #{method} with item '#{name}' failed"
     test.assert_empty(diffs, message)
-    DebugHelperTest.write_stdout(actual_file_path) do
-      putd(obj, name.to_s, options)
-    end
-    diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
-    message = "Test for :show with item '#{name}' failed"
-    test.assert_empty(diffs, message)
+  end
 
+  def show_object(test, obj, name, options = {})
+    foo(test, :show, obj, name, options) do |expected_file_path, actual_file_path|
+      DebugHelperTest.write_stdout(actual_file_path) do
+        DebugHelper.send(:show, obj, name, options)
+      end
+    end
+    foo(test, :putd, obj, name, options) do |expected_file_path, actual_file_path|
+      DebugHelperTest.write_stdout(actual_file_path) do
+        putd(obj, name, options)
+      end
+    end
   end
 
   def self.write_stdout(file_path)
