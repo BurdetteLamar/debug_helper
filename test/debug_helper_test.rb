@@ -94,23 +94,41 @@ EOT
   def test_depth
     {
         :test_depth_default => {
-            :a => {
-                :b => {
-                    :c => 'ok',
+            :options => {},
+            :obj => {
+                :a => {
+                    :b => {
+                        :c => 'ok',
+                    }
                 }
             }
         },
         :test_depth_prune => {
-            :a => {
-                :b => {
-                    :c => {
-                        :d => 'not ok'
+            :options => {},
+            :obj => {
+                :a => {
+                    :b => {
+                        :c => {
+                            :d => 'not ok'
+                        }
+                    }
+                }
+            }
+        },
+        :test_depth_1 => {
+            :options => {:depth => 1},
+            :obj => {
+                :a => {
+                    :b => {
+                        :c => 'not ok',
                     }
                 }
             }
         }
-    }.each_pair do |name, obj|
-      do_test(self, :show, obj, name)
+    }.each_pair do |name, h|
+      options = h[:options]
+      obj = h[:obj]
+      do_test(self, :show, obj, name, options)
     end
   end
 
