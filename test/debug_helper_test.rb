@@ -86,7 +86,7 @@ EOT
         :test_symbol => :lorem_ipsum,
 
     }.each_pair do |name, obj|
-      show_object(self, obj, name)
+      _test_show_object(self, obj, name)
     end
 
   end
@@ -128,11 +128,11 @@ EOT
     }.each_pair do |name, h|
       options = h[:options]
       obj = h[:obj]
-      show_object(self, obj, name, options)
+      _test_show_object(self, obj, name, options)
     end
   end
 
-  def foo(test, method, obj, name, options)
+  def _test_show(test, method, obj, name, options)
     expected_file_path = File.join(
         TEST_DIR_PATH,
         'show',
@@ -151,13 +151,13 @@ EOT
     test.assert_empty(diffs, message)
   end
 
-  def show_object(test, obj, name, options = {})
-    foo(test, :show, obj, name, options) do |expected_file_path, actual_file_path|
+  def _test_show_object(test, obj, name, options = {})
+    _test_show(test, :show, obj, name, options) do |expected_file_path, actual_file_path|
       DebugHelperTest.write_stdout(actual_file_path) do
         DebugHelper.send(:show, obj, name, options)
       end
     end
-    foo(test, :putd, obj, name, options) do |expected_file_path, actual_file_path|
+    _test_show(test, :putd, obj, name, options) do |expected_file_path, actual_file_path|
       DebugHelperTest.write_stdout(actual_file_path) do
         putd(obj, name, options)
       end
