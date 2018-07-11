@@ -6,8 +6,8 @@ class DebugHelper
 
   module Putd
 
-    def putd(obj, message)
-      DebugHelper.show(obj, message)
+    def putd(obj, message, options)
+      DebugHelper.show(obj, message, options)
     end
 
   end
@@ -15,24 +15,28 @@ class DebugHelper
   attr_accessor \
       :obj,
       :message,
-      :object_ids
+      :object_ids,
+      :depth
 
-  def self.show(obj, message = obj.class)
-    debug_helper = DebugHelper.new(obj, message)
+  def self.show(obj, message = obj.class, options = {})
+    debug_helper = DebugHelper.new(obj, message, options)
     x = debug_helper.send(:_show, obj, message, info = {})
     puts x.to_yaml
   end
 
   private
 
-  def initialize(obj, message)
+  def initialize(obj, message, options)
     self.obj = obj
     self.message = message
+    self.depth = options[:depth] || 3
     self.object_ids = []
   end
 
   def _show(obj, message, info)
     if object_ids.include?(obj.object_id)
+      s = show_object(obj, message, info)
+    elsif depth == object_ids.size
       s = show_object(obj, message, info)
     else
       object_ids.push(obj.object_id)
@@ -52,8 +56,8 @@ class DebugHelper
             else
               show_object(obj, message, info)
           end
+      object_ids.pop
     end
-    object_ids.pop
     s
   end
 

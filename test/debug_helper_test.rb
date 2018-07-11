@@ -86,12 +86,35 @@ EOT
         :test_symbol => :lorem_ipsum,
 
     }.each_pair do |name, obj|
-      foo(self, method, obj, name)
+      do_test(self, method, obj, name)
     end
 
   end
 
-  def foo(test, method, obj, name)
+  def test_depth
+    {
+        :test_depth_default => {
+            :a => {
+                :b => {
+                    :c => 'ok',
+                }
+            }
+        },
+        :test_depth_prune => {
+            :a => {
+                :b => {
+                    :c => {
+                        :d => 'not ok'
+                    }
+                }
+            }
+        }
+    }.each_pair do |name, obj|
+      do_test(self, :show, obj, name)
+    end
+  end
+
+  def do_test(test, method, obj, name, options = {})
     expected_file_path = File.join(
         TEST_DIR_PATH,
         method.to_s,
@@ -105,13 +128,13 @@ EOT
         "#{name.to_s}.txt",
     )
     DebugHelperTest.write_stdout(actual_file_path) do
-      DebugHelper.send(method, obj, name.to_s)
+      DebugHelper.send(method, obj, name.to_s, options)
     end
     diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
     message = "Test for :show with item '#{name}' failed"
     test.assert_empty(diffs, message)
     DebugHelperTest.write_stdout(actual_file_path) do
-      putd(obj, name.to_s)
+      putd(obj, name.to_s, options)
     end
     diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
     message = "Test for :show with item '#{name}' failed"
