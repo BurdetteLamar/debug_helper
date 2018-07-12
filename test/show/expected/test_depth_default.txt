@@ -1,0 +1,15 @@
+---
+Hash (size=1 message='test_depth_default'):
+  Pair 0:
+    Key:
+      Symbol (size=1 encoding=US-ASCII): :a
+    Value:
+      Hash (size=1):
+        Pair 0:
+          Key:
+            Symbol (size=1 encoding=US-ASCII): :b
+          Value:
+            Hash (size=1):
+              Pair 0:
+                Key: Symbol c
+                Value: String ok

@@ -1,0 +1,5 @@
+---
+Hash (size=1 message='test_depth_1'):
+  Pair 0:
+    Key: Symbol a
+    Value: Hash {:b=>{:c=>"not ok"}}

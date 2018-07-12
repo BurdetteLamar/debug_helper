@@ -1,4 +1,6 @@
 require 'diff-lcs'
+require 'tempfile'
+require 'yaml'
 
 require "test_helper"
 
@@ -14,9 +16,7 @@ class DebugHelperTest < Minitest::Test
 
   MyStruct = Struct.new(:foo, :bar, :baz)
 
-  def test_show
-
-    method = :show
+  def test_show_object
 
     array_self_referencing = []
     array_self_referencing.push(array_self_referencing)
@@ -85,35 +85,126 @@ EOT
 
         :test_symbol => :lorem_ipsum,
 
-        # :test_potpourri => popourri,
-
     }.each_pair do |name, obj|
-      expected_file_path = File.join(
-          TEST_DIR_PATH,
-          method.to_s,
-          'expected',
-          "#{name.to_s}.txt",
-      )
-      actual_file_path = File.join(
-          TEST_DIR_PATH,
-          method.to_s,
-          'actual',
-          "#{name.to_s}.txt",
-      )
-      DebugHelperTest.write_stdout(actual_file_path) do
-        DebugHelper.send(method, obj, name.to_s)
-      end
-      diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
-      message = "Test for :show with item '#{name}' failed"
-      assert_empty(diffs, message)
-      DebugHelperTest.write_stdout(actual_file_path) do
-        putd(obj, name.to_s)
-      end
-      diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
-      message = "Test for :show with item '#{name}' failed"
-      assert_empty(diffs, message)
-
+      _test_show_object(self, obj, name)
     end
+
+  end
+
+  def test_depth
+    {
+        :test_depth_default => {
+            :options => {},
+            :obj => {
+                :a => {
+                    :b => {
+                        :c => 'ok',
+                    }
+                }
+            }
+        },
+        :test_depth_prune => {
+            :options => {},
+            :obj => {
+                :a => {
+                    :b => {
+                        :c => {
+                            :d => 'not ok'
+                        }
+                    }
+                }
+            }
+        },
+        :test_depth_1 => {
+            :options => {:depth => 1},
+            :obj => {
+                :a => {
+                    :b => {
+                        :c => 'not ok',
+                    }
+                }
+            }
+        }
+    }.each_pair do |name, h|
+      options = h[:options]
+      obj = h[:obj]
+      _test_show_object(self, obj, name, options)
+    end
+  end
+
+  def _test_show(test, method, obj, name, options = {})
+    expected_file_path = File.join(
+        TEST_DIR_PATH,
+        'show',
+        'expected',
+        "#{name.to_s}.txt",
+    )
+    actual_file_path = File.join(
+        TEST_DIR_PATH,
+        'show',
+        'actual',
+        "#{name.to_s}.txt",
+    )
+    yield expected_file_path, actual_file_path
+    diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
+    message = "Test for #{method} with item '#{name}' failed"
+    test.assert_empty(diffs, message)
+  end
+
+  def _test_show_object(test, obj, name, options = {})
+    _test_show(test, :show, obj, name, options) do |expected_file_path, actual_file_path|
+      DebugHelperTest.write_stdout(actual_file_path) do
+        DebugHelper.send(:show, obj, name, options)
+      end
+    end
+    _test_show(test, :putd, obj, name, options) do |expected_file_path, actual_file_path|
+      DebugHelperTest.write_stdout(actual_file_path) do
+        putd(obj, name, options)
+      end
+    end
+  end
+
+  def test_show_file
+    # To remove volatile values from the captured output.
+    def clean_file(actual_file_path, temp_file_path)
+      yaml = YAML.load_file(actual_file_path)
+      top_key = yaml.keys.first
+      values = yaml.fetch(top_key)
+      # Path.
+      path = values.delete('path')
+      assert_equal(temp_file_path, path)
+      # Times.
+      %w/
+          atime
+          ctime
+          mtime
+        /.each do |key|
+        value = values.delete(key)
+        assert_instance_of(Time, value)
+      end
+      yaml.store(top_key, values)
+      File.write(actual_file_path, YAML.dump(yaml))
+    end
+    name = 'test_file'
+    temp_file_name = 't.tmp'
+    temp_file_path = File.join(File.dirname(__FILE__), temp_file_name)
+    temp_file = File.open(temp_file_path, 'w')
+    temp_file.write('This is file content.')
+    temp_file.close
+    _test_show(self, :show, temp_file, name) do |expected_file_path,
+        actual_file_path|
+      DebugHelperTest.write_stdout(actual_file_path) do
+        DebugHelper.send(:show, temp_file, name)
+      end
+      clean_file(actual_file_path, temp_file_path)
+    end
+    _test_show(self, :putd, temp_file, name) do |expected_file_path, actual_file_path|
+      DebugHelperTest.write_stdout(actual_file_path) do
+        putd(temp_file, name)
+      end
+      clean_file(actual_file_path, temp_file_path)
+    end
+    File.delete(temp_file_path)
   end
 
   def self.write_stdout(file_path)
