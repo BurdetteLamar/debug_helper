@@ -1,3 +1,0 @@
----
-File (message='test_file_closed'):
-  size: 21
