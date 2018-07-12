@@ -1,4 +1,6 @@
 require 'diff-lcs'
+require 'tempfile'
+require 'yaml'
 
 require "test_helper"
 
@@ -14,9 +16,7 @@ class DebugHelperTest < Minitest::Test
 
   MyStruct = Struct.new(:foo, :bar, :baz)
 
-  def test_show
-
-    method = :show
+  def test_show_object
 
     array_self_referencing = []
     array_self_referencing.push(array_self_referencing)
@@ -132,7 +132,7 @@ EOT
     end
   end
 
-  def _test_show(test, method, obj, name, options)
+  def _test_show(test, method, obj, name, options = {})
     expected_file_path = File.join(
         TEST_DIR_PATH,
         'show',
@@ -161,6 +161,98 @@ EOT
       DebugHelperTest.write_stdout(actual_file_path) do
         putd(obj, name, options)
       end
+    end
+  end
+
+  def test_show_file_closed
+    def clean_file(actual_file_path, temp_file_path)
+      yaml = YAML.load_file(actual_file_path)
+      top_key = yaml.keys.first
+      values = yaml.fetch(top_key)
+      # Path is volatile.
+      path = values.delete('path')
+      assert_equal(temp_file_path, path)
+      # Times are volatile.
+      %w/
+          atime
+          ctime
+          mtime
+        /.each do |key|
+        value = values.delete(key)
+        assert_instance_of(Time, value)
+      end
+      yaml.store(top_key, values)
+      File.write(actual_file_path, YAML.dump(yaml))
+    end
+    name = 'test_file_closed'
+    Dir.mktmpdir do |temp_dir|
+      temp_file_name = 't.tmp'
+      temp_file_path = File.join(temp_dir, temp_file_name)
+      temp_file = File.open(temp_file_path, 'w')
+      temp_file.write('This is file content.')
+      temp_file.close
+      _test_show(self, :show, temp_file, name) do |expected_file_path,
+          actual_file_path|
+        DebugHelperTest.write_stdout(actual_file_path) do
+          DebugHelper.send(:show, temp_file, name)
+        end
+        clean_file(actual_file_path, temp_file_path)
+      end
+      _test_show(self, :putd, temp_file, name) do |expected_file_path, actual_file_path|
+        DebugHelperTest.write_stdout(actual_file_path) do
+          putd(temp_file, name)
+        end
+        clean_file(actual_file_path, temp_file_path)
+      end
+      File.delete(temp_file_path)
+    end
+  end
+
+  def zzz_test_show_file_open_r
+    name = 'test_file_open_r'
+    Dir.mktmpdir do |dir|
+      file_path = File.join(dir, 't.tmp')
+      file = File.open(file_path, 'w')
+      file.write('This is file content.')
+      file.close
+      File.open(file_path, 'r') do |file|
+        _test_show(self, :show, file, name) do |expected_file_path,
+            actual_file_path|
+          DebugHelperTest.write_stdout(actual_file_path) do
+            DebugHelper.send(:show, file, name)
+          end
+        end
+        _test_show(test, :putd, file, name) do |expected_file_path, actual_file_path|
+          DebugHelperTest.write_stdout(actual_file_path) do
+            putd(file, name)
+          end
+        end
+      end
+      file.unlink
+      File.delete(file_path)
+    end
+  end
+
+  def zzz_test_show_file_open_w
+    name = 'test_file_open_w'
+    Dir.mktmpdir do |dir|
+      file_path = File.join(dir, 't.tmp')
+      file = File.open(file_path, 'w')
+      file.write('This is file content.')
+      _test_show(self, :show, file, name) do |expected_file_path,
+          actual_file_path|
+        DebugHelperTest.write_stdout(actual_file_path) do
+          DebugHelper.send(:show, file, name)
+        end
+      end
+      _test_show(test, :putd, file, name) do |expected_file_path, actual_file_path|
+        DebugHelperTest.write_stdout(actual_file_path) do
+          putd(file, name)
+        end
+      end
+      file.close
+      file.unlink
+      File.delete(file_path)
     end
   end
 

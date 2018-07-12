@@ -6,7 +6,7 @@ class DebugHelper
 
   module Putd
 
-    def putd(obj, message, options)
+    def putd(obj, message, options = {})
       DebugHelper.show(obj, message, options)
     end
 
@@ -51,6 +51,8 @@ class DebugHelper
               show_struct(obj, message, info)
             when obj.kind_of?(Symbol)
               show_symbol(obj, message, info)
+            when obj.kind_of?(File)
+              show_file(obj, message, info)
             # when obj.kind_of?(Range)
             # when obj.kind_of?(Set)
             else
@@ -71,6 +73,26 @@ class DebugHelper
         :size => obj.size,
     }
     _show_item(obj.class.name, content, attrs, info)
+  end
+
+  def show_file(file, message, info)
+    content = {}
+    file_path = file.path
+    methods = [
+        :path,
+        :atime,
+        :ctime,
+        :mtime,
+        :size,
+    ]
+    methods.each do |method|
+      value = Object.const_get('File').send(method, file_path)
+      content.store(method.to_s, value)
+    end
+    attrs = {
+        :message => message,
+    }
+    _show_item(file.class.name, content, attrs, info)
   end
 
   def show_hash(obj, message, info)
