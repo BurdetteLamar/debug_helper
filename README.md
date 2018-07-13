@@ -24,7 +24,7 @@ For certain classes (see below), the analysis is very detailed.
 
 For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is also recursive;  that is, the collection's values are themselves analyzed.
 
-You can control the depth of recursion using option ```depth```.  See [Options](#options)
+You can control the depth of recursion using option ```depth```.  See [Options](#options).
 
 Classes treated in detail:
 
@@ -620,7 +620,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (message='My datetime') 2018-07-13T09:54:18-05:00
+--- DateTime (message='My datetime') 2018-07-13T09:57:28-05:00
 ...
 ```
 
@@ -667,8 +667,6 @@ The output shows details of the regexp.
 ## Options
 
 ### Option ```depth```
-
-#### Depth
 
 This example shows how option ```depth``` affects output.
 

@@ -14,7 +14,7 @@ For certain classes (see below), the analysis is very detailed.
 
 For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is also recursive;  that is, the collection's values are themselves analyzed.
 
-You can control the depth of recursion using option ```depth```.  See [Options](#options)
+You can control the depth of recursion using option ```depth```.  See [Options](#options).
 
 Classes treated in detail:
 
@@ -46,7 +46,5 @@ Just be sure to ```include DebugHelper::Putd```.
 @[:markdown](class_inclusions.md)
 
 ## Options
-
-### Option ```depth```
 
 @[:markdown](options/depth/show.md)

@@ -14,6 +14,6 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (message='My datetime') 2018-07-13T09:54:18-05:00
+--- DateTime (message='My datetime') 2018-07-13T09:57:28-05:00
 ...
 ```

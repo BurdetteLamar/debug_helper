@@ -1,4 +1,4 @@
-#### Depth
+### Option ```depth```
 
 This example shows how option ```depth``` affects output.
 
