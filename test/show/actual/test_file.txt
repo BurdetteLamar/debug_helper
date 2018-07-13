@@ -1,3 +1,13 @@
 ---
 File (message='test_file'):
-  size: 21
+  absolute_path: C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb
+  executable?: false
+  exist?: true
+  ftype: file
+  pipe?: false
+  readable?: true
+  setgid?: false
+  setuid?: false
+  socket?: false
+  symlink?: false
+  writable?: true

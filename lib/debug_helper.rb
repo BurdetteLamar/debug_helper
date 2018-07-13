@@ -154,11 +154,23 @@ class DebugHelper
                   {
                       # The instance forms of some of these require the file to be open.
                       :class => {
-                          :path => [obj.path],
+                          :absolute_path => [obj.path],
                           :atime => [obj.path],
                           :ctime => [obj.path],
+                          :executable? => [obj.path],
+                          :exist? => [obj.path],
+                          :ftype => [obj.path],
                           :mtime => [obj.path],
+                          :path => [obj.path],
+                          :pipe? => [obj.path],
+                          :readable? => [obj.path],
+                          :realpath => [obj.path],
+                          :setgid? => [obj.path],
+                          :setuid? => [obj.path],
                           :size => [obj.path],
+                          :socket? => [obj.path],
+                          :symlink? => [obj.path],
+                          :writable? => [obj.path],
                       },
                       :instance => [],
                   }

@@ -16,9 +16,21 @@ The output shows details of the file.
 ```yaml
 ---
 File (message='My simple file'):
-  path: show.rb
+  absolute_path: C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
   atime: 2018-07-13 11:44:18.000000000 -05:00
   ctime: 2018-07-13 11:41:01.000000000 -05:00
+  executable?: false
+  exist?: true
+  ftype: file
   mtime: 2018-07-13 11:44:18.000000000 -05:00
+  path: show.rb
+  pipe?: false
+  readable?: true
+  realpath: C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
+  setgid?: false
+  setuid?: false
   size: 95
+  socket?: false
+  symlink?: false
+  writable?: true
 ```
