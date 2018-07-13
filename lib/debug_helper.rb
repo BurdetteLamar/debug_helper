@@ -1,3 +1,4 @@
+require 'set'
 require 'yaml'
 
 require 'debug_helper/version'

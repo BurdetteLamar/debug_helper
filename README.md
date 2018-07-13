@@ -384,7 +384,11 @@ The output shows details of the set.
 
 ```show.yaml```:
 ```yaml
---- 'Set (message=''My simple set'') #<Set:0x000000027f23b0>'
+---
+Set (message='My simple set' size=3):
+  Element 0: Fixnum 5
+  Element 1: Fixnum 10
+  Element 2: Fixnum 15
 ```
 
 #### Mixed Set
@@ -405,7 +409,19 @@ The output shows details of the set.
 
 ```show.yaml```:
 ```yaml
---- 'Set (message=''My mixed set'') #<Set:0x0000000280c350>'
+---
+Set (message='My mixed set' size=3):
+  Element 0: Fixnum 0
+  Element 1:
+    String (size=3):
+      to_s: one
+      encoding: !ruby/encoding UTF-8
+      ascii_only?: true
+      bytesize: 3
+  Element 2:
+    Symbol (size=3):
+      to_s: two
+      encoding: !ruby/encoding US-ASCII
 ```
 
 #### Nested Sets
@@ -430,7 +446,17 @@ The output shows details of the sets.
 
 ```show.yaml```:
 ```yaml
---- 'Set (message=''My nested sets'') #<Set:0x00000002921b28>'
+---
+Set (message='My nested sets' size=3):
+  Element 0: Fixnum 0
+  Element 1:
+    Set (size=2):
+      Element 0: Fixnum 1
+      Element 1: Fixnum 2
+  Element 2:
+    Set (size=2):
+      Element 0: Fixnum 3
+      Element 1: Fixnum 4
 ```
 
 #### Circular Sets
@@ -456,7 +482,11 @@ The circular reference is not followed.
 
 ```show.yaml```:
 ```yaml
---- 'Set (message=''My circular sets'') #<Set:0x000000028de0a8>'
+---
+Set (message='My circular sets' size=1):
+  Element 0:
+    Set (size=1):
+      Element 0: 'Set #<Set: {#<Set: {#<Set: {...}>}>}>'
 ```
 ### Struct
 
@@ -715,8 +745,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (message='My datetime') 2018-07-13T11:01:43-05:00
-...
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-13T11:27:10-05:00 ((2458313j,59230s,310293000n),-18000s,2299161j)>'
 ```
 
 #### Range
@@ -755,7 +784,7 @@ The output shows details of the regexp.
 
 ```show.yaml```:
 ```yaml
---- Regexp (message='My regexp') (?-mix:foo)
+--- Regexp (message='My regexp') /foo/
 ...
 ```
 

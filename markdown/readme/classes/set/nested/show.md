@@ -20,5 +20,15 @@ The output shows details of the sets.
 
 ```show.yaml```:
 ```yaml
---- 'Set (message=''My nested sets'') #<Set:0x00000002921b28>'
+---
+Set (message='My nested sets' size=3):
+  Element 0: Fixnum 0
+  Element 1:
+    Set (size=2):
+      Element 0: Fixnum 1
+      Element 1: Fixnum 2
+  Element 2:
+    Set (size=2):
+      Element 0: Fixnum 3
+      Element 1: Fixnum 4
 ```
