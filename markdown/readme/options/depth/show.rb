@@ -9,7 +9,7 @@ ary = [0,
         ]
        ]
 ]
-(0..5).each do |depth|
+(1..5).each do |depth|
   message = "Show depth #{depth}"
   DebugHelper.show(ary, message, {:depth => depth})
 end
