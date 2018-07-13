@@ -22,4 +22,4 @@ Hash (size=3 message='test_hash_mixed_values'):
       Symbol (size=1):
         to_s: c
         encoding: !ruby/encoding US-ASCII
-    Value: 'NilClass '
+    Value: NilClass nil

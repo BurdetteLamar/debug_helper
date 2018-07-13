@@ -1,0 +1,2 @@
+---
+Set (message='test_set_empty' size=0): {}

@@ -1,5 +1,6 @@
 require 'diff-lcs'
 require 'tempfile'
+require 'set'
 require 'yaml'
 
 require "test_helper"
@@ -42,6 +43,14 @@ class DebugHelperTest < Minitest::Test
     hash_circular_value_0.store(:a, hash_circular_key_1)
     hash_circular_value_0.store(:b, hash_circular_key_0)
 
+    set_self_referencing = Set.new([])
+    set_self_referencing.add(set_self_referencing)
+
+    set_circular_0 = Set.new([])
+    set_circular_1 = Set.new([])
+    set_circular_0.add(set_circular_1)
+    set_circular_1.add(set_circular_0)
+
     string_multiline = <<EOT
 foobar
 snafu
@@ -73,6 +82,12 @@ EOT
         :test_hash_self_referencing_value => hash_self_referencing_value,
         :test_hash_circular_key => hash_circular_key_0,
         :test_hash_circular_value => hash_circular_value_0,
+
+        :test_set => Set.new([14, 22]),
+        :test_set_empty => Set.new([]),
+        :test_set_mixed_values => Set.new([14, 'foo', [0, 1], {:a => 1, :b => 1}, true, nil]) ,
+        :test_set_self_referencing => set_self_referencing,
+        :test_set_circular => set_circular_0,
 
         :test_string => 'Lorem ipsum',
         :test_string_empty => '',

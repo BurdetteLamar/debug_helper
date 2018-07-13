@@ -1,0 +1,5 @@
+---
+Set (message='test_set_circular' size=1):
+  Element 0:
+    Set (size=1):
+      Element 0: 'Set #<Set: {#<Set: {#<Set: {...}>}>}>'
