@@ -2,16 +2,27 @@
 Hash (size=3 message='My mixed hash'):
   Pair 0:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :a
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Pair 1:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :b
+      Symbol (size=1):
+        to_s: b
+        encoding: !ruby/encoding US-ASCII
     Value:
-      String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
-      - one
+      String (size=3):
+        to_s: one
+        encoding: !ruby/encoding UTF-8
+        ascii_only?: true
+        bytesize: 3
   Pair 2:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :c
+      Symbol (size=1):
+        to_s: c
+        encoding: !ruby/encoding US-ASCII
     Value:
-      Symbol (size=3 encoding=US-ASCII): :two
+      Symbol (size=3):
+        to_s: two
+        encoding: !ruby/encoding US-ASCII
