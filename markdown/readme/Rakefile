@@ -5,6 +5,12 @@ namespace :build do
   desc 'Build README.md'
   task :readme do
     # Make output files.
+    Dir.chdir('options/depth') do
+      command = 'ruby show.rb > show.yaml'
+      system(command)
+      command = 'markdown_helper include --pristine template.md show.md'
+      system(command)
+    end
     class_dir_names = nil
     Dir.chdir('classes') do
       class_names = %w/
@@ -21,9 +27,9 @@ namespace :build do
           case_dir_names = Dir.glob('*').select {|f| File.directory? f}
           case_dir_names.each do |case_dir_name|
             Dir.chdir(case_dir_name) do
-              command = "ruby show.rb > show.yaml"
+              command = 'ruby show.rb > show.yaml'
               system(command)
-              command = "markdown_helper include --pristine template.md show.md"
+              command = 'markdown_helper include --pristine template.md show.md'
               system(command)
             end
           end

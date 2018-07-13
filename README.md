@@ -24,6 +24,8 @@ For certain classes (see below), the analysis is very detailed.
 
 For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is also recursive;  that is, the collection's values are themselves analyzed.
 
+You can control the depth of recursion using option ```depth```.  See [Options](#options)
+
 Classes treated in detail:
 
 - [Array](#array)
@@ -618,7 +620,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (message='My datetime') 2018-07-13T07:43:10-05:00
+--- DateTime (message='My datetime') 2018-07-13T09:54:18-05:00
 ...
 ```
 
@@ -660,4 +662,88 @@ The output shows details of the regexp.
 ```yaml
 --- Regexp (message='My regexp') (?-mix:foo)
 ...
+```
+
+## Options
+
+### Option ```depth```
+
+#### Depth
+
+This example shows how option ```depth``` affects output.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+ary = [0,
+       [1,
+        [2,
+         [3,
+          [4]
+         ]
+        ]
+       ]
+]
+(0..5).each do |depth|
+  message = "Show depth #{depth}"
+  DebugHelper.show(ary, message, {:depth => depth})
+end
+```
+
+The output shows output for various depths.
+
+```show.yaml```:
+```yaml
+--- Array (message='Show depth 0') [0, [1, [2, [3, [4]]]]]
+...
+---
+Array (message='Show depth 1' size=2):
+  Element 0: Fixnum 0
+  Element 1: Array [1, [2, [3, [4]]]]
+---
+Array (message='Show depth 2' size=2):
+  Element 0: Fixnum 0
+  Element 1:
+    Array (size=2):
+      Element 0: Fixnum 1
+      Element 1: Array [2, [3, [4]]]
+---
+Array (message='Show depth 3' size=2):
+  Element 0: Fixnum 0
+  Element 1:
+    Array (size=2):
+      Element 0: Fixnum 1
+      Element 1:
+        Array (size=2):
+          Element 0: Fixnum 2
+          Element 1: Array [3, [4]]
+---
+Array (message='Show depth 4' size=2):
+  Element 0: Fixnum 0
+  Element 1:
+    Array (size=2):
+      Element 0: Fixnum 1
+      Element 1:
+        Array (size=2):
+          Element 0: Fixnum 2
+          Element 1:
+            Array (size=2):
+              Element 0: Fixnum 3
+              Element 1: Array [4]
+---
+Array (message='Show depth 5' size=2):
+  Element 0: Fixnum 0
+  Element 1:
+    Array (size=2):
+      Element 0: Fixnum 1
+      Element 1:
+        Array (size=2):
+          Element 0: Fixnum 2
+          Element 1:
+            Array (size=2):
+              Element 0: Fixnum 3
+              Element 1:
+                Array (size=1):
+                  Element 0: Fixnum 4
 ```
