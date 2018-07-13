@@ -1,3 +1,4 @@
+require 'set'
 require 'yaml'
 
 require 'debug_helper/version'
@@ -45,10 +46,11 @@ class DebugHelper
               show_array(obj, message, info)
             when obj.kind_of?(Hash)
               show_hash(obj, message, info)
+            when obj.kind_of?(Set)
+              show_array(obj, message, info)
             when obj.kind_of?(Struct)
               show_struct(obj, message, info)
             # when obj.kind_of?(Range)
-            # when obj.kind_of?(Set)
             else
               show_object(obj, message, info)
           end
@@ -89,7 +91,7 @@ class DebugHelper
     methods = methods_for_object(obj)
     if methods.nil?
       message_info = message.nil? ? '' : " (message='#{message}')"
-      "#{obj.class.name}#{message_info} #{obj}"
+      "#{obj.class.name}#{message_info} #{obj.inspect}"
     else
       content = {}
       attrs = {:message => message}

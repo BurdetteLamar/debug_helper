@@ -26,4 +26,4 @@ Array (message='test_array_mixed_values' size=6):
             encoding: !ruby/encoding US-ASCII
         Value: Fixnum 1
   Element 4: TrueClass true
-  Element 5: 'NilClass '
+  Element 5: NilClass nil

@@ -14,6 +14,6 @@ The output shows details of the regexp.
 
 ```show.yaml```:
 ```yaml
---- Regexp (message='My regexp') (?-mix:foo)
+--- Regexp (message='My regexp') /foo/
 ...
 ```

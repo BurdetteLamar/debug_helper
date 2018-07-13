@@ -30,6 +30,7 @@ Classes treated in detail:
 
 - [Array](#array)
 - [Hash](#hash)
+- [Set](#set)
 - [Struct](#struct)
 - [String](#string)
 - [Symbol](#symbol)
@@ -363,6 +364,130 @@ Hash (size=1 message='My circular hashes'):
               encoding: !ruby/encoding US-ASCII
           Value: Hash {:foo=>{:bar=>{...}}}
 ```
+### Set
+
+#### Simple Set
+
+This example shows a simple set of integers.
+
+```show.rb```:
+```ruby
+require 'set'
+
+require 'debug_helper'
+
+set = Set.new([5, 10, 15])
+DebugHelper.show(set, 'My simple set')
+```
+
+The output shows details of the set.
+
+```show.yaml```:
+```yaml
+---
+Set (message='My simple set' size=3):
+  Element 0: Fixnum 5
+  Element 1: Fixnum 10
+  Element 2: Fixnum 15
+```
+
+#### Mixed Set
+
+This example shows a set of mixed values.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+require 'set'
+
+set = Set.new([0, 'one', :two])
+DebugHelper.show(set, 'My mixed set')
+```
+
+The output shows details of the set.
+
+```show.yaml```:
+```yaml
+---
+Set (message='My mixed set' size=3):
+  Element 0: Fixnum 0
+  Element 1:
+    String (size=3):
+      to_s: one
+      encoding: !ruby/encoding UTF-8
+      ascii_only?: true
+      bytesize: 3
+  Element 2:
+    Symbol (size=3):
+      to_s: two
+      encoding: !ruby/encoding US-ASCII
+```
+
+#### Nested Sets
+
+This example shows nested sets.
+
+```show.rb```:
+```ruby
+require 'set'
+
+require 'debug_helper'
+
+set = Set.new(
+    [0,
+     Set.new([1, 2]),
+     Set.new([3, 4]),
+     ])
+DebugHelper.show(set, 'My nested sets')
+```
+
+The output shows details of the sets.
+
+```show.yaml```:
+```yaml
+---
+Set (message='My nested sets' size=3):
+  Element 0: Fixnum 0
+  Element 1:
+    Set (size=2):
+      Element 0: Fixnum 1
+      Element 1: Fixnum 2
+  Element 2:
+    Set (size=2):
+      Element 0: Fixnum 3
+      Element 1: Fixnum 4
+```
+
+#### Circular Sets
+
+This example shows sets that make a circular reference.
+
+```show.rb```:
+```ruby
+require 'set'
+
+require 'debug_helper'
+
+set_0 = Set.new([])
+set_1 = Set.new([])
+set_0.add(set_1)
+set_1.add(set_0)
+DebugHelper.show(set_0, 'My circular sets')
+```
+
+The output shows details of the sets.
+
+The circular reference is not followed.
+
+```show.yaml```:
+```yaml
+---
+Set (message='My circular sets' size=1):
+  Element 0:
+    Set (size=1):
+      Element 0: 'Set #<Set: {#<Set: {#<Set: {...}>}>}>'
+```
 ### Struct
 
 #### Simple Struct
@@ -620,8 +745,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (message='My datetime') 2018-07-13T09:59:53-05:00
-...
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-13T11:27:10-05:00 ((2458313j,59230s,310293000n),-18000s,2299161j)>'
 ```
 
 #### Range
@@ -660,7 +784,7 @@ The output shows details of the regexp.
 
 ```show.yaml```:
 ```yaml
---- Regexp (message='My regexp') (?-mix:foo)
+--- Regexp (message='My regexp') /foo/
 ...
 ```
 
