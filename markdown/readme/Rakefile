@@ -16,6 +16,7 @@ namespace :build do
       class_names = %w/
         Array
         Hash
+        Set
         Struct
         String
         Symbol

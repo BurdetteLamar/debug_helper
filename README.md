@@ -30,6 +30,7 @@ Classes treated in detail:
 
 - [Array](#array)
 - [Hash](#hash)
+- [Set](#set)
 - [Struct](#struct)
 - [String](#string)
 - [Symbol](#symbol)
@@ -363,6 +364,100 @@ Hash (size=1 message='My circular hashes'):
               encoding: !ruby/encoding US-ASCII
           Value: Hash {:foo=>{:bar=>{...}}}
 ```
+### Set
+
+#### Simple Set
+
+This example shows a simple set of integers.
+
+```show.rb```:
+```ruby
+require 'set'
+
+require 'debug_helper'
+
+set = Set.new([5, 10, 15])
+DebugHelper.show(set, 'My simple set')
+```
+
+The output shows details of the set.
+
+```show.yaml```:
+```yaml
+--- 'Set (message=''My simple set'') #<Set:0x000000027f23b0>'
+```
+
+#### Mixed Set
+
+This example shows a set of mixed values.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+require 'set'
+
+set = Set.new([0, 'one', :two])
+DebugHelper.show(set, 'My mixed set')
+```
+
+The output shows details of the set.
+
+```show.yaml```:
+```yaml
+--- 'Set (message=''My mixed set'') #<Set:0x0000000280c350>'
+```
+
+#### Nested Sets
+
+This example shows nested sets.
+
+```show.rb```:
+```ruby
+require 'set'
+
+require 'debug_helper'
+
+set = Set.new(
+    [0,
+     Set.new([1, 2]),
+     Set.new([3, 4]),
+     ])
+DebugHelper.show(set, 'My nested sets')
+```
+
+The output shows details of the sets.
+
+```show.yaml```:
+```yaml
+--- 'Set (message=''My nested sets'') #<Set:0x00000002921b28>'
+```
+
+#### Circular Sets
+
+This example shows sets that make a circular reference.
+
+```show.rb```:
+```ruby
+require 'set'
+
+require 'debug_helper'
+
+set_0 = Set.new([])
+set_1 = Set.new([])
+set_0.add(set_1)
+set_1.add(set_0)
+DebugHelper.show(set_0, 'My circular sets')
+```
+
+The output shows details of the sets.
+
+The circular reference is not followed.
+
+```show.yaml```:
+```yaml
+--- 'Set (message=''My circular sets'') #<Set:0x000000028de0a8>'
+```
 ### Struct
 
 #### Simple Struct
@@ -620,7 +715,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (message='My datetime') 2018-07-13T09:59:53-05:00
+--- DateTime (message='My datetime') 2018-07-13T11:01:43-05:00
 ...
 ```
 
