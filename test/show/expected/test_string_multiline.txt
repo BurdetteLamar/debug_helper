@@ -1,6 +1,9 @@
 ---
-String (message='test_string_multiline' size=19 encoding=UTF-8 ascii_only=true bytesize=19):
-- |
-  foobar
-  snafu
-  janfu
+String (message='test_string_multiline' size=19):
+  to_s: |
+    foobar
+    snafu
+    janfu
+  encoding: !ruby/encoding UTF-8
+  ascii_only?: true
+  bytesize: 19

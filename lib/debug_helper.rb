@@ -92,16 +92,20 @@ class DebugHelper
       "#{obj.class.name}#{message_info} #{obj}"
     else
       content = {}
+      attrs = {:message => message}
       methods[:instance].each do |instance_method|
         value = obj.send(instance_method)
-        content.store(instance_method.to_s, value)
+        if instance_method == :size
+          attrs.store(:size, value)
+        else
+          content.store(instance_method.to_s, value)
+        end
       end
       methods[:class].each do |pair|
         class_method, arguments = *pair
         value = Object.const_get(obj.class.to_s).send(class_method, *arguments)
         content.store(class_method.to_s, value)
       end
-      attrs = {:message => message}
       _show_item(obj.class.name, content, attrs, info)
     end
   end

@@ -5,10 +5,15 @@ Hash (size=3 message='test_hash_mixed_keys'):
     Value: Fixnum 0
   Pair 1:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :a
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Pair 2:
     Key:
-      String (size=6 encoding=UTF-8 ascii_only=true bytesize=6):
-      - foobar
+      String (size=6):
+        to_s: foobar
+        encoding: !ruby/encoding UTF-8
+        ascii_only?: true
+        bytesize: 6
     Value: Fixnum 2
