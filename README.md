@@ -29,6 +29,7 @@ You can control the depth of recursion using option ```depth```.  See [Options](
 Classes treated in detail:
 
 - [Array](#array)
+- [File](#file)
 - [Hash](#hash)
 - [Set](#set)
 - [Struct](#struct)
@@ -169,6 +170,44 @@ Array (message='My circular arrays' size=1):
   Element 0:
     Array (size=1):
       Element 0: Array [[[...]]]
+```
+### File
+
+#### Simple File
+
+This example shows a simple file.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+file = File.new(__FILE__)
+DebugHelper.show(file, 'My simple file')
+```
+
+The output shows details of the file.
+
+```show.yaml```:
+```yaml
+---
+File (message='My simple file'):
+  absolute_path: C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
+  atime: 2018-07-13 11:44:18.000000000 -05:00
+  ctime: 2018-07-13 11:41:01.000000000 -05:00
+  executable?: false
+  exist?: true
+  ftype: file
+  mtime: 2018-07-13 11:44:18.000000000 -05:00
+  path: show.rb
+  pipe?: false
+  readable?: true
+  realpath: C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
+  setgid?: false
+  setuid?: false
+  size: 95
+  socket?: false
+  symlink?: false
+  writable?: true
 ```
 ### Hash
 
@@ -745,7 +784,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-13T11:27:10-05:00 ((2458313j,59230s,310293000n),-18000s,2299161j)>'
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-13T15:31:09-05:00 ((2458313j,73869s,188119000n),-18000s,2299161j)>'
 ```
 
 #### Range

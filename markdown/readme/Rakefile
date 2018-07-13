@@ -15,6 +15,7 @@ namespace :build do
     Dir.chdir('classes') do
       class_names = %w/
         Array
+        File
         Hash
         Set
         Struct

@@ -181,13 +181,18 @@ EOT
 
   def test_show_file
     # To remove volatile values from the captured output.
-    def clean_file(actual_file_path, temp_file_path)
+    def clean_file(actual_file_path, test_file_path)
       yaml = YAML.load_file(actual_file_path)
       top_key = yaml.keys.first
       values = yaml.fetch(top_key)
-      # Path.
-      path = values.delete('path')
-      assert_equal(temp_file_path, path)
+      # Paths.
+      {
+          :path => /^#{test_file_path}$/,
+          :realpath => /^#{test_file_path}$/,
+      }.each_pair do |key, regexp|
+        value = values.delete(key.to_s)
+        assert_match(regexp, value)
+      end
       # Times.
       %w/
           atime
@@ -197,29 +202,28 @@ EOT
         value = values.delete(key)
         assert_instance_of(Time, value)
       end
+      #  Size.
+      value = values.delete('size')
+      assert_equal(File.size(test_file_path), value)
       yaml.store(top_key, values)
       File.write(actual_file_path, YAML.dump(yaml))
     end
     name = 'test_file'
-    temp_file_name = 't.tmp'
-    temp_file_path = File.join(File.dirname(__FILE__), temp_file_name)
-    temp_file = File.open(temp_file_path, 'w')
-    temp_file.write('This is file content.')
-    temp_file.close
+    file_path = __FILE__
+    temp_file = File.new(file_path)
     _test_show(self, :show, temp_file, name) do |expected_file_path,
         actual_file_path|
       DebugHelperTest.write_stdout(actual_file_path) do
         DebugHelper.send(:show, temp_file, name)
       end
-      clean_file(actual_file_path, temp_file_path)
+      clean_file(actual_file_path, file_path)
     end
     _test_show(self, :putd, temp_file, name) do |expected_file_path, actual_file_path|
       DebugHelperTest.write_stdout(actual_file_path) do
         putd(temp_file, name)
       end
-      clean_file(actual_file_path, temp_file_path)
+      clean_file(actual_file_path, file_path)
     end
-    File.delete(temp_file_path)
   end
 
   def self.write_stdout(file_path)

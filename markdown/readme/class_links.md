@@ -1,4 +1,5 @@
 - [Array](#array)
+- [File](#file)
 - [Hash](#hash)
 - [Set](#set)
 - [Struct](#struct)
