@@ -2,14 +2,21 @@
 Hash (size=1 message='test_depth_prune'):
   Pair 0:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :a
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=1):
         Pair 0:
           Key:
-            Symbol (size=1 encoding=US-ASCII): :b
+            Symbol (size=1):
+              to_s: b
+              encoding: !ruby/encoding US-ASCII
           Value:
             Hash (size=1):
               Pair 0:
-                Key: Symbol c
+                Key:
+                  Symbol (size=1):
+                    to_s: c
+                    encoding: !ruby/encoding US-ASCII
                 Value: Hash {:d=>"not ok"}

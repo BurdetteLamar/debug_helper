@@ -45,14 +45,8 @@ class DebugHelper
               show_array(obj, message, info)
             when obj.kind_of?(Hash)
               show_hash(obj, message, info)
-            when obj.kind_of?(String)
-              show_string(obj, message, info)
             when obj.kind_of?(Struct)
               show_struct(obj, message, info)
-            when obj.kind_of?(Symbol)
-              show_symbol(obj, message, info)
-            when obj.kind_of?(File)
-              show_file(obj, message, info)
             # when obj.kind_of?(Range)
             # when obj.kind_of?(Set)
             else
@@ -75,26 +69,6 @@ class DebugHelper
     _show_item(obj.class.name, content, attrs, info)
   end
 
-  def show_file(file, message, info)
-    content = {}
-    file_path = file.path
-    methods = [
-        :path,
-        :atime,
-        :ctime,
-        :mtime,
-        :size,
-    ]
-    methods.each do |method|
-      value = Object.const_get('File').send(method, file_path)
-      content.store(method.to_s, value)
-    end
-    attrs = {
-        :message => message,
-    }
-    _show_item(file.class.name, content, attrs, info)
-  end
-
   def show_hash(obj, message, info)
     content = {}
     obj.each_with_index do |pair, i|
@@ -112,19 +86,28 @@ class DebugHelper
   end
 
   def show_object(obj, message, info)
-    message_info = message.nil? ? '' : " (message='#{message}')"
-    "#{obj.class.name}#{message_info} #{obj}"
-  end
-
-  def show_string(obj, message, info)
-    attrs = {
-        :message => message,
-        :size => obj.size,
-        :encoding => obj.encoding,
-        :ascii_only => obj.ascii_only?,
-        :bytesize => obj.bytesize,
-    }
-    _show_item(obj.class.name, [obj], attrs, info)
+    methods = methods_for_object(obj)
+    if methods.nil?
+      message_info = message.nil? ? '' : " (message='#{message}')"
+      "#{obj.class.name}#{message_info} #{obj}"
+    else
+      content = {}
+      attrs = {:message => message}
+      methods[:instance].each do |instance_method|
+        value = obj.send(instance_method)
+        if instance_method == :size
+          attrs.store(:size, value)
+        else
+          content.store(instance_method.to_s, value)
+        end
+      end
+      methods[:class].each do |pair|
+        class_method, arguments = *pair
+        value = Object.const_get(obj.class.to_s).send(class_method, *arguments)
+        content.store(class_method.to_s, value)
+      end
+      _show_item(obj.class.name, content, attrs, info)
+    end
   end
 
   def show_struct(obj, message, info)
@@ -143,15 +126,6 @@ class DebugHelper
     _show_item(obj.class.name, content, attrs, info)
   end
 
-  def show_symbol(obj, message, info)
-    attrs = {
-        :message => message,
-        :size => obj.size,
-        :encoding => obj.encoding,
-    }
-    _show_item(obj.class.name, obj, attrs, info)
-  end
-
   def _show_item(class_name, content, attrs, info)
     message = attrs[:message]
     unless message.nil?
@@ -167,8 +141,49 @@ class DebugHelper
     attrs.each_pair do |key, value|
       a.push("#{key}=#{value}") unless value.nil?
     end
+    return class_name if a.empty?
     attrs_s = a.join(' ')
     "#{class_name} (#{attrs_s})"
+  end
+
+  def methods_for_object(obj)
+    methods = case
+                when obj.kind_of?(File)
+                  {
+                      # The instance forms of some of these require the file to be open.
+                      :class => {
+                          :path => [obj.path],
+                          :atime => [obj.path],
+                          :ctime => [obj.path],
+                          :mtime => [obj.path],
+                          :size => [obj.path],
+                      },
+                      :instance => [],
+                  }
+                when obj.kind_of?(String)
+                  {
+                      :class => {},
+                      :instance => [
+                          :to_s,
+                          :size,
+                          :encoding,
+                          :ascii_only?,
+                          :bytesize,
+                      ]
+                  }
+                when obj.kind_of?(Symbol)
+                  {
+                      :class => {},
+                      :instance => [
+                          :to_s,
+                          :size,
+                          :encoding,
+                      ]
+                  }
+                else
+                  nil
+              end
+    methods
   end
 
 end

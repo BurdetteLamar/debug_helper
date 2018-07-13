@@ -6,9 +6,14 @@ MyStruct (message='My mixed struct' size=3):
   Member 1:
     Name: :b
     Value:
-      String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
-      - one
+      String (size=3):
+        to_s: one
+        encoding: !ruby/encoding UTF-8
+        ascii_only?: true
+        bytesize: 3
   Member 2:
     Name: :c
     Value:
-      Symbol (size=3 encoding=US-ASCII): :two
+      Symbol (size=3):
+        to_s: two
+        encoding: !ruby/encoding US-ASCII

@@ -24,6 +24,8 @@ For certain classes (see below), the analysis is very detailed.
 
 For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is also recursive;  that is, the collection's values are themselves analyzed.
 
+You can control the depth of recursion using option ```depth```.  See [Options](#options).
+
 Classes treated in detail:
 
 - [Array](#array)
@@ -100,10 +102,15 @@ The output shows details of the array.
 Array (message='My mixed array' size=3):
   Element 0: Fixnum 0
   Element 1:
-    String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
-    - one
+    String (size=3):
+      to_s: one
+      encoding: !ruby/encoding UTF-8
+      ascii_only?: true
+      bytesize: 3
   Element 2:
-    Symbol (size=3 encoding=US-ASCII): :two
+    Symbol (size=3):
+      to_s: two
+      encoding: !ruby/encoding US-ASCII
 ```
 
 #### Nested Arrays
@@ -184,15 +191,21 @@ The output shows details of the hash.
 Hash (size=3 message='My simple hash'):
   Pair 0:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :a
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Pair 1:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :b
+      Symbol (size=1):
+        to_s: b
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Pair 2:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :c
+      Symbol (size=1):
+        to_s: c
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2
 ```
 
@@ -220,19 +233,30 @@ The output shows details of the hash.
 Hash (size=3 message='My mixed hash'):
   Pair 0:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :a
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Pair 1:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :b
+      Symbol (size=1):
+        to_s: b
+        encoding: !ruby/encoding US-ASCII
     Value:
-      String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
-      - one
+      String (size=3):
+        to_s: one
+        encoding: !ruby/encoding UTF-8
+        ascii_only?: true
+        bytesize: 3
   Pair 2:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :c
+      Symbol (size=1):
+        to_s: c
+        encoding: !ruby/encoding US-ASCII
     Value:
-      Symbol (size=3 encoding=US-ASCII): :two
+      Symbol (size=3):
+        to_s: two
+        encoding: !ruby/encoding US-ASCII
 ```
 
 #### Nested Hashes
@@ -264,29 +288,41 @@ The output shows details of the hashes.
 Hash (size=2 message='My nested hash'):
   Pair 0:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :a
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=2):
         Pair 0:
           Key:
-            Symbol (size=1 encoding=US-ASCII): :b
+            Symbol (size=1):
+              to_s: b
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 0
         Pair 1:
           Key:
-            Symbol (size=1 encoding=US-ASCII): :c
+            Symbol (size=1):
+              to_s: c
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 1
   Pair 1:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :d
+      Symbol (size=1):
+        to_s: d
+        encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=2):
         Pair 0:
           Key:
-            Symbol (size=1 encoding=US-ASCII): :e
+            Symbol (size=1):
+              to_s: e
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 2
         Pair 1:
           Key:
-            Symbol (size=1 encoding=US-ASCII): :f
+            Symbol (size=1):
+              to_s: f
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 3
 ```
 
@@ -315,12 +351,16 @@ The circular reference is not followed.
 Hash (size=1 message='My circular hashes'):
   Pair 0:
     Key:
-      Symbol (size=3 encoding=US-ASCII): :foo
+      Symbol (size=3):
+        to_s: foo
+        encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=1):
         Pair 0:
           Key:
-            Symbol (size=3 encoding=US-ASCII): :bar
+            Symbol (size=3):
+              to_s: bar
+              encoding: !ruby/encoding US-ASCII
           Value: Hash {:foo=>{:bar=>{...}}}
 ```
 ### Struct
@@ -380,12 +420,17 @@ MyStruct (message='My mixed struct' size=3):
   Member 1:
     Name: :b
     Value:
-      String (size=3 encoding=UTF-8 ascii_only=true bytesize=3):
-      - one
+      String (size=3):
+        to_s: one
+        encoding: !ruby/encoding UTF-8
+        ascii_only?: true
+        bytesize: 3
   Member 2:
     Name: :c
     Value:
-      Symbol (size=3 encoding=US-ASCII): :two
+      Symbol (size=3):
+        to_s: two
+        encoding: !ruby/encoding US-ASCII
 ```
 
 #### Nested Structs
@@ -496,8 +541,11 @@ The output shows details of the string.
 ```show.yaml```:
 ```yaml
 ---
-String (message='My simple string' size=11 encoding=UTF-8 ascii_only=true bytesize=11):
-- Lorem ipsum
+String (message='My simple string' size=11):
+  to_s: Lorem ipsum
+  encoding: !ruby/encoding UTF-8
+  ascii_only?: true
+  bytesize: 11
 ```
 
 #### Multiline String
@@ -520,10 +568,13 @@ The output shows details of the string.
 ```show.yaml```:
 ```yaml
 ---
-String (message='My multiline string' size=122 encoding=UTF-8 ascii_only=true bytesize=122):
-- |
-  Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
-  sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
+String (message='My multiline string' size=122):
+  to_s: |
+    Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
+    sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
+  encoding: !ruby/encoding UTF-8
+  ascii_only?: true
+  bytesize: 122
 ```
 ### Symbol
 
@@ -543,7 +594,9 @@ The output shows details of the symbol.
 ```show.yaml```:
 ```yaml
 ---
-Symbol (message='My symbol' size=11 encoding=US-ASCII): :lorem_ipsum
+Symbol (message='My symbol' size=11):
+  to_s: lorem_ipsum
+  encoding: !ruby/encoding US-ASCII
 ```
 ### Object
 
@@ -567,7 +620,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- DateTime (message='My datetime') 2018-07-04T14:49:11-05:00
+--- DateTime (message='My datetime') 2018-07-13T09:59:53-05:00
 ...
 ```
 
@@ -609,4 +662,84 @@ The output shows details of the regexp.
 ```yaml
 --- Regexp (message='My regexp') (?-mix:foo)
 ...
+```
+
+## Options
+
+### Option ```depth```
+
+This example shows how option ```depth``` affects output.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+ary = [0,
+       [1,
+        [2,
+         [3,
+          [4]
+         ]
+        ]
+       ]
+]
+(1..5).each do |depth|
+  message = "Show depth #{depth}"
+  DebugHelper.show(ary, message, {:depth => depth})
+end
+```
+
+The output shows output for various depths.
+
+```show.yaml```:
+```yaml
+---
+Array (message='Show depth 1' size=2):
+  Element 0: Fixnum 0
+  Element 1: Array [1, [2, [3, [4]]]]
+---
+Array (message='Show depth 2' size=2):
+  Element 0: Fixnum 0
+  Element 1:
+    Array (size=2):
+      Element 0: Fixnum 1
+      Element 1: Array [2, [3, [4]]]
+---
+Array (message='Show depth 3' size=2):
+  Element 0: Fixnum 0
+  Element 1:
+    Array (size=2):
+      Element 0: Fixnum 1
+      Element 1:
+        Array (size=2):
+          Element 0: Fixnum 2
+          Element 1: Array [3, [4]]
+---
+Array (message='Show depth 4' size=2):
+  Element 0: Fixnum 0
+  Element 1:
+    Array (size=2):
+      Element 0: Fixnum 1
+      Element 1:
+        Array (size=2):
+          Element 0: Fixnum 2
+          Element 1:
+            Array (size=2):
+              Element 0: Fixnum 3
+              Element 1: Array [4]
+---
+Array (message='Show depth 5' size=2):
+  Element 0: Fixnum 0
+  Element 1:
+    Array (size=2):
+      Element 0: Fixnum 1
+      Element 1:
+        Array (size=2):
+          Element 0: Fixnum 2
+          Element 1:
+            Array (size=2):
+              Element 0: Fixnum 3
+              Element 1:
+                Array (size=1):
+                  Element 0: Fixnum 4
 ```

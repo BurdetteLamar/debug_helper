@@ -18,8 +18,11 @@ The output shows details of the string.
 ```show.yaml```:
 ```yaml
 ---
-String (message='My multiline string' size=122 encoding=UTF-8 ascii_only=true bytesize=122):
-- |
-  Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
-  sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
+String (message='My multiline string' size=122):
+  to_s: |
+    Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
+    sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
+  encoding: !ruby/encoding UTF-8
+  ascii_only?: true
+  bytesize: 122
 ```

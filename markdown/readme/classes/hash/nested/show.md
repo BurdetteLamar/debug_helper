@@ -27,28 +27,40 @@ The output shows details of the hashes.
 Hash (size=2 message='My nested hash'):
   Pair 0:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :a
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=2):
         Pair 0:
           Key:
-            Symbol (size=1 encoding=US-ASCII): :b
+            Symbol (size=1):
+              to_s: b
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 0
         Pair 1:
           Key:
-            Symbol (size=1 encoding=US-ASCII): :c
+            Symbol (size=1):
+              to_s: c
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 1
   Pair 1:
     Key:
-      Symbol (size=1 encoding=US-ASCII): :d
+      Symbol (size=1):
+        to_s: d
+        encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=2):
         Pair 0:
           Key:
-            Symbol (size=1 encoding=US-ASCII): :e
+            Symbol (size=1):
+              to_s: e
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 2
         Pair 1:
           Key:
-            Symbol (size=1 encoding=US-ASCII): :f
+            Symbol (size=1):
+              to_s: f
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 3
 ```

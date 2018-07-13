@@ -1,5 +1,8 @@
 ---
 Hash (size=1 message='test_depth_1'):
   Pair 0:
-    Key: Symbol a
+    Key:
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
     Value: Hash {:b=>{:c=>"not ok"}}
