@@ -1,5 +1,18 @@
 # Debug Helper
 
+## New in Version 1.7
+
+Classes analyzed:
+
+- [File](#file)
+- [Set](#set)
+
+Options:
+
+- [```depth```](#option-depth)
+
+## About Debug Helper
+
 If (like me), your debugging style is [printf debugging](https://en.wikipedia.org/wiki/Debugging#Techniques), you will have shoved this into your code many times:
 
 ```show_hash.rb```:
@@ -784,7 +797,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-14T09:08:44-05:00 ((2458314j,50924s,462035000n),-18000s,2299161j)>'
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-14T10:18:04-05:00 ((2458314j,55084s,502867000n),-18000s,2299161j)>'
 ```
 
 #### Range

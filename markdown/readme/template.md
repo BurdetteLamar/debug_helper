@@ -1,5 +1,18 @@
 # Debug Helper
 
+## New in Version 1.7
+
+Classes analyzed:
+
+- [File](#file)
+- [Set](#set)
+
+Options:
+
+- [```depth```](#option-depth)
+
+## About Debug Helper
+
 If (like me), your debugging style is [printf debugging](https://en.wikipedia.org/wiki/Debugging#Techniques), you will have shoved this into your code many times:
 
 @[ruby](show_hash.rb)
