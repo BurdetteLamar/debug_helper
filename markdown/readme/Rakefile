@@ -15,12 +15,12 @@ namespace :build do
     Dir.chdir('classes') do
       class_names = %w/
         Array
-        File
         Hash
-        Set
         Struct
         String
         Symbol
+        File
+        Set
         Object
       /
       class_dir_names = class_names.collect {|x| x.downcase}
