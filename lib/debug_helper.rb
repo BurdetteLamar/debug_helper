@@ -48,11 +48,11 @@ class DebugHelper
       object_ids.push(obj.object_id)
       handler_class = case
                   when obj.kind_of?(Array)
-                    ArrayHandler
+                    EachWithIndexHandler
                   when obj.kind_of?(Hash)
                     HashHandler
                   when obj.kind_of?(Set)
-                    ArrayHandler
+                    EachWithIndexHandler
                   when obj.kind_of?(Struct)
                     StructHandler
                   else
@@ -78,7 +78,7 @@ class DebugHelper
 
   end
 
-  class ArrayHandler < Handler
+  class EachWithIndexHandler < Handler
 
     def show
       content = {}
