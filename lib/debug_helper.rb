@@ -25,8 +25,6 @@ class DebugHelper
     puts x.to_yaml
   end
 
-  private
-
   def initialize(obj, message, options)
     self.obj = obj
     self.message = message
@@ -43,7 +41,9 @@ class DebugHelper
       object_ids.push(obj.object_id)
       s = case
             when obj.kind_of?(Array)
-              show_array(obj, message, info)
+              handler = ArrayHandler.new(self, obj, message, info)
+              handler.show
+              # show_array(obj, message, info)
             when obj.kind_of?(Hash)
               show_hash(obj, message, info)
             when obj.kind_of?(Set)
@@ -57,6 +57,35 @@ class DebugHelper
       object_ids.pop
     end
     s
+  end
+
+  class Handler
+
+    attr_accessor :debug_helper, :obj, :message, :info
+
+    def initialize(debug_helper, obj, message, info)
+      self.debug_helper = debug_helper
+      self.obj = obj
+      self.message = message
+      self.info = info
+    end
+
+  end
+
+  class ArrayHandler < Handler
+
+    def show
+      content = {}
+      obj.each_with_index do |item, i|
+        content.store("Element #{i}", debug_helper._show(item, nil, {}))
+      end
+      attrs = {
+          :message => message,
+          :size => obj.size,
+      }
+      debug_helper._show_item(obj.class.name, content, attrs, info)
+    end
+
   end
 
   def show_array(obj, message, info)
