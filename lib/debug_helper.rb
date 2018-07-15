@@ -34,9 +34,11 @@ class DebugHelper
 
   def _show(obj, message, info)
     if object_ids.include?(obj.object_id)
-      s = show_object(obj, message, info)
+      handler = ObjectHandler.new(self, obj, message, info)
+      s = handler.show
     elsif depth == object_ids.size
-      s = show_object(obj, message, info)
+      handler = ObjectHandler.new(self, obj, message, info)
+      s = handler.show
     else
       object_ids.push(obj.object_id)
       s = case
@@ -53,7 +55,8 @@ class DebugHelper
               handler = StructHandler.new(self, obj, message, info)
               handler.show
             else
-              show_object(obj, message, info)
+              handler = ObjectHandler.new(self, obj, message, info)
+              handler.show
           end
       object_ids.pop
     end
@@ -109,30 +112,33 @@ class DebugHelper
 
   end
 
+  class ObjectHandler < Handler
 
-  def show_object(obj, message, info)
-    methods = methods_for_object(obj)
-    if methods.nil?
-      message_info = message.nil? ? '' : " (message='#{message}')"
-      "#{obj.class.name}#{message_info} #{obj.inspect}"
-    else
-      content = {}
-      attrs = {:message => message}
-      methods[:instance].each do |instance_method|
-        value = obj.send(instance_method)
-        if instance_method == :size
-          attrs.store(:size, value)
-        else
-          content.store(instance_method.to_s, value)
+    def show
+      methods = debug_helper.methods_for_object(obj)
+      if methods.nil?
+        message_info = message.nil? ? '' : " (message='#{message}')"
+        "#{obj.class.name}#{message_info} #{obj.inspect}"
+      else
+        content = {}
+        attrs = {:message => message}
+        methods[:instance].each do |instance_method|
+          value = obj.send(instance_method)
+          if instance_method == :size
+            attrs.store(:size, value)
+          else
+            content.store(instance_method.to_s, value)
+          end
         end
+        methods[:class].each do |pair|
+          class_method, arguments = *pair
+          value = Object.const_get(obj.class.to_s).send(class_method, *arguments)
+          content.store(class_method.to_s, value)
+        end
+        debug_helper._show_item(obj.class.name, content, attrs, info)
       end
-      methods[:class].each do |pair|
-        class_method, arguments = *pair
-        value = Object.const_get(obj.class.to_s).send(class_method, *arguments)
-        content.store(class_method.to_s, value)
-      end
-      _show_item(obj.class.name, content, attrs, info)
     end
+
   end
 
   class StructHandler < Handler
