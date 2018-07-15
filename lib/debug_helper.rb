@@ -32,11 +32,16 @@ class DebugHelper
     self.object_ids = []
   end
 
+  def object_seen?(obj)
+    object_ids.include?(obj.object_id)
+  end
+
+  def depth_reached?
+    depth == object_ids.size
+  end
+
   def _show(obj, message, info)
-    if object_ids.include?(obj.object_id)
-      handler = ObjectHandler.new(self, obj, message, info)
-      s = handler.show
-    elsif depth == object_ids.size
+    if object_seen?(obj) || depth_reached?
       handler = ObjectHandler.new(self, obj, message, info)
       s = handler.show
     else
