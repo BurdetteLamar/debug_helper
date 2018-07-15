@@ -43,11 +43,11 @@ class DebugHelper
             when obj.kind_of?(Array)
               handler = ArrayHandler.new(self, obj, message, info)
               handler.show
-              # show_array(obj, message, info)
             when obj.kind_of?(Hash)
               show_hash(obj, message, info)
             when obj.kind_of?(Set)
-              show_array(obj, message, info)
+              handler = ArrayHandler.new(self, obj, message, info)
+              handler.show
             when obj.kind_of?(Struct)
               show_struct(obj, message, info)
             # when obj.kind_of?(Range)
@@ -86,18 +86,6 @@ class DebugHelper
       debug_helper._show_item(obj.class.name, content, attrs, info)
     end
 
-  end
-
-  def show_array(obj, message, info)
-    content = {}
-    obj.each_with_index do |item, i|
-      content.store("Element #{i}", _show(item, nil, {}))
-    end
-    attrs = {
-        :message => message,
-        :size => obj.size,
-    }
-    _show_item(obj.class.name, content, attrs, info)
   end
 
   def show_hash(obj, message, info)
