@@ -94,22 +94,34 @@ class DebugHelper
 
   end
 
-  class HashHandler < Handler
+  class EachPairHandler < Handler
+
+    attr_accessor :pair_names, :attrs
 
     def show
+      key_name, value_name = *pair_names
       content = {}
       obj.each_with_index do |pair, i|
         key, value = *pair
-        pair = {'Key' => debug_helper._show(key, nil, {}), 'Value' => debug_helper._show(value, nil, {})}
+        pair = {key_name => debug_helper._show(key, nil, {}), value_name => debug_helper._show(value, nil, {})}
         content.store("Pair #{i}", pair)
       end
-      attrs = {
+      debug_helper._show_item(obj.class.name, content, attrs, info)
+    end
+
+  end
+
+  class HashHandler < EachPairHandler
+
+    def show
+      self.pair_names = %w/Key Value/
+      self.attrs = {
           :size => obj.size,
           :default => obj.default,
           :default_proc => obj.default_proc,
           :message => message,
       }
-      debug_helper._show_item(obj.class.name, content, attrs, info)
+      super
     end
 
   end
