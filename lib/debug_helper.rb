@@ -44,7 +44,8 @@ class DebugHelper
               handler = ArrayHandler.new(self, obj, message, info)
               handler.show
             when obj.kind_of?(Hash)
-              show_hash(obj, message, info)
+              handler = HashHandler.new(self, obj, message, info)
+              handler.show
             when obj.kind_of?(Set)
               handler = ArrayHandler.new(self, obj, message, info)
               handler.show
@@ -88,21 +89,26 @@ class DebugHelper
 
   end
 
-  def show_hash(obj, message, info)
-    content = {}
-    obj.each_with_index do |pair, i|
-      key, value = *pair
-      pair = {'Key' => _show(key, nil, {}), 'Value' => _show(value, nil, {})}
-      content.store("Pair #{i}", pair)
+  class HashHandler < Handler
+
+    def show
+      content = {}
+      obj.each_with_index do |pair, i|
+        key, value = *pair
+        pair = {'Key' => debug_helper._show(key, nil, {}), 'Value' => debug_helper._show(value, nil, {})}
+        content.store("Pair #{i}", pair)
+      end
+      attrs = {
+          :size => obj.size,
+          :default => obj.default,
+          :default_proc => obj.default_proc,
+          :message => message,
+      }
+      debug_helper._show_item(obj.class.name, content, attrs, info)
     end
-    attrs = {
-        :size => obj.size,
-        :default => obj.default,
-        :default_proc => obj.default_proc,
-        :message => message,
-    }
-    _show_item(obj.class.name, content, attrs, info)
+
   end
+
 
   def show_object(obj, message, info)
     methods = methods_for_object(obj)
