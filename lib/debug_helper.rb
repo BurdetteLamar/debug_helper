@@ -99,7 +99,7 @@ class DebugHelper
     attr_accessor :pair_names, :attrs
 
     def show
-      key_name, value_name = *pair_names
+      pair_name, key_name, value_name = *pair_names
       content = {}
       obj.each_with_index do |pair, i|
         key, value = *pair
@@ -114,7 +114,7 @@ class DebugHelper
   class HashHandler < EachPairHandler
 
     def show
-      self.pair_names = %w/Key Value/
+      self.pair_names = %w/Pair Key Value/
       self.attrs = {
           :size => obj.size,
           :default => obj.default,
