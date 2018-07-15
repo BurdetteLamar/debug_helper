@@ -46,23 +46,19 @@ class DebugHelper
       s = handler.show
     else
       object_ids.push(obj.object_id)
-      s = case
-            when obj.kind_of?(Array)
-              handler = ArrayHandler.new(self, obj, message, info)
-              handler.show
-            when obj.kind_of?(Hash)
-              handler = HashHandler.new(self, obj, message, info)
-              handler.show
-            when obj.kind_of?(Set)
-              handler = ArrayHandler.new(self, obj, message, info)
-              handler.show
-            when obj.kind_of?(Struct)
-              handler = StructHandler.new(self, obj, message, info)
-              handler.show
-            else
-              handler = ObjectHandler.new(self, obj, message, info)
-              handler.show
-          end
+      handler = case
+                  when obj.kind_of?(Array)
+                    ArrayHandler.new(self, obj, message, info)
+                  when obj.kind_of?(Hash)
+                    HashHandler.new(self, obj, message, info)
+                  when obj.kind_of?(Set)
+                    ArrayHandler.new(self, obj, message, info)
+                  when obj.kind_of?(Struct)
+                    StructHandler.new(self, obj, message, info)
+                  else
+                    ObjectHandler.new(self, obj, message, info)
+                end
+      s = handler.show
       object_ids.pop
     end
     s
