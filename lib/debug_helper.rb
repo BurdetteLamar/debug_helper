@@ -50,8 +50,8 @@ class DebugHelper
               handler = ArrayHandler.new(self, obj, message, info)
               handler.show
             when obj.kind_of?(Struct)
-              show_struct(obj, message, info)
-            # when obj.kind_of?(Range)
+              handler = StructHandler.new(self, obj, message, info)
+              handler.show
             else
               show_object(obj, message, info)
           end
@@ -135,21 +135,26 @@ class DebugHelper
     end
   end
 
-  def show_struct(obj, message, info)
-    content = {}
-    i = 0
-    obj.each_pair do |member|
-      member_name, value = *member
-      pair = {'Name' => member_name, 'Value' => _show(value, nil, {})}
-      content.store("Member #{i}", pair)
-      i += 1
+  class StructHandler < Handler
+
+    def show
+      content = {}
+      i = 0
+      obj.each_pair do |member|
+        member_name, value = *member
+        pair = {'Name' => member_name, 'Value' => debug_helper._show(value, nil, {})}
+        content.store("Member #{i}", pair)
+        i += 1
+      end
+      attrs = {
+          :message => message,
+          :size => obj.size,
+      }
+      debug_helper._show_item(obj.class.name, content, attrs, info)
     end
-    attrs = {
-        :message => message,
-        :size => obj.size,
-    }
-    _show_item(obj.class.name, content, attrs, info)
+
   end
+
 
   def _show_item(class_name, content, attrs, info)
     message = attrs[:message]
