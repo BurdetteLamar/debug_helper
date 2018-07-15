@@ -46,18 +46,19 @@ class DebugHelper
       s = handler.show
     else
       object_ids.push(obj.object_id)
-      handler = case
+      handler_class = case
                   when obj.kind_of?(Array)
-                    ArrayHandler.new(self, obj, message, info)
+                    ArrayHandler
                   when obj.kind_of?(Hash)
-                    HashHandler.new(self, obj, message, info)
+                    HashHandler
                   when obj.kind_of?(Set)
-                    ArrayHandler.new(self, obj, message, info)
+                    ArrayHandler
                   when obj.kind_of?(Struct)
-                    StructHandler.new(self, obj, message, info)
+                    StructHandler
                   else
-                    ObjectHandler.new(self, obj, message, info)
-                end
+                    ObjectHandler
+                      end
+      handler = Object.const_get(handler_class.name).new(self, obj, message, info)
       s = handler.show
       object_ids.pop
     end
