@@ -49,6 +49,8 @@ class DebugHelper
       handler_class = case
                         when obj.kind_of?(Array)
                           EachWithIndexHandler
+                        when obj.kind_of?(File)
+                          FileHandler
                         when obj.kind_of?(Hash)
                           HashHandler
                         when obj.kind_of?(Set)
@@ -116,6 +118,38 @@ class DebugHelper
 
   end
 
+  class FileHandler < Handler
+
+    def show
+      content = {}
+      {
+          :absolute_path => [obj.path],
+          :atime => [obj.path],
+          :ctime => [obj.path],
+          :executable? => [obj.path],
+          :exist? => [obj.path],
+          :ftype => [obj.path],
+          :mtime => [obj.path],
+          :path => [obj.path],
+          :pipe? => [obj.path],
+          :readable? => [obj.path],
+          :realpath => [obj.path],
+          :setgid? => [obj.path],
+          :setuid? => [obj.path],
+          :size => [obj.path],
+          :socket? => [obj.path],
+          :symlink? => [obj.path],
+          :writable? => [obj.path],
+      }.each_pair do |method, args|
+        content.store(method.to_s, File.send(method, *args))
+      end
+      attrs = {
+          :message => message,
+      }
+      debug_helper._show_item(obj.class.name, content, attrs, info)
+    end
+  end
+
   class HashHandler < EachPairHandler
 
     def show
@@ -134,28 +168,8 @@ class DebugHelper
   class ObjectHandler < Handler
 
     def show
-      methods = debug_helper.methods_for_object(obj)
-      if methods.nil?
-        message_info = message.nil? ? '' : " (message='#{message}')"
-        "#{obj.class.name}#{message_info} #{obj.inspect}"
-      else
-        content = {}
-        attrs = {:message => message}
-        methods[:instance].each do |instance_method|
-          value = obj.send(instance_method)
-          if instance_method == :size
-            attrs.store(:size, value)
-          else
-            content.store(instance_method.to_s, value)
-          end
-        end
-        methods[:class].each do |pair|
-          class_method, arguments = *pair
-          value = Object.const_get(obj.class.to_s).send(class_method, *arguments)
-          content.store(class_method.to_s, value)
-        end
-        debug_helper._show_item(obj.class.name, content, attrs, info)
-      end
+      message_info = message.nil? ? '' : " (message='#{message}')"
+      "#{obj.class.name}#{message_info} #{obj.inspect}"
     end
 
   end
@@ -209,6 +223,7 @@ class DebugHelper
       }
       debug_helper._show_item(obj.class.name, content, attrs, info)
     end
+
   end
 
   def _show_item(class_name, content, attrs, info)
@@ -229,38 +244,6 @@ class DebugHelper
     return class_name if a.empty?
     attrs_s = a.join(' ')
     "#{class_name} (#{attrs_s})"
-  end
-
-  def methods_for_object(obj)
-    methods = case
-                when obj.kind_of?(File)
-                  {
-                      # The instance forms of some of these require the file to be open.
-                      :class => {
-                          :absolute_path => [obj.path],
-                          :atime => [obj.path],
-                          :ctime => [obj.path],
-                          :executable? => [obj.path],
-                          :exist? => [obj.path],
-                          :ftype => [obj.path],
-                          :mtime => [obj.path],
-                          :path => [obj.path],
-                          :pipe? => [obj.path],
-                          :readable? => [obj.path],
-                          :realpath => [obj.path],
-                          :setgid? => [obj.path],
-                          :setuid? => [obj.path],
-                          :size => [obj.path],
-                          :socket? => [obj.path],
-                          :symlink? => [obj.path],
-                          :writable? => [obj.path],
-                      },
-                      :instance => [],
-                  }
-                else
-                  nil
-              end
-    methods
   end
 
 end

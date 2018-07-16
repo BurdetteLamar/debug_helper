@@ -1,6 +1,5 @@
 ---
 File (message='test_file'):
-  absolute_path: C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb
   executable?: false
   exist?: true
   ftype: file
