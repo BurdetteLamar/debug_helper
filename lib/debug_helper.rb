@@ -57,6 +57,8 @@ class DebugHelper
                           StringHandler
                         when obj.kind_of?(Struct)
                           StructHandler
+                        when obj.kind_of?(Symbol)
+                          SymbolHandler
                         else
                           ObjectHandler
                       end
@@ -158,6 +160,26 @@ class DebugHelper
 
   end
 
+  class StringHandler < Handler
+
+    def show
+      content = {}
+      [
+          :to_s,
+          :encoding,
+          :ascii_only?,
+          :bytesize,
+      ].each do |method|
+        content.store(method.to_s, obj.send(method))
+      end
+      attrs = {
+          :size => obj.send(:size),
+          :message => message,
+      }
+      debug_helper._show_item(obj.class.name, content, attrs, info)
+    end
+  end
+
   class StructHandler < EachPairHandler
 
     def show
@@ -171,15 +193,13 @@ class DebugHelper
 
   end
 
-  class StringHandler < Handler
+  class SymbolHandler < Handler
 
     def show
       content = {}
       [
           :to_s,
           :encoding,
-          :ascii_only?,
-          :bytesize,
       ].each do |method|
         content.store(method.to_s, obj.send(method))
       end
@@ -236,15 +256,6 @@ class DebugHelper
                           :writable? => [obj.path],
                       },
                       :instance => [],
-                  }
-                when obj.kind_of?(Symbol)
-                  {
-                      :class => {},
-                      :instance => [
-                          :to_s,
-                          :size,
-                          :encoding,
-                      ]
                   }
                 else
                   nil

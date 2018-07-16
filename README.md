@@ -663,7 +663,7 @@ The output shows details of the symbol.
 ```show.yaml```:
 ```yaml
 ---
-Symbol (message='My symbol' size=11):
+Symbol (size=11 message='My symbol'):
   to_s: lorem_ipsum
   encoding: !ruby/encoding US-ASCII
 ```
@@ -851,7 +851,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-16T10:10:30-05:00 ((2458316j,54630s,613738000n),-18000s,2299161j)>'
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-16T10:24:25-05:00 ((2458316j,55465s,94349000n),-18000s,2299161j)>'
 ```
 
 #### Range
