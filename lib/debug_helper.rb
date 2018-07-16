@@ -2,6 +2,15 @@ require 'set'
 require 'yaml'
 
 require 'debug_helper/version'
+require 'debug_helper/handler'
+require 'debug_helper/each_pair_handler'
+require 'debug_helper/each_with_index_handler'
+require 'debug_helper/file_handler'
+require 'debug_helper/hash_handler'
+require 'debug_helper/object_handler'
+require 'debug_helper/string_handler'
+require 'debug_helper/struct_handler'
+require 'debug_helper/symbol_handler'
 
 class DebugHelper
 
@@ -69,161 +78,6 @@ class DebugHelper
       object_ids.pop
     end
     s
-  end
-
-  class Handler
-
-    attr_accessor :debug_helper, :obj, :message, :info
-
-    def initialize(debug_helper, obj, message, info)
-      self.debug_helper = debug_helper
-      self.obj = obj
-      self.message = message
-      self.info = info
-    end
-
-  end
-
-  class EachWithIndexHandler < Handler
-
-    def show
-      content = {}
-      obj.each_with_index do |item, i|
-        content.store("Element #{i}", debug_helper._show(item, nil, {}))
-      end
-      attrs = {
-          :size => obj.size,
-          :message => message,
-      }
-      debug_helper._show_item(obj.class.name, content, attrs, info)
-    end
-
-  end
-
-  class EachPairHandler < Handler
-
-    attr_accessor :pair_names, :attrs
-
-    def show
-      pair_name, key_name, value_name = *pair_names
-      content = {}
-      i = 0
-      obj.each_pair do |key, value|
-        pair = {key_name => debug_helper._show(key, nil, {}), value_name => debug_helper._show(value, nil, {})}
-        content.store("#{pair_name} #{i}", pair)
-        i += 1
-      end
-      debug_helper._show_item(obj.class.name, content, attrs, info)
-    end
-
-  end
-
-  class FileHandler < Handler
-
-    def show
-      content = {}
-      {
-          :absolute_path => [obj.path],
-          :atime => [obj.path],
-          :ctime => [obj.path],
-          :executable? => [obj.path],
-          :exist? => [obj.path],
-          :ftype => [obj.path],
-          :mtime => [obj.path],
-          :path => [obj.path],
-          :pipe? => [obj.path],
-          :readable? => [obj.path],
-          :realpath => [obj.path],
-          :setgid? => [obj.path],
-          :setuid? => [obj.path],
-          :size => [obj.path],
-          :socket? => [obj.path],
-          :symlink? => [obj.path],
-          :writable? => [obj.path],
-      }.each_pair do |method, args|
-        content.store(method.to_s, File.send(method, *args))
-      end
-      attrs = {
-          :message => message,
-      }
-      debug_helper._show_item(obj.class.name, content, attrs, info)
-    end
-  end
-
-  class HashHandler < EachPairHandler
-
-    def show
-      self.pair_names = %w/Pair Key Value/
-      self.attrs = {
-          :size => obj.size,
-          :default => obj.default,
-          :default_proc => obj.default_proc,
-          :message => message,
-      }
-      super
-    end
-
-  end
-
-  class ObjectHandler < Handler
-
-    def show
-      message_info = message.nil? ? '' : " (message='#{message}')"
-      "#{obj.class.name}#{message_info} #{obj.inspect}"
-    end
-
-  end
-
-  class StringHandler < Handler
-
-    def show
-      content = {}
-      [
-          :to_s,
-          :encoding,
-          :ascii_only?,
-          :bytesize,
-      ].each do |method|
-        content.store(method.to_s, obj.send(method))
-      end
-      attrs = {
-          :size => obj.send(:size),
-          :message => message,
-      }
-      debug_helper._show_item(obj.class.name, content, attrs, info)
-    end
-  end
-
-  class StructHandler < EachPairHandler
-
-    def show
-      self.pair_names = %w/Member Name Value/
-      self.attrs = {
-          :size => obj.size,
-          :message => message,
-      }
-      super
-    end
-
-  end
-
-  class SymbolHandler < Handler
-
-    def show
-      content = {}
-      [
-          :to_s,
-          :encoding,
-      ].each do |method|
-        content.store(method.to_s, obj.send(method))
-      end
-      attrs = {
-          :size => obj.send(:size),
-          :message => message,
-      }
-      debug_helper._show_item(obj.class.name, content, attrs, info)
-    end
-
   end
 
   def _show_item(class_name, content, attrs, info)
