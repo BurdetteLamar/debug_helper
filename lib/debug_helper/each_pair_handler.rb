@@ -13,7 +13,7 @@ class DebugHelper
         content.store("#{pair_name} #{i}", pair)
         i += 1
       end
-      debug_helper._show_item(obj.class.name, content, attrs, info)
+      show_item(obj.class.name, content, attrs, info)
     end
 
   end

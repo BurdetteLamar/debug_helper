@@ -11,7 +11,7 @@ class DebugHelper
           :size => obj.size,
           :message => message,
       }
-      debug_helper._show_item(obj.class.name, content, attrs, info)
+      show_item(obj.class.name, content, attrs, info)
     end
 
   end
