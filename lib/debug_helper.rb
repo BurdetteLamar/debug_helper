@@ -156,22 +156,15 @@ class DebugHelper
 
   end
 
-  class StructHandler < Handler
+  class StructHandler < EachPairHandler
 
     def show
-      content = {}
-      i = 0
-      obj.each_pair do |member|
-        member_name, value = *member
-        pair = {'Name' => member_name, 'Value' => debug_helper._show(value, nil, {})}
-        content.store("Member #{i}", pair)
-        i += 1
-      end
-      attrs = {
-          :message => message,
+      self.pair_names = %w/Member Name Value/
+      self.attrs = {
           :size => obj.size,
+          :message => message,
       }
-      debug_helper._show_item(obj.class.name, content, attrs, info)
+      super
     end
 
   end

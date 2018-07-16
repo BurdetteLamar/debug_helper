@@ -1,23 +1,41 @@
 ---
-DebugHelperTest::MyStruct (message='test_struct_circular' size=3):
+DebugHelperTest::MyStruct (size=3 message='test_struct_circular'):
   Member 0:
-    Name: :foo
+    Name:
+      Symbol (size=3):
+        to_s: foo
+        encoding: !ruby/encoding US-ASCII
     Value:
       DebugHelperTest::MyStruct (size=3):
         Member 0:
-          Name: :foo
+          Name:
+            Symbol (size=3):
+              to_s: foo
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 0
         Member 1:
-          Name: :bar
+          Name:
+            Symbol (size=3):
+              to_s: bar
+              encoding: !ruby/encoding US-ASCII
           Value: 'DebugHelperTest::MyStruct #<struct DebugHelperTest::MyStruct foo=#<struct
             DebugHelperTest::MyStruct foo=0, bar=#<struct DebugHelperTest::MyStruct:...>,
             baz=2>, bar=1, baz=2>'
         Member 2:
-          Name: :baz
+          Name:
+            Symbol (size=3):
+              to_s: baz
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 2
   Member 1:
-    Name: :bar
+    Name:
+      Symbol (size=3):
+        to_s: bar
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Member 2:
-    Name: :baz
+    Name:
+      Symbol (size=3):
+        to_s: baz
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2
