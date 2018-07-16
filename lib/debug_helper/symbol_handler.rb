@@ -10,10 +10,10 @@ class DebugHelper
         self.content.store(method.to_s, obj.send(method))
       end
       self.attrs = {
-          :size => obj.send(:size),
+          :size => obj.size,
           :message => message,
       }
-      show_item(obj.class.name)
+      show_item
     end
 
   end

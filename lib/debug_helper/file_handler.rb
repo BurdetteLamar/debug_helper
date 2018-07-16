@@ -30,7 +30,7 @@ class DebugHelper
       self.attrs = {
           :message => message,
       }
-      show_item(obj.class.name)
+      show_item
     end
   end
 

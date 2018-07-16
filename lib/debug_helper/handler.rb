@@ -13,24 +13,23 @@ class DebugHelper
       self.content = {}
     end
 
-    def show_item(class_name)
+    def show_item
       message = attrs[:message]
       unless message.nil?
         attrs[:message] = "'#{message}'"
       end
-      label = label(class_name)
       self.info.store(label, content)
       info
     end
 
-    def label(class_name)
+    def label
       a = []
       attrs.each_pair do |key, value|
         a.push("#{key}=#{value}") unless value.nil?
       end
-      return class_name if a.empty?
+      return self.obj.class.name if a.empty?
       attrs_s = a.join(' ')
-      "#{class_name} (#{attrs_s})"
+      "#{self.obj.class.name} (#{attrs_s})"
     end
 
   end
