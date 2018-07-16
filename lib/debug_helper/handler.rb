@@ -13,13 +13,13 @@ class DebugHelper
       self.content = {}
     end
 
-    def show_item(class_name, info)
+    def show_item(class_name)
       message = attrs[:message]
       unless message.nil?
         attrs[:message] = "'#{message}'"
       end
       label = label(class_name)
-      info.store(label, content)
+      self.info.store(label, content)
       info
     end
 

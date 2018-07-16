@@ -13,7 +13,7 @@ class DebugHelper
           :size => obj.send(:size),
           :message => message,
       }
-      show_item(obj.class.name, info)
+      show_item(obj.class.name)
     end
 
   end
