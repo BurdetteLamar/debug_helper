@@ -2,7 +2,7 @@ class DebugHelper
 
   class EachPairHandler < Handler
 
-    attr_accessor :pair_names, :attrs
+    attr_accessor :pair_names
 
     def show
       pair_name, key_name, value_name = *pair_names
@@ -13,7 +13,7 @@ class DebugHelper
         content.store("#{pair_name} #{i}", pair)
         i += 1
       end
-      show_item(obj.class.name, content, attrs, info)
+      show_item(obj.class.name, content, info)
     end
 
   end

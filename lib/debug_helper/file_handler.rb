@@ -28,10 +28,10 @@ class DebugHelper
       }.each_pair do |method, args|
         content.store(method.to_s, File.send(method, *args))
       end
-      attrs = {
+      self.attrs = {
           :message => message,
       }
-      show_item(obj.class.name, content, attrs, info)
+      show_item(obj.class.name, content, info)
     end
   end
 

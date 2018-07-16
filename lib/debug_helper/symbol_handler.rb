@@ -10,11 +10,11 @@ class DebugHelper
       ].each do |method|
         content.store(method.to_s, obj.send(method))
       end
-      attrs = {
+      self.attrs = {
           :size => obj.send(:size),
           :message => message,
       }
-      show_item(obj.class.name, content, attrs, info)
+      show_item(obj.class.name, content, info)
     end
 
   end
