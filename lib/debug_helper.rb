@@ -30,8 +30,8 @@ class DebugHelper
 
   def self.show(obj, message = obj.class, options = {})
     debug_helper = DebugHelper.new(obj, message, options)
-    x = debug_helper.send(:_show, obj, message, info = {})
-    puts x.to_yaml
+    s = debug_helper.show(obj, message, info = {})
+    puts s.to_yaml
   end
 
   def initialize(obj, message, options)
@@ -49,7 +49,7 @@ class DebugHelper
     depth == object_ids.size
   end
 
-  def _show(obj, message, info)
+  def show(obj, message, info)
     if object_seen?(obj) || depth_reached?
       handler = ObjectHandler.new(self, obj, message, info)
       s = handler.show
@@ -73,7 +73,7 @@ class DebugHelper
                         else
                           ObjectHandler
                       end
-      handler = Object.const_get(handler_class.name).new(self, obj, message, info)
+      handler = Object.const_get(handler_class.name).new(method(__method__), obj, message, info)
       s = handler.show
       object_ids.pop
     end

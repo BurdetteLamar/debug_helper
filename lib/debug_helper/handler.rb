@@ -2,10 +2,10 @@ class DebugHelper
 
   class Handler
 
-    attr_accessor :debug_helper, :obj, :message, :info
+    attr_accessor :show_method, :obj, :message, :info
 
-    def initialize(debug_helper, obj, message, info)
-      self.debug_helper = debug_helper
+    def initialize(show_method, obj, message, info)
+      self.show_method = show_method
       self.obj = obj
       self.message = message
       self.info = info

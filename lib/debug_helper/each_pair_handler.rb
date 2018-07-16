@@ -9,7 +9,7 @@ class DebugHelper
       content = {}
       i = 0
       obj.each_pair do |key, value|
-        pair = {key_name => debug_helper._show(key, nil, {}), value_name => debug_helper._show(value, nil, {})}
+        pair = {key_name => show_method.call(key, nil, {}), value_name => show_method.call(value, nil, {})}
         content.store("#{pair_name} #{i}", pair)
         i += 1
       end

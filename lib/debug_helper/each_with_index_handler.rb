@@ -5,7 +5,7 @@ class DebugHelper
     def show
       content = {}
       obj.each_with_index do |item, i|
-        content.store("Element #{i}", debug_helper._show(item, nil, {}))
+        content.store("Element #{i}", show_method.call(item, nil, {}))
       end
       attrs = {
           :size => obj.size,
