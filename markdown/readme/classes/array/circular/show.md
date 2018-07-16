@@ -20,7 +20,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-Array (message='My circular arrays' size=1):
+Array (size=1 message='My circular arrays'):
   Element 0:
     Array (size=1):
       Element 0: Array [[[...]]]

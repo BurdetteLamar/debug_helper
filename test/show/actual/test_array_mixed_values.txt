@@ -1,5 +1,5 @@
 ---
-Array (message='test_array_mixed_values' size=6):
+Array (size=6 message='test_array_mixed_values'):
   Element 0: Fixnum 14
   Element 1:
     String (size=3):

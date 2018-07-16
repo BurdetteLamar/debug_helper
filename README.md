@@ -91,7 +91,7 @@ The output shows details of the array.
 ```show.yaml```:
 ```yaml
 ---
-Array (message='My simple array' size=3):
+Array (size=3 message='My simple array'):
   Element 0: Fixnum 5
   Element 1: Fixnum 10
   Element 2: Fixnum 15
@@ -114,7 +114,7 @@ The output shows details of the array.
 ```show.yaml```:
 ```yaml
 ---
-Array (message='My mixed array' size=3):
+Array (size=3 message='My mixed array'):
   Element 0: Fixnum 0
   Element 1:
     String (size=3):
@@ -145,7 +145,7 @@ The output shows details of the arrays.
 ```show.yaml```:
 ```yaml
 ---
-Array (message='My nested arrays' size=3):
+Array (size=3 message='My nested arrays'):
   Element 0: Fixnum 0
   Element 1:
     Array (size=2):
@@ -179,7 +179,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-Array (message='My circular arrays' size=1):
+Array (size=1 message='My circular arrays'):
   Element 0:
     Array (size=1):
       Element 0: Array [[[...]]]
@@ -398,15 +398,24 @@ The output shows details of the struct.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (message='My simple struct' size=3):
+MyStruct (size=3 message='My simple struct'):
   Member 0:
-    Name: :a
+    Name:
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Member 1:
-    Name: :b
+    Name:
+      Symbol (size=1):
+        to_s: b
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Member 2:
-    Name: :c
+    Name:
+      Symbol (size=1):
+        to_s: c
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2
 ```
 
@@ -428,12 +437,18 @@ The output shows details of the struct.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (message='My mixed struct' size=3):
+MyStruct (size=3 message='My mixed struct'):
   Member 0:
-    Name: :a
+    Name:
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Member 1:
-    Name: :b
+    Name:
+      Symbol (size=1):
+        to_s: b
+        encoding: !ruby/encoding US-ASCII
     Value:
       String (size=3):
         to_s: one
@@ -441,7 +456,10 @@ MyStruct (message='My mixed struct' size=3):
         ascii_only?: true
         bytesize: 3
   Member 2:
-    Name: :c
+    Name:
+      Symbol (size=1):
+        to_s: c
+        encoding: !ruby/encoding US-ASCII
     Value:
       Symbol (size=3):
         to_s: two
@@ -469,26 +487,44 @@ The output shows details of the structs.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct_0 (message='My nested struct' size=2):
+MyStruct_0 (size=2 message='My nested struct'):
   Member 0:
-    Name: :a
+    Name:
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
     Value:
       MyStruct_1 (size=2):
         Member 0:
-          Name: :c
+          Name:
+            Symbol (size=1):
+              to_s: c
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 2
         Member 1:
-          Name: :d
+          Name:
+            Symbol (size=1):
+              to_s: d
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 3
   Member 1:
-    Name: :b
+    Name:
+      Symbol (size=1):
+        to_s: b
+        encoding: !ruby/encoding US-ASCII
     Value:
       MyStruct_1 (size=2):
         Member 0:
-          Name: :c
+          Name:
+            Symbol (size=1):
+              to_s: c
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 4
         Member 1:
-          Name: :d
+          Name:
+            Symbol (size=1):
+              to_s: d
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 5
 ```
 
@@ -515,26 +551,44 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (message='My circular struct' size=3):
+MyStruct (size=3 message='My circular struct'):
   Member 0:
-    Name: :a
+    Name:
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
     Value:
       MyStruct (size=3):
         Member 0:
-          Name: :a
+          Name:
+            Symbol (size=1):
+              to_s: a
+              encoding: !ruby/encoding US-ASCII
           Value: 'MyStruct #<struct MyStruct a=#<struct MyStruct a=#<struct MyStruct:...>,
             b=4, c=5>, b=1, c=2>'
         Member 1:
-          Name: :b
+          Name:
+            Symbol (size=1):
+              to_s: b
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 4
         Member 2:
-          Name: :c
+          Name:
+            Symbol (size=1):
+              to_s: c
+              encoding: !ruby/encoding US-ASCII
           Value: Fixnum 5
   Member 1:
-    Name: :b
+    Name:
+      Symbol (size=1):
+        to_s: b
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Member 2:
-    Name: :c
+    Name:
+      Symbol (size=1):
+        to_s: c
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2
 ```
 ### String
@@ -556,7 +610,7 @@ The output shows details of the string.
 ```show.yaml```:
 ```yaml
 ---
-String (message='My simple string' size=11):
+String (size=11 message='My simple string'):
   to_s: Lorem ipsum
   encoding: !ruby/encoding UTF-8
   ascii_only?: true
@@ -583,7 +637,7 @@ The output shows details of the string.
 ```show.yaml```:
 ```yaml
 ---
-String (message='My multiline string' size=122):
+String (size=122 message='My multiline string'):
   to_s: |
     Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
     sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
@@ -634,12 +688,12 @@ The output shows details of the file.
 ---
 File (message='My simple file'):
   absolute_path: C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
-  atime: 2018-07-13 11:44:18.000000000 -05:00
-  ctime: 2018-07-13 11:41:01.000000000 -05:00
+  atime: 2018-07-14 12:45:32.000000000 -05:00
+  ctime: 2018-07-14 12:45:32.000000000 -05:00
   executable?: false
   exist?: true
   ftype: file
-  mtime: 2018-07-13 11:44:18.000000000 -05:00
+  mtime: 2018-07-14 12:45:32.000000000 -05:00
   path: show.rb
   pipe?: false
   readable?: true
@@ -672,7 +726,7 @@ The output shows details of the set.
 ```show.yaml```:
 ```yaml
 ---
-Set (message='My simple set' size=3):
+Set (size=3 message='My simple set'):
   Element 0: Fixnum 5
   Element 1: Fixnum 10
   Element 2: Fixnum 15
@@ -697,7 +751,7 @@ The output shows details of the set.
 ```show.yaml```:
 ```yaml
 ---
-Set (message='My mixed set' size=3):
+Set (size=3 message='My mixed set'):
   Element 0: Fixnum 0
   Element 1:
     String (size=3):
@@ -734,7 +788,7 @@ The output shows details of the sets.
 ```show.yaml```:
 ```yaml
 ---
-Set (message='My nested sets' size=3):
+Set (size=3 message='My nested sets'):
   Element 0: Fixnum 0
   Element 1:
     Set (size=2):
@@ -770,7 +824,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-Set (message='My circular sets' size=1):
+Set (size=1 message='My circular sets'):
   Element 0:
     Set (size=1):
       Element 0: 'Set #<Set: {#<Set: {#<Set: {...}>}>}>'
@@ -797,7 +851,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-14T10:18:04-05:00 ((2458314j,55084s,502867000n),-18000s,2299161j)>'
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-16T10:10:30-05:00 ((2458316j,54630s,613738000n),-18000s,2299161j)>'
 ```
 
 #### Range
@@ -870,18 +924,18 @@ The output shows output for various depths.
 ```show.yaml```:
 ```yaml
 ---
-Array (message='Show depth 1' size=2):
+Array (size=2 message='Show depth 1'):
   Element 0: Fixnum 0
   Element 1: Array [1, [2, [3, [4]]]]
 ---
-Array (message='Show depth 2' size=2):
+Array (size=2 message='Show depth 2'):
   Element 0: Fixnum 0
   Element 1:
     Array (size=2):
       Element 0: Fixnum 1
       Element 1: Array [2, [3, [4]]]
 ---
-Array (message='Show depth 3' size=2):
+Array (size=2 message='Show depth 3'):
   Element 0: Fixnum 0
   Element 1:
     Array (size=2):
@@ -891,7 +945,7 @@ Array (message='Show depth 3' size=2):
           Element 0: Fixnum 2
           Element 1: Array [3, [4]]
 ---
-Array (message='Show depth 4' size=2):
+Array (size=2 message='Show depth 4'):
   Element 0: Fixnum 0
   Element 1:
     Array (size=2):
@@ -904,7 +958,7 @@ Array (message='Show depth 4' size=2):
               Element 0: Fixnum 3
               Element 1: Array [4]
 ---
-Array (message='Show depth 5' size=2):
+Array (size=2 message='Show depth 5'):
   Element 0: Fixnum 0
   Element 1:
     Array (size=2):

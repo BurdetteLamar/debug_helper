@@ -47,16 +47,18 @@ class DebugHelper
     else
       object_ids.push(obj.object_id)
       handler_class = case
-                  when obj.kind_of?(Array)
-                    EachWithIndexHandler
-                  when obj.kind_of?(Hash)
-                    HashHandler
-                  when obj.kind_of?(Set)
-                    EachWithIndexHandler
-                  when obj.kind_of?(Struct)
-                    StructHandler
-                  else
-                    ObjectHandler
+                        when obj.kind_of?(Array)
+                          EachWithIndexHandler
+                        when obj.kind_of?(Hash)
+                          HashHandler
+                        when obj.kind_of?(Set)
+                          EachWithIndexHandler
+                        when obj.kind_of?(String)
+                          StringHandler
+                        when obj.kind_of?(Struct)
+                          StructHandler
+                        else
+                          ObjectHandler
                       end
       handler = Object.const_get(handler_class.name).new(self, obj, message, info)
       s = handler.show
@@ -86,8 +88,8 @@ class DebugHelper
         content.store("Element #{i}", debug_helper._show(item, nil, {}))
       end
       attrs = {
-          :message => message,
           :size => obj.size,
+          :message => message,
       }
       debug_helper._show_item(obj.class.name, content, attrs, info)
     end
@@ -169,6 +171,25 @@ class DebugHelper
 
   end
 
+  class StringHandler < Handler
+
+    def show
+      content = {}
+      [
+          :to_s,
+          :encoding,
+          :ascii_only?,
+          :bytesize,
+      ].each do |method|
+        content.store(method.to_s, obj.send(method))
+      end
+      attrs = {
+          :size => obj.send(:size),
+          :message => message,
+      }
+      debug_helper._show_item(obj.class.name, content, attrs, info)
+    end
+  end
 
   def _show_item(class_name, content, attrs, info)
     message = attrs[:message]
@@ -215,17 +236,6 @@ class DebugHelper
                           :writable? => [obj.path],
                       },
                       :instance => [],
-                  }
-                when obj.kind_of?(String)
-                  {
-                      :class => {},
-                      :instance => [
-                          :to_s,
-                          :size,
-                          :encoding,
-                          :ascii_only?,
-                          :bytesize,
-                      ]
                   }
                 when obj.kind_of?(Symbol)
                   {

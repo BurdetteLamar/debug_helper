@@ -19,9 +19,4 @@ Hash (size=1 message='test_depth_default'):
                   Symbol (size=1):
                     to_s: c
                     encoding: !ruby/encoding US-ASCII
-                Value:
-                  String (size=2):
-                    to_s: ok
-                    encoding: !ruby/encoding UTF-8
-                    ascii_only?: true
-                    bytesize: 2
+                Value: String "ok"

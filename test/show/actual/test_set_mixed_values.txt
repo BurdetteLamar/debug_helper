@@ -1,5 +1,5 @@
 ---
-Set (message='test_set_mixed_values' size=6):
+Set (size=6 message='test_set_mixed_values'):
   Element 0: Fixnum 14
   Element 1:
     String (size=3):
