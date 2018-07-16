@@ -2,7 +2,7 @@ class DebugHelper
 
   class Handler
 
-    attr_accessor :show_method, :obj, :message, :info, :attrs
+    attr_accessor :show_method, :obj, :message, :info, :attrs, :content
 
     def initialize(show_method, obj, message, info)
       self.show_method = show_method
@@ -10,9 +10,10 @@ class DebugHelper
       self.message = message
       self.info = info
       self.attrs = {}
+      self.content = {}
     end
 
-    def show_item(class_name, content, info)
+    def show_item(class_name, info)
       message = attrs[:message]
       unless message.nil?
         attrs[:message] = "'#{message}'"
