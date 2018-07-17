@@ -2,20 +2,21 @@ require 'ostruct'
 require 'set'
 require 'yaml'
 
-require 'debug_helper/version'
+require_relative 'debug_helper/version'
 
-require 'debug_helper/handler'
+require_relative 'debug_helper/handler'
 
-  require 'debug_helper/each_with_index_handler'
+  require_relative 'debug_helper/each_with_index_handler'
 
-  require 'debug_helper/each_pair_handler'
-    require 'debug_helper/hash_handler'
-    require 'debug_helper/struct_handler'
+  require_relative 'debug_helper/each_pair_handler'
+    require_relative 'debug_helper/hash_handler'
+    require_relative 'debug_helper/struct_handler'
 
-  require 'debug_helper/file_handler'
-  require 'debug_helper/object_handler'
-  require 'debug_helper/string_handler'
-  require 'debug_helper/symbol_handler'
+  require_relative 'debug_helper/dir_handler'
+  require_relative 'debug_helper/file_handler'
+  require_relative 'debug_helper/object_handler'
+  require_relative 'debug_helper/string_handler'
+  require_relative 'debug_helper/symbol_handler'
 
 class DebugHelper
 
@@ -63,6 +64,8 @@ class DebugHelper
       handler_class = case
                         when obj.kind_of?(Array)
                           EachWithIndexHandler
+                        when obj.kind_of?(Dir)
+                          DirHandler
                         when obj.kind_of?(File)
                           FileHandler
                         when obj.kind_of?(Hash)

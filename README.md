@@ -47,6 +47,7 @@ Classes treated in detail:
 - [String](#string)
 - [Symbol](#symbol)
 - [File](#file)
+- [Dir](#dir)
 - [Set](#set)
 - [OpenStruct](#openstruct)
 
@@ -706,6 +707,36 @@ File (message='My simple file'):
   symlink?: false
   writable?: true
 ```
+### Dir
+
+#### Simple Dir
+
+This example shows a simple ```Dir  ``.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+dir = Dir.new(File.dirname(__FILE__))
+DebugHelper.show(dir, 'My simple dir')
+```
+
+The output shows details of the ```Dir```.
+
+```show.yaml```:
+```yaml
+---
+Dir (message='My simple dir'):
+  path: "."
+  entries:
+  - "."
+  - ".."
+  - show.md
+  - show.rb
+  - show.yaml
+  - template.md
+  exist?: true
+```
 ### Set
 
 #### Simple Set
@@ -1046,7 +1077,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-17T10:06:48-05:00 ((2458317j,54408s,181332000n),-18000s,2299161j)>'
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-17T14:30:03-05:00 ((2458317j,70203s,764562000n),-18000s,2299161j)>'
 ```
 
 #### Range
