@@ -4,5 +4,6 @@
 - [String](#string)
 - [Symbol](#symbol)
 - [File](#file)
+- [Dir](#dir)
 - [Set](#set)
 - [OpenStruct](#openstruct)

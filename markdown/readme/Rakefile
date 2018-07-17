@@ -1,3 +1,4 @@
+require 'debug_helper'
 require 'markdown_helper'
 
 namespace :build do
@@ -20,6 +21,7 @@ namespace :build do
         String
         Symbol
         File
+        Dir
         Set
         OpenStruct
         Object
