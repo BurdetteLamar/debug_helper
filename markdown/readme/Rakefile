@@ -22,6 +22,7 @@ namespace :build do
         Symbol
         File
         Dir
+        Range
         Set
         OpenStruct
         Object

@@ -48,6 +48,7 @@ Classes treated in detail:
 - [Symbol](#symbol)
 - [File](#file)
 - [Dir](#dir)
+- [Range](#range)
 - [Set](#set)
 - [OpenStruct](#openstruct)
 
@@ -737,6 +738,53 @@ Dir (message='My simple dir'):
   - template.md
   exist?: true
 ```
+### Range
+
+#### Simple Array
+
+This example shows a ```Range``` that includes its end value.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+range = (0..4)
+DebugHelper.show(range, 'My inclusive range')
+```
+
+The output shows details of the ```Range```.
+
+```show.yaml```:
+```yaml
+---
+Range (message='My inclusive range'):
+  first: 0
+  last: 4
+  exclude_end?: false
+```
+
+#### Simple Array
+
+This example shows a ```Range``` that excludes its end value.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+range = (0...4)
+DebugHelper.show(range, 'My exclusive range')
+```
+
+The output shows details of the ```Range```.
+
+```show.yaml```:
+```yaml
+---
+Range (message='My exclusive range'):
+  first: 0
+  last: 4
+  exclude_end?: true
+```
 ### Set
 
 #### Simple Set
@@ -1077,7 +1125,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-17T14:30:03-05:00 ((2458317j,70203s,764562000n),-18000s,2299161j)>'
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-17T15:21:53-05:00 ((2458317j,73313s,357758000n),-18000s,2299161j)>'
 ```
 
 #### Range
@@ -1096,8 +1144,11 @@ The output shows details of the range.
 
 ```show.yaml```:
 ```yaml
---- Range (message='My range') 0..9
-...
+---
+Range (message='My range'):
+  first: 0
+  last: 9
+  exclude_end?: false
 ```
 
 #### Regexp
