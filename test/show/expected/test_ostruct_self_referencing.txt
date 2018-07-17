@@ -1,0 +1,8 @@
+---
+OpenStruct (message='test_ostruct_self_referencing'):
+  Member 0:
+    Name:
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
+    Value: 'OpenStruct #<OpenStruct a=#<OpenStruct ...>>'

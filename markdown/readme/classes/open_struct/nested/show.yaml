@@ -1,0 +1,40 @@
+---
+OpenStruct (message='My nested struct'):
+  Member 0:
+    Name:
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      OpenStruct:
+        Member 0:
+          Name:
+            Symbol (size=1):
+              to_s: b
+              encoding: !ruby/encoding US-ASCII
+          Value: Fixnum 0
+        Member 1:
+          Name:
+            Symbol (size=1):
+              to_s: c
+              encoding: !ruby/encoding US-ASCII
+          Value: Fixnum 1
+  Member 1:
+    Name:
+      Symbol (size=1):
+        to_s: d
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      OpenStruct:
+        Member 0:
+          Name:
+            Symbol (size=1):
+              to_s: e
+              encoding: !ruby/encoding US-ASCII
+          Value: Fixnum 2
+        Member 1:
+          Name:
+            Symbol (size=1):
+              to_s: f
+              encoding: !ruby/encoding US-ASCII
+          Value: Fixnum 3

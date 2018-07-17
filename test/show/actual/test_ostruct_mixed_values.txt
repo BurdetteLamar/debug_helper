@@ -1,0 +1,28 @@
+---
+OpenStruct (message='test_ostruct_mixed_values'):
+  Member 0:
+    Name:
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
+    Value: Fixnum 0
+  Member 1:
+    Name:
+      Symbol (size=1):
+        to_s: b
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      String (size=3):
+        to_s: one
+        encoding: !ruby/encoding UTF-8
+        ascii_only?: true
+        bytesize: 3
+  Member 2:
+    Name:
+      Symbol (size=1):
+        to_s: c
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      Symbol (size=3):
+        to_s: two
+        encoding: !ruby/encoding US-ASCII

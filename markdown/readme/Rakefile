@@ -21,9 +21,21 @@ namespace :build do
         Symbol
         File
         Set
+        OpenStruct
         Object
       /
-      class_dir_names = class_names.collect {|x| x.downcase}
+      class_dir_names = []
+      correct_dir_names = {
+          :OpenStruct => 'open_struct'
+      }
+      class_names.each do |class_name|
+        if correct_dir_names.include?(class_name.to_sym)
+          class_dir_name = correct_dir_names.fetch(class_name.to_sym)
+        else
+          class_dir_name = class_name.downcase
+        end
+        class_dir_names.push(class_dir_name)
+      end
       class_dir_names.each do |class_dir_name|
         Dir.chdir(class_dir_name) do
           case_dir_names = Dir.glob('*').select {|f| File.directory? f}

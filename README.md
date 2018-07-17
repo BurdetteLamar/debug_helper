@@ -48,6 +48,7 @@ Classes treated in detail:
 - [Symbol](#symbol)
 - [File](#file)
 - [Set](#set)
+- [Open_struct](#open_struct)
 
 Others are treated as:
 
@@ -829,6 +830,200 @@ Set (size=1 message='My circular sets'):
     Set (size=1):
       Element 0: 'Set #<Set: {#<Set: {#<Set: {...}>}>}>'
 ```
+### OpenStruct
+
+#### Simple OpenStruct
+
+This example shows a simple open struct.
+
+```show.rb```:
+```ruby
+require 'ostruct'
+require 'debug_helper'
+
+ostruct = OpenStruct.new(:a => 0, :b => 1, :c => 2)
+DebugHelper.show(ostruct, 'My simple struct')
+```
+
+The output shows details of the open struct.
+
+```show.yaml```:
+```yaml
+---
+OpenStruct (message='My simple struct'):
+  Member 0:
+    Name:
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
+    Value: Fixnum 0
+  Member 1:
+    Name:
+      Symbol (size=1):
+        to_s: b
+        encoding: !ruby/encoding US-ASCII
+    Value: Fixnum 1
+  Member 2:
+    Name:
+      Symbol (size=1):
+        to_s: c
+        encoding: !ruby/encoding US-ASCII
+    Value: Fixnum 2
+```
+
+#### Mixed OpenStruct
+
+This example shows an open struct of mixed values.
+
+```show.rb```:
+```ruby
+require 'ostruct'
+require 'debug_helper'
+
+ostruct = OpenStruct.new(:a => 0, :b => 'one', :c => :two)
+DebugHelper.show(ostruct, 'My mixed open struct')
+```
+
+The output shows details of the open struct.
+
+```show.yaml```:
+```yaml
+---
+OpenStruct (message='My mixed open struct'):
+  Member 0:
+    Name:
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
+    Value: Fixnum 0
+  Member 1:
+    Name:
+      Symbol (size=1):
+        to_s: b
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      String (size=3):
+        to_s: one
+        encoding: !ruby/encoding UTF-8
+        ascii_only?: true
+        bytesize: 3
+  Member 2:
+    Name:
+      Symbol (size=1):
+        to_s: c
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      Symbol (size=3):
+        to_s: two
+        encoding: !ruby/encoding US-ASCII
+```
+
+#### Nested OpenStructs
+
+This example shows nested open structs.
+
+```show.rb```:
+```ruby
+require 'ostruct'
+require 'debug_helper'
+
+ostruct = OpenStruct.new(
+                        :a => OpenStruct.new(
+                                            :b => 0,
+                                            :c => 1,
+                        ),
+                        :d => OpenStruct.new(
+                                            :e => 2,
+                                            :f => 3,
+                        )
+)
+DebugHelper.show(ostruct, 'My nested struct')
+```
+
+The output shows details of the open structs.
+
+```show.yaml```:
+```yaml
+---
+OpenStruct (message='My nested struct'):
+  Member 0:
+    Name:
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      OpenStruct:
+        Member 0:
+          Name:
+            Symbol (size=1):
+              to_s: b
+              encoding: !ruby/encoding US-ASCII
+          Value: Fixnum 0
+        Member 1:
+          Name:
+            Symbol (size=1):
+              to_s: c
+              encoding: !ruby/encoding US-ASCII
+          Value: Fixnum 1
+  Member 1:
+    Name:
+      Symbol (size=1):
+        to_s: d
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      OpenStruct:
+        Member 0:
+          Name:
+            Symbol (size=1):
+              to_s: e
+              encoding: !ruby/encoding US-ASCII
+          Value: Fixnum 2
+        Member 1:
+          Name:
+            Symbol (size=1):
+              to_s: f
+              encoding: !ruby/encoding US-ASCII
+          Value: Fixnum 3
+```
+
+#### Circular OpenStructs
+
+This example shows open structs that make a circular reference.
+
+```show.rb```:
+```ruby
+require 'ostruct'
+require 'debug_helper'
+
+ostruct_0 = OpenStruct.new
+ostruct_1 = OpenStruct.new
+ostruct_0.a = ostruct_1
+ostruct_1.a = ostruct_0
+DebugHelper.show(ostruct_0, 'My circular ostruct')
+```
+
+The output shows details of the open structs.
+
+The circular reference is not followed.
+
+```show.yaml```:
+```yaml
+---
+OpenStruct (message='My circular ostruct'):
+  Member 0:
+    Name:
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      OpenStruct:
+        Member 0:
+          Name:
+            Symbol (size=1):
+              to_s: a
+              encoding: !ruby/encoding US-ASCII
+          Value: 'OpenStruct #<OpenStruct a=#<OpenStruct a=#<OpenStruct ...>>>'
+```
 ### Object
 
 Classes not mentioned above are not analyzed, but are treated more simply.
@@ -851,7 +1046,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-16T11:00:51-05:00 ((2458316j,57651s,166209000n),-18000s,2299161j)>'
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-17T09:45:16-05:00 ((2458317j,53116s,781674000n),-18000s,2299161j)>'
 ```
 
 #### Range
