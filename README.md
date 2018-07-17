@@ -35,7 +35,7 @@ This helper assists in debugging by printing an analysis of a given object.  The
 
 For certain classes (see below), the analysis is very detailed.
 
-For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is also recursive;  that is, the collection's values are themselves analyzed.
+For the collection classes ```Array```, ```Hash```, ```Struct```, ```Set```, and ```OpenStruct```, the analysis is also recursive;  that is, the collection's values are themselves analyzed.
 
 You can control the depth of recursion using option ```depth```.  See [Options](#options).
 
@@ -48,7 +48,7 @@ Classes treated in detail:
 - [Symbol](#symbol)
 - [File](#file)
 - [Set](#set)
-- [Open_struct](#open_struct)
+- [OpenStruct](#open_struct)
 
 Others are treated as:
 
@@ -1046,7 +1046,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-17T09:45:16-05:00 ((2458317j,53116s,781674000n),-18000s,2299161j)>'
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-17T09:58:36-05:00 ((2458317j,53916s,75028000n),-18000s,2299161j)>'
 ```
 
 #### Range
