@@ -62,7 +62,7 @@ namespace :build do
         else
           class_name = class_dir_name.capitalize
         end
-        link_line = "- [#{class_name}](##{class_dir_name})"
+        link_line = "- [#{class_name}](##{class_name.downcase})"
         file.puts(link_line)
       end
     end
