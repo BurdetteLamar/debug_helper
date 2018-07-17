@@ -1,4 +1,4 @@
-#### Simple Array
+#### Inclusive Range
 
 This example shows a ```Range``` that includes its end value.
 

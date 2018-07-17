@@ -1,4 +1,4 @@
-#### Simple Array
+#### Exclusive Range
 
 This example shows a ```Range``` that excludes its end value.
 

@@ -740,7 +740,7 @@ Dir (message='My simple dir'):
 ```
 ### Range
 
-#### Simple Array
+#### Inclusive Range
 
 This example shows a ```Range``` that includes its end value.
 
@@ -763,7 +763,7 @@ Range (message='My inclusive range'):
   exclude_end?: false
 ```
 
-#### Simple Array
+#### Exclusive Range
 
 This example shows a ```Range``` that excludes its end value.
 
@@ -1125,7 +1125,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-17T15:21:53-05:00 ((2458317j,73313s,357758000n),-18000s,2299161j)>'
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-17T15:24:23-05:00 ((2458317j,73463s,522064000n),-18000s,2299161j)>'
 ```
 
 #### Range
