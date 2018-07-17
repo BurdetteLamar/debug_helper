@@ -1125,30 +1125,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-17T15:31:10-05:00 ((2458317j,73870s,532001000n),-18000s,2299161j)>'
-```
-
-#### Range
-
-This example shows a range.
-
-```show.rb```:
-```ruby
-require 'debug_helper'
-
-range = Range.new(0, 9)
-DebugHelper.show(range, 'My range')
-```
-
-The output shows details of the range.
-
-```show.yaml```:
-```yaml
----
-Range (message='My range'):
-  first: 0
-  last: 9
-  exclude_end?: false
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-17T15:38:25-05:00 ((2458317j,74305s,983303000n),-18000s,2299161j)>'
 ```
 
 #### Regexp
