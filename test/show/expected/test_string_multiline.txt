@@ -1,5 +1,5 @@
 ---
-String (message='test_string_multiline' size=19):
+String (size=19 message='test_string_multiline'):
   to_s: |
     foobar
     snafu

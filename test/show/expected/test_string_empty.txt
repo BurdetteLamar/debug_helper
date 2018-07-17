@@ -1,5 +1,5 @@
 ---
-String (message='test_string_empty' size=0):
+String (size=0 message='test_string_empty'):
   to_s: ''
   encoding: !ruby/encoding UTF-8
   ascii_only?: true

@@ -1,4 +1,4 @@
 ---
-Set (message='test_set' size=2):
+Set (size=2 message='test_set'):
   Element 0: Fixnum 14
   Element 1: Fixnum 22

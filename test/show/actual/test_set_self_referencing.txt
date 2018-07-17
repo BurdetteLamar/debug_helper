@@ -1,3 +1,3 @@
 ---
-Set (message='test_set_self_referencing' size=1):
+Set (size=1 message='test_set_self_referencing'):
   Element 0: 'Set #<Set: {#<Set: {...}>}>'

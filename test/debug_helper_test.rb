@@ -187,6 +187,7 @@ EOT
       values = yaml.fetch(top_key)
       # Paths.
       {
+          :absolute_path => /^#{test_file_path}$/,
           :path => /^#{test_file_path}$/,
           :realpath => /^#{test_file_path}$/,
       }.each_pair do |key, regexp|

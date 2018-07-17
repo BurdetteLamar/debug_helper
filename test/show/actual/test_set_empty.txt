@@ -1,2 +1,2 @@
 ---
-Set (message='test_set_empty' size=0): {}
+Set (size=0 message='test_set_empty'): {}

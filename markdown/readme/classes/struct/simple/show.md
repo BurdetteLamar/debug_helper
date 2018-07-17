@@ -16,14 +16,23 @@ The output shows details of the struct.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (message='My simple struct' size=3):
+MyStruct (size=3 message='My simple struct'):
   Member 0:
-    Name: :a
+    Name:
+      Symbol (size=1):
+        to_s: a
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Member 1:
-    Name: :b
+    Name:
+      Symbol (size=1):
+        to_s: b
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Member 2:
-    Name: :c
+    Name:
+      Symbol (size=1):
+        to_s: c
+        encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2
 ```

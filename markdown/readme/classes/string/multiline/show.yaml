@@ -1,5 +1,5 @@
 ---
-String (message='My multiline string' size=122):
+String (size=122 message='My multiline string'):
   to_s: |
     Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
     sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
