@@ -3,7 +3,6 @@ class DebugHelper
   class FileHandler < Handler
 
     def show
-      content = {}
       # These are class methods.
       # Some of the corresponding instance methods
       # require that the file be open, so best to use the class method.
@@ -26,12 +25,12 @@ class DebugHelper
           :symlink? => [obj.path],
           :writable? => [obj.path],
       }.each_pair do |method, args|
-        content.store(method.to_s, File.send(method, *args))
+        self.content.store(method.to_s, File.send(method, *args))
       end
-      attrs = {
+      self.attrs = {
           :message => message,
       }
-      show_item(obj.class.name, content, attrs, info)
+      show_item
     end
   end
 

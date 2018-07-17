@@ -21,9 +21,21 @@ namespace :build do
         Symbol
         File
         Set
+        OpenStruct
         Object
       /
-      class_dir_names = class_names.collect {|x| x.downcase}
+      class_dir_names = []
+      correct_dir_names = {
+          :OpenStruct => 'open_struct'
+      }
+      class_names.each do |class_name|
+        if correct_dir_names.include?(class_name.to_sym)
+          class_dir_name = correct_dir_names.fetch(class_name.to_sym)
+        else
+          class_dir_name = class_name.downcase
+        end
+        class_dir_names.push(class_dir_name)
+      end
       class_dir_names.each do |class_dir_name|
         Dir.chdir(class_dir_name) do
           case_dir_names = Dir.glob('*').select {|f| File.directory? f}
@@ -40,10 +52,17 @@ namespace :build do
     end
     # Make list of links to class sections.
     File.open('class_links.md', 'w') do |file|
+      correct_class_names = {
+          :open_struct => 'OpenStruct',
+      }
       class_dir_names.each do |class_dir_name|
         next if class_dir_name == 'object'
-        proper_class_name = class_dir_name.capitalize
-        link_line = "- [#{proper_class_name}](##{class_dir_name})"
+        if correct_class_names.include?(class_dir_name.to_sym)
+          class_name = correct_class_names.fetch(class_dir_name.to_sym)
+        else
+          class_name = class_dir_name.capitalize
+        end
+        link_line = "- [#{class_name}](##{class_dir_name})"
         file.puts(link_line)
       end
     end

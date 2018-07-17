@@ -5,3 +5,4 @@
 - [Symbol](#symbol)
 - [File](#file)
 - [Set](#set)
+- [OpenStruct](#open_struct)

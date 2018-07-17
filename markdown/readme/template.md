@@ -25,7 +25,7 @@ This helper assists in debugging by printing an analysis of a given object.  The
 
 For certain classes (see below), the analysis is very detailed.
 
-For the collection classes ```Array```, ```Hash```, and ```Struct```, the analysis is also recursive;  that is, the collection's values are themselves analyzed.
+For the collection classes ```Array```, ```Hash```, ```Struct```, ```Set```, and ```OpenStruct```, the analysis is also recursive;  that is, the collection's values are themselves analyzed.
 
 You can control the depth of recursion using option ```depth```.  See [Options](#options).
 

@@ -1,6 +1,7 @@
 require 'diff-lcs'
-require 'tempfile'
+require 'ostruct'
 require 'set'
+require 'tempfile'
 require 'yaml'
 
 require "test_helper"
@@ -43,6 +44,14 @@ class DebugHelperTest < Minitest::Test
     hash_circular_value_0.store(:a, hash_circular_key_1)
     hash_circular_value_0.store(:b, hash_circular_key_0)
 
+    ostruct_self_referencing = OpenStruct.new
+    ostruct_self_referencing.a = ostruct_self_referencing
+
+    ostruct_circular_0 = OpenStruct.new
+    ostruct_circular_1 = OpenStruct.new
+    ostruct_circular_0.a = ostruct_circular_1
+    ostruct_circular_1.a = ostruct_circular_0
+
     set_self_referencing = Set.new([])
     set_self_referencing.add(set_self_referencing)
 
@@ -82,6 +91,12 @@ EOT
         :test_hash_self_referencing_value => hash_self_referencing_value,
         :test_hash_circular_key => hash_circular_key_0,
         :test_hash_circular_value => hash_circular_value_0,
+
+        :test_ostruct => OpenStruct.new(:a => 0, :b => 1, :c => 2),
+        :test_ostruct_empty => OpenStruct.new,
+        :test_ostruct_mixed_values => OpenStruct.new(:a => 0, :b => 'one', :c => :two),
+        :test_ostruct_self_referencing => ostruct_self_referencing,
+        :test_ostruct_circular => ostruct_circular_0,
 
         :test_set => Set.new([14, 22]),
         :test_set_empty => Set.new([]),

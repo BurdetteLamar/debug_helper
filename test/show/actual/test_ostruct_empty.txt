@@ -1,0 +1,2 @@
+---
+OpenStruct (message='test_ostruct_empty'): {}

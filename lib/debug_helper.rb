@@ -1,16 +1,21 @@
+require 'ostruct'
 require 'set'
 require 'yaml'
 
 require 'debug_helper/version'
+
 require 'debug_helper/handler'
-require 'debug_helper/each_pair_handler'
-require 'debug_helper/each_with_index_handler'
-require 'debug_helper/file_handler'
-require 'debug_helper/hash_handler'
-require 'debug_helper/object_handler'
-require 'debug_helper/string_handler'
-require 'debug_helper/struct_handler'
-require 'debug_helper/symbol_handler'
+
+  require 'debug_helper/each_with_index_handler'
+
+  require 'debug_helper/each_pair_handler'
+    require 'debug_helper/hash_handler'
+    require 'debug_helper/struct_handler'
+
+  require 'debug_helper/file_handler'
+  require 'debug_helper/object_handler'
+  require 'debug_helper/string_handler'
+  require 'debug_helper/symbol_handler'
 
 class DebugHelper
 
@@ -62,6 +67,8 @@ class DebugHelper
                           FileHandler
                         when obj.kind_of?(Hash)
                           HashHandler
+                        when obj.kind_of?(OpenStruct)
+                          StructHandler
                         when obj.kind_of?(Set)
                           EachWithIndexHandler
                         when obj.kind_of?(String)
