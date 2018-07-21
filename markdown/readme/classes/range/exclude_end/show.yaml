@@ -1,0 +1,5 @@
+---
+Range (message='My exclusive range'):
+  first: 0
+  last: 4
+  exclude_end?: true

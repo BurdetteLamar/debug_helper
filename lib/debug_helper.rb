@@ -17,6 +17,7 @@ require_relative 'debug_helper/handler'
   require_relative 'debug_helper/object_handler'
   require_relative 'debug_helper/string_handler'
   require_relative 'debug_helper/symbol_handler'
+  require_relative 'debug_helper/range_handler'
 
 class DebugHelper
 
@@ -72,6 +73,8 @@ class DebugHelper
                           HashHandler
                         when obj.kind_of?(OpenStruct)
                           StructHandler
+                        when obj.kind_of?(Range)
+                          RangeHandler
                         when obj.kind_of?(Set)
                           EachWithIndexHandler
                         when obj.kind_of?(String)

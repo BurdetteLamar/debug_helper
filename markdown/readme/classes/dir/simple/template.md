@@ -1,6 +1,6 @@
 #### Simple Dir
 
-This example shows a simple ```Dir  ``.
+This example shows a simple ```Dir```.
 
 @[ruby](show.rb)
 
