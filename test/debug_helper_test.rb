@@ -83,7 +83,7 @@ EOT
         :test_array_self_referencing => array_self_referencing,
         :test_array_circular => array_circular_0,
 
-        # :test_dir => Dir.new(File.dirname(__FILE__)),
+        :test_dir => Dir.new(File.dirname(__FILE__)),
 
         :test_hash => {:a => 14, :b => 22},
         :test_hash_empty => {},

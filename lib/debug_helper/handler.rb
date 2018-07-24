@@ -25,6 +25,17 @@ class DebugHelper
         end
         content.store(method.to_s, value)
       end
+      calls_for_class.each do |call_info|
+        klass = Object.const_get(obj.class.name)
+        method = call_info.shift
+        args = call_info
+        if args.empty?
+          value = klass.send(method)
+        else
+          value = klass.send(method, *args)
+        end
+        content.store(method.to_s, value)
+      end
       if each_with_index?
         obj.each_with_index do |item, i|
           self.content.store("Element #{i}", show_method.call(item, nil, {}))
@@ -55,6 +66,10 @@ class DebugHelper
     end
 
     def calls_for_instance
+      []
+    end
+
+    def calls_for_class
       []
     end
 
