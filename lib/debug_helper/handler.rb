@@ -25,6 +25,11 @@ class DebugHelper
         end
         content.store(method.to_s, value)
       end
+      if each_with_index?
+        obj.each_with_index do |item, i|
+          self.content.store("Element #{i}", show_method.call(item, nil, {}))
+        end
+      end
       attrs[:message] = "'#{message}'"
       self.info.store(label, content)
       info
@@ -42,6 +47,10 @@ class DebugHelper
 
     def calls_for_instance
       []
+    end
+
+    def each_with_index?
+      false
     end
 
   end
