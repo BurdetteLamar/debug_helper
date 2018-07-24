@@ -94,12 +94,12 @@ EOT
         :test_hash_circular_key => hash_circular_key_0,
         :test_hash_circular_value => hash_circular_value_0,
 
-        # :test_ostruct => OpenStruct.new(:a => 0, :b => 1, :c => 2),
-        # :test_ostruct_empty => OpenStruct.new,
-        # :test_ostruct_mixed_values => OpenStruct.new(:a => 0, :b => 'one', :c => :two),
-        # :test_ostruct_self_referencing => ostruct_self_referencing,
-        # :test_ostruct_circular => ostruct_circular_0,
-        #
+        :test_ostruct => OpenStruct.new(:a => 0, :b => 1, :c => 2),
+        :test_ostruct_empty => OpenStruct.new,
+        :test_ostruct_mixed_values => OpenStruct.new(:a => 0, :b => 'one', :c => :two),
+        :test_ostruct_self_referencing => ostruct_self_referencing,
+        :test_ostruct_circular => ostruct_circular_0,
+
         # :test_range_include_end => (0..4),
         # :test_range_exclude_end => (0...4),
         #

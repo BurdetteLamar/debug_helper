@@ -1,15 +1,19 @@
 ---
 OpenStruct (message='test_ostruct_circular'):
+  size: 
   Member 0:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       OpenStruct:
+        size: 
         Member 0:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: a
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: 'OpenStruct #<OpenStruct a=#<OpenStruct a=#<OpenStruct ...>>>'
