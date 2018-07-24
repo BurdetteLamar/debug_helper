@@ -2,19 +2,12 @@ class DebugHelper
 
   class RangeHandler < Handler
 
-    def show
-      # Instance methods.
+    def calls_for_instance
       [
-          :first,
-          :last,
-          :exclude_end?,
-      ].each do |method|
-        self.content.store(method.to_s, obj.send(method))
-      end
-      self.attrs = {
-          :message => message,
-      }
-      show_item
+          [:first],
+          [:last],
+          [:exclude_end?],
+      ]
     end
 
   end
