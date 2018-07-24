@@ -1,28 +1,34 @@
 ---
-Array (size=6 message='test_array_mixed_values'):
+Array (message='test_array_mixed_values'):
+  size: 6
   Element 0: Fixnum 14
   Element 1:
-    String (size=3):
+    String:
       to_s: foo
+      size: 3
       encoding: !ruby/encoding UTF-8
       ascii_only?: true
       bytesize: 3
   Element 2:
-    Array (size=2):
+    Array:
+      size: 2
       Element 0: Fixnum 0
       Element 1: Fixnum 1
   Element 3:
     Hash (size=2):
+      size: 2
       Pair 0:
         Key:
-          Symbol (size=1):
+          Symbol:
             to_s: a
+            size: 1
             encoding: !ruby/encoding US-ASCII
         Value: Fixnum 1
       Pair 1:
         Key:
-          Symbol (size=1):
+          Symbol:
             to_s: b
+            size: 1
             encoding: !ruby/encoding US-ASCII
         Value: Fixnum 1
   Element 4: TrueClass true

@@ -2,18 +2,12 @@ class DebugHelper
 
   class SymbolHandler < Handler
 
-    def show
+    def calls_for_instance
       [
-          :to_s,
-          :encoding,
-      ].each do |method|
-        self.content.store(method.to_s, obj.send(method))
-      end
-      self.attrs = {
-          :size => obj.size,
-          :message => message,
-      }
-      show_item
+          [:to_s],
+          [:size],
+          [:encoding],
+      ]
     end
 
   end

@@ -2,15 +2,14 @@ class DebugHelper
 
   class EachWithIndexHandler < Handler
 
-    def show
-      obj.each_with_index do |item, i|
-        self.content.store("Element #{i}", show_method.call(item, nil, {}))
-      end
-      self.attrs = {
-          :size => obj.size,
-          :message => message,
-      }
-      show_item
+    def calls_for_instance
+      [
+          [:size],
+      ]
+    end
+
+    def each_with_index?
+      true
     end
 
   end

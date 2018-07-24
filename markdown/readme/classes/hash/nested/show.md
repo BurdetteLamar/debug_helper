@@ -25,42 +25,51 @@ The output shows details of the hashes.
 ```yaml
 ---
 Hash (size=2 message='My nested hash'):
+  size: 2
   Pair 0:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=2):
+        size: 2
         Pair 0:
           Key:
-            Symbol (size=1):
+            Symbol:
               to_s: b
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 0
         Pair 1:
           Key:
-            Symbol (size=1):
+            Symbol:
               to_s: c
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 1
   Pair 1:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: d
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=2):
+        size: 2
         Pair 0:
           Key:
-            Symbol (size=1):
+            Symbol:
               to_s: e
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 2
         Pair 1:
           Key:
-            Symbol (size=1):
+            Symbol:
               to_s: f
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 3
 ```

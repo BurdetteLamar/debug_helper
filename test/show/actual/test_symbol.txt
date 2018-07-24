@@ -1,4 +1,5 @@
 ---
-Symbol (size=11 message='test_symbol'):
+Symbol (message='test_symbol'):
   to_s: lorem_ipsum
+  size: 11
   encoding: !ruby/encoding US-ASCII

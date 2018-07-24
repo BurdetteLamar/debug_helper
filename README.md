@@ -94,7 +94,8 @@ The output shows details of the array.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=3 message='My simple array'):
+Array (message='My simple array'):
+  size: 3
   Element 0: Fixnum 5
   Element 1: Fixnum 10
   Element 2: Fixnum 15
@@ -117,17 +118,20 @@ The output shows details of the array.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=3 message='My mixed array'):
+Array (message='My mixed array'):
+  size: 3
   Element 0: Fixnum 0
   Element 1:
-    String (size=3):
+    String:
       to_s: one
+      size: 3
       encoding: !ruby/encoding UTF-8
       ascii_only?: true
       bytesize: 3
   Element 2:
-    Symbol (size=3):
+    Symbol:
       to_s: two
+      size: 3
       encoding: !ruby/encoding US-ASCII
 ```
 
@@ -148,14 +152,17 @@ The output shows details of the arrays.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=3 message='My nested arrays'):
+Array (message='My nested arrays'):
+  size: 3
   Element 0: Fixnum 0
   Element 1:
-    Array (size=2):
+    Array:
+      size: 2
       Element 0: Fixnum 1
       Element 1: Fixnum 2
   Element 2:
-    Array (size=2):
+    Array:
+      size: 2
       Element 0: Fixnum 3
       Element 1: Fixnum 4
 ```
@@ -182,9 +189,11 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=1 message='My circular arrays'):
+Array (message='My circular arrays'):
+  size: 1
   Element 0:
-    Array (size=1):
+    Array:
+      size: 1
       Element 0: Array [[[...]]]
 ```
 ### Hash
@@ -207,22 +216,26 @@ The output shows details of the hash.
 ```yaml
 ---
 Hash (size=3 message='My simple hash'):
+  size: 3
   Pair 0:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Pair 1:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Pair 2:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: c
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2
 ```
@@ -249,31 +262,37 @@ The output shows details of the hash.
 ```yaml
 ---
 Hash (size=3 message='My mixed hash'):
+  size: 3
   Pair 0:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Pair 1:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      String (size=3):
+      String:
         to_s: one
+        size: 3
         encoding: !ruby/encoding UTF-8
         ascii_only?: true
         bytesize: 3
   Pair 2:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: c
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      Symbol (size=3):
+      Symbol:
         to_s: two
+        size: 3
         encoding: !ruby/encoding US-ASCII
 ```
 
@@ -304,42 +323,51 @@ The output shows details of the hashes.
 ```yaml
 ---
 Hash (size=2 message='My nested hash'):
+  size: 2
   Pair 0:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=2):
+        size: 2
         Pair 0:
           Key:
-            Symbol (size=1):
+            Symbol:
               to_s: b
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 0
         Pair 1:
           Key:
-            Symbol (size=1):
+            Symbol:
               to_s: c
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 1
   Pair 1:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: d
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=2):
+        size: 2
         Pair 0:
           Key:
-            Symbol (size=1):
+            Symbol:
               to_s: e
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 2
         Pair 1:
           Key:
-            Symbol (size=1):
+            Symbol:
               to_s: f
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 3
 ```
@@ -367,17 +395,21 @@ The circular reference is not followed.
 ```yaml
 ---
 Hash (size=1 message='My circular hashes'):
+  size: 1
   Pair 0:
     Key:
-      Symbol (size=3):
+      Symbol:
         to_s: foo
+        size: 3
         encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=1):
+        size: 1
         Pair 0:
           Key:
-            Symbol (size=3):
+            Symbol:
               to_s: bar
+              size: 3
               encoding: !ruby/encoding US-ASCII
           Value: Hash {:foo=>{:bar=>{...}}}
 ```
@@ -402,22 +434,26 @@ The output shows details of the struct.
 ```yaml
 ---
 MyStruct (size=3 message='My simple struct'):
+  size: 3
   Member 0:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Member 1:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Member 2:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: c
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2
 ```
@@ -441,31 +477,37 @@ The output shows details of the struct.
 ```yaml
 ---
 MyStruct (size=3 message='My mixed struct'):
+  size: 3
   Member 0:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Member 1:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      String (size=3):
+      String:
         to_s: one
+        size: 3
         encoding: !ruby/encoding UTF-8
         ascii_only?: true
         bytesize: 3
   Member 2:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: c
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      Symbol (size=3):
+      Symbol:
         to_s: two
+        size: 3
         encoding: !ruby/encoding US-ASCII
 ```
 
@@ -491,42 +533,51 @@ The output shows details of the structs.
 ```yaml
 ---
 MyStruct_0 (size=2 message='My nested struct'):
+  size: 2
   Member 0:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       MyStruct_1 (size=2):
+        size: 2
         Member 0:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: c
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 2
         Member 1:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: d
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 3
   Member 1:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       MyStruct_1 (size=2):
+        size: 2
         Member 0:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: c
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 4
         Member 1:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: d
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 5
 ```
@@ -555,42 +606,50 @@ The circular reference is not followed.
 ```yaml
 ---
 MyStruct (size=3 message='My circular struct'):
+  size: 3
   Member 0:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       MyStruct (size=3):
+        size: 3
         Member 0:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: a
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: 'MyStruct #<struct MyStruct a=#<struct MyStruct a=#<struct MyStruct:...>,
             b=4, c=5>, b=1, c=2>'
         Member 1:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: b
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 4
         Member 2:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: c
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 5
   Member 1:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Member 2:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: c
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2
 ```
@@ -613,8 +672,9 @@ The output shows details of the string.
 ```show.yaml```:
 ```yaml
 ---
-String (size=11 message='My simple string'):
+String (message='My simple string'):
   to_s: Lorem ipsum
+  size: 11
   encoding: !ruby/encoding UTF-8
   ascii_only?: true
   bytesize: 11
@@ -640,10 +700,11 @@ The output shows details of the string.
 ```show.yaml```:
 ```yaml
 ---
-String (size=122 message='My multiline string'):
+String (message='My multiline string'):
   to_s: |
     Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
     sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
+  size: 122
   encoding: !ruby/encoding UTF-8
   ascii_only?: true
   bytesize: 122
@@ -666,8 +727,9 @@ The output shows details of the symbol.
 ```show.yaml```:
 ```yaml
 ---
-Symbol (size=11 message='My symbol'):
+Symbol (message='My symbol'):
   to_s: lorem_ipsum
+  size: 11
   encoding: !ruby/encoding US-ASCII
 ```
 ### File
@@ -806,7 +868,8 @@ The output shows details of the set.
 ```show.yaml```:
 ```yaml
 ---
-Set (size=3 message='My simple set'):
+Set (message='My simple set'):
+  size: 3
   Element 0: Fixnum 5
   Element 1: Fixnum 10
   Element 2: Fixnum 15
@@ -831,17 +894,20 @@ The output shows details of the set.
 ```show.yaml```:
 ```yaml
 ---
-Set (size=3 message='My mixed set'):
+Set (message='My mixed set'):
+  size: 3
   Element 0: Fixnum 0
   Element 1:
-    String (size=3):
+    String:
       to_s: one
+      size: 3
       encoding: !ruby/encoding UTF-8
       ascii_only?: true
       bytesize: 3
   Element 2:
-    Symbol (size=3):
+    Symbol:
       to_s: two
+      size: 3
       encoding: !ruby/encoding US-ASCII
 ```
 
@@ -868,14 +934,17 @@ The output shows details of the sets.
 ```show.yaml```:
 ```yaml
 ---
-Set (size=3 message='My nested sets'):
+Set (message='My nested sets'):
+  size: 3
   Element 0: Fixnum 0
   Element 1:
-    Set (size=2):
+    Set:
+      size: 2
       Element 0: Fixnum 1
       Element 1: Fixnum 2
   Element 2:
-    Set (size=2):
+    Set:
+      size: 2
       Element 0: Fixnum 3
       Element 1: Fixnum 4
 ```
@@ -904,9 +973,11 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-Set (size=1 message='My circular sets'):
+Set (message='My circular sets'):
+  size: 1
   Element 0:
-    Set (size=1):
+    Set:
+      size: 1
       Element 0: 'Set #<Set: {#<Set: {#<Set: {...}>}>}>'
 ```
 ### OpenStruct
@@ -930,22 +1001,26 @@ The output shows details of the open struct.
 ```yaml
 ---
 OpenStruct (message='My simple struct'):
+  size: 
   Member 0:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Member 1:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Member 2:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: c
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2
 ```
@@ -969,31 +1044,37 @@ The output shows details of the open struct.
 ```yaml
 ---
 OpenStruct (message='My mixed open struct'):
+  size: 
   Member 0:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Member 1:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      String (size=3):
+      String:
         to_s: one
+        size: 3
         encoding: !ruby/encoding UTF-8
         ascii_only?: true
         bytesize: 3
   Member 2:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: c
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      Symbol (size=3):
+      Symbol:
         to_s: two
+        size: 3
         encoding: !ruby/encoding US-ASCII
 ```
 
@@ -1025,42 +1106,51 @@ The output shows details of the open structs.
 ```yaml
 ---
 OpenStruct (message='My nested struct'):
+  size: 
   Member 0:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       OpenStruct:
+        size: 
         Member 0:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: b
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 0
         Member 1:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: c
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 1
   Member 1:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: d
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       OpenStruct:
+        size: 
         Member 0:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: e
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 2
         Member 1:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: f
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 3
 ```
@@ -1089,17 +1179,21 @@ The circular reference is not followed.
 ```yaml
 ---
 OpenStruct (message='My circular ostruct'):
+  size: 
   Member 0:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       OpenStruct:
+        size: 
         Member 0:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: a
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: 'OpenStruct #<OpenStruct a=#<OpenStruct a=#<OpenStruct ...>>>'
 ```
@@ -1125,7 +1219,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-17T15:38:25-05:00 ((2458317j,74305s,983303000n),-18000s,2299161j)>'
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-24T15:24:48-05:00 ((2458324j,73488s,481268000n),-18000s,2299161j)>'
 ```
 
 #### Regexp
@@ -1178,52 +1272,67 @@ The output shows output for various depths.
 ```show.yaml```:
 ```yaml
 ---
-Array (size=2 message='Show depth 1'):
+Array (message='Show depth 1'):
+  size: 2
   Element 0: Fixnum 0
   Element 1: Array [1, [2, [3, [4]]]]
 ---
-Array (size=2 message='Show depth 2'):
+Array (message='Show depth 2'):
+  size: 2
   Element 0: Fixnum 0
   Element 1:
-    Array (size=2):
+    Array:
+      size: 2
       Element 0: Fixnum 1
       Element 1: Array [2, [3, [4]]]
 ---
-Array (size=2 message='Show depth 3'):
+Array (message='Show depth 3'):
+  size: 2
   Element 0: Fixnum 0
   Element 1:
-    Array (size=2):
+    Array:
+      size: 2
       Element 0: Fixnum 1
       Element 1:
-        Array (size=2):
+        Array:
+          size: 2
           Element 0: Fixnum 2
           Element 1: Array [3, [4]]
 ---
-Array (size=2 message='Show depth 4'):
+Array (message='Show depth 4'):
+  size: 2
   Element 0: Fixnum 0
   Element 1:
-    Array (size=2):
+    Array:
+      size: 2
       Element 0: Fixnum 1
       Element 1:
-        Array (size=2):
+        Array:
+          size: 2
           Element 0: Fixnum 2
           Element 1:
-            Array (size=2):
+            Array:
+              size: 2
               Element 0: Fixnum 3
               Element 1: Array [4]
 ---
-Array (size=2 message='Show depth 5'):
+Array (message='Show depth 5'):
+  size: 2
   Element 0: Fixnum 0
   Element 1:
-    Array (size=2):
+    Array:
+      size: 2
       Element 0: Fixnum 1
       Element 1:
-        Array (size=2):
+        Array:
+          size: 2
           Element 0: Fixnum 2
           Element 1:
-            Array (size=2):
+            Array:
+              size: 2
               Element 0: Fixnum 3
               Element 1:
-                Array (size=1):
+                Array:
+                  size: 1
                   Element 0: Fixnum 4
 ```

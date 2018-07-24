@@ -2,21 +2,16 @@ class DebugHelper
 
   class StringHandler < Handler
 
-    def show
+    def calls_for_instance
       [
-          :to_s,
-          :encoding,
-          :ascii_only?,
-          :bytesize,
-      ].each do |method|
-        self.content.store(method.to_s, obj.send(method))
-      end
-      self.attrs = {
-          :size => obj.send(:size),
-          :message => message,
-      }
-      show_item
+          [:to_s],
+          [:size],
+          [:encoding],
+          [:ascii_only?],
+          [:bytesize],
+      ]
     end
+
   end
 
 end

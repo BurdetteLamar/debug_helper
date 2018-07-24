@@ -1,20 +1,24 @@
 ---
 DebugHelperTest::MyStruct (size=3 message='test_struct'):
+  size: 3
   Member 0:
     Name:
-      Symbol (size=3):
+      Symbol:
         to_s: foo
+        size: 3
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Member 1:
     Name:
-      Symbol (size=3):
+      Symbol:
         to_s: bar
+        size: 3
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Member 2:
     Name:
-      Symbol (size=3):
+      Symbol:
         to_s: baz
+        size: 3
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2

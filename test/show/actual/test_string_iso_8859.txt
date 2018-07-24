@@ -1,6 +1,7 @@
 ---
-String (size=11 message='test_string_iso_8859'):
+String (message='test_string_iso_8859'):
   to_s: Lorem ipsum
+  size: 11
   encoding: !ruby/encoding ISO-8859-1
   ascii_only?: true
   bytesize: 11

@@ -22,17 +22,21 @@ The circular reference is not followed.
 ```yaml
 ---
 OpenStruct (message='My circular ostruct'):
+  size: 
   Member 0:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       OpenStruct:
+        size: 
         Member 0:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: a
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: 'OpenStruct #<OpenStruct a=#<OpenStruct a=#<OpenStruct ...>>>'
 ```

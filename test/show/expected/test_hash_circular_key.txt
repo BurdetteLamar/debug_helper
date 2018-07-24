@@ -1,8 +1,10 @@
 ---
 Hash (size=2 message='test_hash_circular_key'):
+  size: 2
   Pair 0:
     Key:
-      Hash (size=0): {}
+      Hash (size=0):
+        size: 0
     Value: Fixnum 0
   Pair 1:
     Key: Hash {{}=>0, {...}=>0}

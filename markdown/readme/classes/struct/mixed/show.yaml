@@ -1,28 +1,34 @@
 ---
 MyStruct (size=3 message='My mixed struct'):
+  size: 3
   Member 0:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Member 1:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      String (size=3):
+      String:
         to_s: one
+        size: 3
         encoding: !ruby/encoding UTF-8
         ascii_only?: true
         bytesize: 3
   Member 2:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: c
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      Symbol (size=3):
+      Symbol:
         to_s: two
+        size: 3
         encoding: !ruby/encoding US-ASCII

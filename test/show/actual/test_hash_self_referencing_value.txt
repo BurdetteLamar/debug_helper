@@ -1,8 +1,10 @@
 ---
 Hash (size=1 message='test_hash_self_referencing_value'):
+  size: 1
   Pair 0:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Hash {:a=>{...}}
