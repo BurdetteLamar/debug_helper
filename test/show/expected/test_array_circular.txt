@@ -1,5 +1,7 @@
 ---
-Array (size=1 message='test_array_circular'):
+Array (message='test_array_circular'):
+  size: 1
   Element 0:
-    Array (size=1):
+    Array (message=''):
+      size: 1
       Element 0: Array [[[...]]]

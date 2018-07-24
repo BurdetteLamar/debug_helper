@@ -1,3 +1,4 @@
 ---
-Array (size=1 message='test_array_self_referencing'):
+Array (message='test_array_self_referencing'):
+  size: 1
   Element 0: Array [[...]]

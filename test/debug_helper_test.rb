@@ -78,11 +78,11 @@ EOT
 
     {
         :test_array => [14, 22],
-        # :test_array_empty => [],
+        :test_array_empty => [],
         # :test_array_mixed_values => [14, 'foo', [0, 1], {:a => 1, :b => 1}, true, nil],
-        # :test_array_self_referencing => array_self_referencing,
-        # :test_array_circular => array_circular_0,
-        #
+        :test_array_self_referencing => array_self_referencing,
+        :test_array_circular => array_circular_0,
+
         # :test_dir => Dir.new(File.dirname(__FILE__)),
         #
         # :test_hash => {:a => 14, :b => 22},
