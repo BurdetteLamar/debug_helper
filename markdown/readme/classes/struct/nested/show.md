@@ -20,42 +20,51 @@ The output shows details of the structs.
 ```yaml
 ---
 MyStruct_0 (size=2 message='My nested struct'):
+  size: 2
   Member 0:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       MyStruct_1 (size=2):
+        size: 2
         Member 0:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: c
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 2
         Member 1:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: d
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 3
   Member 1:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       MyStruct_1 (size=2):
+        size: 2
         Member 0:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: c
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 4
         Member 1:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: d
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 5
 ```

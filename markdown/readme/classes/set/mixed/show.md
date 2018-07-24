@@ -17,16 +17,19 @@ The output shows details of the set.
 ```show.yaml```:
 ```yaml
 ---
-Set (size=3 message='My mixed set'):
+Set (message='My mixed set'):
+  size: 3
   Element 0: Fixnum 0
   Element 1:
-    String (size=3):
+    String:
       to_s: one
+      size: 3
       encoding: !ruby/encoding UTF-8
       ascii_only?: true
       bytesize: 3
   Element 2:
-    Symbol (size=3):
+    Symbol:
       to_s: two
+      size: 3
       encoding: !ruby/encoding US-ASCII
 ```

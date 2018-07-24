@@ -21,17 +21,21 @@ The circular reference is not followed.
 ```yaml
 ---
 Hash (size=1 message='My circular hashes'):
+  size: 1
   Pair 0:
     Key:
-      Symbol (size=3):
+      Symbol:
         to_s: foo
+        size: 3
         encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=1):
+        size: 1
         Pair 0:
           Key:
-            Symbol (size=3):
+            Symbol:
               to_s: bar
+              size: 3
               encoding: !ruby/encoding US-ASCII
           Value: Hash {:foo=>{:bar=>{...}}}
 ```

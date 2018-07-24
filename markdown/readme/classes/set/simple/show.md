@@ -17,7 +17,8 @@ The output shows details of the set.
 ```show.yaml```:
 ```yaml
 ---
-Set (size=3 message='My simple set'):
+Set (message='My simple set'):
+  size: 3
   Element 0: Fixnum 5
   Element 1: Fixnum 10
   Element 2: Fixnum 15

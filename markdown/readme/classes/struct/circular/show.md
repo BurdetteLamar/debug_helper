@@ -22,42 +22,50 @@ The circular reference is not followed.
 ```yaml
 ---
 MyStruct (size=3 message='My circular struct'):
+  size: 3
   Member 0:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       MyStruct (size=3):
+        size: 3
         Member 0:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: a
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: 'MyStruct #<struct MyStruct a=#<struct MyStruct a=#<struct MyStruct:...>,
             b=4, c=5>, b=1, c=2>'
         Member 1:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: b
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 4
         Member 2:
           Name:
-            Symbol (size=1):
+            Symbol:
               to_s: c
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value: Fixnum 5
   Member 1:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Member 2:
     Name:
-      Symbol (size=1):
+      Symbol:
         to_s: c
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2
 ```
