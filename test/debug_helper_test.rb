@@ -199,7 +199,7 @@ EOT
     end
   end
 
-  def zzz_test_show_file
+  def test_show_file
     # To remove volatile values from the captured output.
     def clean_file(actual_file_path, test_file_path)
       yaml = YAML.load_file(actual_file_path)
