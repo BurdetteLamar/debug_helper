@@ -11,13 +11,21 @@ class DebugHelper
       self.info = info
       self.attrs = {}
       self.content = {}
+      show
     end
 
-    def show_item
-      message = attrs[:message]
-      unless message.nil?
-        attrs[:message] = "'#{message}'"
+    def show
+      calls_for_instance.each do |call_info|
+        method = call_info.shift
+        args = call_info
+        if args.empty?
+          value = obj.send(method)
+        else
+          value = obj.send(method, *args)
+        end
+        content.store(method.to_s, value)
       end
+      attrs[:message] = "'#{message}'"
       self.info.store(label, content)
       info
     end
@@ -30,6 +38,10 @@ class DebugHelper
       return self.obj.class.name if a.empty?
       attrs_s = a.join(' ')
       "#{self.obj.class.name} (#{attrs_s})"
+    end
+
+    def calls_for_instance
+      []
     end
 
   end

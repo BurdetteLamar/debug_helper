@@ -1,9 +1,10 @@
 ---
-String (size=19 message='test_string_multiline'):
+String (message='test_string_multiline'):
   to_s: |
     foobar
     snafu
     janfu
+  size: 19
   encoding: !ruby/encoding UTF-8
   ascii_only?: true
   bytesize: 19
