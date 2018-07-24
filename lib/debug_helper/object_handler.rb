@@ -2,9 +2,10 @@ class DebugHelper
 
   class ObjectHandler < Handler
 
-    def show
-      message_info = message.nil? ? '' : " (message='#{message}')"
-      "#{obj.class.name}#{message_info} #{obj.inspect}"
+    def calls_for_instance
+      [
+          [:object_id],
+      ]
     end
 
   end

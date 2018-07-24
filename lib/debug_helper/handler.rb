@@ -15,6 +15,11 @@ class DebugHelper
     end
 
     def show
+      gather
+      finish
+    end
+
+    def gather
       calls_for_instance.each do |call_info|
         method = call_info.shift
         args = call_info
@@ -50,6 +55,9 @@ class DebugHelper
           i += 1
         end
       end
+    end
+
+    def finish
       attrs[:message] = "'#{message}'" unless message.nil?
       self.info.store(label, content)
       info

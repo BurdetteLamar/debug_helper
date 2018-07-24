@@ -18,7 +18,7 @@ class DebugHelperTest < Minitest::Test
 
   MyStruct = Struct.new(:foo, :bar, :baz)
 
-  def test_show_object
+  def test_show
 
     array_self_referencing = []
     array_self_referencing.push(array_self_referencing)
@@ -196,6 +196,39 @@ EOT
       DebugHelperTest.write_stdout(actual_file_path) do
         putd(obj, name, options)
       end
+    end
+  end
+
+  def test_show_object
+    # To remove volatile values from the captured output.
+    def clean_file(actual_file_path)
+      yaml = YAML.load_file(actual_file_path)
+      top_key = yaml.keys.first
+      values = yaml.fetch(top_key)
+      # Object ID.
+      {
+          :object_id => /^\d+$/,
+      }.each_pair do |key, regexp|
+        value = values.delete(key.to_s).to_s
+        assert_match(regexp, value)
+      end
+      yaml.store(top_key, values)
+      File.write(actual_file_path, YAML.dump(yaml))
+    end
+    name = 'test_object'
+    object = Object.new
+    _test_show(self, :show, object, name) do |expected_file_path,
+        actual_file_path|
+      DebugHelperTest.write_stdout(actual_file_path) do
+        DebugHelper.send(:show, object, name)
+      end
+      clean_file(actual_file_path)
+    end
+    _test_show(self, :putd, object, name) do |expected_file_path, actual_file_path|
+      DebugHelperTest.write_stdout(actual_file_path) do
+        putd(object, name)
+      end
+      clean_file(actual_file_path)
     end
   end
 
