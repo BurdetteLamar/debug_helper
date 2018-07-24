@@ -117,8 +117,8 @@ EOT
         # :test_struct => struct,
         # :test_struct_self_referencing => struct_self_referencing,
         # :test_struct_circular => struct_circular_0,
-        #
-        # :test_symbol => :lorem_ipsum,
+
+        :test_symbol => :lorem_ipsum,
 
     }.each_pair do |name, obj|
       _test_show_object(self, obj, name)
