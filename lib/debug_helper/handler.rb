@@ -30,7 +30,16 @@ class DebugHelper
           self.content.store("Element #{i}", show_method.call(item, nil, {}))
         end
       end
-      attrs[:message] = "'#{message}'"
+      if each_pair?
+        pair_name, key_name, value_name = *pair_names
+        i = 0
+        obj.each_pair do |key, value|
+          pair = {key_name => show_method.call(key, nil, {}), value_name => show_method.call(value, nil, {})}
+          self.content.store("#{pair_name} #{i}", pair)
+          i += 1
+        end
+      end
+      attrs[:message] = "'#{message}'" unless message.nil?
       self.info.store(label, content)
       info
     end
@@ -50,6 +59,10 @@ class DebugHelper
     end
 
     def each_with_index?
+      false
+    end
+
+    def each_pair?
       false
     end
 

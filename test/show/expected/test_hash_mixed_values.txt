@@ -1,25 +1,30 @@
 ---
 Hash (size=3 message='test_hash_mixed_values'):
+  size: 3
   Pair 0:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Pair 1:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      String (size=1):
+      String:
         to_s: '0'
+        size: 1
         encoding: !ruby/encoding UTF-8
         ascii_only?: true
         bytesize: 1
   Pair 2:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: c
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: NilClass nil

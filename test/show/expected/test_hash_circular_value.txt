@@ -1,22 +1,28 @@
 ---
 Hash (size=2 message='test_hash_circular_value'):
+  size: 2
   Pair 0:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      Hash (size=0): {}
+      Hash (size=0):
+        size: 0
   Pair 1:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=2):
+        size: 2
         Pair 0:
           Key:
-            Hash (size=0): {}
+            Hash (size=0):
+              size: 0
           Value: Fixnum 0
         Pair 1:
           Key: Hash {{}=>0, {...}=>0}

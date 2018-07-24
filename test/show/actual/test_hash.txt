@@ -1,14 +1,17 @@
 ---
 Hash (size=2 message='test_hash'):
+  size: 2
   Pair 0:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 14
   Pair 1:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: b
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 22

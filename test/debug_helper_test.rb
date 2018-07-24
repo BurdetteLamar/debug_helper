@@ -79,21 +79,21 @@ EOT
     {
         :test_array => [14, 22],
         :test_array_empty => [],
-        # :test_array_mixed_values => [14, 'foo', [0, 1], {:a => 1, :b => 1}, true, nil],
+        :test_array_mixed_values => [14, 'foo', [0, 1], {:a => 1, :b => 1}, true, nil],
         :test_array_self_referencing => array_self_referencing,
         :test_array_circular => array_circular_0,
 
         # :test_dir => Dir.new(File.dirname(__FILE__)),
-        #
-        # :test_hash => {:a => 14, :b => 22},
-        # :test_hash_empty => {},
-        # :test_hash_mixed_keys => {14 => 0, :a => 1, 'foobar' => 2},
-        # :test_hash_mixed_values => {:a => 0, :b => '0', :c => nil},
-        # :test_hash_self_referencing_key => hash_self_referencing_key,
-        # :test_hash_self_referencing_value => hash_self_referencing_value,
-        # :test_hash_circular_key => hash_circular_key_0,
-        # :test_hash_circular_value => hash_circular_value_0,
-        #
+
+        :test_hash => {:a => 14, :b => 22},
+        :test_hash_empty => {},
+        :test_hash_mixed_keys => {14 => 0, :a => 1, 'foobar' => 2},
+        :test_hash_mixed_values => {:a => 0, :b => '0', :c => nil},
+        :test_hash_self_referencing_key => hash_self_referencing_key,
+        :test_hash_self_referencing_value => hash_self_referencing_value,
+        :test_hash_circular_key => hash_circular_key_0,
+        :test_hash_circular_value => hash_circular_value_0,
+
         # :test_ostruct => OpenStruct.new(:a => 0, :b => 1, :c => 2),
         # :test_ostruct_empty => OpenStruct.new,
         # :test_ostruct_mixed_values => OpenStruct.new(:a => 0, :b => 'one', :c => :two),

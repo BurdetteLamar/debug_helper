@@ -2,6 +2,6 @@
 Array (message='test_array_circular'):
   size: 1
   Element 0:
-    Array (message=''):
+    Array:
       size: 1
       Element 0: Array [[[...]]]
