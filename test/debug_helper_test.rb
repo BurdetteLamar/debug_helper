@@ -103,11 +103,11 @@ EOT
         :test_range_include_end => (0..4),
         :test_range_exclude_end => (0...4),
 
-        # :test_set => Set.new([14, 22]),
-        # :test_set_empty => Set.new([]),
-        # :test_set_mixed_values => Set.new([14, 'foo', [0, 1], {:a => 1, :b => 1}, true, nil]) ,
-        # :test_set_self_referencing => set_self_referencing,
-        # :test_set_circular => set_circular_0,
+        :test_set => Set.new([14, 22]),
+        :test_set_empty => Set.new([]),
+        :test_set_mixed_values => Set.new([14, 'foo', [0, 1], {:a => 1, :b => 1}, true, nil]) ,
+        :test_set_self_referencing => set_self_referencing,
+        :test_set_circular => set_circular_0,
 
         :test_string => 'Lorem ipsum',
         :test_string_empty => '',
