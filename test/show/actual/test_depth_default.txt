@@ -1,19 +1,24 @@
 ---
 Hash (size=1 message='test_depth_default'):
+  size: 1
   Pair 0:
     Key:
-      Symbol (size=1):
+      Symbol:
         to_s: a
+        size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
       Hash (size=1):
+        size: 1
         Pair 0:
           Key:
-            Symbol (size=1):
+            Symbol:
               to_s: b
+              size: 1
               encoding: !ruby/encoding US-ASCII
           Value:
             Hash (size=1):
+              size: 1
               Pair 0:
                 Key: Symbol :c
                 Value: String "ok"

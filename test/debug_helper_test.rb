@@ -126,7 +126,7 @@ EOT
 
   end
 
-  def zzz_test_depth
+  def test_depth
     {
         :test_depth_default => {
             :options => {},
