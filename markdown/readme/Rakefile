@@ -23,6 +23,7 @@ namespace :build do
         File
         Dir
         IO
+        Exception
         Range
         Set
         OpenStruct

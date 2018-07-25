@@ -49,6 +49,7 @@ Classes treated in detail:
 - [File](#file)
 - [Dir](#dir)
 - [IO](#io)
+- [Exception](#exception)
 - [Range](#range)
 - [Set](#set)
 - [OpenStruct](#openstruct)
@@ -826,6 +827,52 @@ IO (message='My simple io'):
   closed?: false
   tty?: false
 ```
+### Exception
+
+#### Simple Exception
+
+This example shows a simple ```Exception```.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+def foo
+  exception = nil
+  begin
+    raise Exception.new('Boo!')
+  rescue Exception => exception
+    # Already saved.
+  end
+  DebugHelper.show(exception, 'My simple exception')
+end
+
+def bar
+  foo
+end
+
+def baz
+  bar
+end
+
+baz
+
+```
+
+The output shows details of the ```Exception```.
+
+```show.yaml```:
+```yaml
+---
+Exception (message='My simple exception'):
+  message: Boo!
+  cause: 
+  backtrace:
+  - show.rb:6:in `foo'
+  - show.rb:14:in `bar'
+  - show.rb:18:in `baz'
+  - show.rb:21:in `<main>'
+```
 ### Range
 
 #### Inclusive Range
@@ -1245,7 +1292,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-25T15:20:00-05:00 ((2458325j,73200s,564492000n),-18000s,2299161j)>'
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-25T18:07:41-05:00 ((2458325j,83261s,119718000n),-18000s,2299161j)>'
 ```
 
 #### Regexp

@@ -1,0 +1,4 @@
+---
+Exception (message='test_exception'):
+  message: Boo!
+  cause: 
