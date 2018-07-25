@@ -7,11 +7,17 @@ This example shows a simple ```IO```.
 require 'debug_helper'
 
 io = IO.new(IO.sysopen(__FILE__, 'r'), 'r')
-DebugHelper.show(dir, 'My simple io')
+DebugHelper.show(io, 'My simple io')
 ```
 
 The output shows details of the ```IO```.
 
 ```show.yaml```:
 ```yaml
+---
+IO (message='My simple io'):
+  autoclose?: true
+  binmode?: false
+  closed?: false
+  tty?: false
 ```
