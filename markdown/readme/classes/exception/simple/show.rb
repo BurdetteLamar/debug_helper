@@ -1,9 +1,22 @@
 require 'debug_helper'
 
-exception = nil
-begin
-  raise Exception.new('Boo!')
-rescue Exception => exception
-  # Already saved.
+def foo
+  exception = nil
+  begin
+    raise Exception.new('Boo!')
+  rescue Exception => exception
+    # Already saved.
+  end
+  DebugHelper.show(exception, 'My simple exception')
 end
-DebugHelper.show(exception, 'My simple exception')
+
+def bar
+  foo
+end
+
+def baz
+  bar
+end
+
+baz
+

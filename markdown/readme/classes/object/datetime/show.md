@@ -14,5 +14,5 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-25T17:58:51-05:00 ((2458325j,82731s,767378000n),-18000s,2299161j)>'
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-25T18:07:41-05:00 ((2458325j,83261s,119718000n),-18000s,2299161j)>'
 ```
