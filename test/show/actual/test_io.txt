@@ -1,0 +1,6 @@
+---
+IO (message='test_io'):
+  autoclose?: true
+  binmode?: false
+  closed?: false
+  tty?: false

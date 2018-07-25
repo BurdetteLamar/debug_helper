@@ -14,6 +14,8 @@ require_relative 'debug_helper/handler'
 
   require_relative 'debug_helper/dir_handler'
   require_relative 'debug_helper/file_handler'
+  require_relative 'debug_helper/generic_handler'
+  require_relative 'debug_helper/io_handler'
   require_relative 'debug_helper/object_handler'
   require_relative 'debug_helper/string_handler'
   require_relative 'debug_helper/symbol_handler'
@@ -58,7 +60,7 @@ class DebugHelper
 
   def show(obj, message, info)
     if object_seen?(obj) || depth_reached?
-      handler = ObjectHandler.new(self, obj, message, info)
+      handler = GenericHandler.new(self, obj, message, info)
       s = handler.show
     else
       object_ids.push(obj.object_id)
@@ -69,6 +71,8 @@ class DebugHelper
                           DirHandler
                         when obj.kind_of?(File)
                           FileHandler
+                        when obj.kind_of?(IO)
+                          IOHandler
                         when obj.kind_of?(Hash)
                           HashHandler
                         when obj.kind_of?(OpenStruct)
@@ -83,8 +87,10 @@ class DebugHelper
                           StructHandler
                         when obj.kind_of?(Symbol)
                           SymbolHandler
-                        else
+                        when obj.instance_of?(Object)
                           ObjectHandler
+                        else
+                          GenericHandler
                       end
       handler = Object.const_get(handler_class.name).new(method(__method__), obj, message, info)
       s = handler.show

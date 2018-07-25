@@ -1,0 +1,2 @@
+---
+Object (message='test_object'): {}

@@ -1,0 +1,6 @@
+---
+IO (message='My simple io'):
+  autoclose?: true
+  binmode?: false
+  closed?: false
+  tty?: false

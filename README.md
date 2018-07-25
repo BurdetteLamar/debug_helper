@@ -48,6 +48,7 @@ Classes treated in detail:
 - [Symbol](#symbol)
 - [File](#file)
 - [Dir](#dir)
+- [IO](#io)
 - [Range](#range)
 - [Set](#set)
 - [OpenStruct](#openstruct)
@@ -800,6 +801,31 @@ Dir (message='My simple dir'):
   - template.md
   exist?: true
 ```
+### IO
+
+#### Simple IO
+
+This example shows a simple ```IO```.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+io = IO.new(IO.sysopen(__FILE__, 'r'), 'r')
+DebugHelper.show(io, 'My simple io')
+```
+
+The output shows details of the ```IO```.
+
+```show.yaml```:
+```yaml
+---
+IO (message='My simple io'):
+  autoclose?: true
+  binmode?: false
+  closed?: false
+  tty?: false
+```
 ### Range
 
 #### Inclusive Range
@@ -1219,7 +1245,7 @@ The output shows details of the datetime.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-24T15:24:48-05:00 ((2458324j,73488s,481268000n),-18000s,2299161j)>'
+--- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-25T15:20:00-05:00 ((2458325j,73200s,564492000n),-18000s,2299161j)>'
 ```
 
 #### Regexp
