@@ -1,4 +1,4 @@
-#### Simple Dir
+#### Simple IO
 
 This example shows a simple ```IO```.
 

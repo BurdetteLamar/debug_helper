@@ -5,7 +5,7 @@
 @[:markdown](classes/symbol/template.md)
 @[:markdown](classes/file/template.md)
 @[:markdown](classes/dir/template.md)
-@[:markdown](classes/io/template.md)
+@[:markdown](classes/IO/template.md)
 @[:markdown](classes/range/template.md)
 @[:markdown](classes/set/template.md)
 @[:markdown](classes/open_struct/template.md)

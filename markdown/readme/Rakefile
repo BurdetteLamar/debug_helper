@@ -30,7 +30,8 @@ namespace :build do
       /
       class_dir_names = []
       correct_dir_names = {
-          :OpenStruct => 'open_struct'
+          :OpenStruct => 'open_struct',
+          :IO => 'IO',
       }
       class_names.each do |class_name|
         if correct_dir_names.include?(class_name.to_sym)
