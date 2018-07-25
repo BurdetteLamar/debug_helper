@@ -1,0 +1,6 @@
+---
+Exception (message='My simple exception'):
+  message: Boo!
+  cause: 
+  backtrace:
+  - show.rb:5:in `<main>'

@@ -13,6 +13,7 @@ require_relative 'debug_helper/handler'
     require_relative 'debug_helper/struct_handler'
 
   require_relative 'debug_helper/dir_handler'
+  require_relative 'debug_helper/exception_handler'
   require_relative 'debug_helper/file_handler'
   require_relative 'debug_helper/generic_handler'
   require_relative 'debug_helper/io_handler'
@@ -69,6 +70,8 @@ class DebugHelper
                           EachWithIndexHandler
                         when obj.kind_of?(Dir)
                           DirHandler
+                        when obj.kind_of?(Exception)
+                          ExceptionHandler
                         when obj.kind_of?(File)
                           FileHandler
                         when obj.kind_of?(IO)

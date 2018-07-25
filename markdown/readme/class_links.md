@@ -6,6 +6,7 @@
 - [File](#file)
 - [Dir](#dir)
 - [IO](#io)
+- [Exception](#exception)
 - [Range](#range)
 - [Set](#set)
 - [OpenStruct](#openstruct)

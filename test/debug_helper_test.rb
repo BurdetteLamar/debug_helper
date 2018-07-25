@@ -201,6 +201,38 @@ EOT
     end
   end
 
+  def test_show_exception
+    def clean_file(actual_file_path)
+      yaml = YAML.load_file(actual_file_path)
+      top_key = yaml.keys.first
+      values = yaml.fetch(top_key)
+      backtrace = values.delete('backtrace')
+      assert_match(File.basename(__FILE__), backtrace.first)
+      yaml.store(top_key, values)
+      File.write(actual_file_path, YAML.dump(yaml))
+    end
+    exception = nil
+    begin
+      raise Exception.new('Boo!')
+    rescue Exception => exception
+      # It's saved.
+    end
+    name = :test_exception
+    _test_show(self, :show, exception, name) do |expected_file_path,
+        actual_file_path|
+      DebugHelperTest.write_stdout(actual_file_path) do
+        DebugHelper.send(:show, exception, name)
+      end
+      clean_file(actual_file_path)
+      _test_show(self, :putd, exception, name) do |expected_file_path, actual_file_path|
+        DebugHelperTest.write_stdout(actual_file_path) do
+          putd(exception, name)
+        end
+        clean_file(actual_file_path)
+      end
+    end
+  end
+
   def test_show_object
     # To remove volatile values from the captured output.
     def clean_file(actual_file_path)
