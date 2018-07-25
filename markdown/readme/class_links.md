@@ -5,6 +5,7 @@
 - [Symbol](#symbol)
 - [File](#file)
 - [Dir](#dir)
+- [Io](#io)
 - [Range](#range)
 - [Set](#set)
 - [OpenStruct](#openstruct)

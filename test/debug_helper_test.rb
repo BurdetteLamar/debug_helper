@@ -94,6 +94,8 @@ EOT
         :test_hash_circular_key => hash_circular_key_0,
         :test_hash_circular_value => hash_circular_value_0,
 
+        :test_io => IO.new(IO.sysopen(__FILE__, 'r'), 'r'),
+
         :test_ostruct => OpenStruct.new(:a => 0, :b => 1, :c => 2),
         :test_ostruct_empty => OpenStruct.new,
         :test_ostruct_mixed_values => OpenStruct.new(:a => 0, :b => 'one', :c => :two),

@@ -15,6 +15,7 @@ require_relative 'debug_helper/handler'
   require_relative 'debug_helper/dir_handler'
   require_relative 'debug_helper/file_handler'
   require_relative 'debug_helper/generic_handler'
+  require_relative 'debug_helper/io_handler'
   require_relative 'debug_helper/object_handler'
   require_relative 'debug_helper/string_handler'
   require_relative 'debug_helper/symbol_handler'
@@ -70,6 +71,8 @@ class DebugHelper
                           DirHandler
                         when obj.kind_of?(File)
                           FileHandler
+                        when obj.kind_of?(IO)
+                          IOHandler
                         when obj.kind_of?(Hash)
                           HashHandler
                         when obj.kind_of?(OpenStruct)
