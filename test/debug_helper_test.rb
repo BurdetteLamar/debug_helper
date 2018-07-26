@@ -333,7 +333,6 @@ EOT
       end
     end
     diffs
-    []
   end
 
 end

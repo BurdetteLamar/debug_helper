@@ -64,48 +64,52 @@ class DebugHelper
   OpenStructHandler = StructHandler
 
   def show(obj, message, info)
+    handler = nil
     if object_seen?(obj) || depth_reached?
       handler = GenericHandler.new(self, obj, message, info)
       s = handler.show
     else
       object_ids.push(obj.object_id)
       begin
+        # If there's a handler for the class, use it.
+        # Note that the class may be a custom class, not defined here,
+        # but instead defined outside this project.
+        # So if the user of this library has defined DebugHelper::FooHandler
+        # and the object is a Foo, that handler will be selected and called.
         handler_class_name = "DebugHelper::#{obj.class.name}Handler"
         handler_class = Object.const_get(handler_class_name)
         handler = handler_class.new(method(__method__), obj, message, info)
       rescue
-        handler_class = case
-                          when obj.kind_of?(Array)
-                            ArrayHandler
-                          when obj.kind_of?(Dir)
-                            DirHandler
-                          when obj.kind_of?(Exception)
-                            ExceptionHandler
-                          when obj.kind_of?(File)
-                            FileHandler
-                          when obj.kind_of?(IO)
-                            IOHandler
-                          when obj.kind_of?(Hash)
-                            HashHandler
-                          when obj.kind_of?(OpenStruct)
-                            OpenStructHandler
-                          when obj.kind_of?(Range)
-                            RangeHandler
-                          when obj.kind_of?(Set)
-                            SetHandler
-                          when obj.kind_of?(String)
-                            StringHandler
-                          when obj.kind_of?(Struct)
-                            StructHandler
-                          when obj.kind_of?(Symbol)
-                            SymbolHandler
-                          when obj.instance_of?(Object)
-                            ObjectHandler
-                          else
-                            GenericHandler
-                        end
-        handler = Object.const_get(handler_class.name).new(method(__method__), obj, message, info)
-        # STDOUT.puts ['HANDLER', obj.class.name, handler.class].inspect
+        # If there's not a handler for the class, try using :kind_of?.
+        [
+            Array,
+            Dir,
+            Exception,
+            File,
+            IO,
+            Hash,
+            OpenStruct,
+            Range,
+            Set,
+            String,
+            Struct,
+            Symbol,
+        ].each do |klass|
+          if obj.kind_of?(klass)
+            handler_class_name = "DebugHelper::#{klass.name}Handler"
+            handler_class = Object.const_get(handler_class_name)
+            handler = handler_class.new(method(__method__), obj, message, info)
+            break
+          end
+        end
+      end
+      if handler.nil?
+        if obj.instance_of?(Object)
+          handler_class= ObjectHandler
+        else
+          handler_class = GenericHandler
+        end
+        handler = handler_class.new(self, obj, message, info)
       end
       s = handler.show
       object_ids.pop
