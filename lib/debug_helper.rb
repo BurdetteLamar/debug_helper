@@ -59,43 +59,54 @@ class DebugHelper
     depth == object_ids.size
   end
 
+  ArrayHandler = EachWithIndexHandler
+  SetHandler = EachWithIndexHandler
+  OpenStructHandler = StructHandler
+
   def show(obj, message, info)
     if object_seen?(obj) || depth_reached?
       handler = GenericHandler.new(self, obj, message, info)
       s = handler.show
     else
       object_ids.push(obj.object_id)
-      handler_class = case
-                        when obj.kind_of?(Array)
-                          EachWithIndexHandler
-                        when obj.kind_of?(Dir)
-                          DirHandler
-                        when obj.kind_of?(Exception)
-                          ExceptionHandler
-                        when obj.kind_of?(File)
-                          FileHandler
-                        when obj.kind_of?(IO)
-                          IOHandler
-                        when obj.kind_of?(Hash)
-                          HashHandler
-                        when obj.kind_of?(OpenStruct)
-                          StructHandler
-                        when obj.kind_of?(Range)
-                          RangeHandler
-                        when obj.kind_of?(Set)
-                          EachWithIndexHandler
-                        when obj.kind_of?(String)
-                          StringHandler
-                        when obj.kind_of?(Struct)
-                          StructHandler
-                        when obj.kind_of?(Symbol)
-                          SymbolHandler
-                        when obj.instance_of?(Object)
-                          ObjectHandler
-                        else
-                          GenericHandler
-                      end
-      handler = Object.const_get(handler_class.name).new(method(__method__), obj, message, info)
+      begin
+        handler_class_name = "DebugHelper::#{obj.class.name}Handler"
+        handler_class = Object.const_get(handler_class_name)
+        handler = handler_class.new(method(__method__), obj, message, info)
+      rescue
+        handler_class = case
+                          when obj.kind_of?(Array)
+                            ArrayHandler
+                          when obj.kind_of?(Dir)
+                            DirHandler
+                          when obj.kind_of?(Exception)
+                            ExceptionHandler
+                          when obj.kind_of?(File)
+                            FileHandler
+                          when obj.kind_of?(IO)
+                            IOHandler
+                          when obj.kind_of?(Hash)
+                            HashHandler
+                          when obj.kind_of?(OpenStruct)
+                            OpenStructHandler
+                          when obj.kind_of?(Range)
+                            RangeHandler
+                          when obj.kind_of?(Set)
+                            SetHandler
+                          when obj.kind_of?(String)
+                            StringHandler
+                          when obj.kind_of?(Struct)
+                            StructHandler
+                          when obj.kind_of?(Symbol)
+                            SymbolHandler
+                          when obj.instance_of?(Object)
+                            ObjectHandler
+                          else
+                            GenericHandler
+                        end
+        handler = Object.const_get(handler_class.name).new(method(__method__), obj, message, info)
+        # STDOUT.puts ['HANDLER', obj.class.name, handler.class].inspect
+      end
       s = handler.show
       object_ids.pop
     end
