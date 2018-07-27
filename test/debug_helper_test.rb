@@ -138,6 +138,8 @@ EOT
         :test_set_self_referencing => set_self_referencing,
         :test_set_circular => set_circular_0,
 
+        :test_set_sub => SetSub.new([14, 22]),
+
         :test_string => 'Lorem ipsum',
         :test_string_empty => '',
         :test_string_multiline => string_multiline,
