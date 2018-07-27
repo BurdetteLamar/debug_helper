@@ -125,6 +125,8 @@ EOT
         :test_ostruct_self_referencing => ostruct_self_referencing,
         :test_ostruct_circular => ostruct_circular_0,
 
+        :test_ostruct_sub => OpenStructSub.new(:a => 0, :b => 1, :c => 2),
+
         :test_range_include_end => (0..4),
         :test_range_exclude_end => (0...4),
 
