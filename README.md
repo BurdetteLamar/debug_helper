@@ -1283,7 +1283,9 @@ This example shows an object that will not be analyzed.
 require 'debug_helper'
 
 class MyClass
-  attr_accessor :foo, :bar, :baz
+  def inspect
+    'My class inspection'
+  end
 end
 DebugHelper.show(MyClass.new, 'My class')
 ```
@@ -1292,7 +1294,8 @@ The output shows details of the object.
 
 ```show.yaml```:
 ```yaml
---- 'MyClass (message=''My class'') #<MyClass:0x00000002780cd8>'
+--- MyClass (message='My class') My class inspection
+...
 ```
 
 ## Options

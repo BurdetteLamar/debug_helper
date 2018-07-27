@@ -1,3 +1,5 @@
 ---
-Hash (size=0 message='test_hash_empty'):
+Hash (message='test_hash_empty'):
   size: 0
+  default: 
+  default_proc: 

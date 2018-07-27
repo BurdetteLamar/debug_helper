@@ -1,6 +1,8 @@
 ---
-Hash (size=3 message='test_hash_mixed_values'):
+Hash (message='test_hash_mixed_values'):
   size: 3
+  default: 
+  default_proc: 
   Pair 0:
     Key:
       Symbol:
