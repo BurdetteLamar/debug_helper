@@ -93,7 +93,8 @@ class DebugHelper
             Set,
             String,
             Struct,
-            Symbol,
+            # There's no method Symbol.new, so cannot instantiate a subclass.
+            # Symbol,
         ].each do |klass|
           if obj.kind_of?(klass)
             handler_class_name = "DebugHelper::#{klass.name}Handler"

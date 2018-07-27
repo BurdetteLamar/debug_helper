@@ -28,7 +28,8 @@ class DebugHelperTest < Minitest::Test
   class SetSub < Set; end
   class StringSub < String; end
   class StructSub < Struct; end
-  class SymbolSub < Symbol; end
+  # There's no method Symbol.new, so cannot instantiate a subclass.
+  # class SymbolSub < Symbol; end
 
   MyStruct = Struct.new(:foo, :bar, :baz)
   MyStructSub = StructSub.new(:foo, :bar, :baz)
