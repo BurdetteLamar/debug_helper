@@ -1,6 +1,8 @@
 ---
-Hash (size=1 message='test_hash_self_referencing_key'):
+Hash (message='test_hash_self_referencing_key'):
   size: 1
+  default: 
+  default_proc: 
   Pair 0:
     Key: Hash {{...}=>0}
     Value: Fixnum 0
