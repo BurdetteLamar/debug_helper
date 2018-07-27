@@ -1,0 +1,4 @@
+---
+DebugHelperTest::ExceptionSub (message='test_exception_sub'):
+  message: Boo!
+  cause: 

@@ -232,24 +232,28 @@ EOT
       yaml.store(top_key, values)
       File.write(actual_file_path, YAML.dump(yaml))
     end
-    exception = nil
-    begin
-      raise Exception.new('Boo!')
-    rescue Exception => exception
-      # It's saved.
-    end
-    name = :test_exception
-    _test_show(self, :show, exception, name) do |expected_file_path,
-        actual_file_path|
-      DebugHelperTest.write_stdout(actual_file_path) do
-        DebugHelper.send(:show, exception, name)
+    {
+        :test_exception => Exception,
+        :test_exception_sub => ExceptionSub,
+    }.each_pair do |name, klass|
+      exception = nil
+      begin
+        raise klass.new('Boo!')
+      rescue klass => exception
+        # It's saved.
       end
-      clean_file(actual_file_path)
-      _test_show(self, :putd, exception, name) do |expected_file_path, actual_file_path|
+      _test_show(self, :show, exception, name) do |expected_file_path,
+          actual_file_path|
         DebugHelperTest.write_stdout(actual_file_path) do
-          putd(exception, name)
+          DebugHelper.send(:show, exception, name)
         end
         clean_file(actual_file_path)
+        _test_show(self, :putd, exception, name) do |expected_file_path, actual_file_path|
+          DebugHelperTest.write_stdout(actual_file_path) do
+            putd(exception, name)
+          end
+          clean_file(actual_file_path)
+        end
       end
     end
   end
