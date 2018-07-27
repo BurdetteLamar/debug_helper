@@ -117,6 +117,8 @@ EOT
 
         :test_io => IO.new(IO.sysopen(__FILE__, 'r'), 'r'),
 
+        :test_io_sub => IOSub.new(IO.sysopen(__FILE__, 'r'), 'r'),
+
         :test_ostruct => OpenStruct.new(:a => 0, :b => 1, :c => 2),
         :test_ostruct_empty => OpenStruct.new,
         :test_ostruct_mixed_values => OpenStruct.new(:a => 0, :b => 'one', :c => :two),
