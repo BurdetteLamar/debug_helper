@@ -1,0 +1,12 @@
+---
+DebugHelperTest::FileSub (message='test_file_sub'):
+  executable?: false
+  exist?: true
+  ftype: file
+  pipe?: false
+  readable?: true
+  setgid?: false
+  setuid?: false
+  socket?: false
+  symlink?: false
+  writable?: true

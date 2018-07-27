@@ -321,21 +321,25 @@ EOT
       yaml.store(top_key, values)
       File.write(actual_file_path, YAML.dump(yaml))
     end
-    name = 'test_file'
-    file_path = __FILE__
-    temp_file = File.new(file_path)
-    _test_show(self, :show, temp_file, name) do |expected_file_path,
-        actual_file_path|
-      DebugHelperTest.write_stdout(actual_file_path) do
-        DebugHelper.send(:show, temp_file, name)
+    {
+        :test_file => File,
+        :test_file_sub => FileSub,
+    }.each_pair do |name, klass|
+      file_path = __FILE__
+      temp_file = klass.new(file_path)
+      _test_show(self, :show, temp_file, name) do |expected_file_path,
+          actual_file_path|
+        DebugHelperTest.write_stdout(actual_file_path) do
+          DebugHelper.send(:show, temp_file, name)
+        end
+        clean_file(actual_file_path, file_path)
       end
-      clean_file(actual_file_path, file_path)
-    end
-    _test_show(self, :putd, temp_file, name) do |expected_file_path, actual_file_path|
-      DebugHelperTest.write_stdout(actual_file_path) do
-        putd(temp_file, name)
+      _test_show(self, :putd, temp_file, name) do |expected_file_path, actual_file_path|
+        DebugHelperTest.write_stdout(actual_file_path) do
+          putd(temp_file, name)
+        end
+        clean_file(actual_file_path, file_path)
       end
-      clean_file(actual_file_path, file_path)
     end
   end
 
