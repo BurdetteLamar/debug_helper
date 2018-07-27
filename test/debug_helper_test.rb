@@ -15,9 +15,7 @@ class DebugHelperTest < Minitest::Test
   def test_version
     refute_nil ::DebugHelper::VERSION
   end
-
-  MyStruct = Struct.new(:foo, :bar, :baz)
-
+0
   # Classes to exercise :kind_of? in handler selection.
   class ArraySub < Array; end
   class DirSub < Dir; end
@@ -32,6 +30,8 @@ class DebugHelperTest < Minitest::Test
   class StructSub < Struct; end
   class SymbolSub < Symbol; end
 
+  MyStruct = Struct.new(:foo, :bar, :baz)
+  MyStructSub = StructSub.new(:foo, :bar, :baz)
 
   def test_show
 
@@ -80,8 +80,6 @@ foobar
 snafu
 janfu
 EOT
-
-    struct = MyStruct.new(0, 1, 2)
 
     struct_self_referencing = MyStruct.new(0, 1, 2)
     struct_self_referencing.foo = struct_self_referencing
@@ -147,9 +145,11 @@ EOT
 
         :test_string_sub => StringSub.new('Lorem ipsum'),
 
-        :test_struct => struct,
+        :test_struct => MyStruct.new(0, 1, 2),
         :test_struct_self_referencing => struct_self_referencing,
         :test_struct_circular => struct_circular_0,
+
+        :test_struct_sub => MyStructSub.new(0, 1, 2),
 
         :test_symbol => :lorem_ipsum,
 
