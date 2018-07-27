@@ -130,6 +130,8 @@ EOT
         :test_range_include_end => (0..4),
         :test_range_exclude_end => (0...4),
 
+        :test_range_sub => RangeSub.new(0, 4),
+
         :test_set => Set.new([14, 22]),
         :test_set_empty => Set.new([]),
         :test_set_mixed_values => Set.new([14, 'foo', [0, 1], {:a => 1, :b => 1}, true, nil]) ,
