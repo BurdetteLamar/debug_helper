@@ -1292,7 +1292,7 @@ The output shows details of the object.
 
 ```show.yaml```:
 ```yaml
---- 'MyClass (message=''My class'') #<MyClass:0x00000002728678>'
+--- 'MyClass (message=''My class'') #<MyClass:0x00000002780cd8>'
 ```
 
 ## Options
