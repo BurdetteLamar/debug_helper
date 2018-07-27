@@ -18,6 +18,21 @@ class DebugHelperTest < Minitest::Test
 
   MyStruct = Struct.new(:foo, :bar, :baz)
 
+  # Classes to exercise :kind_of? in handler selection.
+  class ArraySub < Array; end
+  class DirSub < Dir; end
+  class ExceptionSub < Exception; end
+  class FileSub < File; end
+  class IOSub < IO; end
+  class HashSub < Hash; end
+  class OpenStructSub < OpenStruct; end
+  class RangeSub < Range; end
+  class SetSub < Set; end
+  class StringSub < String; end
+  class StructSub < Struct; end
+  class SymbolSub < Symbol; end
+
+
   def test_show
 
     array_self_referencing = []
@@ -83,7 +98,11 @@ EOT
         :test_array_self_referencing => array_self_referencing,
         :test_array_circular => array_circular_0,
 
+        :test_array_sub => ArraySub.new([0, 1, 2]),
+
         :test_dir => Dir.new(File.dirname(__FILE__)),
+
+        :test_dir_sub => DirSub.new(File.dirname(__FILE__)),
 
         :test_hash => {:a => 14, :b => 22},
         :test_hash_empty => {},
@@ -93,6 +112,8 @@ EOT
         :test_hash_self_referencing_value => hash_self_referencing_value,
         :test_hash_circular_key => hash_circular_key_0,
         :test_hash_circular_value => hash_circular_value_0,
+
+        :test_hash_sub => HashSub.new.merge(:a => 0, :b => 1),
 
         :test_io => IO.new(IO.sysopen(__FILE__, 'r'), 'r'),
 
