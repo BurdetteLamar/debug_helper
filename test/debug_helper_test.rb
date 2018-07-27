@@ -114,6 +114,8 @@ EOT
 
         :test_hash_sub => HashSub.new.merge(:a => 0, :b => 1),
 
+        :test_match_data => /(?<a>.)(?<b>.)/.match("01"),
+
         :test_io => IO.new(IO.sysopen(__FILE__, 'r'), 'r'),
 
         :test_io_sub => IOSub.new(IO.sysopen(__FILE__, 'r'), 'r'),
@@ -130,6 +132,8 @@ EOT
         :test_range_exclude_end => (0...4),
 
         :test_range_sub => RangeSub.new(0, 4),
+
+        :test_regexp => /(?<a>.)(?<b>.)/,
 
         :test_set => Set.new([14, 22]),
         :test_set_empty => Set.new([]),

@@ -1,0 +1,10 @@
+---
+MatchData (message='test_match_data'):
+  size: 3
+  regexp: !ruby/regexp /(?<a>.)(?<b>.)/
+  captures:
+  - '0'
+  - '1'
+  names:
+  - a
+  - b
