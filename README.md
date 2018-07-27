@@ -1274,45 +1274,25 @@ OpenStruct (message='My circular ostruct'):
 
 Classes not mentioned above are not analyzed, but are treated more simply.
 
-A few examples are shown below.
+#### Unanalyzed Object
 
-#### DateTime
-
-This example shows a datetime.
+This example shows an object that will not be analyzed.
 
 ```show.rb```:
 ```ruby
 require 'debug_helper'
 
-datetime = DateTime.now
-DebugHelper.show(datetime, 'My datetime')
+class MyClass
+  attr_accessor :foo, :bar, :baz
+end
+DebugHelper.show(MyClass.new, 'My class')
 ```
 
-The output shows details of the datetime.
+The output shows details of the object.
 
 ```show.yaml```:
 ```yaml
---- 'DateTime (message=''My datetime'') #<DateTime: 2018-07-25T18:07:41-05:00 ((2458325j,83261s,119718000n),-18000s,2299161j)>'
-```
-
-#### Regexp
-
-This example shows a regexp.
-
-```show.rb```:
-```ruby
-require 'debug_helper'
-
-regexp = Regexp.new('foo')
-DebugHelper.show(regexp, 'My regexp')
-```
-
-The output shows details of the regexp.
-
-```show.yaml```:
-```yaml
---- Regexp (message='My regexp') /foo/
-...
+--- 'MyClass (message=''My class'') #<MyClass:0x00000002728678>'
 ```
 
 ## Options
