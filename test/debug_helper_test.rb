@@ -145,6 +145,8 @@ EOT
         :test_string_multiline => string_multiline,
         :test_string_iso_8859 => 'Lorem ipsum'.encode(Encoding::ISO_8859_1),
 
+        :test_string_sub => StringSub.new('Lorem ipsum'),
+
         :test_struct => struct,
         :test_struct_self_referencing => struct_self_referencing,
         :test_struct_circular => struct_circular_0,
