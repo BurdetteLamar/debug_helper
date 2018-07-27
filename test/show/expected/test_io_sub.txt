@@ -1,0 +1,6 @@
+---
+DebugHelperTest::IOSub (message='test_io_sub'):
+  autoclose?: true
+  binmode?: false
+  closed?: false
+  tty?: false

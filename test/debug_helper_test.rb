@@ -15,8 +15,24 @@ class DebugHelperTest < Minitest::Test
   def test_version
     refute_nil ::DebugHelper::VERSION
   end
+0
+  # Classes to exercise :kind_of? in handler selection.
+  class ArraySub < Array; end
+  class DirSub < Dir; end
+  class ExceptionSub < Exception; end
+  class FileSub < File; end
+  class IOSub < IO; end
+  class HashSub < Hash; end
+  class OpenStructSub < OpenStruct; end
+  class RangeSub < Range; end
+  class SetSub < Set; end
+  class StringSub < String; end
+  class StructSub < Struct; end
+  # There's no method Symbol.new, so cannot instantiate a subclass.
+  # class SymbolSub < Symbol; end
 
   MyStruct = Struct.new(:foo, :bar, :baz)
+  MyStructSub = StructSub.new(:foo, :bar, :baz)
 
   def test_show
 
@@ -66,8 +82,6 @@ snafu
 janfu
 EOT
 
-    struct = MyStruct.new(0, 1, 2)
-
     struct_self_referencing = MyStruct.new(0, 1, 2)
     struct_self_referencing.foo = struct_self_referencing
 
@@ -83,7 +97,11 @@ EOT
         :test_array_self_referencing => array_self_referencing,
         :test_array_circular => array_circular_0,
 
+        :test_array_sub => ArraySub.new([0, 1, 2]),
+
         :test_dir => Dir.new(File.dirname(__FILE__)),
+
+        :test_dir_sub => DirSub.new(File.dirname(__FILE__)),
 
         :test_hash => {:a => 14, :b => 22},
         :test_hash_empty => {},
@@ -94,7 +112,11 @@ EOT
         :test_hash_circular_key => hash_circular_key_0,
         :test_hash_circular_value => hash_circular_value_0,
 
+        :test_hash_sub => HashSub.new.merge(:a => 0, :b => 1),
+
         :test_io => IO.new(IO.sysopen(__FILE__, 'r'), 'r'),
+
+        :test_io_sub => IOSub.new(IO.sysopen(__FILE__, 'r'), 'r'),
 
         :test_ostruct => OpenStruct.new(:a => 0, :b => 1, :c => 2),
         :test_ostruct_empty => OpenStruct.new,
@@ -102,8 +124,12 @@ EOT
         :test_ostruct_self_referencing => ostruct_self_referencing,
         :test_ostruct_circular => ostruct_circular_0,
 
+        :test_ostruct_sub => OpenStructSub.new(:a => 0, :b => 1, :c => 2),
+
         :test_range_include_end => (0..4),
         :test_range_exclude_end => (0...4),
+
+        :test_range_sub => RangeSub.new(0, 4),
 
         :test_set => Set.new([14, 22]),
         :test_set_empty => Set.new([]),
@@ -111,14 +137,20 @@ EOT
         :test_set_self_referencing => set_self_referencing,
         :test_set_circular => set_circular_0,
 
+        :test_set_sub => SetSub.new([14, 22]),
+
         :test_string => 'Lorem ipsum',
         :test_string_empty => '',
         :test_string_multiline => string_multiline,
         :test_string_iso_8859 => 'Lorem ipsum'.encode(Encoding::ISO_8859_1),
 
-        :test_struct => struct,
+        :test_string_sub => StringSub.new('Lorem ipsum'),
+
+        :test_struct => MyStruct.new(0, 1, 2),
         :test_struct_self_referencing => struct_self_referencing,
         :test_struct_circular => struct_circular_0,
+
+        :test_struct_sub => MyStructSub.new(0, 1, 2),
 
         :test_symbol => :lorem_ipsum,
 
@@ -211,24 +243,28 @@ EOT
       yaml.store(top_key, values)
       File.write(actual_file_path, YAML.dump(yaml))
     end
-    exception = nil
-    begin
-      raise Exception.new('Boo!')
-    rescue Exception => exception
-      # It's saved.
-    end
-    name = :test_exception
-    _test_show(self, :show, exception, name) do |expected_file_path,
-        actual_file_path|
-      DebugHelperTest.write_stdout(actual_file_path) do
-        DebugHelper.send(:show, exception, name)
+    {
+        :test_exception => Exception,
+        :test_exception_sub => ExceptionSub,
+    }.each_pair do |name, klass|
+      exception = nil
+      begin
+        raise klass.new('Boo!')
+      rescue klass => exception
+        # It's saved.
       end
-      clean_file(actual_file_path)
-      _test_show(self, :putd, exception, name) do |expected_file_path, actual_file_path|
+      _test_show(self, :show, exception, name) do |expected_file_path,
+          actual_file_path|
         DebugHelperTest.write_stdout(actual_file_path) do
-          putd(exception, name)
+          DebugHelper.send(:show, exception, name)
         end
         clean_file(actual_file_path)
+        _test_show(self, :putd, exception, name) do |expected_file_path, actual_file_path|
+          DebugHelperTest.write_stdout(actual_file_path) do
+            putd(exception, name)
+          end
+          clean_file(actual_file_path)
+        end
       end
     end
   end
@@ -296,21 +332,25 @@ EOT
       yaml.store(top_key, values)
       File.write(actual_file_path, YAML.dump(yaml))
     end
-    name = 'test_file'
-    file_path = __FILE__
-    temp_file = File.new(file_path)
-    _test_show(self, :show, temp_file, name) do |expected_file_path,
-        actual_file_path|
-      DebugHelperTest.write_stdout(actual_file_path) do
-        DebugHelper.send(:show, temp_file, name)
+    {
+        :test_file => File,
+        :test_file_sub => FileSub,
+    }.each_pair do |name, klass|
+      file_path = __FILE__
+      temp_file = klass.new(file_path)
+      _test_show(self, :show, temp_file, name) do |expected_file_path,
+          actual_file_path|
+        DebugHelperTest.write_stdout(actual_file_path) do
+          DebugHelper.send(:show, temp_file, name)
+        end
+        clean_file(actual_file_path, file_path)
       end
-      clean_file(actual_file_path, file_path)
-    end
-    _test_show(self, :putd, temp_file, name) do |expected_file_path, actual_file_path|
-      DebugHelperTest.write_stdout(actual_file_path) do
-        putd(temp_file, name)
+      _test_show(self, :putd, temp_file, name) do |expected_file_path, actual_file_path|
+        DebugHelperTest.write_stdout(actual_file_path) do
+          putd(temp_file, name)
+        end
+        clean_file(actual_file_path, file_path)
       end
-      clean_file(actual_file_path, file_path)
     end
   end
 

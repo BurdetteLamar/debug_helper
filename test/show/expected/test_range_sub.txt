@@ -1,0 +1,5 @@
+---
+DebugHelperTest::RangeSub (message='test_range_sub'):
+  first: 0
+  last: 4
+  exclude_end?: false
