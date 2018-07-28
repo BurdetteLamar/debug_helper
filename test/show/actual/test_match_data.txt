@@ -2,6 +2,10 @@
 MatchData (message='test_match_data'):
   size: 3
   regexp: !ruby/regexp /(?<a>.)(?<b>.)/
+  to_a:
+  - '01'
+  - '0'
+  - '1'
   captures:
   - '0'
   - '1'

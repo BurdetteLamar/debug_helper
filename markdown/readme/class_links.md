@@ -4,6 +4,7 @@
 - [File](#file)
 - [Hash](#hash)
 - [IO](#io)
+- [MatchData](#matchdata)
 - [OpenStruct](#openstruct)
 - [Range](#range)
 - [Regexp](#regexp)

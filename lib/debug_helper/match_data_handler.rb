@@ -6,10 +6,12 @@ class DebugHelper
       [
           [:size],
           [:regexp],
+          [:to_a],
           [:captures],
           [:names],
       ]
     end
+
   end
 
 end

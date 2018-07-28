@@ -4,6 +4,7 @@
 @[:markdown](classes/file/template.md)
 @[:markdown](classes/hash/template.md)
 @[:markdown](classes/io/template.md)
+@[:markdown](classes/match_data/template.md)
 @[:markdown](classes/open_struct/template.md)
 @[:markdown](classes/range/template.md)
 @[:markdown](classes/regexp/template.md)

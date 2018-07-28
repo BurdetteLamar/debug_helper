@@ -21,6 +21,7 @@ namespace :build do
         File
         Hash
         IO
+        MatchData
         OpenStruct
         Range
         Regexp
@@ -32,6 +33,8 @@ namespace :build do
       /
       class_dir_names = []
       correct_dir_names = {
+          :IO => 'io',
+          :MatchData => 'match_data',
           :OpenStruct => 'open_struct',
       }
       class_names.each do |class_name|
@@ -59,8 +62,9 @@ namespace :build do
     # Make list of links to class sections.
     File.open('class_links.md', 'w') do |file|
       correct_class_names = {
-          :open_struct => 'OpenStruct',
           :io => 'IO',
+          :match_data => 'MatchData',
+          :open_struct => 'OpenStruct',
       }
       class_dir_names.each do |class_dir_name|
         next if class_dir_name == 'object'
