@@ -42,17 +42,17 @@ You can control the depth of recursion using option ```depth```.  See [Options](
 Classes treated in detail:
 
 - [Array](#array)
-- [Hash](#hash)
-- [Struct](#struct)
-- [String](#string)
-- [Symbol](#symbol)
-- [File](#file)
 - [Dir](#dir)
-- [IO](#io)
 - [Exception](#exception)
+- [File](#file)
+- [Hash](#hash)
+- [IO](#io)
+- [OpenStruct](#openstruct)
 - [Range](#range)
 - [Set](#set)
-- [OpenStruct](#openstruct)
+- [String](#string)
+- [Struct](#struct)
+- [Symbol](#symbol)
 
 Others are treated as:
 
@@ -197,6 +197,120 @@ Array (message='My circular arrays'):
     Array:
       size: 1
       Element 0: Array [[[...]]]
+```
+### Dir
+
+#### Simple Dir
+
+This example shows a simple ```Dir```.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+dir = Dir.new(File.dirname(__FILE__))
+DebugHelper.show(dir, 'My simple dir')
+```
+
+The output shows details of the ```Dir```.
+
+```show.yaml```:
+```yaml
+---
+Dir (message='My simple dir'):
+  path: "."
+  entries:
+  - "."
+  - ".."
+  - show.md
+  - show.rb
+  - show.yaml
+  - template.md
+  exist?: true
+```
+### Exception
+
+#### Simple Exception
+
+This example shows a simple ```Exception```.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+def foo
+  exception = nil
+  begin
+    raise Exception.new('Boo!')
+  rescue Exception => exception
+    # Already saved.
+  end
+  DebugHelper.show(exception, 'My simple exception')
+end
+
+def bar
+  foo
+end
+
+def baz
+  bar
+end
+
+baz
+
+```
+
+The output shows details of the ```Exception```.
+
+```show.yaml```:
+```yaml
+---
+Exception (message='My simple exception'):
+  message: Boo!
+  cause: 
+  backtrace:
+  - show.rb:6:in `foo'
+  - show.rb:14:in `bar'
+  - show.rb:18:in `baz'
+  - show.rb:21:in `<main>'
+```
+### File
+
+#### Simple File
+
+This example shows a simple file.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+file = File.new(__FILE__)
+DebugHelper.show(file, 'My simple file')
+```
+
+The output shows details of the file.
+
+```show.yaml```:
+```yaml
+---
+File (message='My simple file'):
+  absolute_path: C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
+  atime: 2018-07-14 12:45:32.000000000 -05:00
+  ctime: 2018-07-14 12:45:32.000000000 -05:00
+  executable?: false
+  exist?: true
+  ftype: file
+  mtime: 2018-07-14 12:45:32.000000000 -05:00
+  path: show.rb
+  pipe?: false
+  readable?: true
+  realpath: C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
+  setgid?: false
+  setuid?: false
+  size: 95
+  socket?: false
+  symlink?: false
+  writable?: true
 ```
 ### Hash
 
@@ -428,6 +542,477 @@ Hash (message='My circular hashes'):
               size: 3
               encoding: !ruby/encoding US-ASCII
           Value: Hash {:foo=>{:bar=>{...}}}
+```
+### IO
+
+#### Simple IO
+
+This example shows a simple ```IO```.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+io = IO.new(IO.sysopen(__FILE__, 'r'), 'r')
+DebugHelper.show(io, 'My simple io')
+```
+
+The output shows details of the ```IO```.
+
+```show.yaml```:
+```yaml
+---
+IO (message='My simple io'):
+  autoclose?: true
+  binmode?: false
+  closed?: false
+  tty?: false
+```
+### OpenStruct
+
+#### Simple OpenStruct
+
+This example shows a simple open struct.
+
+```show.rb```:
+```ruby
+require 'ostruct'
+require 'debug_helper'
+
+ostruct = OpenStruct.new(:a => 0, :b => 1, :c => 2)
+DebugHelper.show(ostruct, 'My simple struct')
+```
+
+The output shows details of the open struct.
+
+```show.yaml```:
+```yaml
+---
+OpenStruct (message='My simple struct'):
+  Member 0:
+    Name:
+      Symbol:
+        to_s: a
+        size: 1
+        encoding: !ruby/encoding US-ASCII
+    Value: Fixnum 0
+  Member 1:
+    Name:
+      Symbol:
+        to_s: b
+        size: 1
+        encoding: !ruby/encoding US-ASCII
+    Value: Fixnum 1
+  Member 2:
+    Name:
+      Symbol:
+        to_s: c
+        size: 1
+        encoding: !ruby/encoding US-ASCII
+    Value: Fixnum 2
+```
+
+#### Mixed OpenStruct
+
+This example shows an open struct of mixed values.
+
+```show.rb```:
+```ruby
+require 'ostruct'
+require 'debug_helper'
+
+ostruct = OpenStruct.new(:a => 0, :b => 'one', :c => :two)
+DebugHelper.show(ostruct, 'My mixed open struct')
+```
+
+The output shows details of the open struct.
+
+```show.yaml```:
+```yaml
+---
+OpenStruct (message='My mixed open struct'):
+  Member 0:
+    Name:
+      Symbol:
+        to_s: a
+        size: 1
+        encoding: !ruby/encoding US-ASCII
+    Value: Fixnum 0
+  Member 1:
+    Name:
+      Symbol:
+        to_s: b
+        size: 1
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      String:
+        to_s: one
+        size: 3
+        encoding: !ruby/encoding UTF-8
+        ascii_only?: true
+        bytesize: 3
+  Member 2:
+    Name:
+      Symbol:
+        to_s: c
+        size: 1
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      Symbol:
+        to_s: two
+        size: 3
+        encoding: !ruby/encoding US-ASCII
+```
+
+#### Nested OpenStructs
+
+This example shows nested open structs.
+
+```show.rb```:
+```ruby
+require 'ostruct'
+require 'debug_helper'
+
+ostruct = OpenStruct.new(
+                        :a => OpenStruct.new(
+                                            :b => 0,
+                                            :c => 1,
+                        ),
+                        :d => OpenStruct.new(
+                                            :e => 2,
+                                            :f => 3,
+                        )
+)
+DebugHelper.show(ostruct, 'My nested struct')
+```
+
+The output shows details of the open structs.
+
+```show.yaml```:
+```yaml
+---
+OpenStruct (message='My nested struct'):
+  Member 0:
+    Name:
+      Symbol:
+        to_s: a
+        size: 1
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      OpenStruct:
+        Member 0:
+          Name:
+            Symbol:
+              to_s: b
+              size: 1
+              encoding: !ruby/encoding US-ASCII
+          Value: Fixnum 0
+        Member 1:
+          Name:
+            Symbol:
+              to_s: c
+              size: 1
+              encoding: !ruby/encoding US-ASCII
+          Value: Fixnum 1
+  Member 1:
+    Name:
+      Symbol:
+        to_s: d
+        size: 1
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      OpenStruct:
+        Member 0:
+          Name:
+            Symbol:
+              to_s: e
+              size: 1
+              encoding: !ruby/encoding US-ASCII
+          Value: Fixnum 2
+        Member 1:
+          Name:
+            Symbol:
+              to_s: f
+              size: 1
+              encoding: !ruby/encoding US-ASCII
+          Value: Fixnum 3
+```
+
+#### Circular OpenStructs
+
+This example shows open structs that make a circular reference.
+
+```show.rb```:
+```ruby
+require 'ostruct'
+require 'debug_helper'
+
+ostruct_0 = OpenStruct.new
+ostruct_1 = OpenStruct.new
+ostruct_0.a = ostruct_1
+ostruct_1.a = ostruct_0
+DebugHelper.show(ostruct_0, 'My circular ostruct')
+```
+
+The output shows details of the open structs.
+
+The circular reference is not followed.
+
+```show.yaml```:
+```yaml
+---
+OpenStruct (message='My circular ostruct'):
+  Member 0:
+    Name:
+      Symbol:
+        to_s: a
+        size: 1
+        encoding: !ruby/encoding US-ASCII
+    Value:
+      OpenStruct:
+        Member 0:
+          Name:
+            Symbol:
+              to_s: a
+              size: 1
+              encoding: !ruby/encoding US-ASCII
+          Value: 'OpenStruct #<OpenStruct a=#<OpenStruct a=#<OpenStruct ...>>>'
+```
+### Range
+
+#### Inclusive Range
+
+This example shows a ```Range``` that includes its end value.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+range = (0..4)
+DebugHelper.show(range, 'My inclusive range')
+```
+
+The output shows details of the ```Range```.
+
+```show.yaml```:
+```yaml
+---
+Range (message='My inclusive range'):
+  first: 0
+  last: 4
+  exclude_end?: false
+```
+
+#### Exclusive Range
+
+This example shows a ```Range``` that excludes its end value.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+range = (0...4)
+DebugHelper.show(range, 'My exclusive range')
+```
+
+The output shows details of the ```Range```.
+
+```show.yaml```:
+```yaml
+---
+Range (message='My exclusive range'):
+  first: 0
+  last: 4
+  exclude_end?: true
+```
+### Set
+
+#### Simple Set
+
+This example shows a simple set of integers.
+
+```show.rb```:
+```ruby
+require 'set'
+
+require 'debug_helper'
+
+set = Set.new([5, 10, 15])
+DebugHelper.show(set, 'My simple set')
+```
+
+The output shows details of the set.
+
+```show.yaml```:
+```yaml
+---
+Set (message='My simple set'):
+  size: 3
+  Element 0: Fixnum 5
+  Element 1: Fixnum 10
+  Element 2: Fixnum 15
+```
+
+#### Mixed Set
+
+This example shows a set of mixed values.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+require 'set'
+
+set = Set.new([0, 'one', :two])
+DebugHelper.show(set, 'My mixed set')
+```
+
+The output shows details of the set.
+
+```show.yaml```:
+```yaml
+---
+Set (message='My mixed set'):
+  size: 3
+  Element 0: Fixnum 0
+  Element 1:
+    String:
+      to_s: one
+      size: 3
+      encoding: !ruby/encoding UTF-8
+      ascii_only?: true
+      bytesize: 3
+  Element 2:
+    Symbol:
+      to_s: two
+      size: 3
+      encoding: !ruby/encoding US-ASCII
+```
+
+#### Nested Sets
+
+This example shows nested sets.
+
+```show.rb```:
+```ruby
+require 'set'
+
+require 'debug_helper'
+
+set = Set.new(
+    [0,
+     Set.new([1, 2]),
+     Set.new([3, 4]),
+     ])
+DebugHelper.show(set, 'My nested sets')
+```
+
+The output shows details of the sets.
+
+```show.yaml```:
+```yaml
+---
+Set (message='My nested sets'):
+  size: 3
+  Element 0: Fixnum 0
+  Element 1:
+    Set:
+      size: 2
+      Element 0: Fixnum 1
+      Element 1: Fixnum 2
+  Element 2:
+    Set:
+      size: 2
+      Element 0: Fixnum 3
+      Element 1: Fixnum 4
+```
+
+#### Circular Sets
+
+This example shows sets that make a circular reference.
+
+```show.rb```:
+```ruby
+require 'set'
+
+require 'debug_helper'
+
+set_0 = Set.new([])
+set_1 = Set.new([])
+set_0.add(set_1)
+set_1.add(set_0)
+DebugHelper.show(set_0, 'My circular sets')
+```
+
+The output shows details of the sets.
+
+The circular reference is not followed.
+
+```show.yaml```:
+```yaml
+---
+Set (message='My circular sets'):
+  size: 1
+  Element 0:
+    Set:
+      size: 1
+      Element 0: 'Set #<Set: {#<Set: {#<Set: {...}>}>}>'
+```
+### String
+
+#### Simple String
+
+This example shows a simple string.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+s = 'Lorem ipsum'
+DebugHelper.show(s, 'My simple string')
+```
+
+The output shows details of the string.
+
+```show.yaml```:
+```yaml
+---
+String (message='My simple string'):
+  to_s: Lorem ipsum
+  size: 11
+  encoding: !ruby/encoding UTF-8
+  ascii_only?: true
+  bytesize: 11
+```
+
+#### Multiline String
+
+This example shows a multiline string.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+s = <<EOT
+Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
+sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
+EOT
+DebugHelper.show(s, 'My multiline string')
+```
+
+The output shows details of the string.
+
+```show.yaml```:
+```yaml
+---
+String (message='My multiline string'):
+  to_s: |
+    Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
+    sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
+  size: 122
+  encoding: !ruby/encoding UTF-8
+  ascii_only?: true
+  bytesize: 122
 ```
 ### Struct
 
@@ -669,62 +1254,6 @@ MyStruct (message='My circular struct'):
         encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2
 ```
-### String
-
-#### Simple String
-
-This example shows a simple string.
-
-```show.rb```:
-```ruby
-require 'debug_helper'
-
-s = 'Lorem ipsum'
-DebugHelper.show(s, 'My simple string')
-```
-
-The output shows details of the string.
-
-```show.yaml```:
-```yaml
----
-String (message='My simple string'):
-  to_s: Lorem ipsum
-  size: 11
-  encoding: !ruby/encoding UTF-8
-  ascii_only?: true
-  bytesize: 11
-```
-
-#### Multiline String
-
-This example shows a multiline string.
-
-```show.rb```:
-```ruby
-require 'debug_helper'
-
-s = <<EOT
-Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
-sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
-EOT
-DebugHelper.show(s, 'My multiline string')
-```
-
-The output shows details of the string.
-
-```show.yaml```:
-```yaml
----
-String (message='My multiline string'):
-  to_s: |
-    Lorem Ipsum dolor sit amet,consectetur adipisicing elit,
-    sed doeiusmod tempor incididunt ut laboreet dolore magna aliqua.
-  size: 122
-  encoding: !ruby/encoding UTF-8
-  ascii_only?: true
-  bytesize: 122
-```
 ### Symbol
 
 #### Simple Symbol
@@ -747,535 +1276,6 @@ Symbol (message='My symbol'):
   to_s: lorem_ipsum
   size: 11
   encoding: !ruby/encoding US-ASCII
-```
-### File
-
-#### Simple File
-
-This example shows a simple file.
-
-```show.rb```:
-```ruby
-require 'debug_helper'
-
-file = File.new(__FILE__)
-DebugHelper.show(file, 'My simple file')
-```
-
-The output shows details of the file.
-
-```show.yaml```:
-```yaml
----
-File (message='My simple file'):
-  absolute_path: C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
-  atime: 2018-07-14 12:45:32.000000000 -05:00
-  ctime: 2018-07-14 12:45:32.000000000 -05:00
-  executable?: false
-  exist?: true
-  ftype: file
-  mtime: 2018-07-14 12:45:32.000000000 -05:00
-  path: show.rb
-  pipe?: false
-  readable?: true
-  realpath: C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
-  setgid?: false
-  setuid?: false
-  size: 95
-  socket?: false
-  symlink?: false
-  writable?: true
-```
-### Dir
-
-#### Simple Dir
-
-This example shows a simple ```Dir```.
-
-```show.rb```:
-```ruby
-require 'debug_helper'
-
-dir = Dir.new(File.dirname(__FILE__))
-DebugHelper.show(dir, 'My simple dir')
-```
-
-The output shows details of the ```Dir```.
-
-```show.yaml```:
-```yaml
----
-Dir (message='My simple dir'):
-  path: "."
-  entries:
-  - "."
-  - ".."
-  - show.md
-  - show.rb
-  - show.yaml
-  - template.md
-  exist?: true
-```
-### IO
-
-#### Simple IO
-
-This example shows a simple ```IO```.
-
-```show.rb```:
-```ruby
-require 'debug_helper'
-
-io = IO.new(IO.sysopen(__FILE__, 'r'), 'r')
-DebugHelper.show(io, 'My simple io')
-```
-
-The output shows details of the ```IO```.
-
-```show.yaml```:
-```yaml
----
-IO (message='My simple io'):
-  autoclose?: true
-  binmode?: false
-  closed?: false
-  tty?: false
-```
-### Exception
-
-#### Simple Exception
-
-This example shows a simple ```Exception```.
-
-```show.rb```:
-```ruby
-require 'debug_helper'
-
-def foo
-  exception = nil
-  begin
-    raise Exception.new('Boo!')
-  rescue Exception => exception
-    # Already saved.
-  end
-  DebugHelper.show(exception, 'My simple exception')
-end
-
-def bar
-  foo
-end
-
-def baz
-  bar
-end
-
-baz
-
-```
-
-The output shows details of the ```Exception```.
-
-```show.yaml```:
-```yaml
----
-Exception (message='My simple exception'):
-  message: Boo!
-  cause: 
-  backtrace:
-  - show.rb:6:in `foo'
-  - show.rb:14:in `bar'
-  - show.rb:18:in `baz'
-  - show.rb:21:in `<main>'
-```
-### Range
-
-#### Inclusive Range
-
-This example shows a ```Range``` that includes its end value.
-
-```show.rb```:
-```ruby
-require 'debug_helper'
-
-range = (0..4)
-DebugHelper.show(range, 'My inclusive range')
-```
-
-The output shows details of the ```Range```.
-
-```show.yaml```:
-```yaml
----
-Range (message='My inclusive range'):
-  first: 0
-  last: 4
-  exclude_end?: false
-```
-
-#### Exclusive Range
-
-This example shows a ```Range``` that excludes its end value.
-
-```show.rb```:
-```ruby
-require 'debug_helper'
-
-range = (0...4)
-DebugHelper.show(range, 'My exclusive range')
-```
-
-The output shows details of the ```Range```.
-
-```show.yaml```:
-```yaml
----
-Range (message='My exclusive range'):
-  first: 0
-  last: 4
-  exclude_end?: true
-```
-### Set
-
-#### Simple Set
-
-This example shows a simple set of integers.
-
-```show.rb```:
-```ruby
-require 'set'
-
-require 'debug_helper'
-
-set = Set.new([5, 10, 15])
-DebugHelper.show(set, 'My simple set')
-```
-
-The output shows details of the set.
-
-```show.yaml```:
-```yaml
----
-Set (message='My simple set'):
-  size: 3
-  Element 0: Fixnum 5
-  Element 1: Fixnum 10
-  Element 2: Fixnum 15
-```
-
-#### Mixed Set
-
-This example shows a set of mixed values.
-
-```show.rb```:
-```ruby
-require 'debug_helper'
-
-require 'set'
-
-set = Set.new([0, 'one', :two])
-DebugHelper.show(set, 'My mixed set')
-```
-
-The output shows details of the set.
-
-```show.yaml```:
-```yaml
----
-Set (message='My mixed set'):
-  size: 3
-  Element 0: Fixnum 0
-  Element 1:
-    String:
-      to_s: one
-      size: 3
-      encoding: !ruby/encoding UTF-8
-      ascii_only?: true
-      bytesize: 3
-  Element 2:
-    Symbol:
-      to_s: two
-      size: 3
-      encoding: !ruby/encoding US-ASCII
-```
-
-#### Nested Sets
-
-This example shows nested sets.
-
-```show.rb```:
-```ruby
-require 'set'
-
-require 'debug_helper'
-
-set = Set.new(
-    [0,
-     Set.new([1, 2]),
-     Set.new([3, 4]),
-     ])
-DebugHelper.show(set, 'My nested sets')
-```
-
-The output shows details of the sets.
-
-```show.yaml```:
-```yaml
----
-Set (message='My nested sets'):
-  size: 3
-  Element 0: Fixnum 0
-  Element 1:
-    Set:
-      size: 2
-      Element 0: Fixnum 1
-      Element 1: Fixnum 2
-  Element 2:
-    Set:
-      size: 2
-      Element 0: Fixnum 3
-      Element 1: Fixnum 4
-```
-
-#### Circular Sets
-
-This example shows sets that make a circular reference.
-
-```show.rb```:
-```ruby
-require 'set'
-
-require 'debug_helper'
-
-set_0 = Set.new([])
-set_1 = Set.new([])
-set_0.add(set_1)
-set_1.add(set_0)
-DebugHelper.show(set_0, 'My circular sets')
-```
-
-The output shows details of the sets.
-
-The circular reference is not followed.
-
-```show.yaml```:
-```yaml
----
-Set (message='My circular sets'):
-  size: 1
-  Element 0:
-    Set:
-      size: 1
-      Element 0: 'Set #<Set: {#<Set: {#<Set: {...}>}>}>'
-```
-### OpenStruct
-
-#### Simple OpenStruct
-
-This example shows a simple open struct.
-
-```show.rb```:
-```ruby
-require 'ostruct'
-require 'debug_helper'
-
-ostruct = OpenStruct.new(:a => 0, :b => 1, :c => 2)
-DebugHelper.show(ostruct, 'My simple struct')
-```
-
-The output shows details of the open struct.
-
-```show.yaml```:
-```yaml
----
-OpenStruct (message='My simple struct'):
-  Member 0:
-    Name:
-      Symbol:
-        to_s: a
-        size: 1
-        encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 0
-  Member 1:
-    Name:
-      Symbol:
-        to_s: b
-        size: 1
-        encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 1
-  Member 2:
-    Name:
-      Symbol:
-        to_s: c
-        size: 1
-        encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 2
-```
-
-#### Mixed OpenStruct
-
-This example shows an open struct of mixed values.
-
-```show.rb```:
-```ruby
-require 'ostruct'
-require 'debug_helper'
-
-ostruct = OpenStruct.new(:a => 0, :b => 'one', :c => :two)
-DebugHelper.show(ostruct, 'My mixed open struct')
-```
-
-The output shows details of the open struct.
-
-```show.yaml```:
-```yaml
----
-OpenStruct (message='My mixed open struct'):
-  Member 0:
-    Name:
-      Symbol:
-        to_s: a
-        size: 1
-        encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 0
-  Member 1:
-    Name:
-      Symbol:
-        to_s: b
-        size: 1
-        encoding: !ruby/encoding US-ASCII
-    Value:
-      String:
-        to_s: one
-        size: 3
-        encoding: !ruby/encoding UTF-8
-        ascii_only?: true
-        bytesize: 3
-  Member 2:
-    Name:
-      Symbol:
-        to_s: c
-        size: 1
-        encoding: !ruby/encoding US-ASCII
-    Value:
-      Symbol:
-        to_s: two
-        size: 3
-        encoding: !ruby/encoding US-ASCII
-```
-
-#### Nested OpenStructs
-
-This example shows nested open structs.
-
-```show.rb```:
-```ruby
-require 'ostruct'
-require 'debug_helper'
-
-ostruct = OpenStruct.new(
-                        :a => OpenStruct.new(
-                                            :b => 0,
-                                            :c => 1,
-                        ),
-                        :d => OpenStruct.new(
-                                            :e => 2,
-                                            :f => 3,
-                        )
-)
-DebugHelper.show(ostruct, 'My nested struct')
-```
-
-The output shows details of the open structs.
-
-```show.yaml```:
-```yaml
----
-OpenStruct (message='My nested struct'):
-  Member 0:
-    Name:
-      Symbol:
-        to_s: a
-        size: 1
-        encoding: !ruby/encoding US-ASCII
-    Value:
-      OpenStruct:
-        Member 0:
-          Name:
-            Symbol:
-              to_s: b
-              size: 1
-              encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 0
-        Member 1:
-          Name:
-            Symbol:
-              to_s: c
-              size: 1
-              encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 1
-  Member 1:
-    Name:
-      Symbol:
-        to_s: d
-        size: 1
-        encoding: !ruby/encoding US-ASCII
-    Value:
-      OpenStruct:
-        Member 0:
-          Name:
-            Symbol:
-              to_s: e
-              size: 1
-              encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 2
-        Member 1:
-          Name:
-            Symbol:
-              to_s: f
-              size: 1
-              encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 3
-```
-
-#### Circular OpenStructs
-
-This example shows open structs that make a circular reference.
-
-```show.rb```:
-```ruby
-require 'ostruct'
-require 'debug_helper'
-
-ostruct_0 = OpenStruct.new
-ostruct_1 = OpenStruct.new
-ostruct_0.a = ostruct_1
-ostruct_1.a = ostruct_0
-DebugHelper.show(ostruct_0, 'My circular ostruct')
-```
-
-The output shows details of the open structs.
-
-The circular reference is not followed.
-
-```show.yaml```:
-```yaml
----
-OpenStruct (message='My circular ostruct'):
-  Member 0:
-    Name:
-      Symbol:
-        to_s: a
-        size: 1
-        encoding: !ruby/encoding US-ASCII
-    Value:
-      OpenStruct:
-        Member 0:
-          Name:
-            Symbol:
-              to_s: a
-              size: 1
-              encoding: !ruby/encoding US-ASCII
-          Value: 'OpenStruct #<OpenStruct a=#<OpenStruct a=#<OpenStruct ...>>>'
 ```
 ### Object
 

@@ -16,17 +16,17 @@ namespace :build do
     Dir.chdir('classes') do
       class_names = %w/
         Array
-        Hash
-        Struct
-        String
-        Symbol
-        File
         Dir
-        IO
         Exception
+        File
+        Hash
+        IO
+        OpenStruct
         Range
         Set
-        OpenStruct
+        String
+        Struct
+        Symbol
         Object
       /
       class_dir_names = []

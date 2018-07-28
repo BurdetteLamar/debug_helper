@@ -6,9 +6,9 @@ require_relative 'debug_helper/version'
 
 require_relative 'debug_helper/handler'
 
-require_relative 'debug_helper/each_with_index_handler'
-  require_relative 'debug_helper/array_handler'
-  require_relative 'debug_helper/set_handler'
+  require_relative 'debug_helper/each_with_index_handler'
+    require_relative 'debug_helper/array_handler'
+    require_relative 'debug_helper/set_handler'
 
   require_relative 'debug_helper/each_pair_handler'
     require_relative 'debug_helper/hash_handler'
