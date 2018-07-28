@@ -114,11 +114,11 @@ EOT
 
         :test_hash_sub => HashSub.new.merge(:a => 0, :b => 1),
 
-        :test_match_data => /(?<a>.)(?<b>.)/.match("01"),
-
         :test_io => IO.new(IO.sysopen(__FILE__, 'r'), 'r'),
 
         :test_io_sub => IOSub.new(IO.sysopen(__FILE__, 'r'), 'r'),
+
+        :test_match_data => /(?<a>.)(?<b>.)/.match("01"),
 
         :test_ostruct => OpenStruct.new(:a => 0, :b => 1, :c => 2),
         :test_ostruct_empty => OpenStruct.new,

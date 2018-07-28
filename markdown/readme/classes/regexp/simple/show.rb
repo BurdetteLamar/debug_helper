@@ -1,4 +1,4 @@
 require 'debug_helper'
 
-file = File.new(__FILE__)
-DebugHelper.show(file, 'My simple file')
+regexp = Regexp.new(/\w+/)
+DebugHelper.show(regexp, 'My simple regexp')

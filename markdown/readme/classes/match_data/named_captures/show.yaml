@@ -1,0 +1,14 @@
+---
+MatchData (message='My MatchData with named captures'):
+  size: 3
+  regexp: !ruby/regexp /(?<x>.)(?<y>.)?/
+  to_a:
+  - a
+  - a
+  - 
+  captures:
+  - a
+  - 
+  names:
+  - x
+  - y

@@ -1,0 +1,8 @@
+---
+MatchData (message='My simple MatchData'):
+  size: 1
+  regexp: !ruby/regexp /[a-z]/
+  to_a:
+  - a
+  captures: []
+  names: []
