@@ -20,8 +20,10 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=1 message='My circular hashes'):
+Hash (message='My circular hashes'):
   size: 1
+  default: 
+  default_proc: 
   Pair 0:
     Key:
       Symbol:
@@ -29,8 +31,10 @@ Hash (size=1 message='My circular hashes'):
         size: 3
         encoding: !ruby/encoding US-ASCII
     Value:
-      Hash (size=1):
+      Hash:
         size: 1
+        default: 
+        default_proc: 
         Pair 0:
           Key:
             Symbol:

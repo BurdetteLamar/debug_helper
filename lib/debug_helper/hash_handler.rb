@@ -2,14 +2,15 @@ class DebugHelper
 
   class HashHandler < EachPairHandler
 
+    def calls_for_instance
+      [
+          [:size],
+          [:default],
+          [:default_proc],
+      ]
+    end
     def show
       self.pair_names = %w/Pair Key Value/
-      self.attrs = {
-          :size => obj.size,
-          :default => obj.default,
-          :default_proc => obj.default_proc,
-          :message => message,
-      }
       super
     end
 

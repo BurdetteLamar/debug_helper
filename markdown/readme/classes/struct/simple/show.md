@@ -16,7 +16,7 @@ The output shows details of the struct.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 message='My simple struct'):
+MyStruct (message='My simple struct'):
   size: 3
   Member 0:
     Name:

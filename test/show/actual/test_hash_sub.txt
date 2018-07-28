@@ -1,6 +1,8 @@
 ---
-DebugHelperTest::HashSub (size=2 message='test_hash_sub'):
+DebugHelperTest::HashSub (message='test_hash_sub'):
   size: 2
+  default: 
+  default_proc: 
   Pair 0:
     Key:
       Symbol:

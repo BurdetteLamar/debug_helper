@@ -1,6 +1,5 @@
 ---
 OpenStruct (message='My simple struct'):
-  size: 
   Member 0:
     Name:
       Symbol:

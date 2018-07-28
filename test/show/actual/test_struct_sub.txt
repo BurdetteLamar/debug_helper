@@ -1,5 +1,5 @@
 ---
-DebugHelperTest::MyStructSub (size=3 message='test_struct_sub'):
+DebugHelperTest::MyStructSub (message='test_struct_sub'):
   size: 3
   Member 0:
     Name:

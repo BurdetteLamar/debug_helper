@@ -217,8 +217,10 @@ The output shows details of the hash.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=3 message='My simple hash'):
+Hash (message='My simple hash'):
   size: 3
+  default: 
+  default_proc: 
   Pair 0:
     Key:
       Symbol:
@@ -263,8 +265,10 @@ The output shows details of the hash.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=3 message='My mixed hash'):
+Hash (message='My mixed hash'):
   size: 3
+  default: 
+  default_proc: 
   Pair 0:
     Key:
       Symbol:
@@ -324,8 +328,10 @@ The output shows details of the hashes.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=2 message='My nested hash'):
+Hash (message='My nested hash'):
   size: 2
+  default: 
+  default_proc: 
   Pair 0:
     Key:
       Symbol:
@@ -333,8 +339,10 @@ Hash (size=2 message='My nested hash'):
         size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      Hash (size=2):
+      Hash:
         size: 2
+        default: 
+        default_proc: 
         Pair 0:
           Key:
             Symbol:
@@ -356,8 +364,10 @@ Hash (size=2 message='My nested hash'):
         size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      Hash (size=2):
+      Hash:
         size: 2
+        default: 
+        default_proc: 
         Pair 0:
           Key:
             Symbol:
@@ -396,8 +406,10 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=1 message='My circular hashes'):
+Hash (message='My circular hashes'):
   size: 1
+  default: 
+  default_proc: 
   Pair 0:
     Key:
       Symbol:
@@ -405,8 +417,10 @@ Hash (size=1 message='My circular hashes'):
         size: 3
         encoding: !ruby/encoding US-ASCII
     Value:
-      Hash (size=1):
+      Hash:
         size: 1
+        default: 
+        default_proc: 
         Pair 0:
           Key:
             Symbol:
@@ -435,7 +449,7 @@ The output shows details of the struct.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 message='My simple struct'):
+MyStruct (message='My simple struct'):
   size: 3
   Member 0:
     Name:
@@ -478,7 +492,7 @@ The output shows details of the struct.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 message='My mixed struct'):
+MyStruct (message='My mixed struct'):
   size: 3
   Member 0:
     Name:
@@ -534,7 +548,7 @@ The output shows details of the structs.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct_0 (size=2 message='My nested struct'):
+MyStruct_0 (message='My nested struct'):
   size: 2
   Member 0:
     Name:
@@ -543,7 +557,7 @@ MyStruct_0 (size=2 message='My nested struct'):
         size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      MyStruct_1 (size=2):
+      MyStruct_1:
         size: 2
         Member 0:
           Name:
@@ -566,7 +580,7 @@ MyStruct_0 (size=2 message='My nested struct'):
         size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      MyStruct_1 (size=2):
+      MyStruct_1:
         size: 2
         Member 0:
           Name:
@@ -607,7 +621,7 @@ The circular reference is not followed.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct (size=3 message='My circular struct'):
+MyStruct (message='My circular struct'):
   size: 3
   Member 0:
     Name:
@@ -616,7 +630,7 @@ MyStruct (size=3 message='My circular struct'):
         size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      MyStruct (size=3):
+      MyStruct:
         size: 3
         Member 0:
           Name:
@@ -1074,7 +1088,6 @@ The output shows details of the open struct.
 ```yaml
 ---
 OpenStruct (message='My simple struct'):
-  size: 
   Member 0:
     Name:
       Symbol:
@@ -1117,7 +1130,6 @@ The output shows details of the open struct.
 ```yaml
 ---
 OpenStruct (message='My mixed open struct'):
-  size: 
   Member 0:
     Name:
       Symbol:
@@ -1179,7 +1191,6 @@ The output shows details of the open structs.
 ```yaml
 ---
 OpenStruct (message='My nested struct'):
-  size: 
   Member 0:
     Name:
       Symbol:
@@ -1188,7 +1199,6 @@ OpenStruct (message='My nested struct'):
         encoding: !ruby/encoding US-ASCII
     Value:
       OpenStruct:
-        size: 
         Member 0:
           Name:
             Symbol:
@@ -1211,7 +1221,6 @@ OpenStruct (message='My nested struct'):
         encoding: !ruby/encoding US-ASCII
     Value:
       OpenStruct:
-        size: 
         Member 0:
           Name:
             Symbol:
@@ -1252,7 +1261,6 @@ The circular reference is not followed.
 ```yaml
 ---
 OpenStruct (message='My circular ostruct'):
-  size: 
   Member 0:
     Name:
       Symbol:
@@ -1261,7 +1269,6 @@ OpenStruct (message='My circular ostruct'):
         encoding: !ruby/encoding US-ASCII
     Value:
       OpenStruct:
-        size: 
         Member 0:
           Name:
             Symbol:
@@ -1283,7 +1290,9 @@ This example shows an object that will not be analyzed.
 require 'debug_helper'
 
 class MyClass
-  attr_accessor :foo, :bar, :baz
+  def inspect
+    'My class inspection'
+  end
 end
 DebugHelper.show(MyClass.new, 'My class')
 ```
@@ -1292,7 +1301,8 @@ The output shows details of the object.
 
 ```show.yaml```:
 ```yaml
---- 'MyClass (message=''My class'') #<MyClass:0x00000002728678>'
+--- MyClass (message='My class') My class inspection
+...
 ```
 
 ## Options

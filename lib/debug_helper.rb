@@ -6,7 +6,9 @@ require_relative 'debug_helper/version'
 
 require_relative 'debug_helper/handler'
 
-  require_relative 'debug_helper/each_with_index_handler'
+require_relative 'debug_helper/each_with_index_handler'
+  require_relative 'debug_helper/array_handler'
+  require_relative 'debug_helper/set_handler'
 
   require_relative 'debug_helper/each_pair_handler'
     require_relative 'debug_helper/hash_handler'
@@ -19,6 +21,7 @@ require_relative 'debug_helper/handler'
   require_relative 'debug_helper/io_handler'
   require_relative 'debug_helper/match_data_handler'
   require_relative 'debug_helper/object_handler'
+  require_relative 'debug_helper/open_struct_handler'
   require_relative 'debug_helper/regexp_handler'
   require_relative 'debug_helper/string_handler'
   require_relative 'debug_helper/symbol_handler'
@@ -60,10 +63,6 @@ class DebugHelper
   def depth_reached?
     depth == object_ids.size
   end
-
-  ArrayHandler = EachWithIndexHandler
-  SetHandler = EachWithIndexHandler
-  OpenStructHandler = StructHandler
 
   def show(obj, message, info)
     handler = nil

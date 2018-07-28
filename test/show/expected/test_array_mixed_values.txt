@@ -15,8 +15,10 @@ Array (message='test_array_mixed_values'):
       Element 0: Fixnum 0
       Element 1: Fixnum 1
   Element 3:
-    Hash (size=2):
+    Hash:
       size: 2
+      default: 
+      default_proc: 
       Pair 0:
         Key:
           Symbol:

@@ -1,6 +1,8 @@
 require 'debug_helper'
 
 class MyClass
-  attr_accessor :foo, :bar, :baz
+  def inspect
+    'My class inspection'
+  end
 end
 DebugHelper.show(MyClass.new, 'My class')

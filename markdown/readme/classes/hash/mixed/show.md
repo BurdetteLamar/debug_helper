@@ -19,8 +19,10 @@ The output shows details of the hash.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=3 message='My mixed hash'):
+Hash (message='My mixed hash'):
   size: 3
+  default: 
+  default_proc: 
   Pair 0:
     Key:
       Symbol:

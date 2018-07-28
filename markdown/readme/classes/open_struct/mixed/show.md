@@ -17,7 +17,6 @@ The output shows details of the open struct.
 ```yaml
 ---
 OpenStruct (message='My mixed open struct'):
-  size: 
   Member 0:
     Name:
       Symbol:

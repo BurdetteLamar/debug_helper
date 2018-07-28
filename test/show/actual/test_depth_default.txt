@@ -1,6 +1,8 @@
 ---
-Hash (size=1 message='test_depth_default'):
+Hash (message='test_depth_default'):
   size: 1
+  default: 
+  default_proc: 
   Pair 0:
     Key:
       Symbol:
@@ -8,8 +10,10 @@ Hash (size=1 message='test_depth_default'):
         size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      Hash (size=1):
+      Hash:
         size: 1
+        default: 
+        default_proc: 
         Pair 0:
           Key:
             Symbol:
@@ -17,8 +21,10 @@ Hash (size=1 message='test_depth_default'):
               size: 1
               encoding: !ruby/encoding US-ASCII
           Value:
-            Hash (size=1):
+            Hash:
               size: 1
+              default: 
+              default_proc: 
               Pair 0:
                 Key: Symbol :c
                 Value: String "ok"
