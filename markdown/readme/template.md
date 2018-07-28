@@ -1,15 +1,15 @@
 # Debug Helper
 
-## New in Version 1.7
+## New in Version 1.8
 
 Classes analyzed:
 
-- [File](#file)
-- [Set](#set)
-
-Options:
-
-- [```depth```](#option-depth)
+- [Dir](#dir)
+- [Exception](#exception)
+- [Range](#range)
+- [Regexp](#regexp)
+- [IO](#io)
+- [MatchData](#matchdata)
 
 ## About Debug Helper
 
