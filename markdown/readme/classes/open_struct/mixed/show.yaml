@@ -1,6 +1,5 @@
 ---
 OpenStruct (message='My mixed open struct'):
-  size: 
   Member 0:
     Name:
       Symbol:

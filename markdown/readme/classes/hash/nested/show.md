@@ -24,8 +24,10 @@ The output shows details of the hashes.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=2 message='My nested hash'):
+Hash (message='My nested hash'):
   size: 2
+  default: 
+  default_proc: 
   Pair 0:
     Key:
       Symbol:
@@ -33,8 +35,10 @@ Hash (size=2 message='My nested hash'):
         size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      Hash (size=2):
+      Hash:
         size: 2
+        default: 
+        default_proc: 
         Pair 0:
           Key:
             Symbol:
@@ -56,8 +60,10 @@ Hash (size=2 message='My nested hash'):
         size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      Hash (size=2):
+      Hash:
         size: 2
+        default: 
+        default_proc: 
         Pair 0:
           Key:
             Symbol:

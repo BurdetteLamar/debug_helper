@@ -26,7 +26,6 @@ The output shows details of the open structs.
 ```yaml
 ---
 OpenStruct (message='My nested struct'):
-  size: 
   Member 0:
     Name:
       Symbol:
@@ -35,7 +34,6 @@ OpenStruct (message='My nested struct'):
         encoding: !ruby/encoding US-ASCII
     Value:
       OpenStruct:
-        size: 
         Member 0:
           Name:
             Symbol:
@@ -58,7 +56,6 @@ OpenStruct (message='My nested struct'):
         encoding: !ruby/encoding US-ASCII
     Value:
       OpenStruct:
-        size: 
         Member 0:
           Name:
             Symbol:

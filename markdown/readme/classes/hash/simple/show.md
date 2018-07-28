@@ -15,8 +15,10 @@ The output shows details of the hash.
 ```show.yaml```:
 ```yaml
 ---
-Hash (size=3 message='My simple hash'):
+Hash (message='My simple hash'):
   size: 3
+  default: 
+  default_proc: 
   Pair 0:
     Key:
       Symbol:

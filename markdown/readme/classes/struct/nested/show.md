@@ -19,7 +19,7 @@ The output shows details of the structs.
 ```show.yaml```:
 ```yaml
 ---
-MyStruct_0 (size=2 message='My nested struct'):
+MyStruct_0 (message='My nested struct'):
   size: 2
   Member 0:
     Name:
@@ -28,7 +28,7 @@ MyStruct_0 (size=2 message='My nested struct'):
         size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      MyStruct_1 (size=2):
+      MyStruct_1:
         size: 2
         Member 0:
           Name:
@@ -51,7 +51,7 @@ MyStruct_0 (size=2 message='My nested struct'):
         size: 1
         encoding: !ruby/encoding US-ASCII
     Value:
-      MyStruct_1 (size=2):
+      MyStruct_1:
         size: 2
         Member 0:
           Name:

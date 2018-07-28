@@ -22,7 +22,6 @@ The circular reference is not followed.
 ```yaml
 ---
 OpenStruct (message='My circular ostruct'):
-  size: 
   Member 0:
     Name:
       Symbol:
@@ -31,7 +30,6 @@ OpenStruct (message='My circular ostruct'):
         encoding: !ruby/encoding US-ASCII
     Value:
       OpenStruct:
-        size: 
         Member 0:
           Name:
             Symbol:
