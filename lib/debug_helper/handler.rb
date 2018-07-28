@@ -22,6 +22,10 @@ class DebugHelper
     def gather
       calls_for_instance.each do |call_info|
         method = call_info.shift
+        unless obj.respond_to?(method)
+          message = "Instance of #{obj.class} does not respond to method #{method}"
+          raise NoMethodError.new(message, method)
+        end
         args = call_info
         if args.empty?
           value = obj.send(method)
@@ -33,6 +37,10 @@ class DebugHelper
       calls_for_class.each do |call_info|
         klass = Object.const_get(obj.class.name)
         method = call_info.shift
+        unless klass.respond_to?(method)
+          message = "#{obj.class} does not respond to method #{method}"
+          raise NoMethodError.new(message, method)
+        end
         args = call_info
         if args.empty?
           value = klass.send(method)

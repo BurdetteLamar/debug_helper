@@ -1,6 +1,5 @@
 ---
 DebugHelperTest::OpenStructSub (message='test_ostruct_sub'):
-  size: 
   Member 0:
     Name:
       Symbol:

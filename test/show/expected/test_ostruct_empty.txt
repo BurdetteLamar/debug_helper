@@ -1,3 +1,2 @@
 ---
-OpenStruct (message='test_ostruct_empty'):
-  size: 
+OpenStruct (message='test_ostruct_empty'): {}

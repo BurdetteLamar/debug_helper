@@ -1,6 +1,5 @@
 ---
 OpenStruct (message='test_ostruct_mixed_values'):
-  size: 
   Member 0:
     Name:
       Symbol:

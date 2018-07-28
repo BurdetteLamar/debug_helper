@@ -1,6 +1,5 @@
 ---
 OpenStruct (message='test_ostruct_self_referencing'):
-  size: 
   Member 0:
     Name:
       Symbol:
