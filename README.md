@@ -49,6 +49,7 @@ Classes treated in detail:
 - [IO](#io)
 - [OpenStruct](#openstruct)
 - [Range](#range)
+- [Regexp](#regexp)
 - [Set](#set)
 - [String](#string)
 - [Struct](#struct)
@@ -824,6 +825,61 @@ Range (message='My exclusive range'):
   first: 0
   last: 4
   exclude_end?: true
+```
+### Regexp
+
+#### Simple Regexp
+
+This example shows a simple ```Regexp```.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+regexp = Regexp.new(/\w+/)
+DebugHelper.show(regexp, 'My simple regexp')
+```
+
+The output shows details of the ```Regexp```.
+
+```show.yaml```:
+```yaml
+---
+Regexp (message='My simple regexp'):
+  to_s: "(?-mix:\\w+)"
+  casefold?: false
+  named_captures: {}
+  encoding: !ruby/encoding US-ASCII
+  fixed_encoding?: false
+```
+
+#### Named Captures
+
+This example shows a ```Regexp``` with named captures.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+regexp = Regexp.new(/(?<a>.)(?<b>.)/)
+DebugHelper.show(regexp, 'My regexp with named captures')
+```
+
+The output shows details of the ```Regexp```.
+
+```show.yaml```:
+```yaml
+---
+Regexp (message='My regexp with named captures'):
+  to_s: "(?-mix:(?<a>.)(?<b>.))"
+  casefold?: false
+  named_captures:
+    a:
+    - 1
+    b:
+    - 2
+  encoding: !ruby/encoding US-ASCII
+  fixed_encoding?: false
 ```
 ### Set
 

@@ -23,6 +23,7 @@ namespace :build do
         IO
         OpenStruct
         Range
+        Regexp
         Set
         String
         Struct

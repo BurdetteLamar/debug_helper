@@ -6,6 +6,7 @@
 @[:markdown](classes/io/template.md)
 @[:markdown](classes/open_struct/template.md)
 @[:markdown](classes/range/template.md)
+@[:markdown](classes/regexp/template.md)
 @[:markdown](classes/set/template.md)
 @[:markdown](classes/string/template.md)
 @[:markdown](classes/struct/template.md)

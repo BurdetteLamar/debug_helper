@@ -1,0 +1,11 @@
+---
+Regexp (message='My regexp with named captures'):
+  to_s: "(?-mix:(?<a>.)(?<b>.))"
+  casefold?: false
+  named_captures:
+    a:
+    - 1
+    b:
+    - 2
+  encoding: !ruby/encoding US-ASCII
+  fixed_encoding?: false

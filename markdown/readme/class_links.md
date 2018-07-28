@@ -6,6 +6,7 @@
 - [IO](#io)
 - [OpenStruct](#openstruct)
 - [Range](#range)
+- [Regexp](#regexp)
 - [Set](#set)
 - [String](#string)
 - [Struct](#struct)
