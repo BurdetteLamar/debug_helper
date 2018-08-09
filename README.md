@@ -1,5 +1,7 @@
 # Debug Helper
 
+[![Gem](https://img.shields.io/gem/v/debug_helper.svg?style=flat)](http://rubygems.org/gems/debug_helper "View this project in Rubygems")
+
 ## New in Version 1.8
 
 Classes analyzed:
