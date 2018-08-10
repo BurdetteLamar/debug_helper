@@ -227,14 +227,14 @@ The output shows details of the ```Dir```.
 ---
 Dir (message='My simple dir'):
   path: "."
-  entries:
+  self.entries:
   - "."
   - ".."
   - show.md
   - show.rb
   - show.yaml
   - template.md
-  exist?: true
+  self.exist?: true
 ```
 ### Exception
 
@@ -302,23 +302,23 @@ The output shows details of the file.
 ```yaml
 ---
 File (message='My simple file'):
-  absolute_path: C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
-  atime: 2018-07-14 12:45:32.000000000 -05:00
-  ctime: 2018-07-14 12:45:32.000000000 -05:00
-  executable?: false
-  exist?: true
-  ftype: file
-  mtime: 2018-07-14 12:45:32.000000000 -05:00
-  path: show.rb
-  pipe?: false
-  readable?: true
-  realpath: C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
-  setgid?: false
-  setuid?: false
-  size: 95
-  socket?: false
-  symlink?: false
-  writable?: true
+  self.absolute_path: C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
+  self.atime: 2018-07-14 12:45:32.000000000 -05:00
+  self.ctime: 2018-07-14 12:45:32.000000000 -05:00
+  self.executable?: false
+  self.exist?: true
+  self.ftype: file
+  self.mtime: 2018-07-14 12:45:32.000000000 -05:00
+  self.path: show.rb
+  self.pipe?: false
+  self.readable?: true
+  self.realpath: C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
+  self.setgid?: false
+  self.setuid?: false
+  self.size: 95
+  self.socket?: false
+  self.symlink?: false
+  self.writable?: true
 ```
 ### Hash
 
@@ -1597,11 +1597,11 @@ The output shows details of the object.
 ```yaml
 ---
 Foo (message='My class Foo'):
-  my_array:
+  self.my_array:
   - bat
   - bam
   - bad
-  my_hash:
+  self.my_hash:
     :c: 2
     :d: 3
 ```

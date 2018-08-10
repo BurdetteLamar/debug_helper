@@ -17,12 +17,12 @@ The output shows details of the ```Dir```.
 ---
 Dir (message='My simple dir'):
   path: "."
-  entries:
+  self.entries:
   - "."
   - ".."
   - show.md
   - show.rb
   - show.yaml
   - template.md
-  exist?: true
+  self.exist?: true
 ```
