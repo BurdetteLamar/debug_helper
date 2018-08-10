@@ -39,6 +39,10 @@ Others are treated as:
 
 - [Object](#object)
 
+But wait, there's more!  For your own classes, you can create your own handlers:
+
+- [Custom](#custom)
+
 ## Class Method or Module Method?
 
 Most examples in this documentation show use of the class method:

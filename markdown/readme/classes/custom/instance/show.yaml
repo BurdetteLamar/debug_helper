@@ -1,0 +1,9 @@
+---
+Foo (message='My class Foo'):
+  my_array:
+  - foo
+  - bar
+  - baz
+  my_hash:
+    :a: 0
+    :b: 1

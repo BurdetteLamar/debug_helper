@@ -13,3 +13,4 @@
 @[:markdown](classes/struct/template.md)
 @[:markdown](classes/symbol/template.md)
 @[:markdown](classes/object/template.md)
+@[:markdown](classes/custom/template.md)
