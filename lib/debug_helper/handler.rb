@@ -47,7 +47,7 @@ class DebugHelper
         else
           value = klass.send(method, *args)
         end
-        content.store("self.#{method.to_s}", value)
+        content.store(method.to_s, value)
       end
       if each_with_index?
         obj.each_with_index do |item, i|
