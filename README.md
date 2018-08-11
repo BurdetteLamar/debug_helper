@@ -2,16 +2,13 @@
 
 [![Gem](https://img.shields.io/gem/v/debug_helper.svg?style=flat)](http://rubygems.org/gems/debug_helper "View this project in Rubygems")
 
-## New in Version 1.8
+## New in Version 2.0
 
-Classes analyzed:
+Previously, ```debug_helper``` explicated objects for only certain classes in the Ruby core and standard library.
 
-- [Dir](#dir)
-- [Exception](#exception)
-- [Range](#range)
-- [Regexp](#regexp)
-- [IO](#io)
-- [MatchData](#matchdata)
+This version supports custom explication of user-defined classes.  This means, in effect, that you can use ```debug_helper``` to explicate any classes you choose.
+
+See [Custom](#custom).
 
 ## About Debug Helper
 
