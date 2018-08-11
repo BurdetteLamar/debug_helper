@@ -1,7 +1,7 @@
 ---
 String (message='test_string_empty'):
-  to_s: ''
-  size: 0
-  encoding: !ruby/encoding UTF-8
-  ascii_only?: true
-  bytesize: 0
+  String#to_s: ''
+  String#size: 0
+  String#encoding: !ruby/encoding UTF-8
+  String#ascii_only?: true
+  String#bytesize: 0

@@ -1,12 +1,12 @@
 ---
 File (message='test_file'):
-  executable?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
-  exist?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): true
-  ftype(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): file
-  pipe?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
-  readable?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): true
-  setgid?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
-  setuid?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
-  socket?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
-  symlink?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
-  writable?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): true
+  File.executable?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
+  File.exist?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): true
+  File.ftype("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): file
+  File.pipe?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
+  File.readable?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): true
+  File.setgid?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
+  File.setuid?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
+  File.socket?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
+  File.symlink?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
+  File.writable?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): true

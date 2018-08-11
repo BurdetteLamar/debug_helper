@@ -29,10 +29,11 @@ class DebugHelper
         args = call_info
         if args.empty?
           value = obj.send(method)
-          key = method.to_s
+          key = "#{obj.class.name}##{method.to_s}"
         else
           value = obj.send(method, *args)
-          key = "#{method.to_s}(#{args.inspect})"
+          arglist = args.collect {|arg| arg.inspect}.join(', ')
+          key = "#{obj.class.name}##{method.to_s}(#{arglist})"
         end
         content.store(key, value)
       end
@@ -46,10 +47,11 @@ class DebugHelper
         args = call_info
         if args.empty?
           value = klass.send(method)
-          key = method.to_s
+          key = "#{klass}.#{method.to_s}"
         else
           value = klass.send(method, *args)
-          key = "#{method.to_s}(#{args.inspect})"
+          arglist = args.collect {|arg| arg.inspect}.join(', ')
+          key = "#{klass}.#{method.to_s}(#{arglist})"
         end
         content.store(key, value)
       end

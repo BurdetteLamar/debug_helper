@@ -1,7 +1,7 @@
 ---
 DebugHelperTest::StringSub (message='test_string_sub'):
-  to_s: Lorem ipsum
-  size: 11
-  encoding: !ruby/encoding UTF-8
-  ascii_only?: true
-  bytesize: 11
+  DebugHelperTest::StringSub#to_s: Lorem ipsum
+  DebugHelperTest::StringSub#size: 11
+  DebugHelperTest::StringSub#encoding: !ruby/encoding UTF-8
+  DebugHelperTest::StringSub#ascii_only?: true
+  DebugHelperTest::StringSub#bytesize: 11

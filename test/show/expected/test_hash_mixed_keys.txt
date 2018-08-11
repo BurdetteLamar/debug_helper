@@ -1,24 +1,24 @@
 ---
 Hash (message='test_hash_mixed_keys'):
-  size: 3
-  default: 
-  default_proc: 
+  Hash#size: 3
+  Hash#default: 
+  Hash#default_proc: 
   Pair 0:
     Key: Fixnum 14
     Value: Fixnum 0
   Pair 1:
     Key:
       Symbol:
-        to_s: a
-        size: 1
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: a
+        Symbol#size: 1
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Pair 2:
     Key:
       String:
-        to_s: foobar
-        size: 6
-        encoding: !ruby/encoding UTF-8
-        ascii_only?: true
-        bytesize: 6
+        String#to_s: foobar
+        String#size: 6
+        String#encoding: !ruby/encoding UTF-8
+        String#ascii_only?: true
+        String#bytesize: 6
     Value: Fixnum 2

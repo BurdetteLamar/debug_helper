@@ -238,11 +238,11 @@ EOT
   end
 
   def test_show_exception
-    def clean_file(actual_file_path)
+    def clean_file(exception_class_name, actual_file_path)
       yaml = YAML.load_file(actual_file_path)
       top_key = yaml.keys.first
       values = yaml.fetch(top_key)
-      backtrace = values.delete('backtrace')
+      backtrace = values.delete("#{exception_class_name}#backtrace")
       assert_match(File.basename(__FILE__), backtrace.first)
       yaml.store(top_key, values)
       File.write(actual_file_path, YAML.dump(yaml))
@@ -262,12 +262,12 @@ EOT
         DebugHelperTest.write_stdout(actual_file_path) do
           DebugHelper.send(:show, exception, name)
         end
-        clean_file(actual_file_path)
+        clean_file(exception.class.name, actual_file_path)
         _test_show(self, :putd, exception, name) do |expected_file_path, actual_file_path|
           DebugHelperTest.write_stdout(actual_file_path) do
             putd(exception, name)
           end
-          clean_file(actual_file_path)
+          clean_file(exception.class.name, actual_file_path)
         end
       end
     end
@@ -282,9 +282,13 @@ EOT
       # Object ID.
       {
           :object_id => /^\d+$/,
-      }.each_pair do |key, regexp|
-        value = values.delete(key.to_s).to_s
-        assert_match(regexp, value)
+      }.each_pair do |key_prefix, regexp|
+        values.keys.each do |key|
+          next unless key.start_with?("Object##{key_prefix}")
+          value = values.delete(key.to_s).to_s
+          assert_match(regexp, value)
+          break
+        end
       end
       yaml.store(top_key, values)
       File.write(actual_file_path, YAML.dump(yaml))
@@ -308,7 +312,7 @@ EOT
 
   def test_show_file
     # To remove volatile values from the captured output.
-    def clean_file(actual_file_path, test_file_path)
+    def clean_file(class_name, actual_file_path, test_file_path)
       yaml = YAML.load_file(actual_file_path)
       top_key = yaml.keys.first
       values = yaml.fetch(top_key)
@@ -319,7 +323,7 @@ EOT
           :realpath => /^#{test_file_path}$/,
       }.each_pair do |key_prefix, regexp|
         values.keys.each do |key|
-          next unless key.start_with?("#{key_prefix}(")
+          next unless key.start_with?("#{class_name}.#{key_prefix}(")
           value = values.delete(key.to_s)
           assert_match(regexp, value)
           break
@@ -332,7 +336,7 @@ EOT
           mtime
         /.each do |key_prefix|
         values.keys.each do |key|
-          next unless key.start_with?("#{key_prefix}(")
+          next unless key.start_with?("#{class_name}.#{key_prefix}(")
           value = values.delete(key)
           assert_instance_of(Time, value)
           break
@@ -340,7 +344,7 @@ EOT
       end
       #  Size.
       values.keys.each do |key|
-        next unless key.start_with?("size(")
+        next unless key.start_with?("#{class_name}.size(")
         value = values.delete(key)
         assert_equal(File.size(test_file_path), value)
         break
@@ -359,13 +363,13 @@ EOT
         DebugHelperTest.write_stdout(actual_file_path) do
           DebugHelper.send(:show, temp_file, name)
         end
-        clean_file(actual_file_path, file_path)
+        clean_file(klass.name, actual_file_path, file_path)
       end
       _test_show(self, :putd, temp_file, name) do |expected_file_path, actual_file_path|
         DebugHelperTest.write_stdout(actual_file_path) do
           putd(temp_file, name)
         end
-        clean_file(actual_file_path, file_path)
+        clean_file(klass.name, actual_file_path, file_path)
       end
     end
   end

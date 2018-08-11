@@ -1,12 +1,12 @@
 ---
 DebugHelperTest::FileSub (message='test_file_sub'):
-  executable?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
-  exist?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): true
-  ftype(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): file
-  pipe?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
-  readable?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): true
-  setgid?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
-  setuid?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
-  socket?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
-  symlink?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
-  writable?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): true
+  DebugHelperTest::FileSub.executable?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
+  DebugHelperTest::FileSub.exist?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): true
+  DebugHelperTest::FileSub.ftype("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): file
+  DebugHelperTest::FileSub.pipe?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
+  DebugHelperTest::FileSub.readable?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): true
+  DebugHelperTest::FileSub.setgid?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
+  DebugHelperTest::FileSub.setuid?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
+  DebugHelperTest::FileSub.socket?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
+  DebugHelperTest::FileSub.symlink?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
+  DebugHelperTest::FileSub.writable?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): true

@@ -1,5 +1,5 @@
 ---
 Range (message='test_range_exclude_end'):
-  first: 0
-  last: 4
-  exclude_end?: true
+  Range#first: 0
+  Range#last: 4
+  Range#exclude_end?: true

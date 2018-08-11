@@ -1,14 +1,14 @@
 ---
 Hash (message='test_hash_circular_key'):
-  size: 2
-  default: 
-  default_proc: 
+  Hash#size: 2
+  Hash#default: 
+  Hash#default_proc: 
   Pair 0:
     Key:
       Hash:
-        size: 0
-        default: 
-        default_proc: 
+        Hash#size: 0
+        Hash#default: 
+        Hash#default_proc: 
     Value: Fixnum 0
   Pair 1:
     Key: Hash {{}=>0, {...}=>0}
