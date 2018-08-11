@@ -15,7 +15,7 @@ The output shows details of the symbol.
 ```yaml
 ---
 Symbol (message='My symbol'):
-  to_s: lorem_ipsum
-  size: 11
-  encoding: !ruby/encoding US-ASCII
+  Symbol#to_s: lorem_ipsum
+  Symbol#size: 11
+  Symbol#encoding: !ruby/encoding US-ASCII
 ```

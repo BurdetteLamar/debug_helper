@@ -25,16 +25,16 @@ OpenStruct (message='My circular ostruct'):
   Member 0:
     Name:
       Symbol:
-        to_s: a
-        size: 1
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: a
+        Symbol#size: 1
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value:
       OpenStruct:
         Member 0:
           Name:
             Symbol:
-              to_s: a
-              size: 1
-              encoding: !ruby/encoding US-ASCII
+              Symbol#to_s: a
+              Symbol#size: 1
+              Symbol#encoding: !ruby/encoding US-ASCII
           Value: 'OpenStruct #<OpenStruct a=#<OpenStruct a=#<OpenStruct ...>>>'
 ```

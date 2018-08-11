@@ -21,7 +21,7 @@ class Foo
 end
 ```
 
-Here's its custom debug handler class ```FooHandler```.  The array returned in method ```calls_for_instance``` tells the base class ```Handler``` which methods to call for the explication.
+Here's its custom debug handler class ```FooHandler```.  The array returned by method ```calls_for_instance``` tells the base class ```Handler``` which methods to call for the explication, and what arguments to pass, if any.
 
 ```foo_handler.rb```:
 ```ruby
@@ -35,6 +35,8 @@ class DebugHelper
       [
           [:my_array],
           [:my_hash],
+          [:respond_to?, :your_array],
+          [:respond_to?, :your_hash],
       ]
     end
 
@@ -60,11 +62,13 @@ The output shows details of the object.
 ```yaml
 ---
 Foo (message='My class Foo'):
-  my_array:
+  Foo#my_array:
   - foo
   - bar
   - baz
-  my_hash:
+  Foo#my_hash:
     :a: 0
     :b: 1
+  Foo#respond_to?(:your_array): false
+  Foo#respond_to?(:your_hash): false
 ```

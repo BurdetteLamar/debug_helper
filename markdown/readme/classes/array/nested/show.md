@@ -16,16 +16,16 @@ The output shows details of the arrays.
 ```yaml
 ---
 Array (message='My nested arrays'):
-  size: 3
+  Array#size: 3
   Element 0: Fixnum 0
   Element 1:
     Array:
-      size: 2
+      Array#size: 2
       Element 0: Fixnum 1
       Element 1: Fixnum 2
   Element 2:
     Array:
-      size: 2
+      Array#size: 2
       Element 0: Fixnum 3
       Element 1: Fixnum 4
 ```

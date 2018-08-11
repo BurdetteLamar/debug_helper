@@ -16,9 +16,9 @@ The output shows details of the ```Regexp```.
 ```yaml
 ---
 Regexp (message='My simple regexp'):
-  to_s: "(?-mix:\\w+)"
-  casefold?: false
-  named_captures: {}
-  encoding: !ruby/encoding US-ASCII
-  fixed_encoding?: false
+  Regexp#to_s: "(?-mix:\\w+)"
+  Regexp#casefold?: false
+  Regexp#named_captures: {}
+  Regexp#encoding: !ruby/encoding US-ASCII
+  Regexp#fixed_encoding?: false
 ```

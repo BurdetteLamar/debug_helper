@@ -23,9 +23,9 @@ The circular reference is not followed.
 ```yaml
 ---
 Set (message='My circular sets'):
-  size: 1
+  Set#size: 1
   Element 0:
     Set:
-      size: 1
+      Set#size: 1
       Element 0: 'Set #<Set: {#<Set: {#<Set: {...}>}>}>'
 ```

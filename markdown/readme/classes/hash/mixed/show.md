@@ -20,38 +20,38 @@ The output shows details of the hash.
 ```yaml
 ---
 Hash (message='My mixed hash'):
-  size: 3
-  default: 
-  default_proc: 
+  Hash#size: 3
+  Hash#default: 
+  Hash#default_proc: 
   Pair 0:
     Key:
       Symbol:
-        to_s: a
-        size: 1
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: a
+        Symbol#size: 1
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Pair 1:
     Key:
       Symbol:
-        to_s: b
-        size: 1
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: b
+        Symbol#size: 1
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value:
       String:
-        to_s: one
-        size: 3
-        encoding: !ruby/encoding UTF-8
-        ascii_only?: true
-        bytesize: 3
+        String#to_s: one
+        String#size: 3
+        String#encoding: !ruby/encoding UTF-8
+        String#ascii_only?: true
+        String#bytesize: 3
   Pair 2:
     Key:
       Symbol:
-        to_s: c
-        size: 1
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: c
+        Symbol#size: 1
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value:
       Symbol:
-        to_s: two
-        size: 3
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: two
+        Symbol#size: 3
+        Symbol#encoding: !ruby/encoding US-ASCII
 ```

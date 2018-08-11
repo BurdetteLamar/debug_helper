@@ -16,8 +16,8 @@ The output shows details of the ```IO```.
 ```yaml
 ---
 IO (message='My simple io'):
-  autoclose?: true
-  binmode?: false
-  closed?: false
-  tty?: false
+  IO#autoclose?: true
+  IO#binmode?: false
+  IO#closed?: false
+  IO#tty?: false
 ```

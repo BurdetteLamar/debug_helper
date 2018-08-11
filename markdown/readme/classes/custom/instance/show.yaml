@@ -1,9 +1,11 @@
 ---
 Foo (message='My class Foo'):
-  my_array:
+  Foo#my_array:
   - foo
   - bar
   - baz
-  my_hash:
+  Foo#my_hash:
     :a: 0
     :b: 1
+  Foo#respond_to?(:your_array): false
+  Foo#respond_to?(:your_hash): false

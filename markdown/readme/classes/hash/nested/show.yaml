@@ -1,55 +1,55 @@
 ---
 Hash (message='My nested hash'):
-  size: 2
-  default: 
-  default_proc: 
+  Hash#size: 2
+  Hash#default: 
+  Hash#default_proc: 
   Pair 0:
     Key:
       Symbol:
-        to_s: a
-        size: 1
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: a
+        Symbol#size: 1
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value:
       Hash:
-        size: 2
-        default: 
-        default_proc: 
+        Hash#size: 2
+        Hash#default: 
+        Hash#default_proc: 
         Pair 0:
           Key:
             Symbol:
-              to_s: b
-              size: 1
-              encoding: !ruby/encoding US-ASCII
+              Symbol#to_s: b
+              Symbol#size: 1
+              Symbol#encoding: !ruby/encoding US-ASCII
           Value: Fixnum 0
         Pair 1:
           Key:
             Symbol:
-              to_s: c
-              size: 1
-              encoding: !ruby/encoding US-ASCII
+              Symbol#to_s: c
+              Symbol#size: 1
+              Symbol#encoding: !ruby/encoding US-ASCII
           Value: Fixnum 1
   Pair 1:
     Key:
       Symbol:
-        to_s: d
-        size: 1
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: d
+        Symbol#size: 1
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value:
       Hash:
-        size: 2
-        default: 
-        default_proc: 
+        Hash#size: 2
+        Hash#default: 
+        Hash#default_proc: 
         Pair 0:
           Key:
             Symbol:
-              to_s: e
-              size: 1
-              encoding: !ruby/encoding US-ASCII
+              Symbol#to_s: e
+              Symbol#size: 1
+              Symbol#encoding: !ruby/encoding US-ASCII
           Value: Fixnum 2
         Pair 1:
           Key:
             Symbol:
-              to_s: f
-              size: 1
-              encoding: !ruby/encoding US-ASCII
+              Symbol#to_s: f
+              Symbol#size: 1
+              Symbol#encoding: !ruby/encoding US-ASCII
           Value: Fixnum 3

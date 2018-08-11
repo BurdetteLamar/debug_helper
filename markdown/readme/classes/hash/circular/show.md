@@ -21,25 +21,25 @@ The circular reference is not followed.
 ```yaml
 ---
 Hash (message='My circular hashes'):
-  size: 1
-  default: 
-  default_proc: 
+  Hash#size: 1
+  Hash#default: 
+  Hash#default_proc: 
   Pair 0:
     Key:
       Symbol:
-        to_s: foo
-        size: 3
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: foo
+        Symbol#size: 3
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value:
       Hash:
-        size: 1
-        default: 
-        default_proc: 
+        Hash#size: 1
+        Hash#default: 
+        Hash#default_proc: 
         Pair 0:
           Key:
             Symbol:
-              to_s: bar
-              size: 3
-              encoding: !ruby/encoding US-ASCII
+              Symbol#to_s: bar
+              Symbol#size: 3
+              Symbol#encoding: !ruby/encoding US-ASCII
           Value: Hash {:foo=>{:bar=>{...}}}
 ```

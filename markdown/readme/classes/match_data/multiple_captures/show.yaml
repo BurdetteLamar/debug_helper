@@ -1,16 +1,16 @@
 ---
 MatchData (message='My MatchData with named captures'):
-  size: 5
-  regexp: !ruby/regexp /(.)(.)(\d+)(\d)/
-  to_a:
+  MatchData#size: 5
+  MatchData#regexp: !ruby/regexp /(.)(.)(\d+)(\d)/
+  MatchData#to_a:
   - HX1138
   - H
   - X
   - '113'
   - '8'
-  captures:
+  MatchData#captures:
   - H
   - X
   - '113'
   - '8'
-  names: []
+  MatchData#names: []

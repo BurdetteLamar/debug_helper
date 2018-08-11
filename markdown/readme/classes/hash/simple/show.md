@@ -16,28 +16,28 @@ The output shows details of the hash.
 ```yaml
 ---
 Hash (message='My simple hash'):
-  size: 3
-  default: 
-  default_proc: 
+  Hash#size: 3
+  Hash#default: 
+  Hash#default_proc: 
   Pair 0:
     Key:
       Symbol:
-        to_s: a
-        size: 1
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: a
+        Symbol#size: 1
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value: Fixnum 0
   Pair 1:
     Key:
       Symbol:
-        to_s: b
-        size: 1
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: b
+        Symbol#size: 1
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Pair 2:
     Key:
       Symbol:
-        to_s: c
-        size: 1
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: c
+        Symbol#size: 1
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2
 ```

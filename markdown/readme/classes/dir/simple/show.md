@@ -16,13 +16,13 @@ The output shows details of the ```Dir```.
 ```yaml
 ---
 Dir (message='My simple dir'):
-  path: "."
-  self.entries:
+  Dir#path: "."
+  Dir.entries("."):
   - "."
   - ".."
   - show.md
   - show.rb
   - show.yaml
   - template.md
-  self.exist?: true
+  Dir.exist?("."): true
 ```

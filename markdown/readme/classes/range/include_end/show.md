@@ -16,7 +16,7 @@ The output shows details of the ```Range```.
 ```yaml
 ---
 Range (message='My inclusive range'):
-  first: 0
-  last: 4
-  exclude_end?: false
+  Range#first: 0
+  Range#last: 4
+  Range#exclude_end?: false
 ```

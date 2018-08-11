@@ -60,11 +60,11 @@ The output shows details of the object.
 ```yaml
 ---
 Foo (message='My class Foo'):
-  self.my_array:
+  Foo.my_array:
   - bat
   - bam
   - bad
-  self.my_hash:
+  Foo.my_hash:
     :c: 2
     :d: 3
 ```

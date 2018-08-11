@@ -34,9 +34,9 @@ The output shows details of the ```Exception```.
 ```yaml
 ---
 Exception (message='My simple exception'):
-  message: Boo!
-  cause: 
-  backtrace:
+  Exception#message: Boo!
+  Exception#cause: 
+  Exception#backtrace:
   - show.rb:6:in `foo'
   - show.rb:14:in `bar'
   - show.rb:18:in `baz'

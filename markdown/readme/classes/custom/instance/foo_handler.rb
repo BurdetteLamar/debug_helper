@@ -8,6 +8,8 @@ class DebugHelper
       [
           [:my_array],
           [:my_hash],
+          [:respond_to?, :your_array],
+          [:respond_to?, :your_hash],
       ]
     end
 
