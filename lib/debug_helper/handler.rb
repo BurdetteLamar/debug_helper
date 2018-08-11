@@ -29,10 +29,12 @@ class DebugHelper
         args = call_info
         if args.empty?
           value = obj.send(method)
+          key = method.to_s
         else
           value = obj.send(method, *args)
+          key = "#{method.to_s}(#{args.inspect})"
         end
-        content.store(method.to_s, value)
+        content.store(key, value)
       end
       calls_for_class.each do |call_info|
         klass = Object.const_get(obj.class.name)
@@ -44,10 +46,12 @@ class DebugHelper
         args = call_info
         if args.empty?
           value = klass.send(method)
+          key = method.to_s
         else
           value = klass.send(method, *args)
+          key = "#{method.to_s}(#{args.inspect})"
         end
-        content.store(method.to_s, value)
+        content.store(key, value)
       end
       if each_with_index?
         obj.each_with_index do |item, i|

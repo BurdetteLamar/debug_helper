@@ -317,22 +317,34 @@ EOT
           :absolute_path => /^#{test_file_path}$/,
           :path => /^#{test_file_path}$/,
           :realpath => /^#{test_file_path}$/,
-      }.each_pair do |key, regexp|
-        value = values.delete(key.to_s)
-        assert_match(regexp, value)
+      }.each_pair do |key_prefix, regexp|
+        values.keys.each do |key|
+          next unless key.start_with?("#{key_prefix}(")
+          value = values.delete(key.to_s)
+          assert_match(regexp, value)
+          break
+        end
       end
       # Times.
       %w/
           atime
           ctime
           mtime
-        /.each do |key|
-        value = values.delete(key)
-        assert_instance_of(Time, value)
+        /.each do |key_prefix|
+        values.keys.each do |key|
+          next unless key.start_with?("#{key_prefix}(")
+          value = values.delete(key)
+          assert_instance_of(Time, value)
+          break
+        end
       end
       #  Size.
-      value = values.delete('size')
-      assert_equal(File.size(test_file_path), value)
+      values.keys.each do |key|
+        next unless key.start_with?("size(")
+        value = values.delete(key)
+        assert_equal(File.size(test_file_path), value)
+        break
+      end
       yaml.store(top_key, values)
       File.write(actual_file_path, YAML.dump(yaml))
     end

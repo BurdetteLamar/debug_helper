@@ -1,12 +1,12 @@
 ---
 DebugHelperTest::FileSub (message='test_file_sub'):
-  executable?: false
-  exist?: true
-  ftype: file
-  pipe?: false
-  readable?: true
-  setgid?: false
-  setuid?: false
-  socket?: false
-  symlink?: false
-  writable?: true
+  executable?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
+  exist?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): true
+  ftype(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): file
+  pipe?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
+  readable?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): true
+  setgid?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
+  setuid?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
+  socket?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
+  symlink?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): false
+  writable?(["C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"]): true
