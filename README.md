@@ -8,7 +8,7 @@ Previously, ```debug_helper``` explicated objects for only certain classes in th
 
 This version supports custom explication of user-defined classes.  This means, in effect, that you can use ```debug_helper``` to explicate any classes you choose.
 
-See @[Custom](#custom).
+See [Custom](#custom).
 
 ## About Debug Helper
 
