@@ -6,3 +6,5 @@ You can create custom handlers for your own classes.
 
 @[:markdown](singleton/show.md)
 
+@[:markdown](both/show.md)
+
