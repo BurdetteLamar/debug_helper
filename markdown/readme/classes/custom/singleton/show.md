@@ -35,6 +35,8 @@ class DebugHelper
       [
           [:my_array],
           [:my_hash],
+          [:respond_to?, :your_array],
+          [:respond_to?, :your_hash],
       ]
     end
 
@@ -67,4 +69,6 @@ Foo (message='My class Foo'):
   Foo.my_hash:
     :c: 2
     :d: 3
+  Foo.respond_to?(:your_array): false
+  Foo.respond_to?(:your_hash): false
 ```
