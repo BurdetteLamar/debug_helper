@@ -1,8 +1,8 @@
 ---
 Hash (message='test_depth_1'):
-  size: 1
-  default: 
-  default_proc: 
+  Hash#size: 1
+  Hash#default: 
+  Hash#default_proc: 
   Pair 0:
     Key: Symbol :a
     Value: Hash {:b=>{:c=>"not ok"}}

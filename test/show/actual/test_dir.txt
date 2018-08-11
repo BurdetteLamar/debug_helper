@@ -1,11 +1,11 @@
 ---
 Dir (message='test_dir'):
-  path: C:/Users/Burdette/Documents/GitHub/debug_helper/test
-  entries:
+  Dir#path: C:/Users/Burdette/Documents/GitHub/debug_helper/test
+  Dir.entries("C:/Users/Burdette/Documents/GitHub/debug_helper/test"):
   - "."
   - ".."
   - debug_helper_test.rb
   - show
   - show_hash
   - test_helper.rb
-  exist?: true
+  Dir.exist?("C:/Users/Burdette/Documents/GitHub/debug_helper/test"): true

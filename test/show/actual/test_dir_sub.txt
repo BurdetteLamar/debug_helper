@@ -1,11 +1,11 @@
 ---
 DebugHelperTest::DirSub (message='test_dir_sub'):
-  path: C:/Users/Burdette/Documents/GitHub/debug_helper/test
-  entries:
+  DebugHelperTest::DirSub#path: C:/Users/Burdette/Documents/GitHub/debug_helper/test
+  DebugHelperTest::DirSub.entries("C:/Users/Burdette/Documents/GitHub/debug_helper/test"):
   - "."
   - ".."
   - debug_helper_test.rb
   - show
   - show_hash
   - test_helper.rb
-  exist?: true
+  DebugHelperTest::DirSub.exist?("C:/Users/Burdette/Documents/GitHub/debug_helper/test"): true

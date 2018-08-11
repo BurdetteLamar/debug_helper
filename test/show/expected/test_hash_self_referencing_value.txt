@@ -1,12 +1,12 @@
 ---
 Hash (message='test_hash_self_referencing_value'):
-  size: 1
-  default: 
-  default_proc: 
+  Hash#size: 1
+  Hash#default: 
+  Hash#default_proc: 
   Pair 0:
     Key:
       Symbol:
-        to_s: a
-        size: 1
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: a
+        Symbol#size: 1
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value: Hash {:a=>{...}}

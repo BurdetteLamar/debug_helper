@@ -16,9 +16,9 @@ The output shows details of the string.
 ```yaml
 ---
 String (message='My simple string'):
-  to_s: Lorem ipsum
-  size: 11
-  encoding: !ruby/encoding UTF-8
-  ascii_only?: true
-  bytesize: 11
+  String#to_s: Lorem ipsum
+  String#size: 11
+  String#encoding: !ruby/encoding UTF-8
+  String#ascii_only?: true
+  String#bytesize: 11
 ```

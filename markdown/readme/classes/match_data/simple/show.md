@@ -16,10 +16,10 @@ The output shows details of the ```MatchData```.
 ```yaml
 ---
 MatchData (message='My simple MatchData'):
-  size: 1
-  regexp: !ruby/regexp /[a-z]/
-  to_a:
+  MatchData#size: 1
+  MatchData#regexp: !ruby/regexp /[a-z]/
+  MatchData#to_a:
   - a
-  captures: []
-  names: []
+  MatchData#captures: []
+  MatchData#names: []
 ```

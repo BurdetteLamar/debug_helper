@@ -18,18 +18,18 @@ The output shows details of the set.
 ```yaml
 ---
 Set (message='My mixed set'):
-  size: 3
+  Set#size: 3
   Element 0: Fixnum 0
   Element 1:
     String:
-      to_s: one
-      size: 3
-      encoding: !ruby/encoding UTF-8
-      ascii_only?: true
-      bytesize: 3
+      String#to_s: one
+      String#size: 3
+      String#encoding: !ruby/encoding UTF-8
+      String#ascii_only?: true
+      String#bytesize: 3
   Element 2:
     Symbol:
-      to_s: two
-      size: 3
-      encoding: !ruby/encoding US-ASCII
+      Symbol#to_s: two
+      Symbol#size: 3
+      Symbol#encoding: !ruby/encoding US-ASCII
 ```

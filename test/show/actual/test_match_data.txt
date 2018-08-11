@@ -1,14 +1,14 @@
 ---
 MatchData (message='test_match_data'):
-  size: 3
-  regexp: !ruby/regexp /(?<a>.)(?<b>.)/
-  to_a:
+  MatchData#size: 3
+  MatchData#regexp: !ruby/regexp /(?<a>.)(?<b>.)/
+  MatchData#to_a:
   - '01'
   - '0'
   - '1'
-  captures:
+  MatchData#captures:
   - '0'
   - '1'
-  names:
+  MatchData#names:
   - a
   - b

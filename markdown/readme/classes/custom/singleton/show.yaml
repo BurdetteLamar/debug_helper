@@ -1,0 +1,11 @@
+---
+Foo (message='My class Foo'):
+  Foo.my_array:
+  - bat
+  - bam
+  - bad
+  Foo.my_hash:
+    :c: 2
+    :d: 3
+  Foo.respond_to?(:your_array): false
+  Foo.respond_to?(:your_hash): false

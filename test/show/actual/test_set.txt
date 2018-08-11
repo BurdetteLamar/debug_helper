@@ -1,5 +1,5 @@
 ---
 Set (message='test_set'):
-  size: 2
+  Set#size: 2
   Element 0: Fixnum 14
   Element 1: Fixnum 22

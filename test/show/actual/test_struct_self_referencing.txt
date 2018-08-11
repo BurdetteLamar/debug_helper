@@ -1,25 +1,25 @@
 ---
 DebugHelperTest::MyStruct (message='test_struct_self_referencing'):
-  size: 3
+  DebugHelperTest::MyStruct#size: 3
   Member 0:
     Name:
       Symbol:
-        to_s: foo
-        size: 3
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: foo
+        Symbol#size: 3
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value: 'DebugHelperTest::MyStruct #<struct DebugHelperTest::MyStruct foo=#<struct
       DebugHelperTest::MyStruct:...>, bar=1, baz=2>'
   Member 1:
     Name:
       Symbol:
-        to_s: bar
-        size: 3
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: bar
+        Symbol#size: 3
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value: Fixnum 1
   Member 2:
     Name:
       Symbol:
-        to_s: baz
-        size: 3
-        encoding: !ruby/encoding US-ASCII
+        Symbol#to_s: baz
+        Symbol#size: 3
+        Symbol#encoding: !ruby/encoding US-ASCII
     Value: Fixnum 2

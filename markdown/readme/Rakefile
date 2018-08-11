@@ -30,6 +30,7 @@ namespace :build do
         Struct
         Symbol
         Object
+        Custom
       /
       class_dir_names = []
       correct_dir_names = {
@@ -67,7 +68,7 @@ namespace :build do
           :open_struct => 'OpenStruct',
       }
       class_dir_names.each do |class_dir_name|
-        next if class_dir_name == 'object'
+        next if %w/object custom/.include?(class_dir_name)
         if correct_class_names.include?(class_dir_name.to_sym)
           class_name = correct_class_names.fetch(class_dir_name.to_sym)
         else

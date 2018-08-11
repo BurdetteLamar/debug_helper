@@ -16,13 +16,13 @@ The output shows details of the ```Regexp```.
 ```yaml
 ---
 Regexp (message='My regexp with named captures'):
-  to_s: "(?-mix:(?<a>.)(?<b>.))"
-  casefold?: false
-  named_captures:
+  Regexp#to_s: "(?-mix:(?<a>.)(?<b>.))"
+  Regexp#casefold?: false
+  Regexp#named_captures:
     a:
     - 1
     b:
     - 2
-  encoding: !ruby/encoding US-ASCII
-  fixed_encoding?: false
+  Regexp#encoding: !ruby/encoding US-ASCII
+  Regexp#fixed_encoding?: false
 ```

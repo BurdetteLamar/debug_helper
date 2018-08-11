@@ -1,4 +1,4 @@
 ---
 Exception (message='test_exception'):
-  message: Boo!
-  cause: 
+  Exception#message: Boo!
+  Exception#cause: 
