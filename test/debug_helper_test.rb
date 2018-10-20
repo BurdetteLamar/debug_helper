@@ -206,13 +206,13 @@ EOT
     end
   end
 
-  def _test_show(test, method, obj, name)
+  def _test_show(test, method, name)
     expected_file_path = File.join(
         TEST_DIR_PATH,
         'show',
         'expected',
         "#{name.to_s}.txt",
-    ) if expected_file_path.nil?
+    )
     expected_data = File.read(expected_file_path)
     conditioned_data = expected_data.gsub('git_dir', DebugHelperTest.git_clone_dir_path)
     conditioned_file = Tempfile.new("#{name.to_s}.txt")
@@ -231,12 +231,12 @@ EOT
   end
 
   def _test_show_object(test, obj, name, options = {})
-    _test_show(test, :show, obj, name) do |actual_file_path|
+    _test_show(test, :show, name) do |actual_file_path|
       DebugHelperTest.write_stdout(actual_file_path) do
         DebugHelper.send(:show, obj, name, options)
       end
     end
-    _test_show(test, :putd, obj, name) do |actual_file_path|
+    _test_show(test, :putd, name) do |actual_file_path|
       DebugHelperTest.write_stdout(actual_file_path) do
         putd(obj, name, options)
       end
@@ -263,12 +263,12 @@ EOT
       rescue klass => exception
         # It's saved.
       end
-      _test_show(self, :show, exception, name) do |actual_file_path|
+      _test_show(self, :show, name) do |actual_file_path|
         DebugHelperTest.write_stdout(actual_file_path) do
           DebugHelper.send(:show, exception, name)
         end
         clean_file_for_exception(exception.class.name, actual_file_path)
-        _test_show(self, :putd, exception, name) do |act_file_path|
+        _test_show(self, :putd, name) do |act_file_path|
           DebugHelperTest.write_stdout(act_file_path) do
             putd(exception, name)
           end
@@ -300,13 +300,13 @@ EOT
     end
     name = 'test_object'
     object = Object.new
-    _test_show(self, :show, object, name) do |actual_file_path|
+    _test_show(self, :show, name) do |actual_file_path|
       DebugHelperTest.write_stdout(actual_file_path) do
         DebugHelper.send(:show, object, name)
       end
       clean_file_for_object(actual_file_path)
     end
-    _test_show(self, :putd, object, name) do |actual_file_path|
+    _test_show(self, :putd, name) do |actual_file_path|
       DebugHelperTest.write_stdout(actual_file_path) do
         putd(object, name)
       end
@@ -362,13 +362,13 @@ EOT
     }.each_pair do |name, klass|
       file_path = __FILE__
       file = klass.new(file_path)
-      _test_show(self, :show, file, name) do |actual_file_path|
+      _test_show(self, :show, name) do |actual_file_path|
         DebugHelperTest.write_stdout(actual_file_path) do
           DebugHelper.send(:show, file, name)
         end
         clean_file_for_file(klass.name, actual_file_path, file_path)
       end
-      _test_show(self, :putd, file, name) do |actual_file_path|
+      _test_show(self, :putd, name) do |actual_file_path|
         DebugHelperTest.write_stdout(actual_file_path) do
           putd(file, name)
         end
