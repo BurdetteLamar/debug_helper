@@ -9,7 +9,7 @@ Hash (message='test_hash_circular_key'):
         Hash#size: 0
         Hash#default: 
         Hash#default_proc: 
-    Value: Fixnum 0
+    Value: Integer 0
   Pair 1:
     Key: Hash {{}=>0, {...}=>0}
-    Value: Fixnum 0
+    Value: Integer 0

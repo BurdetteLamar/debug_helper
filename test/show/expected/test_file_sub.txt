@@ -1,12 +1,12 @@
 ---
 DebugHelperTest::FileSub (message='test_file_sub'):
-  DebugHelperTest::FileSub.executable?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
-  DebugHelperTest::FileSub.exist?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): true
-  DebugHelperTest::FileSub.ftype("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): file
-  DebugHelperTest::FileSub.pipe?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
-  DebugHelperTest::FileSub.readable?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): true
-  DebugHelperTest::FileSub.setgid?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
-  DebugHelperTest::FileSub.setuid?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
-  DebugHelperTest::FileSub.socket?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
-  DebugHelperTest::FileSub.symlink?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): false
-  DebugHelperTest::FileSub.writable?("C:/Users/Burdette/Documents/GitHub/debug_helper/test/debug_helper_test.rb"): true
+  DebugHelperTest::FileSub.executable?("git_dir/test/debug_helper_test.rb"): false
+  DebugHelperTest::FileSub.exist?("git_dir/test/debug_helper_test.rb"): true
+  DebugHelperTest::FileSub.ftype("git_dir/test/debug_helper_test.rb"): file
+  DebugHelperTest::FileSub.pipe?("git_dir/test/debug_helper_test.rb"): false
+  DebugHelperTest::FileSub.readable?("git_dir/test/debug_helper_test.rb"): true
+  DebugHelperTest::FileSub.setgid?("git_dir/test/debug_helper_test.rb"): false
+  DebugHelperTest::FileSub.setuid?("git_dir/test/debug_helper_test.rb"): false
+  DebugHelperTest::FileSub.socket?("git_dir/test/debug_helper_test.rb"): false
+  DebugHelperTest::FileSub.symlink?("git_dir/test/debug_helper_test.rb"): false
+  DebugHelperTest::FileSub.writable?("git_dir/test/debug_helper_test.rb"): true

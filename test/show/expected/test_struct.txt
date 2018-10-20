@@ -7,18 +7,18 @@ DebugHelperTest::MyStruct (message='test_struct'):
         Symbol#to_s: foo
         Symbol#size: 3
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 0
+    Value: Integer 0
   Member 1:
     Name:
       Symbol:
         Symbol#to_s: bar
         Symbol#size: 3
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 1
+    Value: Integer 1
   Member 2:
     Name:
       Symbol:
         Symbol#to_s: baz
         Symbol#size: 3
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 2
+    Value: Integer 2

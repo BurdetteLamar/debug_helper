@@ -9,11 +9,11 @@ Hash (message='test_hash'):
         Symbol#to_s: a
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 14
+    Value: Integer 14
   Pair 1:
     Key:
       Symbol:
         Symbol#to_s: b
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 22
+    Value: Integer 22

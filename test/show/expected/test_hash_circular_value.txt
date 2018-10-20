@@ -1,6 +1,6 @@
 ---
 Hash (message='test_hash_circular_value'):
-  Hash#size: 2
+  Hash#size: 1
   Hash#default: 
   Hash#default_proc: 
   Pair 0:
@@ -11,27 +11,13 @@ Hash (message='test_hash_circular_value'):
         Symbol#encoding: !ruby/encoding US-ASCII
     Value:
       Hash:
-        Hash#size: 0
-        Hash#default: 
-        Hash#default_proc: 
-  Pair 1:
-    Key:
-      Symbol:
-        Symbol#to_s: b
-        Symbol#size: 1
-        Symbol#encoding: !ruby/encoding US-ASCII
-    Value:
-      Hash:
-        Hash#size: 2
+        Hash#size: 1
         Hash#default: 
         Hash#default_proc: 
         Pair 0:
           Key:
-            Hash:
-              Hash#size: 0
-              Hash#default: 
-              Hash#default_proc: 
-          Value: Fixnum 0
-        Pair 1:
-          Key: Hash {{}=>0, {...}=>0}
-          Value: Fixnum 0
+            Symbol:
+              Symbol#to_s: b
+              Symbol#size: 1
+              Symbol#encoding: !ruby/encoding US-ASCII
+          Value: Hash {:a=>{:b=>{...}}}

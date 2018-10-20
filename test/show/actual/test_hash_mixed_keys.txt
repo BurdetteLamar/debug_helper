@@ -4,15 +4,15 @@ Hash (message='test_hash_mixed_keys'):
   Hash#default: 
   Hash#default_proc: 
   Pair 0:
-    Key: Fixnum 14
-    Value: Fixnum 0
+    Key: Integer 14
+    Value: Integer 0
   Pair 1:
     Key:
       Symbol:
         Symbol#to_s: a
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 1
+    Value: Integer 1
   Pair 2:
     Key:
       String:
@@ -21,4 +21,4 @@ Hash (message='test_hash_mixed_keys'):
         String#encoding: !ruby/encoding UTF-8
         String#ascii_only?: true
         String#bytesize: 6
-    Value: Fixnum 2
+    Value: Integer 2

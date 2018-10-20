@@ -5,4 +5,4 @@ Hash (message='test_hash_self_referencing_key'):
   Hash#default_proc: 
   Pair 0:
     Key: Hash {{...}=>0}
-    Value: Fixnum 0
+    Value: Integer 0

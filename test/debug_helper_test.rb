@@ -1,5 +1,6 @@
 require 'diff-lcs'
 require 'ostruct'
+require 'pathname'
 require 'set'
 require 'tempfile'
 require 'yaml'
@@ -15,7 +16,7 @@ class DebugHelperTest < Minitest::Test
   def test_version
     refute_nil ::DebugHelper::VERSION
   end
-0
+
   # Classes to exercise :kind_of? in handler selection.
   class ArraySub < Array; end
   class DirSub < Dir; end
@@ -57,8 +58,8 @@ class DebugHelperTest < Minitest::Test
 
     hash_circular_value_0 = {}
     hash_circular_value_1 = {}
-    hash_circular_value_0.store(:a, hash_circular_key_1)
-    hash_circular_value_0.store(:b, hash_circular_key_0)
+    hash_circular_value_0.store(:a, hash_circular_value_1)
+    hash_circular_value_1.store(:b, hash_circular_value_0)
 
     ostruct_self_referencing = OpenStruct.new
     ostruct_self_referencing.a = ostruct_self_referencing
@@ -205,32 +206,37 @@ EOT
     end
   end
 
-  def _test_show(test, method, obj, name, options = {})
+  def _test_show(test, method, obj, name)
     expected_file_path = File.join(
         TEST_DIR_PATH,
         'show',
         'expected',
         "#{name.to_s}.txt",
-    )
+    ) if expected_file_path.nil?
+    expected_data = File.read(expected_file_path)
+    conditioned_data = expected_data.gsub('git_dir', DebugHelperTest.git_clone_dir_path)
+    conditioned_file = Tempfile.new("#{name.to_s}.txt")
+    conditioned_file.write(conditioned_data)
+    conditioned_file.close
     actual_file_path = File.join(
         TEST_DIR_PATH,
         'show',
         'actual',
         "#{name.to_s}.txt",
     )
-    yield expected_file_path, actual_file_path
-    diffs = DebugHelperTest.diff_files(expected_file_path, actual_file_path)
+    yield actual_file_path
+    diffs = DebugHelperTest.diff_files(conditioned_file.path, actual_file_path)
     message = "Test for #{method} with item '#{name}' failed"
     test.assert_empty(diffs, message)
   end
 
   def _test_show_object(test, obj, name, options = {})
-    _test_show(test, :show, obj, name, options) do |expected_file_path, actual_file_path|
+    _test_show(test, :show, obj, name) do |actual_file_path|
       DebugHelperTest.write_stdout(actual_file_path) do
         DebugHelper.send(:show, obj, name, options)
       end
     end
-    _test_show(test, :putd, obj, name, options) do |expected_file_path, actual_file_path|
+    _test_show(test, :putd, obj, name) do |actual_file_path|
       DebugHelperTest.write_stdout(actual_file_path) do
         putd(obj, name, options)
       end
@@ -238,7 +244,7 @@ EOT
   end
 
   def test_show_exception
-    def clean_file(exception_class_name, actual_file_path)
+    def clean_file_for_exception(exception_class_name, actual_file_path)
       yaml = YAML.load_file(actual_file_path)
       top_key = yaml.keys.first
       values = yaml.fetch(top_key)
@@ -257,17 +263,16 @@ EOT
       rescue klass => exception
         # It's saved.
       end
-      _test_show(self, :show, exception, name) do |expected_file_path,
-          actual_file_path|
+      _test_show(self, :show, exception, name) do |actual_file_path|
         DebugHelperTest.write_stdout(actual_file_path) do
           DebugHelper.send(:show, exception, name)
         end
-        clean_file(exception.class.name, actual_file_path)
-        _test_show(self, :putd, exception, name) do |expected_file_path, actual_file_path|
-          DebugHelperTest.write_stdout(actual_file_path) do
+        clean_file_for_exception(exception.class.name, actual_file_path)
+        _test_show(self, :putd, exception, name) do |act_file_path|
+          DebugHelperTest.write_stdout(act_file_path) do
             putd(exception, name)
           end
-          clean_file(exception.class.name, actual_file_path)
+          clean_file_for_exception(exception.class.name, actual_file_path)
         end
       end
     end
@@ -275,7 +280,7 @@ EOT
 
   def test_show_object
     # To remove volatile values from the captured output.
-    def clean_file(actual_file_path)
+    def clean_file_for_object(actual_file_path)
       yaml = YAML.load_file(actual_file_path)
       top_key = yaml.keys.first
       values = yaml.fetch(top_key)
@@ -295,24 +300,23 @@ EOT
     end
     name = 'test_object'
     object = Object.new
-    _test_show(self, :show, object, name) do |expected_file_path,
-        actual_file_path|
+    _test_show(self, :show, object, name) do |actual_file_path|
       DebugHelperTest.write_stdout(actual_file_path) do
         DebugHelper.send(:show, object, name)
       end
-      clean_file(actual_file_path)
+      clean_file_for_object(actual_file_path)
     end
-    _test_show(self, :putd, object, name) do |expected_file_path, actual_file_path|
+    _test_show(self, :putd, object, name) do |actual_file_path|
       DebugHelperTest.write_stdout(actual_file_path) do
         putd(object, name)
       end
-      clean_file(actual_file_path)
+      clean_file_for_object(actual_file_path)
     end
   end
 
   def test_show_file
     # To remove volatile values from the captured output.
-    def clean_file(class_name, actual_file_path, test_file_path)
+    def clean_file_for_file(class_name, actual_file_path, test_file_path)
       yaml = YAML.load_file(actual_file_path)
       top_key = yaml.keys.first
       values = yaml.fetch(top_key)
@@ -354,22 +358,21 @@ EOT
     end
     {
         :test_file => File,
-        :test_file_sub => FileSub,
+        :test_file_sub => DebugHelperTest::FileSub,
     }.each_pair do |name, klass|
       file_path = __FILE__
-      temp_file = klass.new(file_path)
-      _test_show(self, :show, temp_file, name) do |expected_file_path,
-          actual_file_path|
+      file = klass.new(file_path)
+      _test_show(self, :show, file, name) do |actual_file_path|
         DebugHelperTest.write_stdout(actual_file_path) do
-          DebugHelper.send(:show, temp_file, name)
+          DebugHelper.send(:show, file, name)
         end
-        clean_file(klass.name, actual_file_path, file_path)
+        clean_file_for_file(klass.name, actual_file_path, file_path)
       end
-      _test_show(self, :putd, temp_file, name) do |expected_file_path, actual_file_path|
+      _test_show(self, :putd, file, name) do |actual_file_path|
         DebugHelperTest.write_stdout(actual_file_path) do
-          putd(temp_file, name)
+          putd(file, name)
         end
-        clean_file(klass.name, actual_file_path, file_path)
+        clean_file_for_file(klass.name, actual_file_path, file_path)
       end
     end
   end
@@ -395,4 +398,22 @@ EOT
     diffs
   end
 
+  def self.git_clone_dir_path
+    git_dir = `git rev-parse --git-dir`.chomp
+    unless $?.success?
+      message = <<EOT
+
+This test must run inside a .git project.
+That is, the working directory one of its parents must be a .git directory.
+EOT
+      raise RuntimeError.new(message)
+    end
+    if git_dir == '.git'
+      path = `pwd`.chomp
+    else
+      path = File.dirname(git_dir).chomp
+    end
+    realpath = Pathname.new(path.sub(%r|/c/|, 'C:/')).realpath
+    realpath.to_s
+  end
 end

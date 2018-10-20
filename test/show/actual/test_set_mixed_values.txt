@@ -1,7 +1,7 @@
 ---
 Set (message='test_set_mixed_values'):
   Set#size: 6
-  Element 0: Fixnum 14
+  Element 0: Integer 14
   Element 1:
     String:
       String#to_s: foo
@@ -12,8 +12,8 @@ Set (message='test_set_mixed_values'):
   Element 2:
     Array:
       Array#size: 2
-      Element 0: Fixnum 0
-      Element 1: Fixnum 1
+      Element 0: Integer 0
+      Element 1: Integer 1
   Element 3:
     Hash:
       Hash#size: 2
@@ -25,13 +25,13 @@ Set (message='test_set_mixed_values'):
             Symbol#to_s: a
             Symbol#size: 1
             Symbol#encoding: !ruby/encoding US-ASCII
-        Value: Fixnum 1
+        Value: Integer 1
       Pair 1:
         Key:
           Symbol:
             Symbol#to_s: b
             Symbol#size: 1
             Symbol#encoding: !ruby/encoding US-ASCII
-        Value: Fixnum 1
+        Value: Integer 1
   Element 4: TrueClass true
   Element 5: NilClass nil
