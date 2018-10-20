@@ -103,9 +103,9 @@ The output shows details of the array.
 ---
 Array (message='My simple array'):
   Array#size: 3
-  Element 0: Fixnum 5
-  Element 1: Fixnum 10
-  Element 2: Fixnum 15
+  Element 0: Integer 5
+  Element 1: Integer 10
+  Element 2: Integer 15
 ```
 
 #### Mixed Array
@@ -127,7 +127,7 @@ The output shows details of the array.
 ---
 Array (message='My mixed array'):
   Array#size: 3
-  Element 0: Fixnum 0
+  Element 0: Integer 0
   Element 1:
     String:
       String#to_s: one
@@ -161,17 +161,17 @@ The output shows details of the arrays.
 ---
 Array (message='My nested arrays'):
   Array#size: 3
-  Element 0: Fixnum 0
+  Element 0: Integer 0
   Element 1:
     Array:
       Array#size: 2
-      Element 0: Fixnum 1
-      Element 1: Fixnum 2
+      Element 0: Integer 1
+      Element 1: Integer 2
   Element 2:
     Array:
       Array#size: 2
-      Element 0: Fixnum 3
-      Element 1: Fixnum 4
+      Element 0: Integer 3
+      Element 1: Integer 4
 ```
 
 #### Circular Arrays
@@ -289,8 +289,13 @@ This example shows a simple file.
 ```ruby
 require 'debug_helper'
 
-file = File.new(__FILE__)
-DebugHelper.show(file, 'My simple file')
+gem_file_path = `gem which debug_helper`.chomp
+gem_dir_path = File.dirname(gem_file_path)
+gem_file_name = File.basename(gem_file_path)
+Dir.chdir(gem_dir_path) do
+  file = File.new(gem_file_name)
+  DebugHelper.show(file, 'Gem file')
+end
 ```
 
 The output shows details of the file.
@@ -298,24 +303,24 @@ The output shows details of the file.
 ```show.yaml```:
 ```yaml
 ---
-File (message='My simple file'):
-  File.absolute_path("show.rb"): C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
-  File.atime("show.rb"): 2018-07-14 12:45:32.000000000 -05:00
-  File.ctime("show.rb"): 2018-07-14 12:45:32.000000000 -05:00
-  File.executable?("show.rb"): false
-  File.exist?("show.rb"): true
-  File.ftype("show.rb"): file
-  File.mtime("show.rb"): 2018-07-14 12:45:32.000000000 -05:00
-  File.path("show.rb"): show.rb
-  File.pipe?("show.rb"): false
-  File.readable?("show.rb"): true
-  File.realpath("show.rb"): C:/Users/Burdette/Documents/GitHub/debug_helper/markdown/readme/classes/file/simple/show.rb
-  File.setgid?("show.rb"): false
-  File.setuid?("show.rb"): false
-  File.size("show.rb"): 95
-  File.socket?("show.rb"): false
-  File.symlink?("show.rb"): false
-  File.writable?("show.rb"): true
+File (message='Gem file'):
+  File.absolute_path("debug_helper.rb"): C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/debug_helper-2.0.0/lib/debug_helper.rb
+  File.atime("debug_helper.rb"): 2018-10-20 15:50:22.852189200 -05:00
+  File.ctime("debug_helper.rb"): 2018-10-20 15:50:22.852189200 -05:00
+  File.executable?("debug_helper.rb"): false
+  File.exist?("debug_helper.rb"): true
+  File.ftype("debug_helper.rb"): file
+  File.mtime("debug_helper.rb"): 2018-10-20 15:50:22.853189000 -05:00
+  File.path("debug_helper.rb"): debug_helper.rb
+  File.pipe?("debug_helper.rb"): false
+  File.readable?("debug_helper.rb"): true
+  File.realpath("debug_helper.rb"): C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/debug_helper-2.0.0/lib/debug_helper.rb
+  File.setgid?("debug_helper.rb"): false
+  File.setuid?("debug_helper.rb"): false
+  File.size("debug_helper.rb"): 3651
+  File.socket?("debug_helper.rb"): false
+  File.symlink?("debug_helper.rb"): false
+  File.writable?("debug_helper.rb"): true
 ```
 ### Hash
 
@@ -346,21 +351,21 @@ Hash (message='My simple hash'):
         Symbol#to_s: a
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 0
+    Value: Integer 0
   Pair 1:
     Key:
       Symbol:
         Symbol#to_s: b
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 1
+    Value: Integer 1
   Pair 2:
     Key:
       Symbol:
         Symbol#to_s: c
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 2
+    Value: Integer 2
 ```
 
 #### Mixed Hash
@@ -394,7 +399,7 @@ Hash (message='My mixed hash'):
         Symbol#to_s: a
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 0
+    Value: Integer 0
   Pair 1:
     Key:
       Symbol:
@@ -468,14 +473,14 @@ Hash (message='My nested hash'):
               Symbol#to_s: b
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 0
+          Value: Integer 0
         Pair 1:
           Key:
             Symbol:
               Symbol#to_s: c
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 1
+          Value: Integer 1
   Pair 1:
     Key:
       Symbol:
@@ -493,14 +498,14 @@ Hash (message='My nested hash'):
               Symbol#to_s: e
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 2
+          Value: Integer 2
         Pair 1:
           Key:
             Symbol:
               Symbol#to_s: f
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 3
+          Value: Integer 3
 ```
 
 #### Circular Hashes
@@ -693,21 +698,21 @@ OpenStruct (message='My simple struct'):
         Symbol#to_s: a
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 0
+    Value: Integer 0
   Member 1:
     Name:
       Symbol:
         Symbol#to_s: b
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 1
+    Value: Integer 1
   Member 2:
     Name:
       Symbol:
         Symbol#to_s: c
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 2
+    Value: Integer 2
 ```
 
 #### Mixed OpenStruct
@@ -735,7 +740,7 @@ OpenStruct (message='My mixed open struct'):
         Symbol#to_s: a
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 0
+    Value: Integer 0
   Member 1:
     Name:
       Symbol:
@@ -804,14 +809,14 @@ OpenStruct (message='My nested struct'):
               Symbol#to_s: b
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 0
+          Value: Integer 0
         Member 1:
           Name:
             Symbol:
               Symbol#to_s: c
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 1
+          Value: Integer 1
   Member 1:
     Name:
       Symbol:
@@ -826,14 +831,14 @@ OpenStruct (message='My nested struct'):
               Symbol#to_s: e
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 2
+          Value: Integer 2
         Member 1:
           Name:
             Symbol:
               Symbol#to_s: f
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 3
+          Value: Integer 3
 ```
 
 #### Circular OpenStructs
@@ -1001,9 +1006,9 @@ The output shows details of the set.
 ---
 Set (message='My simple set'):
   Set#size: 3
-  Element 0: Fixnum 5
-  Element 1: Fixnum 10
-  Element 2: Fixnum 15
+  Element 0: Integer 5
+  Element 1: Integer 10
+  Element 2: Integer 15
 ```
 
 #### Mixed Set
@@ -1027,7 +1032,7 @@ The output shows details of the set.
 ---
 Set (message='My mixed set'):
   Set#size: 3
-  Element 0: Fixnum 0
+  Element 0: Integer 0
   Element 1:
     String:
       String#to_s: one
@@ -1067,17 +1072,17 @@ The output shows details of the sets.
 ---
 Set (message='My nested sets'):
   Set#size: 3
-  Element 0: Fixnum 0
+  Element 0: Integer 0
   Element 1:
     Set:
       Set#size: 2
-      Element 0: Fixnum 1
-      Element 1: Fixnum 2
+      Element 0: Integer 1
+      Element 1: Integer 2
   Element 2:
     Set:
       Set#size: 2
-      Element 0: Fixnum 3
-      Element 1: Fixnum 4
+      Element 0: Integer 3
+      Element 1: Integer 4
 ```
 
 #### Circular Sets
@@ -1195,21 +1200,21 @@ MyStruct (message='My simple struct'):
         Symbol#to_s: a
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 0
+    Value: Integer 0
   Member 1:
     Name:
       Symbol:
         Symbol#to_s: b
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 1
+    Value: Integer 1
   Member 2:
     Name:
       Symbol:
         Symbol#to_s: c
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 2
+    Value: Integer 2
 ```
 
 #### Mixed Struct
@@ -1238,7 +1243,7 @@ MyStruct (message='My mixed struct'):
         Symbol#to_s: a
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 0
+    Value: Integer 0
   Member 1:
     Name:
       Symbol:
@@ -1303,14 +1308,14 @@ MyStruct_0 (message='My nested struct'):
               Symbol#to_s: c
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 2
+          Value: Integer 2
         Member 1:
           Name:
             Symbol:
               Symbol#to_s: d
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 3
+          Value: Integer 3
   Member 1:
     Name:
       Symbol:
@@ -1326,14 +1331,14 @@ MyStruct_0 (message='My nested struct'):
               Symbol#to_s: c
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 4
+          Value: Integer 4
         Member 1:
           Name:
             Symbol:
               Symbol#to_s: d
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 5
+          Value: Integer 5
 ```
 
 #### Circular Structs
@@ -1384,28 +1389,28 @@ MyStruct (message='My circular struct'):
               Symbol#to_s: b
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 4
+          Value: Integer 4
         Member 2:
           Name:
             Symbol:
               Symbol#to_s: c
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 5
+          Value: Integer 5
   Member 1:
     Name:
       Symbol:
         Symbol#to_s: b
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 1
+    Value: Integer 1
   Member 2:
     Name:
       Symbol:
         Symbol#to_s: c
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 2
+    Value: Integer 2
 ```
 ### Symbol
 
@@ -1745,65 +1750,65 @@ The output shows output for various depths.
 ---
 Array (message='Show depth 1'):
   Array#size: 2
-  Element 0: Fixnum 0
+  Element 0: Integer 0
   Element 1: Array [1, [2, [3, [4]]]]
 ---
 Array (message='Show depth 2'):
   Array#size: 2
-  Element 0: Fixnum 0
+  Element 0: Integer 0
   Element 1:
     Array:
       Array#size: 2
-      Element 0: Fixnum 1
+      Element 0: Integer 1
       Element 1: Array [2, [3, [4]]]
 ---
 Array (message='Show depth 3'):
   Array#size: 2
-  Element 0: Fixnum 0
+  Element 0: Integer 0
   Element 1:
     Array:
       Array#size: 2
-      Element 0: Fixnum 1
+      Element 0: Integer 1
       Element 1:
         Array:
           Array#size: 2
-          Element 0: Fixnum 2
+          Element 0: Integer 2
           Element 1: Array [3, [4]]
 ---
 Array (message='Show depth 4'):
   Array#size: 2
-  Element 0: Fixnum 0
+  Element 0: Integer 0
   Element 1:
     Array:
       Array#size: 2
-      Element 0: Fixnum 1
+      Element 0: Integer 1
       Element 1:
         Array:
           Array#size: 2
-          Element 0: Fixnum 2
+          Element 0: Integer 2
           Element 1:
             Array:
               Array#size: 2
-              Element 0: Fixnum 3
+              Element 0: Integer 3
               Element 1: Array [4]
 ---
 Array (message='Show depth 5'):
   Array#size: 2
-  Element 0: Fixnum 0
+  Element 0: Integer 0
   Element 1:
     Array:
       Array#size: 2
-      Element 0: Fixnum 1
+      Element 0: Integer 1
       Element 1:
         Array:
           Array#size: 2
-          Element 0: Fixnum 2
+          Element 0: Integer 2
           Element 1:
             Array:
               Array#size: 2
-              Element 0: Fixnum 3
+              Element 0: Integer 3
               Element 1:
                 Array:
                   Array#size: 1
-                  Element 0: Fixnum 4
+                  Element 0: Integer 4
 ```
