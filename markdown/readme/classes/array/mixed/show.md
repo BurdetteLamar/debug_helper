@@ -17,7 +17,7 @@ The output shows details of the array.
 ---
 Array (message='My mixed array'):
   Array#size: 3
-  Element 0: Fixnum 0
+  Element 0: Integer 0
   Element 1:
     String:
       String#to_s: one

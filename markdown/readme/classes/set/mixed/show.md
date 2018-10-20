@@ -19,7 +19,7 @@ The output shows details of the set.
 ---
 Set (message='My mixed set'):
   Set#size: 3
-  Element 0: Fixnum 0
+  Element 0: Integer 0
   Element 1:
     String:
       String#to_s: one

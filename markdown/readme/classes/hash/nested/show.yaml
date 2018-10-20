@@ -20,14 +20,14 @@ Hash (message='My nested hash'):
               Symbol#to_s: b
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 0
+          Value: Integer 0
         Pair 1:
           Key:
             Symbol:
               Symbol#to_s: c
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 1
+          Value: Integer 1
   Pair 1:
     Key:
       Symbol:
@@ -45,11 +45,11 @@ Hash (message='My nested hash'):
               Symbol#to_s: e
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 2
+          Value: Integer 2
         Pair 1:
           Key:
             Symbol:
               Symbol#to_s: f
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 3
+          Value: Integer 3

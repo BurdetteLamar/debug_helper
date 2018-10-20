@@ -24,25 +24,25 @@ MyStruct (message='My circular struct'):
               Symbol#to_s: b
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 4
+          Value: Integer 4
         Member 2:
           Name:
             Symbol:
               Symbol#to_s: c
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 5
+          Value: Integer 5
   Member 1:
     Name:
       Symbol:
         Symbol#to_s: b
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 1
+    Value: Integer 1
   Member 2:
     Name:
       Symbol:
         Symbol#to_s: c
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 2
+    Value: Integer 2

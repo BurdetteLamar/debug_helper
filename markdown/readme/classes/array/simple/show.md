@@ -17,7 +17,7 @@ The output shows details of the array.
 ---
 Array (message='My simple array'):
   Array#size: 3
-  Element 0: Fixnum 5
-  Element 1: Fixnum 10
-  Element 2: Fixnum 15
+  Element 0: Integer 5
+  Element 1: Integer 10
+  Element 2: Integer 15
 ```

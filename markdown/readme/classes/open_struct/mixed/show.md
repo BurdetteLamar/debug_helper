@@ -23,7 +23,7 @@ OpenStruct (message='My mixed open struct'):
         Symbol#to_s: a
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 0
+    Value: Integer 0
   Member 1:
     Name:
       Symbol:

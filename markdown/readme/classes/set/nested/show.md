@@ -23,15 +23,15 @@ The output shows details of the sets.
 ---
 Set (message='My nested sets'):
   Set#size: 3
-  Element 0: Fixnum 0
+  Element 0: Integer 0
   Element 1:
     Set:
       Set#size: 2
-      Element 0: Fixnum 1
-      Element 1: Fixnum 2
+      Element 0: Integer 1
+      Element 1: Integer 2
   Element 2:
     Set:
       Set#size: 2
-      Element 0: Fixnum 3
-      Element 1: Fixnum 4
+      Element 0: Integer 3
+      Element 1: Integer 4
 ```

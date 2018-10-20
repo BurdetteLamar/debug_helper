@@ -40,14 +40,14 @@ OpenStruct (message='My nested struct'):
               Symbol#to_s: b
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 0
+          Value: Integer 0
         Member 1:
           Name:
             Symbol:
               Symbol#to_s: c
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 1
+          Value: Integer 1
   Member 1:
     Name:
       Symbol:
@@ -62,12 +62,12 @@ OpenStruct (message='My nested struct'):
               Symbol#to_s: e
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 2
+          Value: Integer 2
         Member 1:
           Name:
             Symbol:
               Symbol#to_s: f
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 3
+          Value: Integer 3
 ```

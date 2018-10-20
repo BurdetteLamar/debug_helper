@@ -36,14 +36,14 @@ MyStruct_0 (message='My nested struct'):
               Symbol#to_s: c
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 2
+          Value: Integer 2
         Member 1:
           Name:
             Symbol:
               Symbol#to_s: d
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 3
+          Value: Integer 3
   Member 1:
     Name:
       Symbol:
@@ -59,12 +59,12 @@ MyStruct_0 (message='My nested struct'):
               Symbol#to_s: c
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 4
+          Value: Integer 4
         Member 1:
           Name:
             Symbol:
               Symbol#to_s: d
               Symbol#size: 1
               Symbol#encoding: !ruby/encoding US-ASCII
-          Value: Fixnum 5
+          Value: Integer 5
 ```

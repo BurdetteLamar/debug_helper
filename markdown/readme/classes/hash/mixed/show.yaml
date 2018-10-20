@@ -9,7 +9,7 @@ Hash (message='My mixed hash'):
         Symbol#to_s: a
         Symbol#size: 1
         Symbol#encoding: !ruby/encoding US-ASCII
-    Value: Fixnum 0
+    Value: Integer 0
   Pair 1:
     Key:
       Symbol:
