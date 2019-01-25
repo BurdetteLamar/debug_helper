@@ -19,5 +19,4 @@ The output shows details of the object.
 ```show.yaml```:
 ```yaml
 --- MyClass (message='My class') My class inspection
-...
 ```

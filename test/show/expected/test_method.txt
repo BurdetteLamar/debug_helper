@@ -1,0 +1,11 @@
+---
+Method (message='test_method'):
+  Method#arity: -1
+  Method#inspect: "#<Method: DebugHelperTest(Kernel)#puts>"
+  Method#name: :puts
+  Method#original_name: :puts
+  Method#owner: !ruby/module 'Kernel'
+  Method#parameters:
+  - - :rest
+  Method#source_location: 
+  Method#super_method: 
