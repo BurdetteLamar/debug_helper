@@ -2,13 +2,9 @@
 
 [![Gem](https://img.shields.io/gem/v/debug_helper.svg?style=flat)](http://rubygems.org/gems/debug_helper "View this project in Rubygems")
 
-## New in Version 2.0
+## New in Version 2.1
 
-Previously, ```debug_helper``` explicated objects for only certain classes in the Ruby core and standard library.
-
-This version supports custom explication of user-defined classes.  This means, in effect, that you can use ```debug_helper``` to explicate any classes you choose.
-
-See [Custom](#custom).
+- Handling for instances of class ```Method```.  See [Method](#method).
 
 ## About Debug Helper
 
