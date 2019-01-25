@@ -5,6 +5,7 @@
 - [Hash](#hash)
 - [IO](#io)
 - [MatchData](#matchdata)
+- [Method](#method)
 - [OpenStruct](#openstruct)
 - [Range](#range)
 - [Regexp](#regexp)

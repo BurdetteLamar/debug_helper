@@ -47,6 +47,7 @@ Classes treated in detail:
 - [Hash](#hash)
 - [IO](#io)
 - [MatchData](#matchdata)
+- [Method](#method)
 - [OpenStruct](#openstruct)
 - [Range](#range)
 - [Regexp](#regexp)
@@ -305,19 +306,19 @@ The output shows details of the file.
 ---
 File (message='Gem file'):
   File.absolute_path("debug_helper.rb"): C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/debug_helper-2.0.0/lib/debug_helper.rb
-  File.atime("debug_helper.rb"): 2018-10-20 15:50:22.852189200 -05:00
-  File.ctime("debug_helper.rb"): 2018-10-20 15:50:22.852189200 -05:00
+  File.atime("debug_helper.rb"): 2019-01-25 15:43:42.740298400 -06:00
+  File.ctime("debug_helper.rb"): 2019-01-25 15:43:42.740298400 -06:00
   File.executable?("debug_helper.rb"): false
   File.exist?("debug_helper.rb"): true
   File.ftype("debug_helper.rb"): file
-  File.mtime("debug_helper.rb"): 2018-10-20 15:50:22.853189000 -05:00
+  File.mtime("debug_helper.rb"): 2019-01-25 15:43:42.741296200 -06:00
   File.path("debug_helper.rb"): debug_helper.rb
   File.pipe?("debug_helper.rb"): false
   File.readable?("debug_helper.rb"): true
   File.realpath("debug_helper.rb"): C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/debug_helper-2.0.0/lib/debug_helper.rb
   File.setgid?("debug_helper.rb"): false
   File.setuid?("debug_helper.rb"): false
-  File.size("debug_helper.rb"): 3651
+  File.size("debug_helper.rb"): 3701
   File.socket?("debug_helper.rb"): false
   File.symlink?("debug_helper.rb"): false
   File.writable?("debug_helper.rb"): true
@@ -670,6 +671,36 @@ MatchData (message='My MatchData with named captures'):
   MatchData#names:
   - x
   - y
+```
+### Method
+
+#### Simple Method
+
+This example shows a simple ```Method```.
+
+```show.rb```:
+```ruby
+require 'debug_helper'
+
+m = method(:puts)
+DebugHelper.show(m, 'My simple Method')
+```
+
+The output shows details of the ```Method```.
+
+```show.yaml```:
+```yaml
+---
+Method (message='My simple Method'):
+  Method#arity: -1
+  Method#inspect: "#<Method: main.puts>"
+  Method#name: :puts
+  Method#original_name: :puts
+  Method#owner: !ruby/module 'Kernel'
+  Method#parameters:
+  - - :rest
+  Method#source_location: 
+  Method#super_method: 
 ```
 ### OpenStruct
 
@@ -1460,7 +1491,6 @@ The output shows details of the object.
 ```show.yaml```:
 ```yaml
 --- MyClass (message='My class') My class inspection
-...
 ```
 ### Custom
 
